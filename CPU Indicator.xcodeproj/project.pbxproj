@@ -1,0 +1,287 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7B78A4C8131AA56500FE0D25 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B78A4C7131AA56500FE0D25 /* Cocoa.framework */; };
+		7B78A4D2131AA56500FE0D25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */; };
+		7B78A4D5131AA56500FE0D25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78A4D4131AA56500FE0D25 /* main.m */; };
+		7B78A4D8131AA56500FE0D25 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4D6131AA56500FE0D25 /* Credits.rtf */; };
+		7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */; };
+		7B78A4DE131AA56500FE0D25 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4DC131AA56500FE0D25 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7B78A4C3131AA56500FE0D25 /* CPU Indicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPU Indicator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B78A4C7131AA56500FE0D25 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		7B78A4CA131AA56500FE0D25 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		7B78A4CB131AA56500FE0D25 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7B78A4CC131AA56500FE0D25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7B78A4CF131AA56500FE0D25 /* CPU_Indicator-Info.plist */ = {isa = PBXFileReference; path = "CPU_Indicator-Info.plist"; sourceTree = "<group>"; };
+		7B78A4D1131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */ = {isa = PBXFileReference; path = "CPU_Indicator-Prefix.pch"; sourceTree = "<group>"; };
+		7B78A4D4131AA56500FE0D25 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7B78A4D7131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		7B78A4D9131AA56500FE0D25 /* CPU_IndicatorAppDelegate.h */ = {isa = PBXFileReference; path = CPU_IndicatorAppDelegate.h; sourceTree = "<group>"; };
+		7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CPU_IndicatorAppDelegate.m; sourceTree = "<group>"; };
+		7B78A4DD131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7B78A4C0131AA56500FE0D25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B78A4C8131AA56500FE0D25 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7B78A4B8131AA56500FE0D25 = {
+			isa = PBXGroup;
+			children = (
+				7B78A4CD131AA56500FE0D25 /* CPU Indicator */,
+				7B78A4C6131AA56500FE0D25 /* Frameworks */,
+				7B78A4C4131AA56500FE0D25 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7B78A4C4131AA56500FE0D25 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7B78A4C3131AA56500FE0D25 /* CPU Indicator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B78A4C6131AA56500FE0D25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B78A4C7131AA56500FE0D25 /* Cocoa.framework */,
+				7B78A4C9131AA56500FE0D25 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B78A4C9131AA56500FE0D25 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B78A4CA131AA56500FE0D25 /* AppKit.framework */,
+				7B78A4CB131AA56500FE0D25 /* CoreData.framework */,
+				7B78A4CC131AA56500FE0D25 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		7B78A4CD131AA56500FE0D25 /* CPU Indicator */ = {
+			isa = PBXGroup;
+			children = (
+				7B78A4D9131AA56500FE0D25 /* CPU_IndicatorAppDelegate.h */,
+				7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */,
+				7B78A4DC131AA56500FE0D25 /* MainMenu.xib */,
+				7B78A4CE131AA56500FE0D25 /* Supporting Files */,
+			);
+			path = "CPU Indicator";
+			sourceTree = "<group>";
+		};
+		7B78A4CE131AA56500FE0D25 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7B78A4CF131AA56500FE0D25 /* CPU_Indicator-Info.plist */,
+				7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */,
+				7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */,
+				7B78A4D4131AA56500FE0D25 /* main.m */,
+				7B78A4D6131AA56500FE0D25 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7B78A4C2131AA56500FE0D25 /* CPU Indicator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B78A4E1131AA56500FE0D25 /* Build configuration list for PBXNativeTarget "CPU Indicator" */;
+			buildPhases = (
+				7B78A4BF131AA56500FE0D25 /* Sources */,
+				7B78A4C0131AA56500FE0D25 /* Frameworks */,
+				7B78A4C1131AA56500FE0D25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CPU Indicator";
+			productName = "CPU Indicator";
+			productReference = 7B78A4C3131AA56500FE0D25 /* CPU Indicator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7B78A4BA131AA56500FE0D25 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Frost Land";
+			};
+			buildConfigurationList = 7B78A4BD131AA56500FE0D25 /* Build configuration list for PBXProject "CPU Indicator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7B78A4B8131AA56500FE0D25;
+			productRefGroup = 7B78A4C4131AA56500FE0D25 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7B78A4C2131AA56500FE0D25 /* CPU Indicator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7B78A4C1131AA56500FE0D25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B78A4D2131AA56500FE0D25 /* InfoPlist.strings in Resources */,
+				7B78A4D8131AA56500FE0D25 /* Credits.rtf in Resources */,
+				7B78A4DE131AA56500FE0D25 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7B78A4BF131AA56500FE0D25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B78A4D5131AA56500FE0D25 /* main.m in Sources */,
+				7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B78A4D1131AA56500FE0D25 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7B78A4D6131AA56500FE0D25 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B78A4D7131AA56500FE0D25 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		7B78A4DC131AA56500FE0D25 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B78A4DD131AA56500FE0D25 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7B78A4DF131AA56500FE0D25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7B78A4E0131AA56500FE0D25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		7B78A4E2131AA56500FE0D25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CPU Indicator/CPU_Indicator-Prefix.pch";
+				INFOPLIST_FILE = "CPU Indicator/CPU_Indicator-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7B78A4E3131AA56500FE0D25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CPU Indicator/CPU_Indicator-Prefix.pch";
+				INFOPLIST_FILE = "CPU Indicator/CPU_Indicator-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7B78A4BD131AA56500FE0D25 /* Build configuration list for PBXProject "CPU Indicator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B78A4DF131AA56500FE0D25 /* Debug */,
+				7B78A4E0131AA56500FE0D25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B78A4E1131AA56500FE0D25 /* Build configuration list for PBXNativeTarget "CPU Indicator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B78A4E2131AA56500FE0D25 /* Debug */,
+				7B78A4E3131AA56500FE0D25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7B78A4BA131AA56500FE0D25 /* Project object */;
+}
