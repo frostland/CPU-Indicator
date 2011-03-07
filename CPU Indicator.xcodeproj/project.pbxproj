@@ -7,28 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B70732813237D72000089B2 /* FLCPUIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B70732713237D71000089B2 /* FLCPUIndicatorView.m */; };
+		7B70732F13239748000089B2 /* babe4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B70732A13239748000089B2 /* babe4.png */; };
+		7B70733013239748000089B2 /* babe3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B70732B13239748000089B2 /* babe3.png */; };
+		7B70733113239748000089B2 /* babe2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B70732C13239748000089B2 /* babe2.png */; };
+		7B70733213239748000089B2 /* babe1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B70732D13239748000089B2 /* babe1.png */; };
+		7B70733313239748000089B2 /* babe0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B70732E13239748000089B2 /* babe0.png */; };
 		7B78A4C8131AA56500FE0D25 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B78A4C7131AA56500FE0D25 /* Cocoa.framework */; };
 		7B78A4D2131AA56500FE0D25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */; };
 		7B78A4D5131AA56500FE0D25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78A4D4131AA56500FE0D25 /* main.m */; };
 		7B78A4D8131AA56500FE0D25 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4D6131AA56500FE0D25 /* Credits.rtf */; };
 		7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */; };
 		7B78A4DE131AA56500FE0D25 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4DC131AA56500FE0D25 /* MainMenu.xib */; };
+		7B849F27132241360045854D /* FLBorderlessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B849F26132241360045854D /* FLBorderlessWindow.m */; };
+		7B849F41132276920045854D /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F3E132276920045854D /* green.png */; };
+		7B849F42132276920045854D /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F3F132276920045854D /* orange.png */; };
+		7B849F43132276920045854D /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F40132276920045854D /* red.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B70732613237D71000089B2 /* FLCPUIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCPUIndicatorView.h; sourceTree = "<group>"; };
+		7B70732713237D71000089B2 /* FLCPUIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCPUIndicatorView.m; sourceTree = "<group>"; };
+		7B70732A13239748000089B2 /* babe4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babe4.png; sourceTree = "<group>"; };
+		7B70732B13239748000089B2 /* babe3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babe3.png; sourceTree = "<group>"; };
+		7B70732C13239748000089B2 /* babe2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babe2.png; sourceTree = "<group>"; };
+		7B70732D13239748000089B2 /* babe1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babe1.png; sourceTree = "<group>"; };
+		7B70732E13239748000089B2 /* babe0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babe0.png; sourceTree = "<group>"; };
 		7B78A4C3131AA56500FE0D25 /* CPU Indicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPU Indicator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B78A4C7131AA56500FE0D25 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7B78A4CA131AA56500FE0D25 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		7B78A4CB131AA56500FE0D25 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7B78A4CC131AA56500FE0D25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		7B78A4CF131AA56500FE0D25 /* CPU_Indicator-Info.plist */ = {isa = PBXFileReference; path = "CPU_Indicator-Info.plist"; sourceTree = "<group>"; };
+		7B78A4CF131AA56500FE0D25 /* CPU_Indicator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CPU_Indicator-Info.plist"; sourceTree = "<group>"; };
 		7B78A4D1131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */ = {isa = PBXFileReference; path = "CPU_Indicator-Prefix.pch"; sourceTree = "<group>"; };
+		7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CPU_Indicator-Prefix.pch"; sourceTree = "<group>"; };
 		7B78A4D4131AA56500FE0D25 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7B78A4D7131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		7B78A4D9131AA56500FE0D25 /* CPU_IndicatorAppDelegate.h */ = {isa = PBXFileReference; path = CPU_IndicatorAppDelegate.h; sourceTree = "<group>"; };
+		7B78A4D9131AA56500FE0D25 /* CPU_IndicatorAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPU_IndicatorAppDelegate.h; sourceTree = "<group>"; };
 		7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CPU_IndicatorAppDelegate.m; sourceTree = "<group>"; };
 		7B78A4DD131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7B849F25132241360045854D /* FLBorderlessWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBorderlessWindow.h; sourceTree = "<group>"; };
+		7B849F26132241360045854D /* FLBorderlessWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBorderlessWindow.m; sourceTree = "<group>"; };
+		7B849F3E132276920045854D /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
+		7B849F3F132276920045854D /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
+		7B849F40132276920045854D /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,9 +104,13 @@
 		7B78A4CD131AA56500FE0D25 /* CPU Indicator */ = {
 			isa = PBXGroup;
 			children = (
+				7B78A4DC131AA56500FE0D25 /* MainMenu.xib */,
 				7B78A4D9131AA56500FE0D25 /* CPU_IndicatorAppDelegate.h */,
 				7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */,
-				7B78A4DC131AA56500FE0D25 /* MainMenu.xib */,
+				7B70732613237D71000089B2 /* FLCPUIndicatorView.h */,
+				7B70732713237D71000089B2 /* FLCPUIndicatorView.m */,
+				7B849F25132241360045854D /* FLBorderlessWindow.h */,
+				7B849F26132241360045854D /* FLBorderlessWindow.m */,
 				7B78A4CE131AA56500FE0D25 /* Supporting Files */,
 			);
 			path = "CPU Indicator";
@@ -93,6 +119,7 @@
 		7B78A4CE131AA56500FE0D25 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7B849F45132276960045854D /* Images */,
 				7B78A4CF131AA56500FE0D25 /* CPU_Indicator-Info.plist */,
 				7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */,
 				7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */,
@@ -100,6 +127,21 @@
 				7B78A4D6131AA56500FE0D25 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7B849F45132276960045854D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				7B70732A13239748000089B2 /* babe4.png */,
+				7B70732B13239748000089B2 /* babe3.png */,
+				7B70732C13239748000089B2 /* babe2.png */,
+				7B70732D13239748000089B2 /* babe1.png */,
+				7B70732E13239748000089B2 /* babe0.png */,
+				7B849F3E132276920045854D /* green.png */,
+				7B849F3F132276920045854D /* orange.png */,
+				7B849F40132276920045854D /* red.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +197,14 @@
 				7B78A4D2131AA56500FE0D25 /* InfoPlist.strings in Resources */,
 				7B78A4D8131AA56500FE0D25 /* Credits.rtf in Resources */,
 				7B78A4DE131AA56500FE0D25 /* MainMenu.xib in Resources */,
+				7B849F41132276920045854D /* green.png in Resources */,
+				7B849F42132276920045854D /* orange.png in Resources */,
+				7B849F43132276920045854D /* red.png in Resources */,
+				7B70732F13239748000089B2 /* babe4.png in Resources */,
+				7B70733013239748000089B2 /* babe3.png in Resources */,
+				7B70733113239748000089B2 /* babe2.png in Resources */,
+				7B70733213239748000089B2 /* babe1.png in Resources */,
+				7B70733313239748000089B2 /* babe0.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +217,8 @@
 			files = (
 				7B78A4D5131AA56500FE0D25 /* main.m in Sources */,
 				7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */,
+				7B849F27132241360045854D /* FLBorderlessWindow.m in Sources */,
+				7B70732813237D72000089B2 /* FLCPUIndicatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +332,7 @@
 				7B78A4E3131AA56500FE0D25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

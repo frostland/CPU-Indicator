@@ -8,11 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "FLCPUIndicatorView.h"
+
 @interface CPU_IndicatorAppDelegate : NSObject <NSApplicationDelegate> {
 @private
 	NSWindow *window;
+	FLCPUIndicatorView *cpuIndicatorView;
+	
+	CGFloat knownCPUUsage;
 }
-
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet FLCPUIndicatorView *cpuIndicatorView;
 
 @end
