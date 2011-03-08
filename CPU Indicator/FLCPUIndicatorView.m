@@ -8,23 +8,15 @@
 
 #import "FLCPUIndicatorView.h"
 
-@interface FLCPUIndicatorView (Private)
-
-- (NSArray *)deepCopyOfImageArray:(NSArray *)original;
-
-@end
-
 @implementation FLCPUIndicatorView
 
 @synthesize parentWindow;
+@synthesize stickToImages;
 
 - (id)initWithFrame:(NSRect)frame
 {
 	frame.size = CGSizeZero;
-	self = [super initWithFrame:frame];
-	if (self) {
-		baseSize = CGSizeZero;
-		
+	if ((self = [super initWithFrame:frame]) != nil) {
 		stickToImages = NO;
 		
 		animating = NO;
@@ -45,24 +37,30 @@
 	[super dealloc];
 }
 
-- (NSArray *)images
+- (FLSkin *)skin
 {
-	return [[self deepCopyOfImageArray:images] autorelease];
+	return skin;
 }
 
-- (void)setImages:(NSArray *)newImages
+- (void)setSkin:(FLSkin *)newSkin
 {
-	if (newImages == images) return;
+	if (newSkin == skin) return;
 	
-	[images release];
-	images = [self deepCopyOfImageArray:newImages];
+	[skin release];
+	skin = [newSkin retain];
 	
-	[parentWindow setContentSize:baseSize];
+	[parentWindow setContentSize:skin.imagesSize];
 	[parentWindow invalidateShadow];
 	
 	CGRect f = self.frame;
-	f.size = baseSize;
+	f.size = skin.imagesSize;
 	self.frame = f;
+	
+	if (animating) {
+		animating = NO;
+		[animTimer invalidate]; [animTimer release]; animTimer = nil;
+		[self setCurCPULoad:destCPULoad];
+	}
 	
 	[self setNeedsDisplay:YES];
 }
@@ -91,9 +89,9 @@
 	curFrameNumber = 0;
 	destCPULoad = CPULoad;
 	if (stickToImages) {
-		CGFloat f = CPULoad * ((CGFloat)[images count]-1.);
+		CGFloat f = CPULoad * ((CGFloat)skin.nImages-1.);
 		NSUInteger imageIdx = f;
-		destCPULoad = ((CGFloat)imageIdx) / ((CGFloat)[images count]-1.) + .001;
+		destCPULoad = ((CGFloat)imageIdx) / ((CGFloat)skin.nImages-1.) + .001;
 	}
 	CPULoadIncrement = (destCPULoad - curCPULoad)/NFRAME;
 	if (!animating)
@@ -117,46 +115,16 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	CGFloat f = curCPULoad * ((CGFloat)[images count]-1.);
+	CGFloat f = curCPULoad * ((CGFloat)skin.nImages-1.);
 	NSUInteger imageIdx = f + 1;
 	
-	if (imageIdx < [images count]) {
-		[[images objectAtIndex:imageIdx] dissolveToPoint:NSZeroPoint fraction:1.];
-		if (imageIdx - 1 < [images count])
-			[[images objectAtIndex:imageIdx - 1] dissolveToPoint:NSZeroPoint fraction:imageIdx - f];
-	} else [[images lastObject] dissolveToPoint:NSZeroPoint fraction:1.];
+	if (imageIdx < skin.nImages) {
+		[[skin.images objectAtIndex:imageIdx] dissolveToPoint:NSZeroPoint fraction:1.];
+		if (imageIdx - 1 < [skin.images count])
+			[[skin.images objectAtIndex:imageIdx - 1] dissolveToPoint:NSZeroPoint fraction:imageIdx - f];
+	} else [[skin.images lastObject] dissolveToPoint:NSZeroPoint fraction:1.];
 	
 	[parentWindow invalidateShadow];
-}
-
-@end
-
-@implementation FLCPUIndicatorView (Private)
-
-- (NSArray *)deepCopyOfImageArray:(NSArray *)original
-{
-	if ([original count] == 0)
-		[NSException raise:@"Invalid image array" format:@"Trying to copy an empty image array"];
-	
-	baseSize = CGSizeZero;
-	NSUInteger i = 0, n = [original count];
-	NSMutableArray *copy = [NSMutableArray arrayWithCapacity:n];
-	
-	do {
-		NSImage *curImage = [original objectAtIndex:i];
-		if (![curImage isKindOfClass:[NSImage class]])
-			[NSException raise:@"Invalid image array" format:@"Trying to copy an image array whose element #%d is not kind of class NSImage (it is: %@)", i, NSStringFromClass([curImage class])];
-		
-		if (i == 0) baseSize = [curImage size];
-		if (CGSizeEqualToSize(baseSize, CGSizeZero))
-			[NSException raise:@"Invalid image array" format:@"Trying to copy an image array whose first element is of size zero"];
-		if (!CGSizeEqualToSize([curImage size], baseSize))
-			[NSException raise:@"Invalid image array" format:@"Trying to copy an image array whose element #%d is not the same size of the previous elements", i];
-		
-		[copy addObject:[curImage copy]];
-	} while (++i < n);
-	
-	return [copy copy];
 }
 
 @end

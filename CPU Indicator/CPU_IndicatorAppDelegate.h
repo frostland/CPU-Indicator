@@ -8,16 +8,28 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "FLSkinManager.h"
+#import "FLBorderlessWindow.h"
 #import "FLCPUIndicatorView.h"
+#import "FLPreferencesController.h"
 
 @interface CPU_IndicatorAppDelegate : NSObject <NSApplicationDelegate> {
 @private
-	NSWindow *window;
+	NSWindow *welcomeWindow;
+	FLBorderlessWindow *window;
 	FLCPUIndicatorView *cpuIndicatorView;
+	FLPreferencesController *preferencesController;
+	
+	FLSkinManager *skinManager;
 	
 	CGFloat knownCPUUsage;
 }
-@property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet NSWindow *welcomeWindow;
+@property (assign) IBOutlet FLBorderlessWindow *window;
 @property (assign) IBOutlet FLCPUIndicatorView *cpuIndicatorView;
+
+- (IBAction)showPreferences:(id)sender;
+- (IBAction)closeWelcomeWindow:(id)sender;
+- (IBAction)closeWelcomeWindowAndShowPrefs:(id)sender;
 
 @end

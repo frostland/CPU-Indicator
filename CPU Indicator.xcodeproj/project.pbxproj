@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B4CA5131325105E00C5A5CD /* FLPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B4CA5121325105E00C5A5CD /* FLPreferences.xib */; };
+		7B4CA51D1325156500C5A5CD /* FLPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CA51C1325156400C5A5CD /* FLPreferencesController.m */; };
+		7B4CA52913252AF300C5A5CD /* FLDefaultPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CA52813252AF200C5A5CD /* FLDefaultPaths.m */; };
+		7B4CA52C1325306F00C5A5CD /* FLSkinPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CA52B1325306C00C5A5CD /* FLSkinPreviewCell.m */; };
 		7B70732813237D72000089B2 /* FLCPUIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B70732713237D71000089B2 /* FLCPUIndicatorView.m */; };
-		7B70732F13239748000089B2 /* babe4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B70732A13239748000089B2 /* babe4.png */; };
-		7B70733013239748000089B2 /* babe3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B70732B13239748000089B2 /* babe3.png */; };
-		7B70733113239748000089B2 /* babe2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B70732C13239748000089B2 /* babe2.png */; };
-		7B70733213239748000089B2 /* babe1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B70732D13239748000089B2 /* babe1.png */; };
-		7B70733313239748000089B2 /* babe0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B70732E13239748000089B2 /* babe0.png */; };
 		7B78A4C8131AA56500FE0D25 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B78A4C7131AA56500FE0D25 /* Cocoa.framework */; };
 		7B78A4D2131AA56500FE0D25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */; };
 		7B78A4D5131AA56500FE0D25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78A4D4131AA56500FE0D25 /* main.m */; };
@@ -23,16 +22,25 @@
 		7B849F41132276920045854D /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F3E132276920045854D /* green.png */; };
 		7B849F42132276920045854D /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F3F132276920045854D /* orange.png */; };
 		7B849F43132276920045854D /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F40132276920045854D /* red.png */; };
+		7B90A9671325CDDC003D00CA /* FLSkinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A9661325CDDC003D00CA /* FLSkinManager.m */; };
+		7B90A96B1325CE57003D00CA /* FLSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A96A1325CE56003D00CA /* FLSkin.m */; };
+		7B90A96D1326493D003D00CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A96C1326493D003D00CA /* Localizable.strings */; };
+		7B90A96F13268BB0003D00CA /* check_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A96E13268BB0003D00CA /* check_mark.png */; };
+		7B90A97513269065003D00CA /* FLCenteredTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A9741326905E003D00CA /* FLCenteredTextCell.m */; };
+		7B90A97713269E6B003D00CA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A97613269E6B003D00CA /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B4CA5121325105E00C5A5CD /* FLPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLPreferences.xib; sourceTree = "<group>"; };
+		7B4CA51A1325113900C5A5CD /* FLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLConstants.h; sourceTree = "<group>"; };
+		7B4CA51B1325156400C5A5CD /* FLPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPreferencesController.h; sourceTree = "<group>"; };
+		7B4CA51C1325156400C5A5CD /* FLPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPreferencesController.m; sourceTree = "<group>"; };
+		7B4CA52713252AF200C5A5CD /* FLDefaultPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDefaultPaths.h; sourceTree = "<group>"; };
+		7B4CA52813252AF200C5A5CD /* FLDefaultPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDefaultPaths.m; sourceTree = "<group>"; };
+		7B4CA52A1325306B00C5A5CD /* FLSkinPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkinPreviewCell.h; sourceTree = "<group>"; };
+		7B4CA52B1325306C00C5A5CD /* FLSkinPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkinPreviewCell.m; sourceTree = "<group>"; };
 		7B70732613237D71000089B2 /* FLCPUIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCPUIndicatorView.h; sourceTree = "<group>"; };
 		7B70732713237D71000089B2 /* FLCPUIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCPUIndicatorView.m; sourceTree = "<group>"; };
-		7B70732A13239748000089B2 /* babe4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babe4.png; sourceTree = "<group>"; };
-		7B70732B13239748000089B2 /* babe3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babe3.png; sourceTree = "<group>"; };
-		7B70732C13239748000089B2 /* babe2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babe2.png; sourceTree = "<group>"; };
-		7B70732D13239748000089B2 /* babe1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babe1.png; sourceTree = "<group>"; };
-		7B70732E13239748000089B2 /* babe0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babe0.png; sourceTree = "<group>"; };
 		7B78A4C3131AA56500FE0D25 /* CPU Indicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPU Indicator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B78A4C7131AA56500FE0D25 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7B78A4CA131AA56500FE0D25 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -51,6 +59,15 @@
 		7B849F3E132276920045854D /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		7B849F3F132276920045854D /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
 		7B849F40132276920045854D /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		7B90A9651325CDDC003D00CA /* FLSkinManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkinManager.h; sourceTree = "<group>"; };
+		7B90A9661325CDDC003D00CA /* FLSkinManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkinManager.m; sourceTree = "<group>"; };
+		7B90A9691325CE56003D00CA /* FLSkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkin.h; sourceTree = "<group>"; };
+		7B90A96A1325CE56003D00CA /* FLSkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkin.m; sourceTree = "<group>"; };
+		7B90A96C1326493D003D00CA /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		7B90A96E13268BB0003D00CA /* check_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_mark.png; sourceTree = "<group>"; };
+		7B90A9731326905D003D00CA /* FLCenteredTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCenteredTextCell.h; sourceTree = "<group>"; };
+		7B90A9741326905E003D00CA /* FLCenteredTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCenteredTextCell.m; sourceTree = "<group>"; };
+		7B90A97613269E6B003D00CA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +121,10 @@
 		7B78A4CD131AA56500FE0D25 /* CPU Indicator */ = {
 			isa = PBXGroup;
 			children = (
+				7B90A9691325CE56003D00CA /* FLSkin.h */,
+				7B90A96A1325CE56003D00CA /* FLSkin.m */,
+				7B90A9651325CDDC003D00CA /* FLSkinManager.h */,
+				7B90A9661325CDDC003D00CA /* FLSkinManager.m */,
 				7B78A4DC131AA56500FE0D25 /* MainMenu.xib */,
 				7B78A4D9131AA56500FE0D25 /* CPU_IndicatorAppDelegate.h */,
 				7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */,
@@ -111,6 +132,15 @@
 				7B70732713237D71000089B2 /* FLCPUIndicatorView.m */,
 				7B849F25132241360045854D /* FLBorderlessWindow.h */,
 				7B849F26132241360045854D /* FLBorderlessWindow.m */,
+				7B4CA5121325105E00C5A5CD /* FLPreferences.xib */,
+				7B4CA51B1325156400C5A5CD /* FLPreferencesController.h */,
+				7B4CA51C1325156400C5A5CD /* FLPreferencesController.m */,
+				7B4CA52A1325306B00C5A5CD /* FLSkinPreviewCell.h */,
+				7B4CA52B1325306C00C5A5CD /* FLSkinPreviewCell.m */,
+				7B90A9731326905D003D00CA /* FLCenteredTextCell.h */,
+				7B90A9741326905E003D00CA /* FLCenteredTextCell.m */,
+				7B4CA52713252AF200C5A5CD /* FLDefaultPaths.h */,
+				7B4CA52813252AF200C5A5CD /* FLDefaultPaths.m */,
 				7B78A4CE131AA56500FE0D25 /* Supporting Files */,
 			);
 			path = "CPU Indicator";
@@ -125,6 +155,8 @@
 				7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */,
 				7B78A4D4131AA56500FE0D25 /* main.m */,
 				7B78A4D6131AA56500FE0D25 /* Credits.rtf */,
+				7B4CA51A1325113900C5A5CD /* FLConstants.h */,
+				7B90A96C1326493D003D00CA /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -132,14 +164,11 @@
 		7B849F45132276960045854D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				7B70732A13239748000089B2 /* babe4.png */,
-				7B70732B13239748000089B2 /* babe3.png */,
-				7B70732C13239748000089B2 /* babe2.png */,
-				7B70732D13239748000089B2 /* babe1.png */,
-				7B70732E13239748000089B2 /* babe0.png */,
 				7B849F3E132276920045854D /* green.png */,
 				7B849F3F132276920045854D /* orange.png */,
 				7B849F40132276920045854D /* red.png */,
+				7B90A97613269E6B003D00CA /* icon.png */,
+				7B90A96E13268BB0003D00CA /* check_mark.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -200,11 +229,10 @@
 				7B849F41132276920045854D /* green.png in Resources */,
 				7B849F42132276920045854D /* orange.png in Resources */,
 				7B849F43132276920045854D /* red.png in Resources */,
-				7B70732F13239748000089B2 /* babe4.png in Resources */,
-				7B70733013239748000089B2 /* babe3.png in Resources */,
-				7B70733113239748000089B2 /* babe2.png in Resources */,
-				7B70733213239748000089B2 /* babe1.png in Resources */,
-				7B70733313239748000089B2 /* babe0.png in Resources */,
+				7B4CA5131325105E00C5A5CD /* FLPreferences.xib in Resources */,
+				7B90A96D1326493D003D00CA /* Localizable.strings in Resources */,
+				7B90A96F13268BB0003D00CA /* check_mark.png in Resources */,
+				7B90A97713269E6B003D00CA /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +247,12 @@
 				7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */,
 				7B849F27132241360045854D /* FLBorderlessWindow.m in Sources */,
 				7B70732813237D72000089B2 /* FLCPUIndicatorView.m in Sources */,
+				7B4CA51D1325156500C5A5CD /* FLPreferencesController.m in Sources */,
+				7B4CA52913252AF300C5A5CD /* FLDefaultPaths.m in Sources */,
+				7B4CA52C1325306F00C5A5CD /* FLSkinPreviewCell.m in Sources */,
+				7B90A9671325CDDC003D00CA /* FLSkinManager.m in Sources */,
+				7B90A96B1325CE57003D00CA /* FLSkin.m in Sources */,
+				7B90A97513269065003D00CA /* FLCenteredTextCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

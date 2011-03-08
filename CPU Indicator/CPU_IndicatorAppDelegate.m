@@ -8,17 +8,112 @@
 
 #import "CPU_IndicatorAppDelegate.h"
 
+#import "FLConstants.h"
 #include <mach/mach.h>
+
+#define FL_CPU_COMPUTE_INTERVAL (1.5)
+
+@interface CPU_IndicatorAppDelegate (Private)
+
+- (void)userDefaultsChanged:(NSNotification *)n;
+
+@end
 
 @implementation CPU_IndicatorAppDelegate
 
-@synthesize window, cpuIndicatorView;
+@synthesize welcomeWindow, window, cpuIndicatorView;
+
++ (void)initialize
+{
+	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
+	
+	[defaultValues setValue:@"" forKey:FL_UDK_LAST_SELECTED_PREF_ID];
+	[defaultValues setValue:[NSNumber numberWithBool:YES]  forKey:FL_UDK_FIRST_RUN];
+	[defaultValues setValue:[NSNumber numberWithBool:NO]   forKey:FL_UDK_DISALLOW_SHADOW];
+	[defaultValues setValue:[NSNumber numberWithBool:YES]  forKey:FL_UDK_STICK_TO_IMAGES];
+	[defaultValues setValue:[NSNumber numberWithBool:YES]  forKey:FL_UDK_ALLOW_WINDOW_DRAG_N_DROP];
+	[defaultValues setValue:[NSNumber numberWithFloat:1.]  forKey:FL_UDK_WINDOW_TRANSPARENCY];
+	[defaultValues setValue:[NSNumber numberWithInteger:0] forKey:FL_UDK_SELECTED_SKIN];
+	
+	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	[cpuIndicatorView setImages:[NSArray arrayWithObjects:[NSImage imageNamed:@"babe0.png"], [NSImage imageNamed:@"babe1.png"], [NSImage imageNamed:@"babe2.png"], [NSImage imageNamed:@"babe3.png"], [NSImage imageNamed:@"babe4.png"], nil]];
-//	[cpuIndicatorView setImages:[NSArray arrayWithObjects:[NSImage imageNamed:@"green.png"], [NSImage imageNamed:@"orange.png"], [NSImage imageNamed:@"red.png"], nil]];
-	[[NSTimer scheduledTimerWithTimeInterval:.5 target:self selector:@selector(refreshKnownCPUUsage:) userInfo:NULL repeats:YES] fire];
+	if (skinManager == nil) skinManager = [FLSkinManager new];
+	skinManager.cpuIndicatorView = cpuIndicatorView;
+	[NSArchiver archiveRootObject:[[FLSkin alloc] initWithImages:[NSArray arrayWithObjects:[NSImage imageNamed:@"babe0.png"], [NSImage imageNamed:@"babe1.png"], [NSImage imageNamed:@"babe2.png"], [NSImage imageNamed:@"babe3.png"], [NSImage imageNamed:@"babe4.png"], nil]] toFile:@"/Users/frizlab/Desktop/tt.skin"];
+	
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	if ([ud boolForKey:FL_UDK_FIRST_RUN]) {
+		[ud setBool:NO forKey:FL_UDK_FIRST_RUN];
+		
+		NSRect screenRect = [[window screen] visibleFrame];
+		NSRect f = [window frame];
+		f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width;
+		f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height;
+		[window setFrame:f display:YES animate:NO];
+		[welcomeWindow setLevel:NSStatusWindowLevel];
+		[welcomeWindow setBackgroundColor:[NSColor whiteColor]];
+		[welcomeWindow makeKeyAndOrderFront:nil];
+	}
+	
+	[window orderFront:nil];
+	
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	[nc addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+	
+	[[NSTimer scheduledTimerWithTimeInterval:FL_CPU_COMPUTE_INTERVAL target:self selector:@selector(refreshKnownCPUUsage:) userInfo:NULL repeats:YES] fire];
+	
+	[self userDefaultsChanged:nil];
+}
+
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
+{
+	if (skinManager == nil) skinManager = [FLSkinManager new];
+	[skinManager installSkinAtPath:filename useIt:YES];
+	[preferencesController reloadSkinList];
+	return YES;
+}
+
+- (void)userDefaultsChanged:(NSNotification *)n
+{
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	
+	[window setHasShadow:![ud boolForKey:FL_UDK_DISALLOW_SHADOW]];
+	[window setAllowDragNDrop:[ud boolForKey:FL_UDK_ALLOW_WINDOW_DRAG_N_DROP]];
+	[window setAlphaValue:[ud floatForKey:FL_UDK_WINDOW_TRANSPARENCY]];
+	[cpuIndicatorView setStickToImages:[ud boolForKey:FL_UDK_STICK_TO_IMAGES]];
+}
+
+- (IBAction)showPreferences:(id)sender
+{
+	if (preferencesController == nil) {
+		preferencesController = [[FLPreferencesController alloc] initWithWindowNibName:@"FLPreferences"];
+		preferencesController.skinManager = skinManager;
+		preferencesController.cpuIndicatorWindow = window;
+	}
+	
+	[preferencesController showWindow:nil];
+}
+
+- (IBAction)closeWelcomeWindow:(id)sender
+{
+	[welcomeWindow close];
+}
+
+- (IBAction)closeWelcomeWindowAndShowPrefs:(id)sender
+{
+	[self closeWelcomeWindow:sender];
+	[self showPreferences:sender];
+}
+
+- (void)dealloc
+{
+	[skinManager release];
+	[preferencesController release];
+	
+	[super dealloc];
 }
 
 - (void)refreshKnownCPUUsage:(NSTimer *)t
