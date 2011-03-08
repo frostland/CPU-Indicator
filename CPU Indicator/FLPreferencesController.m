@@ -52,7 +52,7 @@
 	NSToolbarItem *selectedToolbarItem = [self toolbarItemForIdentifier:[toolBar selectedItemIdentifier]];
 	if (selectedToolbarItem != nil) [self performSelector:[selectedToolbarItem action] withObject:self];
 	else {
-		[self selectGeneralPref:nil];
+		[self selectSkinPref:nil];
 		[toolBar setSelectedItemIdentifier:[[[toolBar items] objectAtIndex:1] itemIdentifier]];
 	}
 }
