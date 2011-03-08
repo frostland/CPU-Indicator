@@ -15,7 +15,7 @@
 
 - (id)initWithFrame:(NSRect)frame
 {
-	frame.size = CGSizeZero;
+	frame.size = NSZeroSize;
 	if ((self = [super initWithFrame:frame]) != nil) {
 		stickToImages = NO;
 		
@@ -52,7 +52,7 @@
 	[parentWindow setContentSize:skin.imagesSize];
 	[parentWindow invalidateShadow];
 	
-	CGRect f = self.frame;
+	NSRect f = self.frame;
 	f.size = skin.imagesSize;
 	self.frame = f;
 	

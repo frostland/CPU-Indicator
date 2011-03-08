@@ -105,7 +105,7 @@
 		return nil;
 	}
 	
-	imagesSize = CGSizeZero;
+	imagesSize = NSZeroSize;
 	NSUInteger i = 0, n = [original count];
 	NSMutableArray *copy = [NSMutableArray arrayWithCapacity:n];
 	
@@ -117,11 +117,11 @@
 		}
 		
 		if (i == 0) imagesSize = [curImage size];
-		if (CGSizeEqualToSize(imagesSize, CGSizeZero)) {
+		if (NSEqualSizes(imagesSize, NSZeroSize)) {
 			[NSException raise:@"Invalid image array" format:@"Trying to copy an image array whose first element is of size zero"];
 			return nil;
 		}
-		if (!CGSizeEqualToSize([curImage size], imagesSize)) {
+		if (!NSEqualSizes([curImage size], imagesSize)) {
 			[NSException raise:@"Invalid image array" format:@"Trying to copy an image array whose element #%d is not the same size of the previous elements", i];
 			return nil;
 		}

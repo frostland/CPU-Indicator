@@ -14,10 +14,10 @@
 	NSString *name;
 	
 	NSArray *images;
-	CGSize imagesSize;
+	NSSize imagesSize;
 }
 @property(retain) NSString *name;
-@property(readonly) CGSize imagesSize;
+@property(readonly) NSSize imagesSize;
 @property(readonly) NSArray *images;
 @property(readonly) NSUInteger nImages;
 
