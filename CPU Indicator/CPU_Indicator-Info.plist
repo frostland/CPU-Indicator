@@ -20,7 +20,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>icon.png</string>
+	<string>icon.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>fr.frostland.cpu-indicator</string>
 	<key>CFBundleInfoDictionaryVersion</key>

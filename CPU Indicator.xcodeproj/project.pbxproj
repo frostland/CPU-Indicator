@@ -27,7 +27,7 @@
 		7B90A96D1326493D003D00CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A96C1326493D003D00CA /* Localizable.strings */; };
 		7B90A96F13268BB0003D00CA /* check_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A96E13268BB0003D00CA /* check_mark.png */; };
 		7B90A97513269065003D00CA /* FLCenteredTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A9741326905E003D00CA /* FLCenteredTextCell.m */; };
-		7B90A97713269E6B003D00CA /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A97613269E6B003D00CA /* icon.png */; };
+		7BDAEC9E1326ABC200134455 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7BDAEC9D1326ABC200134455 /* icon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +67,7 @@
 		7B90A96E13268BB0003D00CA /* check_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_mark.png; sourceTree = "<group>"; };
 		7B90A9731326905D003D00CA /* FLCenteredTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCenteredTextCell.h; sourceTree = "<group>"; };
 		7B90A9741326905E003D00CA /* FLCenteredTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCenteredTextCell.m; sourceTree = "<group>"; };
-		7B90A97613269E6B003D00CA /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		7BDAEC9D1326ABC200134455 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +167,7 @@
 				7B849F3E132276920045854D /* green.png */,
 				7B849F3F132276920045854D /* orange.png */,
 				7B849F40132276920045854D /* red.png */,
-				7B90A97613269E6B003D00CA /* icon.png */,
+				7BDAEC9D1326ABC200134455 /* icon.icns */,
 				7B90A96E13268BB0003D00CA /* check_mark.png */,
 			);
 			name = Images;
@@ -232,7 +232,7 @@
 				7B4CA5131325105E00C5A5CD /* FLPreferences.xib in Resources */,
 				7B90A96D1326493D003D00CA /* Localizable.strings in Resources */,
 				7B90A96F13268BB0003D00CA /* check_mark.png in Resources */,
-				7B90A97713269E6B003D00CA /* icon.png in Resources */,
+				7BDAEC9E1326ABC200134455 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
