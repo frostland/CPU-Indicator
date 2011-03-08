@@ -42,7 +42,7 @@
 {
 	if (skinManager == nil) skinManager = [FLSkinManager new];
 	skinManager.cpuIndicatorView = cpuIndicatorView;
-	[NSArchiver archiveRootObject:[[FLSkin alloc] initWithImages:[NSArray arrayWithObjects:[NSImage imageNamed:@"babe0.png"], [NSImage imageNamed:@"babe1.png"], [NSImage imageNamed:@"babe2.png"], [NSImage imageNamed:@"babe3.png"], [NSImage imageNamed:@"babe4.png"], nil]] toFile:@"/Users/frizlab/Desktop/tt.skin"];
+//	[NSArchiver archiveRootObject:[[FLSkin alloc] initWithImages:[NSArray arrayWithObjects:[NSImage imageNamed:@"babe0.png"], [NSImage imageNamed:@"babe1.png"], [NSImage imageNamed:@"babe2.png"], [NSImage imageNamed:@"babe3.png"], [NSImage imageNamed:@"babe4.png"], nil]] toFile:@"/Users/frizlab/Desktop/tt.skin"];
 	
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	if ([ud boolForKey:FL_UDK_FIRST_RUN]) {
