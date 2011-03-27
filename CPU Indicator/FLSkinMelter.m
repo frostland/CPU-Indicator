@@ -113,6 +113,8 @@
 			finalSize.width = (NSUInteger)(destSize.height * (skinSize.width / skinSize.height));
 		}
 	}
+	if (finalSize.width <= 0.5)  finalSize.width = 1.;
+	if (finalSize.height <= 0.5) finalSize.height = 1.;
 	
 	return finalSize;
 }
