@@ -15,6 +15,7 @@
 @interface FLPreferencesController (Private)
 
 - (NSToolbarItem *)toolbarItemForIdentifier:(NSString *)identifier;
+- (void)setWindowSizeForSelectedPrefTab;
 - (void)updateSkinUI;
 
 @end
@@ -27,6 +28,8 @@
 @synthesize viewForSkinsPrefs, viewForGeneralPrefs;
 @synthesize buttonRemoveSkin, buttonSelectSkin;
 @synthesize tableViewForSkins;
+@synthesize selectedPrefTab;
+@synthesize sliderScale;
 
 - (id)initWithWindow:(NSWindow *)window
 {
@@ -38,7 +41,17 @@
 
 - (void)dealloc
 {
+	self.skinManager = nil;
+	self.selectedPrefTab = nil;
+	self.cpuIndicatorWindow = nil;
+	
 	[super dealloc];
+}
+
+- (void)awakeFromNib
+{
+	minSizeForSkinsPrefs   = [viewForSkinsPrefs frame].size;
+	minSizeForGeneralPrefs = [viewForGeneralPrefs frame].size;
 }
 
 - (void)windowDidLoad
@@ -48,12 +61,16 @@
 	/* Init the UI from user defaults */
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	
+	[sliderScale setFloatValue:[ud floatForKey:FL_UDK_SKIN_X_SCALE]];
+	
 	[toolBar setSelectedItemIdentifier:[ud objectForKey:FL_UDK_LAST_SELECTED_PREF_ID]];
-	NSToolbarItem *selectedToolbarItem = [self toolbarItemForIdentifier:[toolBar selectedItemIdentifier]];
+	
+	self.selectedPrefTab = [toolBar selectedItemIdentifier];
+	NSToolbarItem *selectedToolbarItem = [self toolbarItemForIdentifier:self.selectedPrefTab];
 	if (selectedToolbarItem != nil) [self performSelector:[selectedToolbarItem action] withObject:self];
 	else {
-		[self selectSkinPref:nil];
 		[toolBar setSelectedItemIdentifier:[[[toolBar items] objectAtIndex:1] itemIdentifier]];
+		[self selectSkinPref:nil];
 	}
 }
 
@@ -69,7 +86,9 @@
 	} else if ([[tableColumn identifier] isEqualToString:@"skin_name"]) {
 		return [[skinManager skinAtIndex:row] name];
 	} else if ([[tableColumn identifier] isEqualToString:@"skin_preview"]) {
-		return [[skinManager skinAtIndex:row] images];
+		FLSkinMelter *skinMelter = [[FLSkinMelter new] autorelease];
+		[skinMelter setSkin:[skinManager skinAtIndex:row]];
+		return skinMelter;
 	} else {
 		NSLog(@"*** Warning: unknown table column identifier %@ in table view datasource", [tableColumn identifier]);
 	}
@@ -84,20 +103,49 @@
 
 - (IBAction)selectGeneralPref:(id)sender
 {
-	[[NSUserDefaults standardUserDefaults] setObject:[toolBar selectedItemIdentifier] forKey:FL_UDK_LAST_SELECTED_PREF_ID];
+	self.selectedPrefTab = [toolBar selectedItemIdentifier];
+	[[NSUserDefaults standardUserDefaults] setObject:self.selectedPrefTab forKey:FL_UDK_LAST_SELECTED_PREF_ID];
 	
 	[self.window setContentView:viewForGeneralPrefs];
+	[self.window setContentMinSize:minSizeForGeneralPrefs];
+	
+	[self setWindowSizeForSelectedPrefTab];
 }
 
 - (IBAction)selectSkinPref:(id)sender
 {
-	[[NSUserDefaults standardUserDefaults] setObject:[toolBar selectedItemIdentifier] forKey:FL_UDK_LAST_SELECTED_PREF_ID];
+	self.selectedPrefTab = [toolBar selectedItemIdentifier];
+	[[NSUserDefaults standardUserDefaults] setObject:self.selectedPrefTab forKey:FL_UDK_LAST_SELECTED_PREF_ID];
 	
 	[self.window setContentView:viewForSkinsPrefs];
+	[self.window setContentMinSize:minSizeForSkinsPrefs];
 	[self updateSkinUI];
+	
+	[self setWindowSizeForSelectedPrefTab];
+}
+
+- (void)windowDidResize:(NSNotification *)notification
+{
+	if (self.selectedPrefTab == nil) return;
+	
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	NSMutableDictionary *sizes = [[[ud objectForKey:FL_UDK_PREFS_PANES_SIZES] mutableCopy] autorelease];
+	
+	if (sizes == nil) sizes = [NSMutableDictionary dictionary];
+	[sizes setObject:NSStringFromSize([self.window contentRectForFrameRect:[self.window frame]].size) forKey:self.selectedPrefTab];
+	[ud setObject:sizes forKey:FL_UDK_PREFS_PANES_SIZES];
 }
 
 - (IBAction)moveWindowToTopLeft:(id)sender
+{
+	NSRect screenRect = [[cpuIndicatorWindow screen] frame];
+	NSRect f = [cpuIndicatorWindow frame];
+	f.origin.x = screenRect.origin.x;
+	f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height;
+	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+}
+
+- (IBAction)moveWindowToPseudoTopLeft:(id)sender
 {
 	NSRect screenRect = [[cpuIndicatorWindow screen] visibleFrame];
 	NSRect f = [cpuIndicatorWindow frame];
@@ -108,6 +156,15 @@
 
 - (IBAction)moveWindowToTopRight:(id)sender
 {
+	NSRect screenRect = [[cpuIndicatorWindow screen] frame];
+	NSRect f = [cpuIndicatorWindow frame];
+	f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width;
+	f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height;
+	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+}
+
+- (IBAction)moveWindowToPseudoTopRight:(id)sender
+{
 	NSRect screenRect = [[cpuIndicatorWindow screen] visibleFrame];
 	NSRect f = [cpuIndicatorWindow frame];
 	f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width;
@@ -116,6 +173,15 @@
 }
 
 - (IBAction)moveWindowToBottomLeft:(id)sender
+{
+	NSRect screenRect = [[cpuIndicatorWindow screen] frame];
+	NSRect f = [cpuIndicatorWindow frame];
+	f.origin.x = screenRect.origin.x;
+	f.origin.y = screenRect.origin.y;
+	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+}
+
+- (IBAction)moveWindowToPseudoBottomLeft:(id)sender
 {
 	NSRect screenRect = [[cpuIndicatorWindow screen] visibleFrame];
 	NSRect f = [cpuIndicatorWindow frame];
@@ -126,11 +192,26 @@
 
 - (IBAction)moveWindowToBottomRight:(id)sender
 {
+	NSRect screenRect = [[cpuIndicatorWindow screen] frame];
+	NSRect f = [cpuIndicatorWindow frame];
+	f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width;
+	f.origin.y = screenRect.origin.y;
+	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+}
+
+- (IBAction)moveWindowToPseudoBottomRight:(id)sender
+{
 	NSRect screenRect = [[cpuIndicatorWindow screen] visibleFrame];
 	NSRect f = [cpuIndicatorWindow frame];
 	f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width;
 	f.origin.y = screenRect.origin.y;
 	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+}
+
+- (IBAction)updateScale:(id)sender
+{
+	[[NSUserDefaults standardUserDefaults] setFloat:[sliderScale floatValue] forKey:FL_UDK_SKIN_X_SCALE];
+	[[NSUserDefaults standardUserDefaults] setFloat:[sliderScale floatValue] forKey:FL_UDK_SKIN_Y_SCALE];
 }
 
 - (IBAction)showSkinsOnTheNet:(id)sender
@@ -181,6 +262,31 @@
 			return curItem;
 	
 	return nil;
+}
+
+- (void)setWindowSizeForSelectedPrefTab
+{
+	if (self.selectedPrefTab == nil) return;
+	
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	NSMutableDictionary *sizes = [ud objectForKey:FL_UDK_PREFS_PANES_SIZES];
+	
+	NSRect destRect;
+	NSSize destSize, curContentSize;
+	if ([sizes objectForKey:self.selectedPrefTab] == nil) destSize = [self.window contentMinSize];
+	else                                                  destSize = NSSizeFromString([sizes objectForKey:self.selectedPrefTab]);
+	
+	destRect = [self.window frame];
+	curContentSize = [self.window contentRectForFrameRect:destRect].size;
+	destSize.width  += destRect.size.width  - curContentSize.width;
+	destSize.height += destRect.size.height - curContentSize.height;
+	
+	static BOOL firstPass = YES;
+	if (!firstPass) destRect.origin.y += destRect.size.height - destSize.height;
+	destRect.size = destSize;
+	firstPass = NO;
+	
+	[self.window setFrame:destRect display:YES animate:YES];
 }
 
 - (void)updateSkinUI

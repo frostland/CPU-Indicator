@@ -39,20 +39,6 @@
 	return self;
 }
 
-- (FLCPUIndicatorView *)cpuIndicatorView
-{
-	return cpuIndicatorView;
-}
-
-- (void)setCpuIndicatorView:(FLCPUIndicatorView *)view
-{
-	if (cpuIndicatorView == view) return;
-	[cpuIndicatorView release];
-	cpuIndicatorView = [view retain];
-	
-	[self selectSkinAtIndex:[self selectedSkinIndex]];
-}
-
 - (NSUInteger)nSkins
 {
 	return [skinsDescriptions count];
@@ -82,7 +68,6 @@
 	if (idx >= [skinsDescriptions count]) idx = [skinsDescriptions count]-1;
 	
 	[[NSUserDefaults standardUserDefaults] setInteger:idx forKey:FL_UDK_SELECTED_SKIN];
-	[cpuIndicatorView setSkin:[self skinAtIndex:idx]];
 }
 
 - (BOOL)canRemoveSkinAtIndex:(NSUInteger)idx

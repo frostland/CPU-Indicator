@@ -18,12 +18,15 @@
 	frame.size = NSZeroSize;
 	if ((self = [super initWithFrame:frame]) != nil) {
 		stickToImages = NO;
+		scaleFactor = CGSizeMake(1., 1.);
 		
 		animating = NO;
 		curCPULoad = 0.;
 		destCPULoad = 0.;
 		curFrameNumber = 0;
 		animTimer = nil;
+		
+		skinMelter = [FLSkinMelter new];
 	}
 	
 	return self;
@@ -33,6 +36,9 @@
 {
 	[animTimer invalidate];
 	[animTimer release];
+	
+	[skin release];
+	[skinMelter release];
 	
 	[super dealloc];
 }
@@ -49,12 +55,8 @@
 	[skin release];
 	skin = [newSkin retain];
 	
-	[parentWindow setContentSize:skin.imagesSize];
-	[parentWindow invalidateShadow];
-	
-	NSRect f = self.frame;
-	f.size = skin.imagesSize;
-	self.frame = f;
+	[skinMelter setSkin:skin];
+	[self setScaleFactor:scaleFactor]; /* Will refresh the skin melter and the self size */
 	
 	if (animating) {
 		animating = NO;
@@ -65,6 +67,36 @@
 	[self setNeedsDisplay:YES];
 }
 
+- (CGSize)scaleFactor
+{
+	return scaleFactor;
+}
+
+- (void)setScaleFactor:(CGSize)scale
+{
+	scaleFactor = scale;
+	
+	NSSize newSize = NSMakeSize(skin.imagesSize.width * scaleFactor.width, skin.imagesSize.height * scaleFactor.height);
+	if (newSize.width < 3.) {
+		CGFloat s = 3./skin.imagesSize.width;
+		newSize.width = 3.;
+		newSize.height = skin.imagesSize.height * s;
+	}
+	if (newSize.height < 19.) {
+		CGFloat s = 19./skin.imagesSize.height;
+		newSize.height = 19.;
+		newSize.width = skin.imagesSize.width * s;
+	}
+	[skinMelter setDestSize:newSize];
+	
+	[parentWindow setContentSize:newSize];
+	[parentWindow invalidateShadow];
+	
+	NSRect f = self.frame;
+	f.size = newSize;
+	self.frame = f;
+}
+
 - (CGFloat)curCPULoad
 {
 	return curCPULoad;
@@ -73,6 +105,7 @@
 - (void)setCurCPULoad:(CGFloat)CPULoad
 {
 	curCPULoad = CPULoad;
+	
 	[self setNeedsDisplay:YES];
 }
 
@@ -86,13 +119,17 @@
 		return;
 	}
 	
-	curFrameNumber = 0;
+	CGFloat prevDestCPULoad = destCPULoad;
+	
 	destCPULoad = CPULoad;
 	if (stickToImages) {
 		CGFloat f = CPULoad * ((CGFloat)skin.nImages-1.);
 		NSUInteger imageIdx = f;
-		destCPULoad = ((CGFloat)imageIdx) / ((CGFloat)skin.nImages-1.) + .001;
+		destCPULoad = ((CGFloat)imageIdx) / ((CGFloat)skin.nImages-1.);
 	}
+	if (destCPULoad == prevDestCPULoad) return;
+	
+	curFrameNumber = 0;
 	CPULoadIncrement = (destCPULoad - curCPULoad)/NFRAME;
 	if (!animating)
 		animTimer = [[NSTimer scheduledTimerWithTimeInterval:1./FPS target:self selector:@selector(goToNextFrame:) userInfo:NULL repeats:YES] retain];
@@ -115,15 +152,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	CGFloat f = curCPULoad * ((CGFloat)skin.nImages-1.);
-	NSUInteger imageIdx = f + 1;
-	
-	if (imageIdx < skin.nImages) {
-		[[skin.images objectAtIndex:imageIdx] dissolveToPoint:NSZeroPoint fraction:1.];
-		if (imageIdx - 1 < [skin.images count])
-			[[skin.images objectAtIndex:imageIdx - 1] dissolveToPoint:NSZeroPoint fraction:imageIdx - f];
-	} else [[skin.images lastObject] dissolveToPoint:NSZeroPoint fraction:1.];
-	
+	[[skinMelter imageForCPULoad:curCPULoad] drawAtPoint:NSZeroPoint];
 	[parentWindow invalidateShadow];
 }
 

@@ -11,16 +11,22 @@
 #import "FLSkinManager.h"
 #import "FLBorderlessWindow.h"
 
-@interface FLPreferencesController : NSWindowController <NSTableViewDelegate, NSTableViewDataSource> {
+@interface FLPreferencesController : NSWindowController <NSWindowDelegate, NSTableViewDelegate, NSTableViewDataSource> {
 @private
 	NSToolbar *toolBar;
 	NSView *viewForSkinsPrefs;
 	NSView *viewForGeneralPrefs;
 	NSTableView *tableViewForSkins;
 	
+	NSSlider *sliderScale;
+	
 	NSButton *buttonRemoveSkin;
 	NSButton *buttonSelectSkin;
 	
+	NSSize minSizeForSkinsPrefs;
+	NSSize minSizeForGeneralPrefs;
+	
+	NSString *selectedPrefTab;
 	FLSkinManager *skinManager;
 	FLBorderlessWindow *cpuIndicatorWindow;
 }
@@ -30,6 +36,8 @@
 @property(assign) IBOutlet NSButton *buttonRemoveSkin;
 @property(assign) IBOutlet NSButton *buttonSelectSkin;
 @property(assign) IBOutlet NSTableView *tableViewForSkins;
+@property(assign) IBOutlet NSSlider *sliderScale;
+@property(copy) NSString *selectedPrefTab;
 @property(retain) FLSkinManager *skinManager;
 @property(retain) FLBorderlessWindow *cpuIndicatorWindow;
 
@@ -37,9 +45,15 @@
 - (IBAction)selectSkinPref:(id)sender;
 
 - (IBAction)moveWindowToTopLeft:(id)sender;
+- (IBAction)moveWindowToPseudoTopLeft:(id)sender;
 - (IBAction)moveWindowToTopRight:(id)sender;
+- (IBAction)moveWindowToPseudoTopRight:(id)sender;
 - (IBAction)moveWindowToBottomLeft:(id)sender;
+- (IBAction)moveWindowToPseudoBottomLeft:(id)sender;
 - (IBAction)moveWindowToBottomRight:(id)sender;
+- (IBAction)moveWindowToPseudoBottomRight:(id)sender;
+
+- (IBAction)updateScale:(id)sender;
 
 - (IBAction)showSkinsOnTheNet:(id)sender;
 - (IBAction)addSkin:(id)sender;

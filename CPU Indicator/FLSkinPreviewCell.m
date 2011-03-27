@@ -44,7 +44,8 @@
 	[tableView setNeedsDisplayInRect:[tableView rectOfColumn:2]];
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
 	[t invalidate]; [t release]; t = nil;
 	
 	[super dealloc];
@@ -68,40 +69,30 @@ static FLSkinPreviewUpdateHeart *previewUpdateHeart = nil;
 	[super setControlView:view];
 }
 
-- (NSArray *)images
+- (FLSkinMelter *)skinMelter
 {
 	return [self objectValue];
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
-	NSArray *images = [self images];
+	FLSkinMelter *skinMelter = [self skinMelter];
 	CGFloat progressPercentage = ((CGFloat)[[FLSkinPreviewCell getPreviewUpdateHeart] curProgress])/(CGFloat)NFRAMES_BETWEEN_FIRST_AND_LAST_IMAGE;
-	CGFloat f = progressPercentage * ((CGFloat)[images count]-1.);
-	NSUInteger imageIdx = f + 1;
 	
-	NSSize imageSize = [[images objectAtIndex:0] size];
-	NSRect imageRect = NSMakeRect(0., 0., imageSize.width, imageSize.height);
-	NSRect destRect;
-	destRect.size.width = imageRect.size.width;
-	destRect.size.height = imageRect.size.height;
-	if (destRect.size.width > cellFrame.size.width) {
-		destRect.size.width = cellFrame.size.width;
-		destRect.size.height = cellFrame.size.width * (imageRect.size.height / imageRect.size.width);
-	}
-	if (destRect.size.height > cellFrame.size.height) {
-		destRect.size.height = cellFrame.size.height;
-		destRect.size.width = cellFrame.size.height * (imageRect.size.width / imageRect.size.height);
-	}
-	destRect.origin.x = cellFrame.origin.x + cellFrame.size.width  - destRect.size.width;
-	destRect.origin.y = cellFrame.origin.y + cellFrame.size.height - destRect.size.height;
-
-//	NSDictionary *drawHints = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:NSImageInterpolationNone], NSImageHintInterpolation, nil];
-	if (imageIdx < [images count]) {
-		[((NSImage *)[images objectAtIndex:imageIdx]) drawInRect:destRect fromRect:imageRect operation:NSCompositeSourceOver fraction:1. respectFlipped:YES hints:nil];
-		if (imageIdx - 1 < [images count])
-			[((NSImage *)[images objectAtIndex:imageIdx - 1]) drawInRect:destRect fromRect:imageRect operation:NSCompositeSourceOver fraction:imageIdx - f respectFlipped:YES hints:nil];
-	} else [((NSImage *)[images lastObject]) drawInRect:destRect fromRect:imageRect operation:NSCompositeSourceOver fraction:1. respectFlipped:YES hints:nil];
+	[skinMelter setDestSize:cellFrame.size];
+	
+	NSPoint p;
+	NSSize drawnSize = [skinMelter finalSize];
+	p.x = cellFrame.origin.x +  cellFrame.size.width  - drawnSize.width;
+	p.y = cellFrame.origin.y + (cellFrame.size.height - drawnSize.height)/2.;
+	
+	NSRect drawRect;
+	drawRect.origin = p;
+	drawRect.size = drawnSize;
+	[[skinMelter imageForCPULoad:progressPercentage] drawInRect:drawRect
+																		fromRect:NSMakeRect(0., 0., drawnSize.width, drawnSize.height)
+																	  operation:NSCompositeSourceOver fraction:1.
+																respectFlipped:YES hints:nil];
 }
 
 - (void)dealloc

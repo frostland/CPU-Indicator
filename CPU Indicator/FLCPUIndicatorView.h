@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "FLSkin.h"
+#import "FLSkinMelter.h"
 
 #define ANIM_DURATION (1.5)
 #define FPS (21)
@@ -20,6 +21,7 @@
 	
 	FLSkin *skin;
 	BOOL stickToImages;
+	CGSize scaleFactor;
 	
 	CGFloat curCPULoad;
 	CGFloat destCPULoad;
@@ -28,11 +30,14 @@
 	BOOL animating;
 	NSTimer *animTimer;
 	NSUInteger curFrameNumber;
+	
+	FLSkinMelter *skinMelter;
 }
 @property(assign) IBOutlet NSWindow *parentWindow;
 
 @property(retain) FLSkin *skin;
 @property(assign) BOOL stickToImages;
+@property(assign) CGSize scaleFactor;
 
 @property(assign) CGFloat curCPULoad;
 - (void)setCurCPULoad:(CGFloat)CPULoad animated:(BOOL)flag;

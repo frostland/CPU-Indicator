@@ -27,6 +27,7 @@
 		7B90A96D1326493D003D00CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A96C1326493D003D00CA /* Localizable.strings */; };
 		7B90A96F13268BB0003D00CA /* check_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A96E13268BB0003D00CA /* check_mark.png */; };
 		7B90A97513269065003D00CA /* FLCenteredTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A9741326905E003D00CA /* FLCenteredTextCell.m */; };
+		7BAA01EF133F5D4C0085CB43 /* FLSkinMelter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */; };
 		7BDAEC9E1326ABC200134455 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7BDAEC9D1326ABC200134455 /* icon.icns */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,8 @@
 		7B90A96E13268BB0003D00CA /* check_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_mark.png; sourceTree = "<group>"; };
 		7B90A9731326905D003D00CA /* FLCenteredTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCenteredTextCell.h; sourceTree = "<group>"; };
 		7B90A9741326905E003D00CA /* FLCenteredTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCenteredTextCell.m; sourceTree = "<group>"; };
+		7BAA01ED133F5D4C0085CB43 /* FLSkinMelter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkinMelter.h; sourceTree = "<group>"; };
+		7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkinMelter.m; sourceTree = "<group>"; };
 		7BDAEC9D1326ABC200134455 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +126,8 @@
 			children = (
 				7B90A9691325CE56003D00CA /* FLSkin.h */,
 				7B90A96A1325CE56003D00CA /* FLSkin.m */,
+				7BAA01ED133F5D4C0085CB43 /* FLSkinMelter.h */,
+				7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */,
 				7B90A9651325CDDC003D00CA /* FLSkinManager.h */,
 				7B90A9661325CDDC003D00CA /* FLSkinManager.m */,
 				7B78A4DC131AA56500FE0D25 /* MainMenu.xib */,
@@ -253,6 +258,7 @@
 				7B90A9671325CDDC003D00CA /* FLSkinManager.m in Sources */,
 				7B90A96B1325CE57003D00CA /* FLSkin.m in Sources */,
 				7B90A97513269065003D00CA /* FLCenteredTextCell.m in Sources */,
+				7BAA01EF133F5D4C0085CB43 /* FLSkinMelter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +292,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7B66B99E1326B1290037B017 /* Release and Sign */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: FRANCOIS LAMBOLEY";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = "Release and Sign";
+		};
+		7B66B99F1326B1290037B017 /* Release and Sign */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CPU Indicator/CPU_Indicator-Prefix.pch";
+				INFOPLIST_FILE = "CPU Indicator/CPU_Indicator-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Release and Sign";
+		};
 		7B78A4DF131AA56500FE0D25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -355,6 +391,7 @@
 			buildConfigurations = (
 				7B78A4DF131AA56500FE0D25 /* Debug */,
 				7B78A4E0131AA56500FE0D25 /* Release */,
+				7B66B99E1326B1290037B017 /* Release and Sign */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -364,6 +401,7 @@
 			buildConfigurations = (
 				7B78A4E2131AA56500FE0D25 /* Debug */,
 				7B78A4E3131AA56500FE0D25 /* Release */,
+				7B66B99F1326B1290037B017 /* Release and Sign */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

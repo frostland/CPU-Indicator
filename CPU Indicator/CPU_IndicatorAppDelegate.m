@@ -28,12 +28,15 @@
 	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 	
 	[defaultValues setValue:@"" forKey:FL_UDK_LAST_SELECTED_PREF_ID];
-	[defaultValues setValue:[NSNumber numberWithBool:YES]  forKey:FL_UDK_FIRST_RUN];
-	[defaultValues setValue:[NSNumber numberWithBool:NO]   forKey:FL_UDK_DISALLOW_SHADOW];
-	[defaultValues setValue:[NSNumber numberWithBool:YES]  forKey:FL_UDK_STICK_TO_IMAGES];
-	[defaultValues setValue:[NSNumber numberWithBool:YES]  forKey:FL_UDK_ALLOW_WINDOW_DRAG_N_DROP];
-	[defaultValues setValue:[NSNumber numberWithFloat:1.]  forKey:FL_UDK_WINDOW_TRANSPARENCY];
-	[defaultValues setValue:[NSNumber numberWithInteger:0] forKey:FL_UDK_SELECTED_SKIN];
+	[defaultValues setValue:[NSNumber numberWithBool:YES]    forKey:FL_UDK_FIRST_RUN];
+	[defaultValues setValue:[NSNumber numberWithBool:NO]     forKey:FL_UDK_DISALLOW_SHADOW];
+	[defaultValues setValue:[NSNumber numberWithBool:YES]    forKey:FL_UDK_STICK_TO_IMAGES];
+	[defaultValues setValue:[NSNumber numberWithBool:YES]    forKey:FL_UDK_ALLOW_WINDOW_DRAG_N_DROP];
+	[defaultValues setValue:[NSNumber numberWithFloat:1.]    forKey:FL_UDK_WINDOW_TRANSPARENCY];
+	[defaultValues setValue:[NSNumber numberWithFloat:1.]    forKey:FL_UDK_SKIN_X_SCALE];
+	[defaultValues setValue:[NSNumber numberWithFloat:1.]    forKey:FL_UDK_SKIN_Y_SCALE];
+	[defaultValues setValue:[NSNumber numberWithInteger:0]   forKey:FL_UDK_SELECTED_SKIN];
+	[defaultValues setValue:[NSMutableDictionary dictionary] forKey:FL_UDK_PREFS_PANES_SIZES];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
 }
@@ -41,8 +44,15 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	if (skinManager == nil) skinManager = [FLSkinManager new];
-	skinManager.cpuIndicatorView = cpuIndicatorView;
-//	[NSArchiver archiveRootObject:[[FLSkin alloc] initWithImages:[NSArray arrayWithObjects:[NSImage imageNamed:@"babe0.png"], [NSImage imageNamed:@"babe1.png"], [NSImage imageNamed:@"babe2.png"], [NSImage imageNamed:@"babe3.png"], [NSImage imageNamed:@"babe4.png"], nil]] toFile:@"/Users/frizlab/Desktop/tt.skin"];
+/*	[NSArchiver archiveRootObject:
+	 [[[FLSkin alloc] initWithImages:[NSArray arrayWithObjects:
+												 [[[NSImage alloc] initWithContentsOfFile:@"/Users/frizlab/Desktop/Babes/babe0.png"] autorelease],
+												 [[[NSImage alloc] initWithContentsOfFile:@"/Users/frizlab/Desktop/Babes/babe1.png"] autorelease],
+												 [[[NSImage alloc] initWithContentsOfFile:@"/Users/frizlab/Desktop/Babes/babe2.png"] autorelease],
+												 [[[NSImage alloc] initWithContentsOfFile:@"/Users/frizlab/Desktop/Babes/babe3.png"] autorelease],
+												 [[[NSImage alloc] initWithContentsOfFile:@"/Users/frizlab/Desktop/Babes/babe4.png"] autorelease],
+												 nil]] autorelease]
+								  toFile:@"/Users/frizlab/Desktop/tt.cpuIndicatorSkin"];*/
 	
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	if ([ud boolForKey:FL_UDK_FIRST_RUN]) {
@@ -84,6 +94,8 @@
 	[window setAllowDragNDrop:[ud boolForKey:FL_UDK_ALLOW_WINDOW_DRAG_N_DROP]];
 	[window setAlphaValue:[ud floatForKey:FL_UDK_WINDOW_TRANSPARENCY]];
 	[cpuIndicatorView setStickToImages:[ud boolForKey:FL_UDK_STICK_TO_IMAGES]];
+	[cpuIndicatorView setSkin:[skinManager skinAtIndex:[ud integerForKey:FL_UDK_SELECTED_SKIN]]];
+	[cpuIndicatorView setScaleFactor:CGSizeMake([ud floatForKey:FL_UDK_SKIN_X_SCALE], [ud floatForKey:FL_UDK_SKIN_Y_SCALE])];
 }
 
 - (IBAction)showPreferences:(id)sender

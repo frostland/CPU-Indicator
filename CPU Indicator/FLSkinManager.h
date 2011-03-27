@@ -16,11 +16,8 @@
 	NSMutableArray *skinsDescriptions;
 	NSMutableArray *cachedSkins;
 	
-	FLCPUIndicatorView *cpuIndicatorView;
-	
 	NSFileManager *fm;
 }
-@property(retain) FLCPUIndicatorView *cpuIndicatorView;
 - (NSUInteger)nSkins;
 - (FLSkin *)skinAtIndex:(NSUInteger)idx;
 
