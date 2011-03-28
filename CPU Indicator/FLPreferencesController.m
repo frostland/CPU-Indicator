@@ -229,7 +229,12 @@
 	[openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
 		if (result != NSFileHandlingPanelOKButton) return;
 		
-		[skinManager installSkinAtPath:[[openPanel URL] path] useIt:NO];
+		if (![skinManager installSkinAtPath:[[openPanel URL] path] useIt:NO]) {
+			[[NSAlert alertWithMessageText:NSLocalizedString(@"cannot import skin", nil)
+								  defaultButton:NSLocalizedString(@"ok maj", nil) alternateButton:nil
+									 otherButton:nil
+				  informativeTextWithFormat:NSLocalizedString(@"cannot import skin. unknown error.", nil)] runModal];
+		}
 		[tableViewForSkins reloadData];
 	}];
 }

@@ -81,7 +81,13 @@
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
 	if (skinManager == nil) skinManager = [FLSkinManager new];
-	[skinManager installSkinAtPath:filename useIt:YES];
+	if (![skinManager installSkinAtPath:filename useIt:YES]) {
+		[[NSAlert alertWithMessageText:NSLocalizedString(@"cannot import skin", nil)
+							  defaultButton:NSLocalizedString(@"ok maj", nil) alternateButton:nil
+								 otherButton:nil
+			  informativeTextWithFormat:NSLocalizedString(@"cannot import skin. unknown error.", nil)] runModal];
+	}
+	
 	[preferencesController reloadSkinList];
 	return YES;
 }
