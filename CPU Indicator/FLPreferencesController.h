@@ -16,19 +16,22 @@
 	NSToolbar *toolBar;
 	NSView *viewForSkinsPrefs;
 	NSView *viewForGeneralPrefs;
-	NSTableView *tableViewForSkins;
-	
-	NSSlider *sliderScale;
-	
-	NSButton *buttonRemoveSkin;
-	NSButton *buttonSelectSkin;
-	
 	NSSize minSizeForSkinsPrefs;
 	NSSize minSizeForGeneralPrefs;
 	
 	NSString *selectedPrefTab;
-	FLSkinManager *skinManager;
+	
+	NSTableView *tableViewForSkins;
+	NSButton *buttonRemoveSkin;
+	NSButton *buttonSelectSkin;
+	
+	NSSlider *sliderScale;
+	NSPopUpButton *popUpButtonMixedImageState;
+	
 	FLBorderlessWindow *cpuIndicatorWindow;
+	
+	FLSkinManager *skinManager;
+	NSMutableArray *cachedSkinMelters;
 }
 @property(assign) IBOutlet NSToolbar *toolBar;
 @property(assign) IBOutlet NSView *viewForSkinsPrefs;
@@ -37,6 +40,7 @@
 @property(assign) IBOutlet NSButton *buttonSelectSkin;
 @property(assign) IBOutlet NSTableView *tableViewForSkins;
 @property(assign) IBOutlet NSSlider *sliderScale;
+@property(assign) IBOutlet NSPopUpButton *popUpButtonMixedImageState;
 @property(copy) NSString *selectedPrefTab;
 @property(retain) FLSkinManager *skinManager;
 @property(retain) FLBorderlessWindow *cpuIndicatorWindow;
@@ -59,6 +63,11 @@
 - (IBAction)addSkin:(id)sender;
 - (IBAction)removeSkin:(id)sender;
 - (IBAction)selectSkin:(id)sender;
+
+- (IBAction)setMixedStateFromSkin:(id)sender;
+- (IBAction)setMixedStateAllow:(id)sender;
+- (IBAction)setMixedStateTransitions:(id)sender;
+- (IBAction)setMixedStateDisallow:(id)sender;
 
 - (void)reloadSkinList;
 

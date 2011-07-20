@@ -14,8 +14,11 @@
 
 @interface FLPreferencesController (Private)
 
+- (void)setMixedStateUserDefault:(FLSkinMixedImageState)state;
+
 - (NSToolbarItem *)toolbarItemForIdentifier:(NSString *)identifier;
 - (void)setWindowSizeForSelectedPrefTab;
+- (void)invalidateCachedSkinMelters;
 - (void)updateSkinUI;
 
 @end
@@ -25,11 +28,11 @@
 @synthesize toolBar;
 @synthesize skinManager, cpuIndicatorWindow;
 
+@synthesize sliderScale, popUpButtonMixedImageState;
 @synthesize viewForSkinsPrefs, viewForGeneralPrefs;
 @synthesize buttonRemoveSkin, buttonSelectSkin;
 @synthesize tableViewForSkins;
 @synthesize selectedPrefTab;
-@synthesize sliderScale;
 
 - (id)initWithWindow:(NSWindow *)window
 {
@@ -45,12 +48,16 @@
 	self.selectedPrefTab = nil;
 	self.cpuIndicatorWindow = nil;
 	
+	[cachedSkinMelters release]; cachedSkinMelters = nil;
+	
 	[super dealloc];
 }
 
 - (void)awakeFromNib
 {
-	minSizeForSkinsPrefs   = [viewForSkinsPrefs frame].size;
+	[self invalidateCachedSkinMelters];
+	
+	minSizeForSkinsPrefs = [viewForSkinsPrefs frame].size;
 	minSizeForGeneralPrefs = [viewForGeneralPrefs frame].size;
 }
 
@@ -62,6 +69,7 @@
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	
 	[sliderScale setFloatValue:[ud floatForKey:FL_UDK_SKIN_X_SCALE]];
+	[popUpButtonMixedImageState selectItemWithTag:[ud integerForKey:FL_UDK_MIXED_IMAGE_STATE]];
 	
 	[toolBar setSelectedItemIdentifier:[ud objectForKey:FL_UDK_LAST_SELECTED_PREF_ID]];
 	
@@ -86,8 +94,18 @@
 	} else if ([[tableColumn identifier] isEqualToString:@"skin_name"]) {
 		return [[skinManager skinAtIndex:row] name];
 	} else if ([[tableColumn identifier] isEqualToString:@"skin_preview"]) {
-		FLSkinMelter *skinMelter = [[FLSkinMelter new] autorelease];
-		[skinMelter setSkin:[skinManager skinAtIndex:row]];
+		NSAssert([cachedSkinMelters count] == [skinManager nSkins], @"Invalid cached skin melters count. Got %d, but I have %d skins.", [cachedSkinMelters count], [skinManager nSkins]);
+		
+		FLSkinMelter *skinMelter = [cachedSkinMelters objectAtIndex:row];
+		if ([skinMelter isEqual:[NSNull null]]) {
+			skinMelter = [[FLSkinMelter new] autorelease];
+			[skinMelter setSkin:[skinManager skinAtIndex:row]];
+			[skinMelter setDestSize:NSMakeSize([tableColumn width], [tableView rowHeight])];
+			[skinMelter imageForCPULoad:0]; /* Refreshes intern caches of the skin melter. Useful because the skin melter will be copied multiple times and the cache should be computed before it is copied */
+			
+			[cachedSkinMelters replaceObjectAtIndex:row withObject:skinMelter];
+		}
+		
 		return skinMelter;
 	} else {
 		NSLog(@"*** Warning: unknown table column identifier %@ in table view datasource", [tableColumn identifier]);
@@ -235,6 +253,7 @@
 									 otherButton:nil
 				  informativeTextWithFormat:NSLocalizedString(@"cannot import skin. unknown error.", nil)] runModal];
 		}
+		[self invalidateCachedSkinMelters];
 		[tableViewForSkins reloadData];
 	}];
 }
@@ -242,6 +261,7 @@
 - (IBAction)removeSkin:(id)sender
 {
 	[skinManager removeSkinAtIndex:[tableViewForSkins selectedRow]];
+	[self invalidateCachedSkinMelters];
 	[tableViewForSkins reloadData];
 }
 
@@ -251,14 +271,40 @@
 	[tableViewForSkins reloadData];
 }
 
+- (IBAction)setMixedStateFromSkin:(id)sender
+{
+	[self setMixedStateUserDefault:FLMixedImageStateFromSkin];
+}
+
+- (IBAction)setMixedStateAllow:(id)sender
+{
+	[self setMixedStateUserDefault:FLMixedImageStateAllow];
+}
+
+- (IBAction)setMixedStateTransitions:(id)sender
+{
+	[self setMixedStateUserDefault:FLMixedImageStateTransitionsOnly];
+}
+
+- (IBAction)setMixedStateDisallow:(id)sender
+{
+	[self setMixedStateUserDefault:FLMixedImageStateDisallow];
+}
+
 - (void)reloadSkinList
 {
+	[self invalidateCachedSkinMelters];
 	[tableViewForSkins reloadData];
 }
 
 @end
 
 @implementation FLPreferencesController (Private)
+
+- (void)setMixedStateUserDefault:(FLSkinMixedImageState)state
+{
+	[[NSUserDefaults standardUserDefaults] setInteger:state forKey:FL_UDK_MIXED_IMAGE_STATE];
+}
 
 - (NSToolbarItem *)toolbarItemForIdentifier:(NSString *)identifier
 {
@@ -292,6 +338,13 @@
 	firstPass = NO;
 	
 	[self.window setFrame:destRect display:YES animate:YES];
+}
+
+- (void)invalidateCachedSkinMelters
+{
+	[cachedSkinMelters release];
+	cachedSkinMelters = [[NSMutableArray arrayWithCapacity:[skinManager nSkins]] retain];
+	for (NSUInteger i = 0; i < [skinManager nSkins]; ++i) [cachedSkinMelters addObject:[NSNull null]];
 }
 
 - (void)updateSkinUI

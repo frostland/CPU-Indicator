@@ -18,21 +18,24 @@
 
 @synthesize name;
 @synthesize images, imagesSize;
+@synthesize mixedImageState;
 
 + (void)initialize
 {
-	[FLSkin setVersion:0];
+	[FLSkin setVersion:1];
 }
 
 - (id)init
 {
-	return [self initWithImages:[NSArray arrayWithObjects:[NSImage imageNamed:@"green.png"], [NSImage imageNamed:@"orange.png"], [NSImage imageNamed:@"red.png"], nil]];
+	return [self initWithImages:[NSArray arrayWithObjects:[NSImage imageNamed:@"green.png"], [NSImage imageNamed:@"orange.png"], [NSImage imageNamed:@"red.png"], nil] mixedImageState:FLMixedImageStateAllow];
 }
 
-- (id)initWithImages:(NSArray *)imgs
+- (id)initWithImages:(NSArray *)imgs mixedImageState:(FLSkinMixedImageState)state
 {
 	if ((self = [super init]) != nil) {
-		self.name = @"Default";
+		mixedImageState = state;
+		
+		name = [@"Default" copy];
 		images = [self deepCopyOfImageArray:imgs];
 		if (images == nil) {
 			NSLog(@"Problem while loading the images. Please check that they all have the exact same size.");
@@ -47,12 +50,17 @@
 - (id)initWithCoder:(NSCoder *)coder
 {
 	if ((self = [super init]) != nil) {
-		if ([coder versionForClassName:@"FLSkin"] != 0) {
-			NSLog(@"Cannot init the skin: unkown version number");
+		NSInteger version = [coder versionForClassName:@"FLSkin"];
+		if (version < 0 || version > 1) {
+			NSLog(@"Cannot init the skin: unkown version number (%ld)", version);
 			[self release];
 			return nil;
 		}
-		self.name = [coder decodeObject];
+		[name release];
+		name = [[coder decodeObject] retain];
+		
+		mixedImageState = FLMixedImageStateTransitionsOnly;
+		if (version >= 1) [coder decodeValueOfObjCType:@encode(FLSkinMixedImageState) at:&mixedImageState];
 		
 		NSUInteger n;
 		[coder decodeValueOfObjCType:@encode(NSUInteger) at:&n];
@@ -74,6 +82,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder;
 {
 	[coder encodeObject:name];
+	[coder encodeValueOfObjCType:@encode(FLSkinMixedImageState) at:&mixedImageState];
 	
 	NSUInteger n = [images count];
 	[coder encodeValueOfObjCType:@encode(NSUInteger) at:&n];
@@ -83,7 +92,7 @@
 
 - (void)dealloc
 {
-	self.name = nil;
+	[name release];
 	[images release];
 	
 	[super dealloc];
@@ -101,7 +110,7 @@
 - (NSArray *)deepCopyOfImageArray:(NSArray *)original
 {
 	if ([original count] == 0) {
-		[NSException raise:@"Invalid image array" format:@"Trying to copy an empty image array"];
+		NSLog(@"*** Warning: Trying to copy an empty image array. Cancelling copy.");
 		return nil;
 	}
 	
@@ -112,17 +121,17 @@
 	do {
 		NSImage *curImage = [original objectAtIndex:i];
 		if (![curImage isKindOfClass:[NSImage class]]) {
-			[NSException raise:@"Invalid image array" format:@"Trying to copy an image array whose element #%d is not kind of class NSImage (it is: %@)", i, NSStringFromClass([curImage class])];
+			NSLog(@"*** Warning: Trying to copy an image array whose element #%lu is not kind of class NSImage (it is: %@). Cancelling copy.", i, NSStringFromClass([curImage class]));
 			return nil;
 		}
 		
 		if (i == 0) imagesSize = [curImage size];
 		if (NSEqualSizes(imagesSize, NSZeroSize)) {
-			[NSException raise:@"Invalid image array" format:@"Trying to copy an image array whose first element is of size zero"];
+			NSLog(@"*** Warning: Trying to copy an image array whose first element is of size zero. Cancelling copy.");
 			return nil;
 		}
 		if (!NSEqualSizes([curImage size], imagesSize)) {
-			[NSException raise:@"Invalid image array" format:@"Trying to copy an image array whose element #%d is not the same size of the previous elements", i];
+			NSLog(@"*** Warning: Trying to copy an image array whose element #%lu is not the same size of the previous elements. Cancelling copy.", i);
 			return nil;
 		}
 		

@@ -23,6 +23,7 @@
 	FLSkinManager *skinManager;
 	
 	CGFloat knownCPUUsage;
+	BOOL animateTransition;
 }
 @property (assign) IBOutlet NSWindow *welcomeWindow;
 @property (assign) IBOutlet FLBorderlessWindow *window;

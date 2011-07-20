@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "FLConstants.h"
 
 @interface FLSkin : NSObject <NSCoding> {
 @private
@@ -15,11 +16,14 @@
 	
 	NSArray *images;
 	NSSize imagesSize;
+	
+	FLSkinMixedImageState mixedImageState;
 }
-@property(retain) NSString *name;
+@property(readonly) NSString *name;
 @property(readonly) NSSize imagesSize;
 @property(readonly) NSArray *images;
 @property(readonly) NSUInteger nImages;
+@property(readonly) FLSkinMixedImageState mixedImageState;
 
 /* All images in the given array must have the same size. The first image
  * is the image used when CPU load is zero.
@@ -30,6 +34,6 @@
  * if one image is not the same size of the other, if the size of the
  * images is zero, or if one element of the array is not of type NSImage.
  */
-- (id)initWithImages:(NSArray *)imgs;
+- (id)initWithImages:(NSArray *)imgs mixedImageState:(FLSkinMixedImageState)state;
 
 @end

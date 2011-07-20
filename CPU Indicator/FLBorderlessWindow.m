@@ -10,10 +10,10 @@
 						  defer:(BOOL)flag
 {
 	// Change the style mask to NSBorderlessWindowMask. So, the window will not have title-bar.
-	NSWindow* result = [super initWithContentRect:contentRect
-													styleMask:NSBorderlessWindowMask
-													  backing:bufferingType
-														 defer:NO];
+	FLBorderlessWindow *result = [super initWithContentRect:contentRect
+																 styleMask:NSBorderlessWindowMask
+																	backing:bufferingType
+																	  defer:NO];
 	
 	[result setOpaque:NO];
 	[result setBackgroundColor:[NSColor clearColor]];

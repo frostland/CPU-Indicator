@@ -79,8 +79,6 @@ static FLSkinPreviewUpdateHeart *previewUpdateHeart = nil;
 	FLSkinMelter *skinMelter = [self skinMelter];
 	CGFloat progressPercentage = ((CGFloat)[[FLSkinPreviewCell getPreviewUpdateHeart] curProgress])/(CGFloat)NFRAMES_BETWEEN_FIRST_AND_LAST_IMAGE;
 	
-	[skinMelter setDestSize:cellFrame.size];
-	
 	NSPoint p;
 	NSSize drawnSize = [skinMelter finalSize];
 	p.x = cellFrame.origin.x +  cellFrame.size.width  - drawnSize.width;

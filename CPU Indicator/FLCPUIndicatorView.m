@@ -111,22 +111,24 @@
 
 - (void)setCurCPULoad:(CGFloat)CPULoad animated:(BOOL)flag
 {
+	CGFloat newCPULoad = CPULoad;
+	if (stickToImages) {
+		CGFloat f = CPULoad * ((CGFloat)skin.nImages-1.);
+		NSUInteger imageIdx = f;
+		newCPULoad = ((CGFloat)imageIdx) / ((CGFloat)skin.nImages-1.);
+	}
+	
 	if (!flag) {
 		animating = NO;
 		[animTimer invalidate]; [animTimer release]; animTimer = nil;
-		[self setCurCPULoad:CPULoad];
+		[self setCurCPULoad:newCPULoad];
 		
 		return;
 	}
 	
 	CGFloat prevDestCPULoad = destCPULoad;
+	destCPULoad = newCPULoad;
 	
-	destCPULoad = CPULoad;
-	if (stickToImages) {
-		CGFloat f = CPULoad * ((CGFloat)skin.nImages-1.);
-		NSUInteger imageIdx = f;
-		destCPULoad = ((CGFloat)imageIdx) / ((CGFloat)skin.nImages-1.);
-	}
 	if (destCPULoad == prevDestCPULoad) return;
 	
 	curFrameNumber = 0;
