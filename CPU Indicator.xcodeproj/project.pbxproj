@@ -69,6 +69,7 @@
 		7B90A96E13268BB0003D00CA /* check_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_mark.png; sourceTree = "<group>"; };
 		7B90A9731326905D003D00CA /* FLCenteredTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCenteredTextCell.h; sourceTree = "<group>"; };
 		7B90A9741326905E003D00CA /* FLCenteredTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCenteredTextCell.m; sourceTree = "<group>"; };
+		7B941339147A486600BAD29E /* CPU Indicator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CPU Indicator.entitlements"; sourceTree = "<group>"; };
 		7BAA01ED133F5D4C0085CB43 /* FLSkinMelter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkinMelter.h; sourceTree = "<group>"; };
 		7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkinMelter.m; sourceTree = "<group>"; };
 		7BB699241476A0E000D14408 /* Readme.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Readme.rtf; sourceTree = "<group>"; };
@@ -127,6 +128,7 @@
 		7B78A4CD131AA56500FE0D25 /* CPU Indicator */ = {
 			isa = PBXGroup;
 			children = (
+				7B941339147A486600BAD29E /* CPU Indicator.entitlements */,
 				7B90A9691325CE56003D00CA /* FLSkin.h */,
 				7B90A96A1325CE56003D00CA /* FLSkin.m */,
 				7BAA01ED133F5D4C0085CB43 /* FLSkinMelter.h */,
@@ -317,6 +319,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -365,6 +369,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -380,6 +386,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;

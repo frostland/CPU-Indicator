@@ -51,7 +51,7 @@
 	
 	FLSkin *skin;
 	if (idx == 0) skin = [[FLSkin new] autorelease];
-	else          skin = [NSUnarchiver unarchiveObjectWithFile:[skinsDescriptions objectAtIndex:idx]];
+	else          skin = [NSUnarchiver unarchiveObjectWithFile:[fm fullSkinPathFrom:[skinsDescriptions objectAtIndex:idx]]];
 	if (skin != nil) [cachedSkins replaceObjectAtIndex:idx withObject:skin];
 	
 	return skin;
@@ -84,7 +84,7 @@
 	if (!newPath || ![fm copyItemAtPath:path toPath:newPath error:NULL])
 		return NO;
 	
-	[skinsDescriptions addObject:newPath];
+	[skinsDescriptions addObject:[newPath lastPathComponent]];
 	[cachedSkins addObject:[NSNull null]];
 	
 	[self saveSkinList];
@@ -98,7 +98,7 @@
 {
 	if (![self canRemoveSkinAtIndex:idx]) return NO;
 	
-	if (![fm removeItemAtPath:[skinsDescriptions objectAtIndex:idx] error:NULL])
+	if (![fm removeItemAtPath:[fm fullSkinPathFrom:[skinsDescriptions objectAtIndex:idx]] error:NULL])
 		return NO;
 	
 	[skinsDescriptions removeObjectAtIndex:idx];

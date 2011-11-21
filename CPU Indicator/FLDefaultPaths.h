@@ -20,6 +20,7 @@
 - (NSString *)userCPUIndicatorSupportFolder;
 
 - (NSString *)pathForListSkinsDescr:(BOOL *)exists;
+- (NSString *)fullSkinPathFrom:(NSString *)skinFileName;
 - (NSString *)pathForNewSkin;
 
 @end

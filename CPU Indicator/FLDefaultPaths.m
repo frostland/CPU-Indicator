@@ -111,6 +111,11 @@
 	return path;
 }
 
+- (NSString *)fullSkinPathFrom:(NSString *)skinFileName
+{
+	return [[self userCPUIndicatorSupportFolder] stringByAppendingPathComponent:skinFileName];
+}
+
 - (NSString *)pathForNewSkin
 {
 	NSString *base = [self userCPUIndicatorSupportFolder];
