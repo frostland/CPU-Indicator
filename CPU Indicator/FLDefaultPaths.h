@@ -1,9 +1,9 @@
 /*
- *  FLDefaultPaths.h
- *  Logiblocs
+ * FLDefaultPaths.h
+ * CPU Indicator (Originally from Logiblocs)
  *
- *  Created by François on 27/07/05.
- *  Copyright 2005 Frost Land. All rights reserved.
+ * Created by François on 27/07/05.
+ * Copyright 2005 Frost Land. All rights reserved.
  */
 
 #import <Cocoa/Cocoa.h>

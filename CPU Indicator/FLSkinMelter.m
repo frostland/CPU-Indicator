@@ -1,10 +1,10 @@
-//
-//  FLSkinMelter.m
-//  CPU Indicator
-//
-//  Created by François LAMBOLEY on 3/27/11.
-//  Copyright 2011 Frost Land. All rights reserved.
-//
+/*
+ * FLSkinMelter.m
+ * CPU Indicator
+ *
+ * Created by François LAMBOLEY on 3/27/11.
+ * Copyright 2011 Frost Land. All rights reserved.
+ */
 
 #import "FLSkinMelter.h"
 

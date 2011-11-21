@@ -1,10 +1,10 @@
-//
-//  FLCPUIndicatorView.m
-//  CPU Indicator
-//
-//  Created by François LAMBOLEY on 3/6/11.
-//  Copyright 2011 Frost Land. All rights reserved.
-//
+/*
+ * FLCPUIndicatorView.m
+ * CPU Indicator
+ *
+ * Created by François LAMBOLEY on 3/6/11.
+ * Copyright 2011 Frost Land. All rights reserved.
+ */
 
 #import "FLCPUIndicatorView.h"
 

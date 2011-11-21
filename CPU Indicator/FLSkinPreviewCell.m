@@ -1,10 +1,10 @@
-//
-//  FLSkinPreviewCell.m
-//  CPU Indicator
-//
-//  Created by François LAMBOLEY on 3/7/11.
-//  Copyright 2011 Frost Land. All rights reserved.
-//
+/*
+ * FLSkinPreviewCell.m
+ * CPU Indicator
+ *
+ * Created by François LAMBOLEY on 3/7/11.
+ * Copyright 2011 Frost Land. All rights reserved.
+ */
 
 #import "FLSkinPreviewCell.h"
 
