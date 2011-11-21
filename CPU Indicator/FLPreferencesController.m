@@ -57,6 +57,8 @@
 {
 	[self invalidateCachedSkinMelters];
 	
+	[self.window setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
+	
 	minSizeForSkinsPrefs = [viewForSkinsPrefs frame].size;
 	minSizeForGeneralPrefs = [viewForGeneralPrefs frame].size;
 }
@@ -324,8 +326,11 @@
 	
 	NSRect destRect;
 	NSSize destSize, curContentSize;
-	if ([sizes objectForKey:self.selectedPrefTab] == nil) destSize = [self.window contentMinSize];
+	NSSize minSize = [self.window contentMinSize];
+	if ([sizes objectForKey:self.selectedPrefTab] == nil) destSize = minSize;
 	else                                                  destSize = NSSizeFromString([sizes objectForKey:self.selectedPrefTab]);
+	destSize.width  = MAX(destSize.width,  minSize.width);
+	destSize.height = MAX(destSize.height, minSize.height);
 	
 	destRect = [self.window frame];
 	curContentSize = [self.window contentRectForFrameRect:destRect].size;
