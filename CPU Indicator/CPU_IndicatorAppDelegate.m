@@ -29,6 +29,7 @@
 	
 	[defaultValues setValue:@"" forKey:FL_UDK_LAST_SELECTED_PREF_ID];
 	[defaultValues setValue:[NSNumber numberWithBool:YES]                          forKey:FL_UDK_FIRST_RUN];
+	[defaultValues setValue:[NSNumber numberWithBool:NO]                           forKey:FL_UDK_HIDE_DOCK];
 	[defaultValues setValue:[NSNumber numberWithBool:NO]                           forKey:FL_UDK_DISALLOW_SHADOW];
 	[defaultValues setValue:[NSNumber numberWithFloat:1.]                          forKey:FL_UDK_WINDOW_TRANSPARENCY];
 	[defaultValues setValue:[NSNumber numberWithBool:YES]                          forKey:FL_UDK_ALLOW_WINDOW_DRAG_N_DROP];
@@ -39,6 +40,15 @@
 	[defaultValues setValue:[NSMutableDictionary dictionary]                       forKey:FL_UDK_PREFS_PANES_SIZES];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+}
+
+- (void)applicationWillFinishLaunching:(NSNotification *)notification
+{
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:FL_UDK_HIDE_DOCK]) {
+		ProcessSerialNumber psn = {0, kCurrentProcess};
+		OSStatus returnCode = TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+		if	(returnCode != 0) {} // Output error
+	}
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
