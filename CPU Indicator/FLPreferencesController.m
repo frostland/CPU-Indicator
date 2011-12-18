@@ -128,6 +128,8 @@
 	
 	[self.window setContentView:viewForGeneralPrefs];
 	[self.window setContentMinSize:minSizeForGeneralPrefs];
+	/* This panel is not resizable in height */
+	[self.window setContentMaxSize:NSMakeSize(CGFLOAT_MAX, minSizeForGeneralPrefs.height)];
 	
 	[self setWindowSizeForSelectedPrefTab];
 }
@@ -139,6 +141,8 @@
 	
 	[self.window setContentView:viewForSkinsPrefs];
 	[self.window setContentMinSize:minSizeForSkinsPrefs];
+	[self.window setContentMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
+	
 	[self updateSkinUI];
 	
 	[self setWindowSizeForSelectedPrefTab];
@@ -327,10 +331,13 @@
 	NSRect destRect;
 	NSSize destSize, curContentSize;
 	NSSize minSize = [self.window contentMinSize];
+	NSSize maxSize = [self.window contentMaxSize];
 	if ([sizes objectForKey:self.selectedPrefTab] == nil) destSize = minSize;
 	else                                                  destSize = NSSizeFromString([sizes objectForKey:self.selectedPrefTab]);
 	destSize.width  = MAX(destSize.width,  minSize.width);
 	destSize.height = MAX(destSize.height, minSize.height);
+	destSize.width  = MIN(destSize.width,  maxSize.width);
+	destSize.height = MIN(destSize.height, maxSize.height);
 	
 	destRect = [self.window frame];
 	curContentSize = [self.window contentRectForFrameRect:destRect].size;
