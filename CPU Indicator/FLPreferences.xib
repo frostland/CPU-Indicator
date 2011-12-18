@@ -58,10 +58,10 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSWindowTemplate" id="1019470572">
-				<int key="NSWindowStyleMask">4127</int>
+				<int key="NSWindowStyleMask">31</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{158, 307}, {498, 354}}</string>
-				<int key="NSWTFlags">611853312</int>
+				<int key="NSWTFlags">880288768</int>
 				<string key="NSWindowTitle">CPU Indicator Preferences</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<object class="NSToolbar" key="NSViewClass" id="591714870">
@@ -152,7 +152,6 @@
 					<string key="NSFrameSize">{498, 354}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
-					<reference key="NSNextKeyView"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
 				<string key="NSMinSize">{400, 361}</string>
@@ -359,7 +358,6 @@
 						<string key="NSFrame">{{91, 16}, {299, 21}}</string>
 						<reference key="NSSuperview" ref="459142114"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="45927280">
 							<int key="NSCellFlags">-2079981824</int>
@@ -706,7 +704,6 @@
 						<string key="NSFrame">{{18, 18}, {246, 18}}</string>
 						<reference key="NSSuperview" ref="961563585"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:771</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="405908714">

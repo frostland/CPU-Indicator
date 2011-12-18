@@ -19,8 +19,6 @@
 	[result setBackgroundColor:[NSColor clearColor]];
 	/* Put the window above any other window */
 	[result setLevel:NSStatusWindowLevel];
-	/* The window is shown on all spaces */
-	[result setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
 	
 	return result;
 }
