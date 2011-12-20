@@ -9,15 +9,19 @@
 #import <Cocoa/Cocoa.h>
 
 #import "FLSkinManager.h"
-#import "FLBorderlessWindow.h"
+#import "FLCPUIndicatorWindowController.h"
 
 @interface FLPreferencesController : NSWindowController <NSWindowDelegate, NSTableViewDelegate, NSTableViewDataSource> {
 @private
 	NSToolbar *toolBar;
+	NSView *viewForDockPrefs;
 	NSView *viewForSkinsPrefs;
-	NSView *viewForGeneralPrefs;
+	NSView *viewForWindowPrefs;
+	NSView *viewForMenuBarPrefs;
+	NSSize minSizeForDockPrefs;
 	NSSize minSizeForSkinsPrefs;
-	NSSize minSizeForGeneralPrefs;
+	NSSize minSizeForWindowPrefs;
+	NSSize minSizeForMenuBarPrefs;
 	
 	NSString *selectedPrefTab;
 	
@@ -28,14 +32,16 @@
 	NSSlider *sliderScale;
 	NSPopUpButton *popUpButtonMixedImageState;
 	
-	FLBorderlessWindow *cpuIndicatorWindow;
+	FLCPUIndicatorWindowController *cpuIndicatorWindowController;
 	
 	FLSkinManager *skinManager;
 	NSMutableArray *cachedSkinMelters;
 }
 @property(assign) IBOutlet NSToolbar *toolBar;
+@property(assign) IBOutlet NSView *viewForDockPrefs;
 @property(assign) IBOutlet NSView *viewForSkinsPrefs;
-@property(assign) IBOutlet NSView *viewForGeneralPrefs;
+@property(assign) IBOutlet NSView *viewForWindowPrefs;
+@property(assign) IBOutlet NSView *viewForMenuBarPrefs;
 @property(assign) IBOutlet NSButton *buttonRemoveSkin;
 @property(assign) IBOutlet NSButton *buttonSelectSkin;
 @property(assign) IBOutlet NSTableView *tableViewForSkins;
@@ -43,10 +49,12 @@
 @property(assign) IBOutlet NSPopUpButton *popUpButtonMixedImageState;
 @property(copy) NSString *selectedPrefTab;
 @property(retain) FLSkinManager *skinManager;
-@property(retain) FLBorderlessWindow *cpuIndicatorWindow;
+@property(retain) FLCPUIndicatorWindowController *cpuIndicatorWindowController;
 
-- (IBAction)selectGeneralPref:(id)sender;
-- (IBAction)selectSkinPref:(id)sender;
+- (IBAction)selectDockPref:(id)sender;
+- (IBAction)selectWindowPref:(id)sender;
+- (IBAction)selectMenuBarPref:(id)sender;
+- (IBAction)selectSkinsPref:(id)sender;
 
 - (IBAction)moveWindowToTopLeft:(id)sender;
 - (IBAction)moveWindowToPseudoTopLeft:(id)sender;

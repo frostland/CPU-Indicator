@@ -21,7 +21,6 @@
 	
 	FLSkin *skin;
 	BOOL stickToImages;
-	CGSize scaleFactor;
 	
 	CGFloat curCPULoad;
 	CGFloat destCPULoad;
@@ -33,11 +32,11 @@
 	
 	FLSkinMelter *skinMelter;
 }
+/* Set this property if the view is in a window that needs shadow invalidation after image indicator is updated */
 @property(assign) IBOutlet NSWindow *parentWindow;
 
 @property(retain) FLSkin *skin;
 @property(assign) BOOL stickToImages;
-@property(assign) CGSize scaleFactor;
 
 @property(assign) CGFloat curCPULoad;
 - (void)setCurCPULoad:(CGFloat)CPULoad animated:(BOOL)flag;

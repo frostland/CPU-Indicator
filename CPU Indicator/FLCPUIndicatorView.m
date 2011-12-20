@@ -10,15 +10,12 @@
 
 @implementation FLCPUIndicatorView
 
-@synthesize parentWindow;
-@synthesize stickToImages;
+@synthesize stickToImages, parentWindow;
 
 - (id)initWithFrame:(NSRect)frame
 {
-	frame.size = NSZeroSize;
 	if ((self = [super initWithFrame:frame]) != nil) {
 		stickToImages = NO;
-		scaleFactor = CGSizeMake(1., 1.);
 		
 		animating = NO;
 		curCPULoad = 0.;
@@ -56,7 +53,7 @@
 	skin = [newSkin retain];
 	
 	[skinMelter setSkin:skin];
-	[self setScaleFactor:scaleFactor]; /* Will refresh the skin melter and the self size */
+	[skinMelter setDestSize:self.bounds.size];
 	
 	if (animating) {
 		animating = NO;
@@ -65,36 +62,6 @@
 	}
 	
 	[self setNeedsDisplay:YES];
-}
-
-- (CGSize)scaleFactor
-{
-	return scaleFactor;
-}
-
-- (void)setScaleFactor:(CGSize)scale
-{
-	scaleFactor = scale;
-	
-	NSSize newSize = NSMakeSize(skin.imagesSize.width * scaleFactor.width, skin.imagesSize.height * scaleFactor.height);
-	if (newSize.width < 3.) {
-		CGFloat s = 3./skin.imagesSize.width;
-		newSize.width = 3.;
-		newSize.height = skin.imagesSize.height * s;
-	}
-	if (newSize.height < 19.) {
-		CGFloat s = 19./skin.imagesSize.height;
-		newSize.height = 19.;
-		newSize.width = skin.imagesSize.width * s;
-	}
-	[skinMelter setDestSize:newSize];
-	
-	[parentWindow setContentSize:newSize];
-	[parentWindow invalidateShadow];
-	
-	NSRect f = self.frame;
-	f.size = newSize;
-	self.frame = f;
 }
 
 - (CGFloat)curCPULoad
@@ -150,6 +117,18 @@
 	}
 	
 	[self setCurCPULoad:curCPULoad + CPULoadIncrement];
+}
+
+- (void)setFrame:(NSRect)frameRect
+{
+	[super setFrame:frameRect];
+	[skinMelter setDestSize:self.bounds.size];
+}
+
+- (void)setBounds:(NSRect)aRect
+{
+	[super setBounds:aRect];
+	[skinMelter setDestSize:self.bounds.size];
 }
 
 - (void)drawRect:(NSRect)dirtyRect

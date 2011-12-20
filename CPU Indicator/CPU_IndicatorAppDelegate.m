@@ -8,52 +8,10 @@
 
 #import "CPU_IndicatorAppDelegate.h"
 
+#include <mach/mach.h> /* To get CPU Usage */
+
+#import "FLGlobals.h"
 #import "FLConstants.h"
-#include <mach/mach.h>
-
-#define FL_CPU_COMPUTE_INTERVAL (1.5)
-
-@interface CPU_IndicatorAppDelegate (Private)
-
-- (void)userDefaultsChanged:(NSNotification *)n;
-
-@end
-
-@implementation CPU_IndicatorAppDelegate
-
-@synthesize welcomeWindow, window, cpuIndicatorView;
-
-+ (void)initialize
-{
-	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
-	
-	[defaultValues setValue:@"" forKey:FL_UDK_LAST_SELECTED_PREF_ID];
-	[defaultValues setValue:[NSNumber numberWithBool:YES]                          forKey:FL_UDK_FIRST_RUN];
-	[defaultValues setValue:[NSNumber numberWithBool:NO]                           forKey:FL_UDK_HIDE_DOCK];
-	[defaultValues setValue:[NSNumber numberWithBool:NO]                           forKey:FL_UDK_DISALLOW_SHADOW];
-	[defaultValues setValue:[NSNumber numberWithFloat:1.]                          forKey:FL_UDK_WINDOW_TRANSPARENCY];
-	[defaultValues setValue:[NSNumber numberWithBool:YES]                          forKey:FL_UDK_ALLOW_WINDOW_DRAG_N_DROP];
-	[defaultValues setValue:[NSNumber numberWithInteger:0]                         forKey:FL_UDK_SELECTED_SKIN];
-	[defaultValues setValue:[NSNumber numberWithFloat:1.]                          forKey:FL_UDK_SKIN_X_SCALE];
-	[defaultValues setValue:[NSNumber numberWithFloat:1.]                          forKey:FL_UDK_SKIN_Y_SCALE];
-	[defaultValues setValue:[NSNumber numberWithInteger:FLMixedImageStateFromSkin] forKey:FL_UDK_MIXED_IMAGE_STATE];
-	[defaultValues setValue:[NSMutableDictionary dictionary]                       forKey:FL_UDK_PREFS_PANES_SIZES];
-	
-	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
-}
-
-- (void)applicationWillFinishLaunching:(NSNotification *)notification
-{
-	if (![[NSUserDefaults standardUserDefaults] boolForKey:FL_UDK_HIDE_DOCK]) {
-		ProcessSerialNumber psn = {0, kCurrentProcess};
-		OSStatus returnCode = TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-		if	(returnCode != 0) {} // Output error
-	}
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-	if (skinManager == nil) skinManager = [FLSkinManager new];
 /*	[NSArchiver archiveRootObject:
 	 [[[FLSkin alloc] initWithImages:[NSArray arrayWithObjects:
 												 [[[NSImage alloc] initWithContentsOfFile:@"/Users/frizlab/Desktop/Babes/babe0.png"] autorelease],
@@ -64,29 +22,74 @@
 												 nil]
 						  mixedImageState:FLMixedImageStateTransitionsOnly] autorelease]
 								  toFile:@"/Users/frizlab/Desktop/tt.cpuIndicatorSkin"];*/
+
+#define FL_CPU_COMPUTE_INTERVAL (1.5)
+
+@interface CPU_IndicatorAppDelegate (Private)
+
+@end
+
+@implementation CPU_IndicatorAppDelegate
+
+@synthesize welcomeWindow, cpuIndicatorView;
+
++ (void)initialize
+{
+	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
 	
-	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	if ([ud boolForKey:FL_UDK_FIRST_RUN]) {
-		[ud setBool:NO forKey:FL_UDK_FIRST_RUN];
-		
-		NSRect screenRect = [[window screen] visibleFrame];
-		NSRect f = [window frame];
-		f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width;
-		f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height;
-		[window setFrame:f display:YES animate:NO];
-		[welcomeWindow setLevel:NSStatusWindowLevel];
-		[welcomeWindow setBackgroundColor:[NSColor whiteColor]];
-		[welcomeWindow makeKeyAndOrderFront:nil];
-	}
+	[defaultValues setValue:@"" forKey:FL_UDK_LAST_SELECTED_PREF_ID];
+	[defaultValues setValue:[NSNumber numberWithBool:YES]                               forKey:FL_UDK_FIRST_RUN];
+	[defaultValues setValue:[NSNumber numberWithBool:YES]                               forKey:FL_UDK_SHOW_DOCK];
+	[defaultValues setValue:[NSNumber numberWithBool:NO]                                forKey:FL_UDK_DISALLOW_SHADOW];
+	[defaultValues setValue:[NSNumber numberWithFloat:1.]                               forKey:FL_UDK_WINDOW_TRANSPARENCY];
+	[defaultValues setValue:[NSNumber numberWithBool:YES]                               forKey:FL_UDK_ALLOW_WINDOW_DRAG_N_DROP];
+	[defaultValues setValue:[NSNumber numberWithInteger:0]                              forKey:FL_UDK_SELECTED_SKIN];
+	[defaultValues setValue:[NSNumber numberWithFloat:1.]                               forKey:FL_UDK_SKIN_X_SCALE];
+	[defaultValues setValue:[NSNumber numberWithFloat:1.]                               forKey:FL_UDK_SKIN_Y_SCALE];
+	[defaultValues setValue:[NSNumber numberWithInteger:FLMixedImageStateFromSkin]      forKey:FL_UDK_MIXED_IMAGE_STATE];
+	[defaultValues setValue:[NSNumber numberWithInteger:FLWindowLevelMenuIndexAboveAll] forKey:FL_UDK_WINDOW_LEVEL];
+	[defaultValues setValue:[NSMutableDictionary dictionary]                            forKey:FL_UDK_PREFS_PANES_SIZES];
 	
-	[window orderFront:nil];
-	
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
-	
+	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+}
+
+- (void)applicationWillFinishLaunching:(NSNotification *)notification
+{
 	[[NSTimer scheduledTimerWithTimeInterval:FL_CPU_COMPUTE_INTERVAL target:self selector:@selector(refreshKnownCPUUsage:) userInfo:NULL repeats:YES] fire];
 	
-	[self userDefaultsChanged:nil];
+	justLaunched = YES;
+	dockIconShown = NO;
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:FL_UDK_SHOW_DOCK]) {
+		dockIconShown = YES;
+		ProcessSerialNumber psn = {0, kCurrentProcess};
+		OSStatus returnCode = TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+		if	(returnCode != 0) {} // Output error
+	}
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	BOOL firstRun = [ud boolForKey:FL_UDK_FIRST_RUN];
+	if (skinManager == nil) skinManager = [FLSkinManager new];
+	
+	NSAssert(mainWindowController == nil, @"Non-nil mainWindowController");
+	mainWindowController = [[FLCPUIndicatorWindowController alloc] initWithWindowNibName:@"FLCPUIndicatorWindow"];
+	mainWindowController.skinManager = skinManager;
+	[mainWindowController showWindowIfNeeded:firstRun];
+	
+	if (firstRun) {
+		[ud setBool:NO forKey:FL_UDK_FIRST_RUN];
+		
+		[welcomeWindow setLevel:NSStatusWindowLevel];
+		[welcomeWindow makeKeyAndOrderFront:nil];
+	}
+}
+
+- (void)applicationDidBecomeActive:(NSNotification *)notification
+{
+	if (!dockIconShown && !justLaunched) [self showPreferences:self];
+	justLaunched = NO;
 }
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
@@ -103,30 +106,12 @@
 	return YES;
 }
 
-- (void)userDefaultsChanged:(NSNotification *)n
-{
-	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	
-	[window setHasShadow:![ud boolForKey:FL_UDK_DISALLOW_SHADOW]];
-	[window setAllowDragNDrop:[ud boolForKey:FL_UDK_ALLOW_WINDOW_DRAG_N_DROP]];
-	[window setAlphaValue:[ud floatForKey:FL_UDK_WINDOW_TRANSPARENCY]];
-	[cpuIndicatorView setSkin:[skinManager skinAtIndex:[ud integerForKey:FL_UDK_SELECTED_SKIN]]];
-	[cpuIndicatorView setScaleFactor:CGSizeMake([ud floatForKey:FL_UDK_SKIN_X_SCALE], [ud floatForKey:FL_UDK_SKIN_Y_SCALE])];
-	
-	BOOL stick;
-	NSInteger state = [ud integerForKey:FL_UDK_MIXED_IMAGE_STATE];
-	if (state == FLMixedImageStateFromSkin) state = [[cpuIndicatorView skin] mixedImageState];
-	stick = (state != FLMixedImageStateAllow);
-	[cpuIndicatorView setStickToImages:stick];
-	animateTransition = (state != FLMixedImageStateDisallow);
-}
-
 - (IBAction)showPreferences:(id)sender
 {
 	if (preferencesController == nil) {
 		preferencesController = [[FLPreferencesController alloc] initWithWindowNibName:@"FLPreferences"];
 		preferencesController.skinManager = skinManager;
-		preferencesController.cpuIndicatorWindow = window;
+		preferencesController.cpuIndicatorWindowController = mainWindowController;
 	}
 	
 	[preferencesController showWindow:nil];
@@ -146,6 +131,7 @@
 - (void)dealloc
 {
 	[skinManager release];
+	[mainWindowController release];
 	[preferencesController release];
 	
 	[super dealloc];
@@ -185,7 +171,7 @@
 	previousTotalTicksNoIdle = totalTicksNoIdle;
 	vm_deallocate(mach_task_self(), (vm_address_t)infoArray, infoCount);
 	
-	[cpuIndicatorView setCurCPULoad:knownCPUUsage animated:animateTransition];
+	[[NSNotificationCenter defaultCenter] postNotificationName:FL_NTF_CPU_USAGE_UPDATED object:nil];
 }
 
 @end

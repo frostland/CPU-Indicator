@@ -18,7 +18,6 @@
 		7B78A4D8131AA56500FE0D25 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4D6131AA56500FE0D25 /* Credits.rtf */; };
 		7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */; };
 		7B78A4DE131AA56500FE0D25 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4DC131AA56500FE0D25 /* MainMenu.xib */; };
-		7B849F27132241360045854D /* FLBorderlessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B849F26132241360045854D /* FLBorderlessWindow.m */; };
 		7B849F41132276920045854D /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F3E132276920045854D /* green.png */; };
 		7B849F42132276920045854D /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F3F132276920045854D /* orange.png */; };
 		7B849F43132276920045854D /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F40132276920045854D /* red.png */; };
@@ -30,6 +29,10 @@
 		7BAA01EF133F5D4C0085CB43 /* FLSkinMelter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */; };
 		7BB699251476A0E000D14408 /* Readme.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7BB699241476A0E000D14408 /* Readme.rtf */; };
 		7BDAEC9E1326ABC200134455 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7BDAEC9D1326ABC200134455 /* icon.icns */; };
+		7BFBEB2714A0EDD600060B8B /* FLIsNotThree.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB2614A0EDD600060B8B /* FLIsNotThree.m */; };
+		7BFBEB2B14A0F70E00060B8B /* FLCPUIndicatorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB2A14A0F70E00060B8B /* FLCPUIndicatorWindowController.m */; };
+		7BFBEB2D14A0F73100060B8B /* FLCPUIndicatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BFBEB2C14A0F73100060B8B /* FLCPUIndicatorWindow.xib */; };
+		7BFBEB6E14A145AE00060B8B /* FLGlobals.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB6D14A145AE00060B8B /* FLGlobals.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,8 +59,6 @@
 		7B78A4D9131AA56500FE0D25 /* CPU_IndicatorAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPU_IndicatorAppDelegate.h; sourceTree = "<group>"; };
 		7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CPU_IndicatorAppDelegate.m; sourceTree = "<group>"; };
 		7B78A4DD131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		7B849F25132241360045854D /* FLBorderlessWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBorderlessWindow.h; sourceTree = "<group>"; };
-		7B849F26132241360045854D /* FLBorderlessWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBorderlessWindow.m; sourceTree = "<group>"; };
 		7B849F3E132276920045854D /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		7B849F3F132276920045854D /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
 		7B849F40132276920045854D /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
@@ -74,6 +75,13 @@
 		7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkinMelter.m; sourceTree = "<group>"; };
 		7BB699241476A0E000D14408 /* Readme.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Readme.rtf; sourceTree = "<group>"; };
 		7BDAEC9D1326ABC200134455 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		7BFBEB2514A0EDD600060B8B /* FLIsNotThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLIsNotThree.h; sourceTree = "<group>"; };
+		7BFBEB2614A0EDD600060B8B /* FLIsNotThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLIsNotThree.m; sourceTree = "<group>"; };
+		7BFBEB2914A0F70E00060B8B /* FLCPUIndicatorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCPUIndicatorWindowController.h; sourceTree = "<group>"; };
+		7BFBEB2A14A0F70E00060B8B /* FLCPUIndicatorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCPUIndicatorWindowController.m; sourceTree = "<group>"; };
+		7BFBEB2C14A0F73100060B8B /* FLCPUIndicatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLCPUIndicatorWindow.xib; sourceTree = "<group>"; };
+		7BFBEB6D14A145AE00060B8B /* FLGlobals.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FLGlobals.c; sourceTree = "<group>"; };
+		7BFBEB6F14A145C000060B8B /* FLGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGlobals.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,28 +137,12 @@
 			isa = PBXGroup;
 			children = (
 				7B941339147A486600BAD29E /* CPU Indicator.entitlements */,
-				7B90A9691325CE56003D00CA /* FLSkin.h */,
-				7B90A96A1325CE56003D00CA /* FLSkin.m */,
-				7BAA01ED133F5D4C0085CB43 /* FLSkinMelter.h */,
-				7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */,
-				7B90A9651325CDDC003D00CA /* FLSkinManager.h */,
-				7B90A9661325CDDC003D00CA /* FLSkinManager.m */,
+				7BFBEB3214A0F99D00060B8B /* Skin Stuff */,
 				7B78A4DC131AA56500FE0D25 /* MainMenu.xib */,
 				7B78A4D9131AA56500FE0D25 /* CPU_IndicatorAppDelegate.h */,
 				7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */,
-				7B70732613237D71000089B2 /* FLCPUIndicatorView.h */,
-				7B70732713237D71000089B2 /* FLCPUIndicatorView.m */,
-				7B849F25132241360045854D /* FLBorderlessWindow.h */,
-				7B849F26132241360045854D /* FLBorderlessWindow.m */,
-				7B4CA5121325105E00C5A5CD /* FLPreferences.xib */,
-				7B4CA51B1325156400C5A5CD /* FLPreferencesController.h */,
-				7B4CA51C1325156400C5A5CD /* FLPreferencesController.m */,
-				7B4CA52A1325306B00C5A5CD /* FLSkinPreviewCell.h */,
-				7B4CA52B1325306C00C5A5CD /* FLSkinPreviewCell.m */,
-				7B90A9731326905D003D00CA /* FLCenteredTextCell.h */,
-				7B90A9741326905E003D00CA /* FLCenteredTextCell.m */,
-				7B4CA52713252AF200C5A5CD /* FLDefaultPaths.h */,
-				7B4CA52813252AF200C5A5CD /* FLDefaultPaths.m */,
+				7BFBEB2E14A0F7E400060B8B /* View and Controllers */,
+				7BFBEB3114A0F83600060B8B /* Utilities */,
 				7B78A4CE131AA56500FE0D25 /* Supporting Files */,
 			);
 			path = "CPU Indicator";
@@ -165,6 +157,8 @@
 				7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */,
 				7B78A4D4131AA56500FE0D25 /* main.m */,
 				7B78A4D6131AA56500FE0D25 /* Credits.rtf */,
+				7BFBEB6F14A145C000060B8B /* FLGlobals.h */,
+				7BFBEB6D14A145AE00060B8B /* FLGlobals.c */,
 				7B4CA51A1325113900C5A5CD /* FLConstants.h */,
 				7B90A96C1326493D003D00CA /* Localizable.strings */,
 			);
@@ -181,6 +175,73 @@
 				7B90A96E13268BB0003D00CA /* check_mark.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		7BFBEB2E14A0F7E400060B8B /* View and Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7B70732613237D71000089B2 /* FLCPUIndicatorView.h */,
+				7B70732713237D71000089B2 /* FLCPUIndicatorView.m */,
+				7BFBEB6C14A13A1D00060B8B /* CPU Indicator Window */,
+				7BFBEB2F14A0F80200060B8B /* Preferences */,
+				7BFBEB3014A0F81800060B8B /* Cells */,
+			);
+			name = "View and Controllers";
+			sourceTree = "<group>";
+		};
+		7BFBEB2F14A0F80200060B8B /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				7B4CA5121325105E00C5A5CD /* FLPreferences.xib */,
+				7B4CA51B1325156400C5A5CD /* FLPreferencesController.h */,
+				7B4CA51C1325156400C5A5CD /* FLPreferencesController.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		7BFBEB3014A0F81800060B8B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7B4CA52A1325306B00C5A5CD /* FLSkinPreviewCell.h */,
+				7B4CA52B1325306C00C5A5CD /* FLSkinPreviewCell.m */,
+				7B90A9731326905D003D00CA /* FLCenteredTextCell.h */,
+				7B90A9741326905E003D00CA /* FLCenteredTextCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		7BFBEB3114A0F83600060B8B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7B4CA52713252AF200C5A5CD /* FLDefaultPaths.h */,
+				7B4CA52813252AF200C5A5CD /* FLDefaultPaths.m */,
+				7BFBEB2514A0EDD600060B8B /* FLIsNotThree.h */,
+				7BFBEB2614A0EDD600060B8B /* FLIsNotThree.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		7BFBEB3214A0F99D00060B8B /* Skin Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				7B90A9691325CE56003D00CA /* FLSkin.h */,
+				7B90A96A1325CE56003D00CA /* FLSkin.m */,
+				7BAA01ED133F5D4C0085CB43 /* FLSkinMelter.h */,
+				7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */,
+				7B90A9651325CDDC003D00CA /* FLSkinManager.h */,
+				7B90A9661325CDDC003D00CA /* FLSkinManager.m */,
+			);
+			name = "Skin Stuff";
+			sourceTree = "<group>";
+		};
+		7BFBEB6C14A13A1D00060B8B /* CPU Indicator Window */ = {
+			isa = PBXGroup;
+			children = (
+				7BFBEB2C14A0F73100060B8B /* FLCPUIndicatorWindow.xib */,
+				7BFBEB2914A0F70E00060B8B /* FLCPUIndicatorWindowController.h */,
+				7BFBEB2A14A0F70E00060B8B /* FLCPUIndicatorWindowController.m */,
+			);
+			name = "CPU Indicator Window";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +306,7 @@
 				7B90A96F13268BB0003D00CA /* check_mark.png in Resources */,
 				7BDAEC9E1326ABC200134455 /* icon.icns in Resources */,
 				7BB699251476A0E000D14408 /* Readme.rtf in Resources */,
+				7BFBEB2D14A0F73100060B8B /* FLCPUIndicatorWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +319,6 @@
 			files = (
 				7B78A4D5131AA56500FE0D25 /* main.m in Sources */,
 				7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */,
-				7B849F27132241360045854D /* FLBorderlessWindow.m in Sources */,
 				7B70732813237D72000089B2 /* FLCPUIndicatorView.m in Sources */,
 				7B4CA51D1325156500C5A5CD /* FLPreferencesController.m in Sources */,
 				7B4CA52913252AF300C5A5CD /* FLDefaultPaths.m in Sources */,
@@ -266,6 +327,9 @@
 				7B90A96B1325CE57003D00CA /* FLSkin.m in Sources */,
 				7B90A97513269065003D00CA /* FLCenteredTextCell.m in Sources */,
 				7BAA01EF133F5D4C0085CB43 /* FLSkinMelter.m in Sources */,
+				7BFBEB2714A0EDD600060B8B /* FLIsNotThree.m in Sources */,
+				7BFBEB2B14A0F70E00060B8B /* FLCPUIndicatorWindowController.m in Sources */,
+				7BFBEB6E14A145AE00060B8B /* FLGlobals.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

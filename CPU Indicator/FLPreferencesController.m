@@ -18,6 +18,8 @@
 
 - (NSToolbarItem *)toolbarItemForIdentifier:(NSString *)identifier;
 - (void)setWindowSizeForSelectedPrefTab;
+//- (void)constrainWindowToMinSize;
+
 - (void)invalidateCachedSkinMelters;
 - (void)updateSkinUI;
 
@@ -26,10 +28,10 @@
 @implementation FLPreferencesController
 
 @synthesize toolBar;
-@synthesize skinManager, cpuIndicatorWindow;
+@synthesize skinManager, cpuIndicatorWindowController;
 
 @synthesize sliderScale, popUpButtonMixedImageState;
-@synthesize viewForSkinsPrefs, viewForGeneralPrefs;
+@synthesize viewForDockPrefs, viewForSkinsPrefs, viewForWindowPrefs, viewForMenuBarPrefs;
 @synthesize buttonRemoveSkin, buttonSelectSkin;
 @synthesize tableViewForSkins;
 @synthesize selectedPrefTab;
@@ -37,6 +39,10 @@
 - (id)initWithWindow:(NSWindow *)window
 {
 	if ((self = [super initWithWindow:window]) != nil) {
+		[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self
+																					 forKeyPath:@"values."FL_UDK_ALLOW_WINDOW_DRAG_N_DROP
+																						 options:0
+																						 context:NULL];
 	}
 	
 	return self;
@@ -44,13 +50,22 @@
 
 - (void)dealloc
 {
+	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
+	
 	self.skinManager = nil;
 	self.selectedPrefTab = nil;
-	self.cpuIndicatorWindow = nil;
+	self.cpuIndicatorWindowController = nil;
 	
 	[cachedSkinMelters release]; cachedSkinMelters = nil;
 	
 	[super dealloc];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	NSUserDefaults *sd = [NSUserDefaults standardUserDefaults];
+	if ([sd boolForKey:FL_UDK_ALLOW_WINDOW_DRAG_N_DROP])
+		[sd setBool:NO forKey:FL_UDK_IGNORE_MOUSE_CLICKS];
 }
 
 - (void)awakeFromNib
@@ -59,8 +74,10 @@
 	
 	[self.window setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
 	
+	minSizeForDockPrefs = [viewForDockPrefs frame].size;
 	minSizeForSkinsPrefs = [viewForSkinsPrefs frame].size;
-	minSizeForGeneralPrefs = [viewForGeneralPrefs frame].size;
+	minSizeForWindowPrefs = [viewForWindowPrefs frame].size;
+	minSizeForMenuBarPrefs = [viewForMenuBarPrefs frame].size;
 }
 
 - (void)windowDidLoad
@@ -80,7 +97,7 @@
 	if (selectedToolbarItem != nil) [self performSelector:[selectedToolbarItem action] withObject:self];
 	else {
 		[toolBar setSelectedItemIdentifier:[[[toolBar items] objectAtIndex:1] itemIdentifier]];
-		[self selectSkinPref:nil];
+		[self selectSkinsPref:nil];
 	}
 }
 
@@ -121,31 +138,61 @@
 	[self updateSkinUI];
 }
 
-- (IBAction)selectGeneralPref:(id)sender
+- (IBAction)selectDockPref:(id)sender
 {
 	self.selectedPrefTab = [toolBar selectedItemIdentifier];
 	[[NSUserDefaults standardUserDefaults] setObject:self.selectedPrefTab forKey:FL_UDK_LAST_SELECTED_PREF_ID];
 	
-	[self.window setContentView:viewForGeneralPrefs];
-	[self.window setContentMinSize:minSizeForGeneralPrefs];
-	/* This panel is not resizable in height */
-	[self.window setContentMaxSize:NSMakeSize(CGFLOAT_MAX, minSizeForGeneralPrefs.height)];
+	/* This panel is not resizable */
+	[self.window setContentMaxSize:minSizeForDockPrefs];
+	[self.window setContentMinSize:minSizeForDockPrefs];
 	
+	/* The two following lines are ordered correctly */
+	[self.window setContentView:viewForDockPrefs];
 	[self setWindowSizeForSelectedPrefTab];
 }
 
-- (IBAction)selectSkinPref:(id)sender
+- (IBAction)selectMenuBarPref:(id)sender
 {
 	self.selectedPrefTab = [toolBar selectedItemIdentifier];
 	[[NSUserDefaults standardUserDefaults] setObject:self.selectedPrefTab forKey:FL_UDK_LAST_SELECTED_PREF_ID];
 	
-	[self.window setContentView:viewForSkinsPrefs];
+	/* This panel is not resizable */
+	[self.window setContentMaxSize:minSizeForMenuBarPrefs];
+	[self.window setContentMinSize:minSizeForMenuBarPrefs];
+	
+	/* The two following lines are ordered correctly */
+	[self.window setContentView:viewForMenuBarPrefs];
+	[self setWindowSizeForSelectedPrefTab];
+}
+
+- (IBAction)selectWindowPref:(id)sender
+{
+	self.selectedPrefTab = [toolBar selectedItemIdentifier];
+	[[NSUserDefaults standardUserDefaults] setObject:self.selectedPrefTab forKey:FL_UDK_LAST_SELECTED_PREF_ID];
+	
+	/* This panel is not resizable in height */
+	[self.window setContentMaxSize:NSMakeSize(CGFLOAT_MAX, minSizeForWindowPrefs.height)];
+	[self.window setContentMinSize:minSizeForWindowPrefs];
+	
+	/* The two following lines are ordered correctly */
+	[self.window setContentView:viewForWindowPrefs];
+	[self setWindowSizeForSelectedPrefTab];
+}
+
+- (IBAction)selectSkinsPref:(id)sender
+{
+	self.selectedPrefTab = [toolBar selectedItemIdentifier];
+	[[NSUserDefaults standardUserDefaults] setObject:self.selectedPrefTab forKey:FL_UDK_LAST_SELECTED_PREF_ID];
+	
 	[self.window setContentMinSize:minSizeForSkinsPrefs];
 	[self.window setContentMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
 	
-	[self updateSkinUI];
-	
+	/* The two following lines are ordered correctly */
 	[self setWindowSizeForSelectedPrefTab];
+	[self.window setContentView:viewForSkinsPrefs];
+	
+	[self updateSkinUI];
 }
 
 - (void)windowDidResize:(NSNotification *)notification
@@ -162,74 +209,42 @@
 
 - (IBAction)moveWindowToTopLeft:(id)sender
 {
-	NSRect screenRect = [[cpuIndicatorWindow screen] frame];
-	NSRect f = [cpuIndicatorWindow frame];
-	f.origin.x = screenRect.origin.x;
-	f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height;
-	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+	[cpuIndicatorWindowController moveWindowToTopLeft:sender];
 }
 
 - (IBAction)moveWindowToPseudoTopLeft:(id)sender
 {
-	NSRect screenRect = [[cpuIndicatorWindow screen] visibleFrame];
-	NSRect f = [cpuIndicatorWindow frame];
-	f.origin.x = screenRect.origin.x;
-	f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height;
-	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+	[cpuIndicatorWindowController moveWindowToPseudoTopLeft:sender];
 }
 
 - (IBAction)moveWindowToTopRight:(id)sender
 {
-	NSRect screenRect = [[cpuIndicatorWindow screen] frame];
-	NSRect f = [cpuIndicatorWindow frame];
-	f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width;
-	f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height;
-	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+	[cpuIndicatorWindowController moveWindowToTopRight:sender];
 }
 
 - (IBAction)moveWindowToPseudoTopRight:(id)sender
 {
-	NSRect screenRect = [[cpuIndicatorWindow screen] visibleFrame];
-	NSRect f = [cpuIndicatorWindow frame];
-	f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width;
-	f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height;
-	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+	[cpuIndicatorWindowController moveWindowToPseudoTopRight:sender];
 }
 
 - (IBAction)moveWindowToBottomLeft:(id)sender
 {
-	NSRect screenRect = [[cpuIndicatorWindow screen] frame];
-	NSRect f = [cpuIndicatorWindow frame];
-	f.origin.x = screenRect.origin.x;
-	f.origin.y = screenRect.origin.y;
-	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+	[cpuIndicatorWindowController moveWindowToBottomLeft:sender];
 }
 
 - (IBAction)moveWindowToPseudoBottomLeft:(id)sender
 {
-	NSRect screenRect = [[cpuIndicatorWindow screen] visibleFrame];
-	NSRect f = [cpuIndicatorWindow frame];
-	f.origin.x = screenRect.origin.x;
-	f.origin.y = screenRect.origin.y;
-	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+	[cpuIndicatorWindowController moveWindowToPseudoBottomLeft:sender];
 }
 
 - (IBAction)moveWindowToBottomRight:(id)sender
 {
-	NSRect screenRect = [[cpuIndicatorWindow screen] frame];
-	NSRect f = [cpuIndicatorWindow frame];
-	f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width;
-	f.origin.y = screenRect.origin.y;
-	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+	[cpuIndicatorWindowController moveWindowToBottomRight:sender];
 }
 
 - (IBAction)moveWindowToPseudoBottomRight:(id)sender
 {
-	NSRect screenRect = [[cpuIndicatorWindow screen] visibleFrame];
-	NSRect f = [cpuIndicatorWindow frame];
-	f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width;
-	f.origin.y = screenRect.origin.y;
-	[cpuIndicatorWindow setFrame:f display:YES animate:YES];
+	[cpuIndicatorWindowController moveWindowToPseudoBottomRight:sender];
 }
 
 - (IBAction)updateScale:(id)sender
@@ -321,6 +336,21 @@
 	return nil;
 }
 
+- (void)setWindowContentSizeNoCheck:(NSSize)newSize animated:(BOOL)animate
+{
+	NSRect destRect = [self.window frame];
+	NSSize curContentSize = [self.window contentRectForFrameRect:destRect].size;
+	newSize.width  += destRect.size.width  - curContentSize.width;
+	newSize.height += destRect.size.height - curContentSize.height;
+	
+	static BOOL firstPass = YES;
+	if (!firstPass) destRect.origin.y += destRect.size.height - newSize.height;
+	destRect.size = newSize;
+	firstPass = NO;
+	
+	[self.window setFrame:destRect display:YES animate:YES];
+}
+
 - (void)setWindowSizeForSelectedPrefTab
 {
 	if (self.selectedPrefTab == nil) return;
@@ -328,8 +358,7 @@
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	NSMutableDictionary *sizes = [ud objectForKey:FL_UDK_PREFS_PANES_SIZES];
 	
-	NSRect destRect;
-	NSSize destSize, curContentSize;
+	NSSize destSize;
 	NSSize minSize = [self.window contentMinSize];
 	NSSize maxSize = [self.window contentMaxSize];
 	if ([sizes objectForKey:self.selectedPrefTab] == nil) destSize = minSize;
@@ -339,18 +368,20 @@
 	destSize.width  = MIN(destSize.width,  maxSize.width);
 	destSize.height = MIN(destSize.height, maxSize.height);
 	
-	destRect = [self.window frame];
-	curContentSize = [self.window contentRectForFrameRect:destRect].size;
-	destSize.width  += destRect.size.width  - curContentSize.width;
-	destSize.height += destRect.size.height - curContentSize.height;
-	
-	static BOOL firstPass = YES;
-	if (!firstPass) destRect.origin.y += destRect.size.height - destSize.height;
-	destRect.size = destSize;
-	firstPass = NO;
-	
-	[self.window setFrame:destRect display:YES animate:YES];
+	[self setWindowContentSizeNoCheck:destSize animated:YES];
 }
+
+/* Unused
+- (void)constrainWindowToMinSize
+{
+	NSRect destRect = [self.window frame];
+	NSSize curSize = [self.window contentRectForFrameRect:destRect].size;
+	NSSize minSize = [self.window contentMinSize];
+	NSSize destSize = NSMakeSize(MAX(curSize.width,  minSize.width),
+										  MAX(curSize.height, minSize.height));
+	
+	[self setWindowContentSizeNoCheck:destSize animated:NO];
+}*/
 
 - (void)invalidateCachedSkinMelters
 {
