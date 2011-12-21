@@ -29,6 +29,7 @@
 		[udc addObserver:self forKeyPath:@"values."FL_UDK_SELECTED_SKIN            options:0 context:@selector(updateSkinFromUserDefaults)];
 		[udc addObserver:self forKeyPath:@"values."FL_UDK_MIXED_IMAGE_STATE        options:0 context:@selector(updateMixedImageStateFromUserDefaults)];
 		[udc addObserver:self forKeyPath:@"values."FL_UDK_DISALLOW_SHADOW          options:0 context:@selector(updateWindowShadowFromUserDefaults)];
+		[udc addObserver:self forKeyPath:@"values."FL_UDK_SHOW_WINDOW              options:0 context:@selector(showOrHideWindowFromUserDefaults)];
 		
 		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 		[nc addObserver:self selector:@selector(cpuUsageUpdated:) name:FL_NTF_CPU_USAGE_UPDATED object:nil];
@@ -50,6 +51,12 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	[self performSelector:context];
+}
+
+- (void)showOrHideWindowFromUserDefaults
+{
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:FL_UDK_SHOW_WINDOW]) [self showWindow:self];
+	else                                                                       [self close];
 }
 
 - (void)updateIgnoreMouseEventsFromUserDefaults
@@ -146,7 +153,8 @@
 		[self.window setFrame:f display:YES animate:NO];
 	}
 	
-	[self showWindow:self];
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:FL_UDK_SHOW_WINDOW])
+		[self showWindow:self];
 }
 
 - (void)windowDidLoad

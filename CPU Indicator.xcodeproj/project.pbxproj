@@ -183,6 +183,7 @@
 				7B70732613237D71000089B2 /* FLCPUIndicatorView.h */,
 				7B70732713237D71000089B2 /* FLCPUIndicatorView.m */,
 				7BFBEB6C14A13A1D00060B8B /* CPU Indicator Window */,
+				7BFBEB7014A2059100060B8B /* CPU Indicator Menu Bar */,
 				7BFBEB2F14A0F80200060B8B /* Preferences */,
 				7BFBEB3014A0F81800060B8B /* Cells */,
 			);
@@ -242,6 +243,13 @@
 				7BFBEB2A14A0F70E00060B8B /* FLCPUIndicatorWindowController.m */,
 			);
 			name = "CPU Indicator Window";
+			sourceTree = "<group>";
+		};
+		7BFBEB7014A2059100060B8B /* CPU Indicator Menu Bar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CPU Indicator Menu Bar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
