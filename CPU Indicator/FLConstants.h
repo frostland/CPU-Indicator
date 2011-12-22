@@ -20,6 +20,12 @@ typedef enum FLWindowLevelMenuIndex {
 	FLWindowLevelMenuIndexBehindAll = 3,
 } FLWindowLevelMenuIndex;
 
+typedef enum FLMenuModeTag {
+	FLMenuModeTagImage = 1,
+	FLMenuModeTagText = 2,
+	FLMenuModeTagBoth = 3,
+} FLMenuModeTag;
+
 #define FL_UDK_FIRST_RUN @"FL First Run"
 
 #define FL_UDK_PREFS_PANES_SIZES @"FL Prefs Panes Sizes"
@@ -33,6 +39,8 @@ typedef enum FLWindowLevelMenuIndex {
 #define FL_UDK_IGNORE_MOUSE_CLICKS @"FL Ignore Mouse Clicks"
 
 #define FL_UDK_SHOW_MENU @"FL Show Menu"
+#define FL_UDK_MENU_MODE @"FL Menu Mode"
+#define FL_UDK_ONE_MENU_PER_CPU @"FL Show One Menu Per CPU"
 
 #define FL_UDK_SHOW_DOCK @"FL Show Dock"
 

@@ -10,7 +10,7 @@
 
 @implementation FLCPUIndicatorView
 
-@synthesize stickToImages, parentWindow;
+@synthesize stickToImages, ignoreClicks;
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -131,10 +131,18 @@
 	[skinMelter setDestSize:self.bounds.size];
 }
 
+- (NSView *)hitTest:(NSPoint)aPoint
+{
+	NSView *hitView = [super hitTest:aPoint];
+	return (ignoreClicks && hitView == self)? nil: hitView;
+}
+
 - (void)drawRect:(NSRect)dirtyRect
 {
-	[[skinMelter imageForCPULoad:curCPULoad] drawAtPoint:NSZeroPoint];
-	[parentWindow invalidateShadow];
+	[[skinMelter imageForCPULoad:curCPULoad] drawInRect:self.bounds fromRect:self.bounds
+															operation:NSCompositeSourceOver fraction:1.
+													 respectFlipped:YES hints:nil];
+	[self.window invalidateShadow];
 }
 
 @end

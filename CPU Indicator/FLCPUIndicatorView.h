@@ -17,7 +17,7 @@
 
 @interface FLCPUIndicatorView : NSView {
 @private
-	NSWindow *parentWindow;
+	BOOL ignoreClicks;
 	
 	FLSkin *skin;
 	BOOL stickToImages;
@@ -32,11 +32,10 @@
 	
 	FLSkinMelter *skinMelter;
 }
-/* Set this property if the view is in a window that needs shadow invalidation after image indicator is updated */
-@property(assign) IBOutlet NSWindow *parentWindow;
-
 @property(retain) FLSkin *skin;
 @property(assign) BOOL stickToImages;
+
+@property(assign) BOOL ignoreClicks;
 
 @property(assign) CGFloat curCPULoad;
 - (void)setCurCPULoad:(CGFloat)CPULoad animated:(BOOL)flag;

@@ -8,4 +8,6 @@
 
 #include <ApplicationServices/ApplicationServices.h>
 
-CGFloat knownCPUUsage = 0.;
+natural_t nCPUs = 0;
+CGFloat globalCPUUsage = 0.;
+CGFloat *CPUUsages = NULL;

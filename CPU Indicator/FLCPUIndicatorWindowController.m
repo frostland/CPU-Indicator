@@ -95,15 +95,6 @@
 	[self.window setContentSize:s];
 }
 
-- (void)updateSkinFromUserDefaults
-{
-	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	FLSkin *curSkin = [skinManager skinAtIndex:[ud integerForKey:FL_UDK_SELECTED_SKIN]];
-	[cpuIndicatorView setSkin:curSkin];
-	
-	[self updateScaleFromUserDefaults];
-}
-
 - (void)updateMixedImageStateFromUserDefaults
 {
 	BOOL stick;
@@ -116,6 +107,16 @@
 	[cpuIndicatorView setStickToImages:stick];
 	
 	animateCPUChangeTransition = (state != FLMixedImageStateDisallow);
+}
+
+- (void)updateSkinFromUserDefaults
+{
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	FLSkin *curSkin = [skinManager skinAtIndex:[ud integerForKey:FL_UDK_SELECTED_SKIN]];
+	[cpuIndicatorView setSkin:curSkin];
+	
+	[self updateScaleFromUserDefaults];
+	[self updateMixedImageStateFromUserDefaults];
 }
 
 - (void)updateWindowLevelFromUserDefaults
@@ -140,7 +141,7 @@
 
 - (void)cpuUsageUpdated:(NSNotification *)n
 {
-	[cpuIndicatorView setCurCPULoad:knownCPUUsage animated:animateCPUChangeTransition];
+	[cpuIndicatorView setCurCPULoad:globalCPUUsage animated:animateCPUChangeTransition];
 }
 
 - (void)showWindowIfNeeded:(BOOL)firstRun

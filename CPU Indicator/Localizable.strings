@@ -9,3 +9,5 @@
 "ok maj" = "OK";
 "cannot import skin" = "Cannot Import Skin";
 "cannot import skin. unknown error." = "Cannot import the skin due to an unknown error. Please contact the developer with the skin you tried to import and report the error.";
+
+"proc %lu" = "Proc. %lu";

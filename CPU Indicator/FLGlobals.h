@@ -9,6 +9,8 @@
 #ifndef CPU_Indicator_FLGlobals_h
 # define CPU_Indicator_FLGlobals_h
 
-extern CGFloat knownCPUUsage;
+extern natural_t nCPUs;
+extern CGFloat globalCPUUsage;
+extern CGFloat *CPUUsages;
 
 #endif

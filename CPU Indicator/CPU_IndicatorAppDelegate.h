@@ -12,14 +12,16 @@
 #import "FLCPUIndicatorView.h"
 #import "FLPreferencesController.h"
 #import "FLCPUIndicatorWindowController.h"
+#import "FLCPUIndicatorMenuBarController.h"
 
 @interface CPU_IndicatorAppDelegate : NSObject <NSApplicationDelegate> {
 @private
 	BOOL justLaunched;
 	BOOL dockIconShown;
 	NSWindow *welcomeWindow;
-	FLPreferencesController *preferencesController;
 	FLCPUIndicatorWindowController *mainWindowController;
+	FLCPUIndicatorMenuBarController *menuBarController;
+	FLPreferencesController *preferencesController;
 	
 	FLSkinManager *skinManager;
 	

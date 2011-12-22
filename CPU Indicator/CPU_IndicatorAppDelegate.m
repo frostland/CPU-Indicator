@@ -8,9 +8,7 @@
 
 #import "CPU_IndicatorAppDelegate.h"
 
-#include <mach/mach.h> /* To get CPU Usage */
-
-#import "FLGlobals.h"
+#import "FLUtils.h"
 #import "FLConstants.h"
 /*	[NSArchiver archiveRootObject:
 	 [[[FLSkin alloc] initWithImages:[NSArray arrayWithObjects:
@@ -48,6 +46,9 @@
 	[defaultValues setValue:[NSNumber numberWithFloat:1.]                               forKey:FL_UDK_SKIN_Y_SCALE];
 	[defaultValues setValue:[NSNumber numberWithInteger:FLMixedImageStateFromSkin]      forKey:FL_UDK_MIXED_IMAGE_STATE];
 	[defaultValues setValue:[NSNumber numberWithInteger:FLWindowLevelMenuIndexAboveAll] forKey:FL_UDK_WINDOW_LEVEL];
+	[defaultValues setValue:[NSNumber numberWithInteger:FLMenuModeTagImage]             forKey:FL_UDK_MENU_MODE];
+	[defaultValues setValue:[NSNumber numberWithBool:NO]                                forKey:FL_UDK_SHOW_MENU];
+	[defaultValues setValue:[NSNumber numberWithBool:NO]                                forKey:FL_UDK_ONE_MENU_PER_CPU];
 	[defaultValues setValue:[NSMutableDictionary dictionary]                            forKey:FL_UDK_PREFS_PANES_SIZES];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
@@ -77,6 +78,11 @@
 	mainWindowController = [[FLCPUIndicatorWindowController alloc] initWithWindowNibName:@"FLCPUIndicatorWindow"];
 	mainWindowController.skinManager = skinManager;
 	[mainWindowController showWindowIfNeeded:firstRun];
+	
+	NSAssert(menuBarController == nil, @"Non-nil mainWindowController");
+	menuBarController = [FLCPUIndicatorMenuBarController new];
+	menuBarController.skinManager = skinManager;
+	[menuBarController showStatusItemIfNeeded];
 	
 	if (firstRun) {
 		[ud setBool:NO forKey:FL_UDK_FIRST_RUN];
@@ -131,6 +137,7 @@
 - (void)dealloc
 {
 	[skinManager release];
+	[menuBarController release];
 	[mainWindowController release];
 	[preferencesController release];
 	
@@ -139,39 +146,7 @@
 
 - (void)refreshKnownCPUUsage:(NSTimer *)t
 {
-	natural_t cpuCount;
-	processor_info_array_t infoArray;
-	mach_msg_type_number_t infoCount;
-	
-	/* The total ticks are integer, but we will use them in division,
-	 * so we need floats. We do not need ticks numbers as integers */
-	CGFloat totalTicks, totalTicksNoIdle;
-	static CGFloat previousTotalTicks = 0, previousTotalTicksNoIdle = 0;
-	kern_return_t error = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &cpuCount, &infoArray, &infoCount);
-	if (error) {
-		mach_error("host_processor_info error:", error);
-		return;
-	}
-	
-	totalTicks = totalTicksNoIdle = 0.;
-	processor_cpu_load_info_data_t *cpuLoadInfo = (processor_cpu_load_info_data_t *)infoArray;
-	for (natural_t cpu = 0; cpu < cpuCount; ++cpu) {
-		for (NSUInteger state = 0; state < CPU_STATE_MAX; ++state) {
-			/* Ticks states are, in that order: "user", "system", "idle", "nice" */
-			unsigned long ticks = cpuLoadInfo[cpu].cpu_ticks[state];
-			totalTicks += ticks;
-			if (state != 2) totalTicksNoIdle += ticks;
-		}
-	}
-	
-	knownCPUUsage = (totalTicksNoIdle - previousTotalTicksNoIdle)/(totalTicks - previousTotalTicks);
-//	NSLog(@"Current CPU Usage: %g", knownCPUUsage);
-	
-	previousTotalTicks = totalTicks;
-	previousTotalTicksNoIdle = totalTicksNoIdle;
-	vm_deallocate(mach_task_self(), (vm_address_t)infoArray, infoCount);
-	
-	[[NSNotificationCenter defaultCenter] postNotificationName:FL_NTF_CPU_USAGE_UPDATED object:nil];
+	FLRefreshKnownCPUUsage();
 }
 
 @end
