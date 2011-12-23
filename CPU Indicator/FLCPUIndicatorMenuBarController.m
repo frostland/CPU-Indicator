@@ -65,6 +65,11 @@ static CGFloat menuHeight = 0.;
 - (void)dealloc
 {
 	self.menu = nil;
+	self.skinManager = nil;
+	[statusItems release]; statusItems = nil;
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
 	
 	[super dealloc];
 }
