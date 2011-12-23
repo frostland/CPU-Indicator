@@ -66,7 +66,6 @@
 {
 	[[NSTimer scheduledTimerWithTimeInterval:FL_CPU_COMPUTE_INTERVAL target:self selector:@selector(refreshKnownCPUUsage:) userInfo:NULL repeats:YES] fire];
 	
-	justLaunched = YES;
 	dockIconShown = NO;
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:FL_UDK_SHOW_DOCK]) {
 		dockIconShown = YES;
@@ -107,8 +106,7 @@
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {
-	if (!dockIconShown && !justLaunched) [self showPreferences:self];
-	justLaunched = NO;
+	if (!dockIconShown) [self showPreferences:self];
 }
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename

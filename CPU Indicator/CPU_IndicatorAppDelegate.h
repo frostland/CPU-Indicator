@@ -17,7 +17,6 @@
 
 @interface CPU_IndicatorAppDelegate : NSObject <NSApplicationDelegate> {
 @private
-	BOOL justLaunched;
 	BOOL dockIconShown;
 	NSWindow *welcomeWindow;
 	FLCPUIndicatorWindowController *mainWindowController;
