@@ -30,7 +30,6 @@
 	BOOL animateTransition;
 }
 @property (assign) IBOutlet NSWindow *welcomeWindow;
-@property (assign) IBOutlet FLCPUIndicatorView *cpuIndicatorView;
 
 - (IBAction)showPreferences:(id)sender;
 - (IBAction)closeWelcomeWindow:(id)sender;

@@ -104,7 +104,7 @@
 	CGFloat curX = SPACING;
 	if (imageShown) curX += cpuIndicatorView.frame.size.width;
 	if (imageShown && textShown) curX += 2.*SMALL_SPACING;
-	CGRect f = labelForText.frame;
+	NSRect f = labelForText.frame;
 	f.origin.x = curX;
 	labelForText.frame = f;
 	if (textShown) curX += labelForText.frame.size.width;

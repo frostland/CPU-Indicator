@@ -29,7 +29,7 @@
 
 @implementation CPU_IndicatorAppDelegate
 
-@synthesize welcomeWindow, cpuIndicatorView;
+@synthesize welcomeWindow;
 
 + (void)initialize
 {

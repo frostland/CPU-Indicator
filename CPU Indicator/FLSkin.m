@@ -52,7 +52,7 @@
 	if ((self = [super init]) != nil) {
 		NSInteger version = [coder versionForClassName:@"FLSkin"];
 		if (version < 0 || version > 1) {
-			NSLog(@"Cannot init the skin: unkown version number (%ld)", version);
+			NSLog(@"Cannot init the skin: unkown version number (%ld)", (long)version);
 			[self release];
 			return nil;
 		}
@@ -121,7 +121,7 @@
 	do {
 		NSImage *curImage = [original objectAtIndex:i];
 		if (![curImage isKindOfClass:[NSImage class]]) {
-			NSLog(@"*** Warning: Trying to copy an image array whose element #%lu is not kind of class NSImage (it is: %@). Cancelling copy.", i, NSStringFromClass([curImage class]));
+			NSLog(@"*** Warning: Trying to copy an image array whose element #%lu is not kind of class NSImage (it is: %@). Cancelling copy.", (unsigned long)i, NSStringFromClass([curImage class]));
 			return nil;
 		}
 		
@@ -131,7 +131,7 @@
 			return nil;
 		}
 		if (!NSEqualSizes([curImage size], imagesSize)) {
-			NSLog(@"*** Warning: Trying to copy an image array whose element #%lu is not the same size of the previous elements. Cancelling copy.", i);
+			NSLog(@"*** Warning: Trying to copy an image array whose element #%lu is not the same size of the previous elements. Cancelling copy.", (unsigned long)i);
 			return nil;
 		}
 		
