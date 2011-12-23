@@ -36,6 +36,8 @@
 	CGFloat destCPULoad;
 	CGFloat CPULoadIncrement;
 	
+	NSRect destDrawRect;
+	
 	BOOL animating;
 	NSTimer *animTimer;
 	NSUInteger curFrameNumber;

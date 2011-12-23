@@ -16,6 +16,8 @@
 - (id)initWithFrame:(NSRect)frame
 {
 	if ((self = [super initWithFrame:frame]) != nil) {
+		destDrawRect = self.bounds;
+		
 		stickToImages = NO;
 		
 		animating = NO;
@@ -43,6 +45,15 @@
 	[super dealloc];
 }
 
+- (void)updateSkinMelterDestSizeAndSelfDestDrawRect
+{
+	[skinMelter setDestSize:self.bounds.size];
+	
+	destDrawRect = self.bounds;
+	destDrawRect.origin.x += (self.bounds.size.width  - skinMelter.finalSize.width)/2.;
+	destDrawRect.origin.y += (self.bounds.size.height - skinMelter.finalSize.height)/2.;
+}
+
 - (FLSkin *)skin
 {
 	return skin;
@@ -56,7 +67,7 @@
 	skin = [newSkin retain];
 	
 	[skinMelter setSkin:skin];
-	[skinMelter setDestSize:self.bounds.size];
+	[self updateSkinMelterDestSizeAndSelfDestDrawRect];
 	
 	if (animating) {
 		animating = NO;
@@ -127,13 +138,13 @@
 - (void)setFrame:(NSRect)frameRect
 {
 	[super setFrame:frameRect];
-	[skinMelter setDestSize:self.bounds.size];
+	[self updateSkinMelterDestSizeAndSelfDestDrawRect];
 }
 
 - (void)setBounds:(NSRect)aRect
 {
 	[super setBounds:aRect];
-	[skinMelter setDestSize:self.bounds.size];
+	[self updateSkinMelterDestSizeAndSelfDestDrawRect];
 }
 
 - (NSView *)hitTest:(NSPoint)aPoint
@@ -144,7 +155,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	[[skinMelter imageForCPULoad:curCPULoad] drawInRect:self.bounds fromRect:self.bounds
+	[[skinMelter imageForCPULoad:curCPULoad] drawInRect:destDrawRect fromRect:self.bounds
 															operation:NSCompositeSourceOver fraction:1.
 													 respectFlipped:YES hints:nil];
 	[self.delegate cpuIndicatorViewDidDraw:self];
