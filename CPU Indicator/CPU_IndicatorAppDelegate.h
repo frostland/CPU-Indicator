@@ -11,6 +11,7 @@
 #import "FLSkinManager.h"
 #import "FLCPUIndicatorView.h"
 #import "FLPreferencesController.h"
+#import "FLCPUIndicatorDockController.h"
 #import "FLCPUIndicatorWindowController.h"
 #import "FLCPUIndicatorMenuBarController.h"
 
@@ -21,6 +22,7 @@
 	NSWindow *welcomeWindow;
 	FLCPUIndicatorWindowController *mainWindowController;
 	FLCPUIndicatorMenuBarController *menuBarController;
+	FLCPUIndicatorDockController *dockController;
 	FLPreferencesController *preferencesController;
 	
 	FLSkinManager *skinManager;

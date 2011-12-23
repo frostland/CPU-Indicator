@@ -10,6 +10,7 @@
 
 @implementation FLCPUIndicatorView
 
+@synthesize delegate;
 @synthesize stickToImages, ignoreClicks;
 
 - (id)initWithFrame:(NSRect)frame
@@ -31,6 +32,8 @@
 
 - (void)dealloc
 {
+	self.delegate = nil;
+	
 	[animTimer invalidate];
 	[animTimer release];
 	
@@ -62,6 +65,7 @@
 	}
 	
 	[self setNeedsDisplay:YES];
+	[self.delegate cpuIndicatorViewDidSetNeedDisplay:self];
 }
 
 - (CGFloat)curCPULoad
@@ -74,6 +78,7 @@
 	curCPULoad = CPULoad;
 	
 	[self setNeedsDisplay:YES];
+	[self.delegate cpuIndicatorViewDidSetNeedDisplay:self];
 }
 
 - (void)setCurCPULoad:(CGFloat)CPULoad animated:(BOOL)flag
@@ -142,7 +147,7 @@
 	[[skinMelter imageForCPULoad:curCPULoad] drawInRect:self.bounds fromRect:self.bounds
 															operation:NSCompositeSourceOver fraction:1.
 													 respectFlipped:YES hints:nil];
-	[self.window invalidateShadow];
+	[self.delegate cpuIndicatorViewDidDraw:self];
 }
 
 @end

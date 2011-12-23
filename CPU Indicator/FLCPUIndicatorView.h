@@ -15,6 +15,16 @@
 #define FPS (21)
 #define NFRAME ((NSUInteger)(ANIM_DURATION * FPS))
 
+@class FLCPUIndicatorView;
+
+@protocol FLCPUIndicatorViewDelegate <NSObject>
+@required
+
+- (void)cpuIndicatorViewDidDraw:(FLCPUIndicatorView *)v;
+- (void)cpuIndicatorViewDidSetNeedDisplay:(FLCPUIndicatorView *)v;
+
+@end
+
 @interface FLCPUIndicatorView : NSView {
 @private
 	BOOL ignoreClicks;
@@ -31,7 +41,11 @@
 	NSUInteger curFrameNumber;
 	
 	FLSkinMelter *skinMelter;
+	
+	id <FLCPUIndicatorViewDelegate> delegate;
 }
+@property(assign) id <FLCPUIndicatorViewDelegate> delegate;
+
 @property(retain) FLSkin *skin;
 @property(assign) BOOL stickToImages;
 

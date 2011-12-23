@@ -43,6 +43,7 @@ typedef enum FLMenuModeTag {
 #define FL_UDK_ONE_MENU_PER_CPU @"FL Show One Menu Per CPU"
 
 #define FL_UDK_SHOW_DOCK @"FL Show Dock"
+#define FL_UDK_SHOW_INDICATOR_IN_DOCK @"FL Show Indicator in Dock"
 
 #define FL_UDK_SELECTED_SKIN @"FL Selected Skin"
 #define FL_UDK_STICK_TO_IMAGES @"FL Stick to Images" /* DEPRECATED by line below */

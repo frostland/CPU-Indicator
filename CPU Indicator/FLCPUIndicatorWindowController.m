@@ -160,11 +160,13 @@
 
 - (void)windowDidLoad
 {
-	[super windowDidLoad];
+	cpuIndicatorView.delegate = self;
 	
 	[self.window setOpaque:NO];
 	[self.window setBackgroundColor:[NSColor clearColor]];
 	[self.window setMovableByWindowBackground:YES];
+	
+	[super windowDidLoad];
 	
 	[self updateAlphaFromUserDefaults];
 	[self updateWindowLevelFromUserDefaults];
@@ -173,8 +175,15 @@
 	[self updateIgnoreMouseEventsFromUserDefaults];
 	
 	[self updateSkinFromUserDefaults];
-	[self updateScaleFromUserDefaults];
-	[self updateMixedImageStateFromUserDefaults];
+}
+
+- (void)cpuIndicatorViewDidDraw:(FLCPUIndicatorView *)v
+{
+	[self.window invalidateShadow];
+}
+
+- (void)cpuIndicatorViewDidSetNeedDisplay:(FLCPUIndicatorView *)v
+{
 }
 
 - (IBAction)moveWindowToTopLeft:(id)sender

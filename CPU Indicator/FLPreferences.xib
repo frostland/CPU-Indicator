@@ -1468,7 +1468,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="453580424">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1477,6 +1477,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 20}, {434, 68}}</string>
 						<reference key="NSSuperview" ref="453580424"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:360</string>
 						<string key="NSAntiCompressionPriority">{250, 750}</string>
 						<bool key="NSEnabled">YES</bool>
@@ -1504,6 +1506,7 @@ dW5jaHBhZCBvciB0aGUgRmluZGVyA</string>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{38, 103}, {178, 18}}</string>
 						<reference key="NSSuperview" ref="453580424"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="111152470"/>
 						<string key="NSReuseIdentifierKey">_NS:771</string>
 						<bool key="NSEnabled">YES</bool>
@@ -1529,6 +1532,7 @@ dW5jaHBhZCBvciB0aGUgRmluZGVyA</string>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{18, 130}, {380, 18}}</string>
 						<reference key="NSSuperview" ref="453580424"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="108235358"/>
 						<string key="NSReuseIdentifierKey">_NS:771</string>
 						<bool key="NSEnabled">YES</bool>
@@ -1551,6 +1555,8 @@ dW5jaHBhZCBvciB0aGUgRmluZGVyA</string>
 					</object>
 				</object>
 				<string key="NSFrameSize">{468, 166}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="527070763"/>
 				<string key="NSReuseIdentifierKey">_NS:1192</string>
 				<string key="NSClassName">NSView</string>
@@ -2129,6 +2135,22 @@ dW5jaHBhZCBvciB0aGUgRmluZGVyA</string>
 						</object>
 					</object>
 					<int key="connectionID">425</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.FL Show Indicator in Dock</string>
+						<reference key="source" ref="108235358"/>
+						<reference key="destination" ref="146969216"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="108235358"/>
+							<reference key="NSDestination" ref="146969216"/>
+							<string key="NSLabel">value: values.FL Show Indicator in Dock</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.FL Show Indicator in Dock</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">484</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -3457,7 +3479,7 @@ dW5jaHBhZCBvciB0aGUgRmluZGVyA</string>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">483</int>
+			<int key="maxID">484</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

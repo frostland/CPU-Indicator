@@ -11,7 +11,7 @@
 #import "FLSkinManager.h"
 #import "FLCPUIndicatorView.h"
 
-@interface FLCPUIndicatorWindowController : NSWindowController {
+@interface FLCPUIndicatorWindowController : NSWindowController <FLCPUIndicatorViewDelegate> {
 @private
 	BOOL inObserver;
 	
