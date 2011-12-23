@@ -27,7 +27,7 @@
 		7B90A96F13268BB0003D00CA /* check_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A96E13268BB0003D00CA /* check_mark.png */; };
 		7B90A97513269065003D00CA /* FLCenteredTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A9741326905E003D00CA /* FLCenteredTextCell.m */; };
 		7BAA01EF133F5D4C0085CB43 /* FLSkinMelter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */; };
-		7BB699251476A0E000D14408 /* Readme.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7BB699241476A0E000D14408 /* Readme.rtf */; };
+		7BB699251476A0E000D14408 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 7BB699241476A0E000D14408 /* Readme.md */; };
 		7BBB95B414A40E2700161989 /* FLCPUIndicatorDockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB95B314A40E2700161989 /* FLCPUIndicatorDockController.m */; };
 		7BDAEC9E1326ABC200134455 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7BDAEC9D1326ABC200134455 /* icon.icns */; };
 		7BFBEB2714A0EDD600060B8B /* FLIsNotThree.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB2614A0EDD600060B8B /* FLIsNotThree.m */; };
@@ -78,7 +78,7 @@
 		7B941339147A486600BAD29E /* CPU Indicator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CPU Indicator.entitlements"; sourceTree = "<group>"; };
 		7BAA01ED133F5D4C0085CB43 /* FLSkinMelter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkinMelter.h; sourceTree = "<group>"; };
 		7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkinMelter.m; sourceTree = "<group>"; };
-		7BB699241476A0E000D14408 /* Readme.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Readme.rtf; sourceTree = "<group>"; };
+		7BB699241476A0E000D14408 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.md; sourceTree = "<group>"; };
 		7BBB95B214A40E2700161989 /* FLCPUIndicatorDockController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCPUIndicatorDockController.h; sourceTree = "<group>"; };
 		7BBB95B314A40E2700161989 /* FLCPUIndicatorDockController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCPUIndicatorDockController.m; sourceTree = "<group>"; };
 		7BDAEC9D1326ABC200134455 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		7B78A4B8131AA56500FE0D25 = {
 			isa = PBXGroup;
 			children = (
-				7BB699241476A0E000D14408 /* Readme.rtf */,
+				7BB699241476A0E000D14408 /* Readme.md */,
 				7B78A4CD131AA56500FE0D25 /* CPU Indicator */,
 				7B78A4C6131AA56500FE0D25 /* Frameworks */,
 				7B78A4C4131AA56500FE0D25 /* Products */,
@@ -344,7 +344,7 @@
 				7B90A96D1326493D003D00CA /* Localizable.strings in Resources */,
 				7B90A96F13268BB0003D00CA /* check_mark.png in Resources */,
 				7BDAEC9E1326ABC200134455 /* icon.icns in Resources */,
-				7BB699251476A0E000D14408 /* Readme.rtf in Resources */,
+				7BB699251476A0E000D14408 /* Readme.md in Resources */,
 				7BFBEB2D14A0F73100060B8B /* FLCPUIndicatorWindow.xib in Resources */,
 				7BFBEB7514A2085400060B8B /* FLCPUIndicatorMenuBar.xib in Resources */,
 			);
