@@ -1,3 +1,6 @@
 .DS_Store
+/Skins/
+/App Store/
+/gfx building/
 *.xcodeproj/xcuserdata/
 *.xcodeproj/project.xcworkspace/
