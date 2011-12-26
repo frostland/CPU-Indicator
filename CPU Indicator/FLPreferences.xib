@@ -786,7 +786,7 @@
 					<object class="NSButton" id="797163679">
 						<reference key="NSNextResponder" ref="961563585"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{38, 38}, {299, 18}}</string>
+						<string key="NSFrame">{{38, 38}, {129, 18}}</string>
 						<reference key="NSSuperview" ref="961563585"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="686517269"/>
@@ -795,7 +795,7 @@
 						<object class="NSButtonCell" key="NSCell" id="324982925">
 							<int key="NSCellFlags">-2080244224</int>
 							<int key="NSCellFlags2">0</int>
-							<string key="NSContents">Forbid Window to Be Moved With the Mouse</string>
+							<string key="NSContents">Lock the Window</string>
 							<reference key="NSSupport" ref="320923998"/>
 							<string key="NSCellIdentifier">_NS:771</string>
 							<reference key="NSControlView" ref="797163679"/>
@@ -3807,7 +3807,7 @@ dW5jaHBhZCBvciB0aGUgRmluZGVyA</string>
 				<string>{32, 32}</string>
 				<string>{32, 32}</string>
 				<string>{512, 512}</string>
-				<string>{128, 128}</string>
+				<string>{32, 32}</string>
 			</object>
 		</object>
 	</data>
