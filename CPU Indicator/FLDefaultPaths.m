@@ -113,6 +113,7 @@
 
 - (NSString *)fullSkinPathFrom:(NSString *)skinFileName
 {
+	if ([skinFileName isAbsolutePath]) return [self fullSkinPathFrom:[skinFileName lastPathComponent]];
 	return [[self userCPUIndicatorSupportFolder] stringByAppendingPathComponent:skinFileName];
 }
 
