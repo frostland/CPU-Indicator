@@ -439,7 +439,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Application Development: FRANCOIS LAMBOLEY (W8TA6H4G9U)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: FRANCOIS LAMBOLEY";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -448,7 +448,7 @@
 				GCC_PREFIX_HEADER = "CPU Indicator/CPU_Indicator-Prefix.pch";
 				INFOPLIST_FILE = "CPU Indicator/CPU_Indicator-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "DA7F7384-A58E-47D6-A376-359B488EB2E4";
+				PROVISIONING_PROFILE = "3FDEB381-6D2F-4661-9A65-E78F1E50CC48";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = FL;
 				WRAPPER_EXTENSION = app;
