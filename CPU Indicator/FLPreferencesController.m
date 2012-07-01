@@ -113,7 +113,7 @@
 	} else if ([[tableColumn identifier] isEqualToString:@"skin_name"]) {
 		return [[skinManager skinAtIndex:row] name];
 	} else if ([[tableColumn identifier] isEqualToString:@"skin_preview"]) {
-		NSAssert([cachedSkinMelters count] == [skinManager nSkins], @"Invalid cached skin melters count. Got %d, but I have %d skins.", [cachedSkinMelters count], [skinManager nSkins]);
+		NSAssert([cachedSkinMelters count] == [skinManager nSkins], @"Invalid cached skin melters count. Got %lu, but I have %lu skins.", (unsigned long)[cachedSkinMelters count], (unsigned long)[skinManager nSkins]);
 		
 		FLSkinMelter *skinMelter = [cachedSkinMelters objectAtIndex:row];
 		if ([skinMelter isEqual:[NSNull null]]) {

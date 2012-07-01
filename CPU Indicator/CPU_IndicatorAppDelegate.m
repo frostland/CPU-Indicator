@@ -38,7 +38,7 @@
 	[defaultValues setValue:[NSNumber numberWithBool:YES] forKey:FL_UDK_FIRST_RUN];
 	
 	[defaultValues setValue:[NSMutableDictionary dictionary] forKey:FL_UDK_PREFS_PANES_SIZES];
-	[defaultValues setValue:@""                              forKey:FL_UDK_LAST_SELECTED_PREF_ID];
+	[defaultValues setValue:@"Skins"                         forKey:FL_UDK_LAST_SELECTED_PREF_ID];
 	
 	[defaultValues setValue:[NSNumber numberWithBool:YES]                               forKey:FL_UDK_SHOW_WINDOW];
 	[defaultValues setValue:[NSNumber numberWithInteger:FLWindowLevelMenuIndexAboveAll] forKey:FL_UDK_WINDOW_LEVEL];
