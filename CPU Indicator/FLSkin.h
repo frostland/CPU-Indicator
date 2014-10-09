@@ -34,6 +34,7 @@
  * if one image is not the same size of the other, if the size of the
  * images is zero, or if one element of the array is not of type NSImage.
  */
-- (instancetype)initWithImages:(NSArray *)imgs mixedImageState:(FLSkinMixedImageState)state NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithImages:(NSArray *)imgs mixedImageState:(FLSkinMixedImageState)state;
+- (instancetype)initWithImages:(NSArray *)imgs mixedImageState:(FLSkinMixedImageState)state name:(NSString *)n NS_DESIGNATED_INITIALIZER;
 
 @end

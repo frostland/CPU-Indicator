@@ -18,7 +18,8 @@
 												 [[[NSImage alloc] initWithContentsOfFile:@"/Users/frizlab/Desktop/Babes/babe3.png"] autorelease],
 												 [[[NSImage alloc] initWithContentsOfFile:@"/Users/frizlab/Desktop/Babes/babe4.png"] autorelease],
 												 nil]
-						  mixedImageState:FLMixedImageStateTransitionsOnly] autorelease]
+						  mixedImageState:FLMixedImageStateTransitionsOnly
+										 name:@"Great Name"] autorelease]
 								  toFile:@"/Users/frizlab/Desktop/tt.cpuIndicatorSkin"];*/
 
 #define FL_CPU_COMPUTE_INTERVAL (1.5)

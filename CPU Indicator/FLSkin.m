@@ -32,10 +32,15 @@
 
 - (instancetype)initWithImages:(NSArray *)imgs mixedImageState:(FLSkinMixedImageState)state
 {
+	return [self initWithImages:imgs mixedImageState:state name:@"Default"];
+}
+
+- (instancetype)initWithImages:(NSArray *)imgs mixedImageState:(FLSkinMixedImageState)state name:(NSString *)n
+{
 	if ((self = [super init]) != nil) {
 		mixedImageState = state;
 		
-		name = [@"Default" copy];
+		name = [n copy];
 		images = [self deepCopyOfImageArray:imgs];
 		if (images == nil) {
 			NSLog(@"Problem while loading the images. Please check that they all have the exact same size.");
