@@ -15,7 +15,7 @@
 
 @synthesize skinManager;
 
-- (id)init
+- (instancetype)init
 {
 	if ((self = [super init]) != nil) {
 		cpuIndicatorView = [[FLCPUIndicatorView alloc] initWithFrame:NSMakeRect(0., 0., 512., 512.)];

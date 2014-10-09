@@ -13,13 +13,13 @@
 
 @interface FLSkinManager (Private)
 
-- (BOOL)saveSkinList;
+@property(readonly) BOOL saveSkinList;
 
 @end
 
 @implementation FLSkinManager
 
-- (id)init
+- (instancetype)init
 {
 	if ((self = [super init]) != nil) {
 		fm = [NSFileManager defaultManager];
@@ -46,13 +46,13 @@
 
 - (FLSkin *)skinAtIndex:(NSUInteger)idx
 {
-	if (![[cachedSkins objectAtIndex:idx] isEqual:[NSNull null]])
-		return [cachedSkins objectAtIndex:idx];
+	if (![cachedSkins[idx] isEqual:[NSNull null]])
+		return cachedSkins[idx];
 	
 	FLSkin *skin;
 	if (idx == 0) skin = [[FLSkin new] autorelease];
-	else          skin = [NSUnarchiver unarchiveObjectWithFile:[fm fullSkinPathFrom:[skinsDescriptions objectAtIndex:idx]]];
-	if (skin != nil) [cachedSkins replaceObjectAtIndex:idx withObject:skin];
+	else          skin = [NSUnarchiver unarchiveObjectWithFile:[fm fullSkinPathFrom:skinsDescriptions[idx]]];
+	if (skin != nil) cachedSkins[idx] = skin;
 	
 	return skin;
 }
@@ -98,7 +98,7 @@
 {
 	if (![self canRemoveSkinAtIndex:idx]) return NO;
 	
-	if (![fm removeItemAtPath:[fm fullSkinPathFrom:[skinsDescriptions objectAtIndex:idx]] error:NULL])
+	if (![fm removeItemAtPath:[fm fullSkinPathFrom:skinsDescriptions[idx]] error:NULL])
 		return NO;
 	
 	[skinsDescriptions removeObjectAtIndex:idx];

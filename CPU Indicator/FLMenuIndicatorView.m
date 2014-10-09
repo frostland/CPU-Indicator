@@ -31,19 +31,19 @@
 @synthesize statusItem;
 @synthesize cpuIndicatorView;
 
-+ (id)menuIndicatorViewWithFont:(NSFont *)font statusItem:(NSStatusItem *)si andHeight:(CGFloat)height
++ (instancetype)menuIndicatorViewWithFont:(NSFont *)font statusItem:(NSStatusItem *)si andHeight:(CGFloat)height
 {
 	FLMenuIndicatorView *miv = [[self alloc] initWithFrame:NSMakeRect(0., 0., 0., height) andFont:font];
 	miv.statusItem = si;
 	return [miv autorelease];
 }
 
-- (id)initWithFrame:(NSRect)frameRect
+- (instancetype)initWithFrame:(NSRect)frameRect
 {
 	return [self initWithFrame:frameRect andFont:nil];
 }
 
-- (id)initWithFrame:(NSRect)frame andFont:(NSFont *)font
+- (instancetype)initWithFrame:(NSRect)frame andFont:(NSFont *)font
 {
 	if ((self = [super initWithFrame:frame]) != nil) {
 		if (font == nil) font = [NSFont systemFontOfSize:frame.size.height - SPACING*2.];

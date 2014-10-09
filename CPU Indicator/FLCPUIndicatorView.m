@@ -13,7 +13,7 @@
 @synthesize delegate;
 @synthesize stickToImages, ignoreClicks;
 
-- (id)initWithFrame:(NSRect)frame
+- (instancetype)initWithFrame:(NSRect)frame
 {
 	if ((self = [super initWithFrame:frame]) != nil) {
 		destDrawRect = self.bounds;

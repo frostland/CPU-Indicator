@@ -56,10 +56,10 @@
 																				YES);
 	if ([libraries count] == 0)
 		return nil;
-	path = [libraries objectAtIndex:0];
+	path = libraries[0];
 	attrs = [NSMutableDictionary dictionary];
 	
-	[attrs setValue:[NSNumber numberWithInt:0700] forKey:NSFilePosixPermissions];
+	[attrs setValue:@0700 forKey:NSFilePosixPermissions];
 	if (![self createPathIfNecessary:path withAttrs:attrs returnedErr:&err]) {
 		NSLog(@"*** Can't create dir at path %@ (err msg \"%@\") ***", path, err);
 		return nil;
@@ -77,7 +77,7 @@
 																				YES);
 	if ([dirsFound count] == 0)
 		return nil;
-	path = [dirsFound objectAtIndex:0];
+	path = dirsFound[0];
 	
 	if (![self createPathIfNecessary:path withAttrs:nil returnedErr:&err]) {
 		NSLog(@"*** Can't create dir at path %@ (err msg \"%@\") ***", path, err);

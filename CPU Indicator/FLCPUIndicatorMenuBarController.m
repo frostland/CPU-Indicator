@@ -43,10 +43,10 @@ static CGFloat menuHeight = 0.;
 	[[NSStatusBar systemStatusBar] removeStatusItem:statusItem];*/
 }
 
-- (id)init
+- (instancetype)init
 {
 	if ((self = [super init]) != nil) {
-		[[NSBundle mainBundle] loadNibFile:@"FLCPUIndicatorMenuBar" externalNameTable:[NSDictionary dictionaryWithObject:self forKey:NSNibOwner] withZone:nil];
+		[[NSBundle mainBundle] loadNibFile:@"FLCPUIndicatorMenuBar" externalNameTable:@{NSNibOwner: self} withZone:nil];
 		
 		NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];
 		[udc addObserver:self forKeyPath:@"values."FL_UDK_ONE_MENU_PER_CPU  options:0 context:@selector(updateShowMultipleMenusFromUserDefaults)];
@@ -99,7 +99,7 @@ static CGFloat menuHeight = 0.;
 	if (state == FLMixedImageStateFromSkin) state = [curSkin mixedImageState];
 	stick = (state != FLMixedImageStateAllow);
 	for (NSUInteger i = 0; i < statusItems.count; ++i) {
-		NSStatusItem *statusItem = [statusItems objectAtIndex:i];
+		NSStatusItem *statusItem = statusItems[i];
 		FLMenuIndicatorView *curView = (FLMenuIndicatorView *)statusItem.view;
 		NSAssert([curView isKindOfClass:[FLMenuIndicatorView class]], @"The view of status item is not correct");
 		[curView.cpuIndicatorView setSkin:curSkin];
@@ -120,7 +120,7 @@ static CGFloat menuHeight = 0.;
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	NSInteger mode = [ud integerForKey:FL_UDK_MENU_MODE];
 	for (NSUInteger i = 0; i < statusItems.count; ++i) {
-		NSStatusItem *statusItem = [statusItems objectAtIndex:i];
+		NSStatusItem *statusItem = statusItems[i];
 		FLMenuIndicatorView *curView = (FLMenuIndicatorView *)statusItem.view;
 		NSAssert([curView isKindOfClass:[FLMenuIndicatorView class]], @"The view of status item is not correct");
 		[curView setShowsText:(mode == FLMenuModeTagText || mode == FLMenuModeTagBoth)];
@@ -138,7 +138,7 @@ static CGFloat menuHeight = 0.;
 {
 	BOOL oneMenu = ![[NSUserDefaults standardUserDefaults] boolForKey:FL_UDK_ONE_MENU_PER_CPU];
 	for (NSUInteger i = 0; i < MIN(oneMenu? 1: nCPUs, statusItems.count); ++i) {
-		NSStatusItem *statusItem = [statusItems objectAtIndex:i];
+		NSStatusItem *statusItem = statusItems[i];
 		FLMenuIndicatorView *curView = (FLMenuIndicatorView *)statusItem.view;
 		NSAssert([curView isKindOfClass:[FLMenuIndicatorView class]], @"The view of status item is not correct");
 		[curView setCurCPULoad:(oneMenu? globalCPUUsage: CPUUsages[i]) animated:animateCPUChangeTransition];

@@ -16,7 +16,7 @@
 
 @implementation FLSkinMelter
 
-- (id)init
+- (instancetype)init
 {
 	if ((self = [super init]) != nil) {
 		loadOfLastComutedFrame = -1;
@@ -150,17 +150,17 @@
 	NSUInteger imageIdx = f + 1;
 	
 	if (imageIdx < nImages) {
-		[(NSImageRep *)[resizedImages objectAtIndex:imageIdx] drawAtPoint:NSZeroPoint];
+		[(NSImageRep *)resizedImages[imageIdx] drawAtPoint:NSZeroPoint];
 		if (imageIdx != 0)
-			[(NSImageRep *)[resizedImages objectAtIndex:imageIdx - 1] drawInRect:drawRect fromRect:drawRect operation:NSCompositeSourceOver fraction:(imageIdx - f) respectFlipped:YES hints:nil];
+			[(NSImageRep *)resizedImages[imageIdx - 1] drawInRect:drawRect fromRect:drawRect operation:NSCompositeSourceOver fraction:(imageIdx - f) respectFlipped:YES hints:nil];
 	} else [(NSImageRep *)[resizedImages lastObject] drawAtPoint:NSZeroPoint];
 	
 	[NSGraphicsContext restoreGraphicsState];
 	
 	if (imageIdx < nImages && imageIdx != 0) {
 		unsigned char *img1Pixels[5], *img2Pixels[5];
-		[[resizedImages objectAtIndex:imageIdx]     getBitmapDataPlanes:img1Pixels];
-		[[resizedImages objectAtIndex:imageIdx - 1] getBitmapDataPlanes:img2Pixels];
+		[resizedImages[imageIdx]     getBitmapDataPlanes:img1Pixels];
+		[resizedImages[imageIdx - 1] getBitmapDataPlanes:img2Pixels];
 		for (NSUInteger y = 0; y < h; ++y) {
 			for (NSUInteger x = 0; x < w; ++x) {
 				*(meltedPixels[0] + 4*(y * w  +  x) + 3) = MAX(*(img1Pixels[0] + 4*(y * w  +  x) + 3), (imageIdx - f) * (*(img2Pixels[0] + 4*(y * w  +  x) + 3)));

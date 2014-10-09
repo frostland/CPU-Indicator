@@ -15,7 +15,7 @@
 
 @synthesize cpuIndicatorView, skinManager;
 
-- (id)initWithWindow:(NSWindow *)window
+- (instancetype)initWithWindow:(NSWindow *)window
 {
 	if ((self = [super initWithWindow:window]) != nil) {
 		NSUserDefaultsController *udc = [NSUserDefaultsController sharedUserDefaultsController];

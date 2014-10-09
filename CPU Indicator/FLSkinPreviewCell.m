@@ -26,7 +26,7 @@
 @synthesize tableView;
 @synthesize curProgress;
 
-- (id)init
+- (instancetype)init
 {
 	if ((self = [super init]) != nil) {
 		delta = 1;

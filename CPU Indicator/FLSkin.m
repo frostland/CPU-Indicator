@@ -25,12 +25,12 @@
 	[FLSkin setVersion:1];
 }
 
-- (id)init
+- (instancetype)init
 {
-	return [self initWithImages:[NSArray arrayWithObjects:[NSImage imageNamed:@"green.png"], [NSImage imageNamed:@"orange.png"], [NSImage imageNamed:@"red.png"], nil] mixedImageState:FLMixedImageStateAllow];
+	return [self initWithImages:@[[NSImage imageNamed:@"green.png"], [NSImage imageNamed:@"orange.png"], [NSImage imageNamed:@"red.png"]] mixedImageState:FLMixedImageStateAllow];
 }
 
-- (id)initWithImages:(NSArray *)imgs mixedImageState:(FLSkinMixedImageState)state
+- (instancetype)initWithImages:(NSArray *)imgs mixedImageState:(FLSkinMixedImageState)state
 {
 	if ((self = [super init]) != nil) {
 		mixedImageState = state;
@@ -47,9 +47,9 @@
 	return self;
 }
 
-- (id)initWithCoder:(NSCoder *)coder
+- (instancetype)initWithCoder:(NSCoder *)coder
 {
-	if ((self = [super init]) != nil) {
+	if ((self = [self init]) != nil) {
 		NSInteger version = [coder versionForClassName:@"FLSkin"];
 		if (version < 0 || version > 1) {
 			NSLog(@"Cannot init the skin: unkown version number (%ld)", (long)version);
@@ -87,7 +87,7 @@
 	NSUInteger n = [images count];
 	[coder encodeValueOfObjCType:@encode(NSUInteger) at:&n];
 	for (NSUInteger i = 0; i < n; ++i)
-		[coder encodeObject:[[images objectAtIndex:i] TIFFRepresentationUsingCompression:NSTIFFCompressionLZW factor:0.]];
+		[coder encodeObject:[images[i] TIFFRepresentationUsingCompression:NSTIFFCompressionLZW factor:0.]];
 }
 
 - (void)dealloc
@@ -119,7 +119,7 @@
 	NSMutableArray *copy = [NSMutableArray arrayWithCapacity:n];
 	
 	do {
-		NSImage *curImage = [original objectAtIndex:i];
+		NSImage *curImage = original[i];
 		if (![curImage isKindOfClass:[NSImage class]]) {
 			NSLog(@"*** Warning: Trying to copy an image array whose element #%lu is not kind of class NSImage (it is: %@). Cancelling copy.", (unsigned long)i, NSStringFromClass([curImage class]));
 			return nil;

@@ -18,10 +18,10 @@
 	
 	NSFileManager *fm;
 }
-- (NSUInteger)nSkins;
+@property(readonly) NSUInteger nSkins;
 - (FLSkin *)skinAtIndex:(NSUInteger)idx;
 
-- (NSUInteger)selectedSkinIndex;
+@property(readonly) NSUInteger selectedSkinIndex;
 
 - (BOOL)canRemoveSkinAtIndex:(NSUInteger)idx;
 - (BOOL)installSkinAtPath:(NSString *)path useIt:(BOOL)use;

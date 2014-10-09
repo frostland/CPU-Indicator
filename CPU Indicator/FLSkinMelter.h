@@ -37,7 +37,7 @@
 @property(assign) NSSize destSize;
 @property(assign) BOOL forceDestSize; /* If YES, the image computed will be of size destSize. If NO, the proportions of the skin will be kept, and the image computed will never be bigger than the skin size. */
 
-- (NSSize)finalSize;
+@property(readonly) NSSize finalSize;
 
 /* Load is a float between 0 and 1. An exception is thrown if it is not the case. */
 - (NSImageRep *)imageForCPULoad:(CGFloat)load;

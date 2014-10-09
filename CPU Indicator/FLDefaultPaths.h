@@ -15,12 +15,12 @@
 - (BOOL)createPathIfNecessary:(NSString *)path withAttrs:(NSDictionary *)attributes
 						returnedErr:(NSString **)err;
 
-- (NSString *)userLibraryPath;
-- (NSString *)userAppSupportPath;
-- (NSString *)userCPUIndicatorSupportFolder;
+@property(readonly, copy) NSString *userLibraryPath;
+@property(readonly, copy) NSString *userAppSupportPath;
+@property(readonly, copy) NSString *userCPUIndicatorSupportFolder;
 
 - (NSString *)pathForListSkinsDescr:(BOOL *)exists;
 - (NSString *)fullSkinPathFrom:(NSString *)skinFileName;
-- (NSString *)pathForNewSkin;
+@property(readonly, copy) NSString *pathForNewSkin;
 
 @end

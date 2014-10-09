@@ -36,7 +36,7 @@
 @synthesize tableViewForSkins;
 @synthesize selectedPrefTab;
 
-- (id)initWithWindow:(NSWindow *)window
+- (instancetype)initWithWindow:(NSWindow *)window
 {
 	if ((self = [super initWithWindow:window]) != nil) {
 		[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self
@@ -96,7 +96,7 @@
 	NSToolbarItem *selectedToolbarItem = [self toolbarItemForIdentifier:self.selectedPrefTab];
 	if (selectedToolbarItem != nil) [self performSelector:[selectedToolbarItem action] withObject:self];
 	else {
-		[toolBar setSelectedItemIdentifier:[[[toolBar items] objectAtIndex:1] itemIdentifier]];
+		[toolBar setSelectedItemIdentifier:[[toolBar items][1] itemIdentifier]];
 		[self selectSkinsPref:nil];
 	}
 }
@@ -115,14 +115,14 @@
 	} else if ([[tableColumn identifier] isEqualToString:@"skin_preview"]) {
 		NSAssert([cachedSkinMelters count] == [skinManager nSkins], @"Invalid cached skin melters count. Got %"NSUINT_FMT", but I have %"NSUINT_FMT" skins.", [cachedSkinMelters count], [skinManager nSkins]);
 		
-		FLSkinMelter *skinMelter = [cachedSkinMelters objectAtIndex:row];
+		FLSkinMelter *skinMelter = cachedSkinMelters[row];
 		if ([skinMelter isEqual:[NSNull null]]) {
 			skinMelter = [[FLSkinMelter new] autorelease];
 			[skinMelter setSkin:[skinManager skinAtIndex:row]];
 			[skinMelter setDestSize:NSMakeSize([tableColumn width], [tableView rowHeight])];
 			[skinMelter imageForCPULoad:0]; /* Refreshes intern caches of the skin melter. Useful because the skin melter will be copied multiple times and the cache should be computed before it is copied */
 			
-			[cachedSkinMelters replaceObjectAtIndex:row withObject:skinMelter];
+			cachedSkinMelters[row] = skinMelter;
 		}
 		
 		return skinMelter;
@@ -203,7 +203,7 @@
 	NSMutableDictionary *sizes = [[[ud objectForKey:FL_UDK_PREFS_PANES_SIZES] mutableCopy] autorelease];
 	
 	if (sizes == nil) sizes = [NSMutableDictionary dictionary];
-	[sizes setObject:NSStringFromSize([self.window contentRectForFrameRect:[self.window frame]].size) forKey:self.selectedPrefTab];
+	sizes[self.selectedPrefTab] = NSStringFromSize([self.window contentRectForFrameRect:[self.window frame]].size);
 	[ud setObject:sizes forKey:FL_UDK_PREFS_PANES_SIZES];
 }
 
@@ -264,7 +264,7 @@
 	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 	
 	[openPanel setAllowsMultipleSelection:NO];
-	[openPanel setAllowedFileTypes:[NSArray arrayWithObject:@"cpuIndicatorSkin"]];
+	[openPanel setAllowedFileTypes:@[@"cpuIndicatorSkin"]];
 	[openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result) {
 		if (result != NSFileHandlingPanelOKButton) return;
 		
@@ -361,8 +361,8 @@
 	NSSize destSize;
 	NSSize minSize = [self.window contentMinSize];
 	NSSize maxSize = [self.window contentMaxSize];
-	if ([sizes objectForKey:self.selectedPrefTab] == nil) destSize = minSize;
-	else                                                  destSize = NSSizeFromString([sizes objectForKey:self.selectedPrefTab]);
+	if (sizes[self.selectedPrefTab] == nil) destSize = minSize;
+	else                                    destSize = NSSizeFromString(sizes[self.selectedPrefTab]);
 	destSize.width  = MAX(destSize.width,  minSize.width);
 	destSize.height = MAX(destSize.height, minSize.height);
 	destSize.width  = MIN(destSize.width,  maxSize.width);
