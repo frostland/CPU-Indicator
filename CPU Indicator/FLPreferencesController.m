@@ -50,7 +50,7 @@
 
 - (void)dealloc
 {
-	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
+	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:@"values."FL_UDK_ALLOW_WINDOW_DRAG_N_DROP];
 	
 	self.skinManager = nil;
 	self.selectedPrefTab = nil;
@@ -113,7 +113,7 @@
 	} else if ([[tableColumn identifier] isEqualToString:@"skin_name"]) {
 		return [[skinManager skinAtIndex:row] name];
 	} else if ([[tableColumn identifier] isEqualToString:@"skin_preview"]) {
-		NSAssert([cachedSkinMelters count] == [skinManager nSkins], @"Invalid cached skin melters count. Got %lu, but I have %lu skins.", (unsigned long)[cachedSkinMelters count], (unsigned long)[skinManager nSkins]);
+		NSAssert([cachedSkinMelters count] == [skinManager nSkins], @"Invalid cached skin melters count. Got %"NSUINT_FMT", but I have %"NSUINT_FMT" skins.", [cachedSkinMelters count], [skinManager nSkins]);
 		
 		FLSkinMelter *skinMelter = [cachedSkinMelters objectAtIndex:row];
 		if ([skinMelter isEqual:[NSNull null]]) {

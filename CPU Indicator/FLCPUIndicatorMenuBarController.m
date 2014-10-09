@@ -69,7 +69,10 @@ static CGFloat menuHeight = 0.;
 	[statusItems release]; statusItems = nil;
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
+	for (NSString *keyPath in @[@"values."FL_UDK_ONE_MENU_PER_CPU, @"values."FL_UDK_MENU_MODE, @"values."FL_UDK_SELECTED_SKIN,
+										 @"values."FL_UDK_MIXED_IMAGE_STATE, @"values."FL_UDK_SHOW_MENU]) {
+		[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:keyPath];
+	}
 	
 	[super dealloc];
 }

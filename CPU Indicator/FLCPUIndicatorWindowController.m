@@ -43,7 +43,11 @@
 	self.skinManager = nil;
 	self.cpuIndicatorView = nil;
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
+	for (NSString *keyPath in @[@"values."FL_UDK_WINDOW_LEVEL, @"values."FL_UDK_WINDOW_TRANSPARENCY, @"values."FL_UDK_IGNORE_MOUSE_CLICKS,
+										 @"values."FL_UDK_ALLOW_WINDOW_DRAG_N_DROP, @"values."FL_UDK_SKIN_X_SCALE, @"values."FL_UDK_SELECTED_SKIN,
+										 @"values."FL_UDK_MIXED_IMAGE_STATE, @"values."FL_UDK_DISALLOW_SHADOW, @"values."FL_UDK_SHOW_WINDOW]) {
+		[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:keyPath];
+	}
 	
 	[super dealloc];
 }

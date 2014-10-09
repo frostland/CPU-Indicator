@@ -37,7 +37,9 @@
 {
 	[cpuIndicatorView release]; cpuIndicatorView = nil;
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self];
+	for (NSString *keyPath in @[@"values."FL_UDK_SHOW_INDICATOR_IN_DOCK, @"values."FL_UDK_SELECTED_SKIN, @"values."FL_UDK_MIXED_IMAGE_STATE]) {
+		[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:keyPath];
+	}
 	
 	[super dealloc];
 }
