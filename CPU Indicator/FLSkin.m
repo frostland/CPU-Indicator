@@ -10,7 +10,7 @@
 
 @interface FLSkin (Private)
 
-- (NSArray *)deepCopyOfImageArray:(NSArray *)original;
+- (NSArray *)copyImageArrayDeeply:(NSArray *)original;
 
 @end
 
@@ -41,7 +41,7 @@
 		mixedImageState = state;
 		
 		name = [n copy];
-		images = [self deepCopyOfImageArray:imgs];
+		images = [self copyImageArrayDeeply:imgs];
 		if (images == nil) {
 			NSLog(@"Problem while loading the images. Please check that they all have the exact same size.");
 			[self release];
@@ -73,7 +73,7 @@
 		for (NSUInteger i = 0; i < n; ++i)
 			[newImages addObject:[[[NSImage alloc] initWithData:[coder decodeObject]] autorelease]];
 		
-		images = [self deepCopyOfImageArray:newImages];
+		images = [self copyImageArrayDeeply:newImages];
 		if (images == nil) {
 			NSLog(@"Cannot decode the skin: invalid images.");
 			[self release];
@@ -112,7 +112,7 @@
 
 @implementation FLSkin (Private)
 
-- (NSArray *)deepCopyOfImageArray:(NSArray *)original
+- (NSArray *)copyImageArrayDeeply:(NSArray *)original
 {
 	if ([original count] == 0) {
 		NSLog(@"*** Warning: Trying to copy an empty image array. Cancelling copy.");

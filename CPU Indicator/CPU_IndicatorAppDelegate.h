@@ -25,8 +25,6 @@
 	FLPreferencesController *preferencesController;
 	
 	FLSkinManager *skinManager;
-	
-	BOOL animateTransition;
 }
 @property (assign) IBOutlet NSWindow *welcomeWindow;
 

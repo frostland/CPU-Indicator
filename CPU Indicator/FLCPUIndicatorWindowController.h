@@ -13,8 +13,6 @@
 
 @interface FLCPUIndicatorWindowController : NSWindowController <FLCPUIndicatorViewDelegate> {
 @private
-	BOOL inObserver;
-	
 	BOOL animateCPUChangeTransition;
 	
 	FLSkinManager *skinManager;
