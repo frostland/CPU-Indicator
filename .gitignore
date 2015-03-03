@@ -1,6 +1,8 @@
+# Finder and Xcode ignored files
 .DS_Store
+xcuserdata/
+
+# Other
 /Skins/
 /App Store/
 /gfx building/
-*.xcodeproj/xcuserdata/
-*.xcodeproj/project.xcworkspace/
