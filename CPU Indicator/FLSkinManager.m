@@ -9,7 +9,8 @@
 #import "FLSkinManager.h"
 
 #import "FLConstants.h"
-#import "FLDefaultPaths.h"
+#import "CPU_Indicator-Swift.h"
+
 
 @interface FLSkinManager (Private)
 

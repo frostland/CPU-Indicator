@@ -9,7 +9,6 @@
 #import "FLPreferencesController.h"
 
 #import "FLConstants.h"
-#import "FLDefaultPaths.h"
 #import "FLSkinPreviewCell.h"
 
 @interface FLPreferencesController (Private)

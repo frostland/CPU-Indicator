@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B1245B81AA6730D00FDBDC8 /* FLDefaultPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1245B71AA6730D00FDBDC8 /* FLDefaultPaths.swift */; };
 		7B4CA5131325105E00C5A5CD /* FLPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B4CA5121325105E00C5A5CD /* FLPreferences.xib */; };
 		7B4CA51D1325156500C5A5CD /* FLPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CA51C1325156400C5A5CD /* FLPreferencesController.m */; };
-		7B4CA52913252AF300C5A5CD /* FLDefaultPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CA52813252AF200C5A5CD /* FLDefaultPaths.m */; };
 		7B4CA52C1325306F00C5A5CD /* FLSkinPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CA52B1325306C00C5A5CD /* FLSkinPreviewCell.m */; };
 		7B70732813237D72000089B2 /* FLCPUIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B70732713237D71000089B2 /* FLCPUIndicatorView.m */; };
 		7B78A4C8131AA56500FE0D25 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B78A4C7131AA56500FE0D25 /* Cocoa.framework */; };
@@ -44,12 +44,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B1245B41AA671C600FDBDC8 /* CPU Indicator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CPU Indicator-Bridging-Header.h"; sourceTree = "<group>"; };
+		7B1245B71AA6730D00FDBDC8 /* FLDefaultPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FLDefaultPaths.swift; sourceTree = "<group>"; };
 		7B4CA5121325105E00C5A5CD /* FLPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLPreferences.xib; sourceTree = "<group>"; };
 		7B4CA51A1325113900C5A5CD /* FLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLConstants.h; sourceTree = "<group>"; };
 		7B4CA51B1325156400C5A5CD /* FLPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPreferencesController.h; sourceTree = "<group>"; };
 		7B4CA51C1325156400C5A5CD /* FLPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPreferencesController.m; sourceTree = "<group>"; };
-		7B4CA52713252AF200C5A5CD /* FLDefaultPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDefaultPaths.h; sourceTree = "<group>"; };
-		7B4CA52813252AF200C5A5CD /* FLDefaultPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDefaultPaths.m; sourceTree = "<group>"; };
 		7B4CA52A1325306B00C5A5CD /* FLSkinPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkinPreviewCell.h; sourceTree = "<group>"; };
 		7B4CA52B1325306C00C5A5CD /* FLSkinPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkinPreviewCell.m; sourceTree = "<group>"; };
 		7B70732613237D71000089B2 /* FLCPUIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCPUIndicatorView.h; sourceTree = "<group>"; };
@@ -175,6 +175,7 @@
 				7B78A4CF131AA56500FE0D25 /* CPU_Indicator-Info.plist */,
 				7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */,
 				7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */,
+				7B1245B41AA671C600FDBDC8 /* CPU Indicator-Bridging-Header.h */,
 				7B78A4D4131AA56500FE0D25 /* main.m */,
 				7B78A4D6131AA56500FE0D25 /* Credits.rtf */,
 				7BFBEB7614A222B100060B8B /* FLUtils.h */,
@@ -249,8 +250,7 @@
 		7BFBEB3114A0F83600060B8B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				7B4CA52713252AF200C5A5CD /* FLDefaultPaths.h */,
-				7B4CA52813252AF200C5A5CD /* FLDefaultPaths.m */,
+				7B1245B71AA6730D00FDBDC8 /* FLDefaultPaths.swift */,
 				7BFBEB2514A0EDD600060B8B /* FLIsNotThree.h */,
 				7BFBEB2614A0EDD600060B8B /* FLIsNotThree.m */,
 			);
@@ -320,6 +320,11 @@
 			attributes = {
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Frost Land";
+				TargetAttributes = {
+					7B78A4C2131AA56500FE0D25 = {
+						DevelopmentTeam = DVL8GW97S8;
+					};
+				};
 			};
 			buildConfigurationList = 7B78A4BD131AA56500FE0D25 /* Build configuration list for PBXProject "CPU Indicator" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -373,7 +378,6 @@
 				7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */,
 				7B70732813237D72000089B2 /* FLCPUIndicatorView.m in Sources */,
 				7B4CA51D1325156500C5A5CD /* FLPreferencesController.m in Sources */,
-				7B4CA52913252AF300C5A5CD /* FLDefaultPaths.m in Sources */,
 				7B4CA52C1325306F00C5A5CD /* FLSkinPreviewCell.m in Sources */,
 				7B90A9671325CDDC003D00CA /* FLSkinManager.m in Sources */,
 				7B90A96B1325CE57003D00CA /* FLSkin.m in Sources */,
@@ -383,6 +387,7 @@
 				7BFBEB2B14A0F70E00060B8B /* FLCPUIndicatorWindowController.m in Sources */,
 				7BFBEB6E14A145AE00060B8B /* FLGlobals.c in Sources */,
 				7BFBEB7314A2076A00060B8B /* FLCPUIndicatorMenuBarController.m in Sources */,
+				7B1245B81AA6730D00FDBDC8 /* FLDefaultPaths.swift in Sources */,
 				7BFBEB7814A222B100060B8B /* FLUtils.m in Sources */,
 				7BFBEB7B14A25B9A00060B8B /* FLMenuIndicatorView.m in Sources */,
 				7BBB95B414A40E2700161989 /* FLCPUIndicatorDockController.m in Sources */,
@@ -449,8 +454,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: FRANCOIS LAMBOLEY";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 6;
@@ -459,8 +465,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CPU Indicator/CPU_Indicator-Prefix.pch";
 				INFOPLIST_FILE = "CPU Indicator/CPU_Indicator-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3FDEB381-6D2F-4661-9A65-E78F1E50CC48";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CPU Indicator/CPU Indicator-Bridging-Header.h";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = FL;
 				WRAPPER_EXTENSION = app;
@@ -526,7 +535,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer: Francois Lamboley (W8TA6H4G9U)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 6;
@@ -535,7 +546,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CPU Indicator/CPU_Indicator-Prefix.pch";
 				INFOPLIST_FILE = "CPU Indicator/CPU_Indicator-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CPU Indicator/CPU Indicator-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = FL;
 				WRAPPER_EXTENSION = app;
@@ -546,7 +561,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 6;
@@ -555,7 +572,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CPU Indicator/CPU_Indicator-Prefix.pch";
 				INFOPLIST_FILE = "CPU Indicator/CPU_Indicator-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CPU Indicator/CPU Indicator-Bridging-Header.h";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = FL;
 				WRAPPER_EXTENSION = app;
