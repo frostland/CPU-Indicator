@@ -10,7 +10,9 @@ import Foundation
 
 
 
-class FLIsNotThree: NSValueTransformer {
+/* If the @objc(FLIsNotThree) annotation is not there, the runtime won't be able
+ * to find the transformer by name. */
+@objc(FLIsNotThree) class FLIsNotThree: NSValueTransformer {
 	override static func transformedValueClass() -> AnyClass {
 		return NSNumber.self
 	}
