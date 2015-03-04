@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7B1245B81AA6730D00FDBDC8 /* FLDefaultPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1245B71AA6730D00FDBDC8 /* FLDefaultPaths.swift */; };
+		7B1245BA1AA6820800FDBDC8 /* FLIsNotThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1245B91AA6820800FDBDC8 /* FLIsNotThree.swift */; };
 		7B4CA5131325105E00C5A5CD /* FLPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B4CA5121325105E00C5A5CD /* FLPreferences.xib */; };
 		7B4CA51D1325156500C5A5CD /* FLPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CA51C1325156400C5A5CD /* FLPreferencesController.m */; };
 		7B4CA52C1325306F00C5A5CD /* FLSkinPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CA52B1325306C00C5A5CD /* FLSkinPreviewCell.m */; };
@@ -33,7 +34,6 @@
 		7BBB95CF14A4C4FA00161989 /* desktop.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BBB95CE14A4C4FA00161989 /* desktop.png */; };
 		7BBB95D114A4CBDC00161989 /* window.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BBB95D014A4CBDC00161989 /* window.png */; };
 		7BDAEC9E1326ABC200134455 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7BDAEC9D1326ABC200134455 /* icon.icns */; };
-		7BFBEB2714A0EDD600060B8B /* FLIsNotThree.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB2614A0EDD600060B8B /* FLIsNotThree.m */; };
 		7BFBEB2B14A0F70E00060B8B /* FLCPUIndicatorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB2A14A0F70E00060B8B /* FLCPUIndicatorWindowController.m */; };
 		7BFBEB2D14A0F73100060B8B /* FLCPUIndicatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BFBEB2C14A0F73100060B8B /* FLCPUIndicatorWindow.xib */; };
 		7BFBEB6E14A145AE00060B8B /* FLGlobals.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB6D14A145AE00060B8B /* FLGlobals.c */; };
@@ -46,6 +46,7 @@
 /* Begin PBXFileReference section */
 		7B1245B41AA671C600FDBDC8 /* CPU Indicator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CPU Indicator-Bridging-Header.h"; sourceTree = "<group>"; };
 		7B1245B71AA6730D00FDBDC8 /* FLDefaultPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FLDefaultPaths.swift; sourceTree = "<group>"; };
+		7B1245B91AA6820800FDBDC8 /* FLIsNotThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FLIsNotThree.swift; sourceTree = "<group>"; };
 		7B4CA5121325105E00C5A5CD /* FLPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLPreferences.xib; sourceTree = "<group>"; };
 		7B4CA51A1325113900C5A5CD /* FLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLConstants.h; sourceTree = "<group>"; };
 		7B4CA51B1325156400C5A5CD /* FLPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPreferencesController.h; sourceTree = "<group>"; };
@@ -88,8 +89,6 @@
 		7BBB95CE14A4C4FA00161989 /* desktop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = desktop.png; sourceTree = "<group>"; };
 		7BBB95D014A4CBDC00161989 /* window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = window.png; sourceTree = "<group>"; };
 		7BDAEC9D1326ABC200134455 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
-		7BFBEB2514A0EDD600060B8B /* FLIsNotThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLIsNotThree.h; sourceTree = "<group>"; };
-		7BFBEB2614A0EDD600060B8B /* FLIsNotThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLIsNotThree.m; sourceTree = "<group>"; };
 		7BFBEB2914A0F70E00060B8B /* FLCPUIndicatorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCPUIndicatorWindowController.h; sourceTree = "<group>"; };
 		7BFBEB2A14A0F70E00060B8B /* FLCPUIndicatorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCPUIndicatorWindowController.m; sourceTree = "<group>"; };
 		7BFBEB2C14A0F73100060B8B /* FLCPUIndicatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLCPUIndicatorWindow.xib; sourceTree = "<group>"; };
@@ -251,8 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				7B1245B71AA6730D00FDBDC8 /* FLDefaultPaths.swift */,
-				7BFBEB2514A0EDD600060B8B /* FLIsNotThree.h */,
-				7BFBEB2614A0EDD600060B8B /* FLIsNotThree.m */,
+				7B1245B91AA6820800FDBDC8 /* FLIsNotThree.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -383,13 +381,13 @@
 				7B90A96B1325CE57003D00CA /* FLSkin.m in Sources */,
 				7B90A97513269065003D00CA /* FLCenteredTextCell.m in Sources */,
 				7BAA01EF133F5D4C0085CB43 /* FLSkinMelter.m in Sources */,
-				7BFBEB2714A0EDD600060B8B /* FLIsNotThree.m in Sources */,
 				7BFBEB2B14A0F70E00060B8B /* FLCPUIndicatorWindowController.m in Sources */,
 				7BFBEB6E14A145AE00060B8B /* FLGlobals.c in Sources */,
 				7BFBEB7314A2076A00060B8B /* FLCPUIndicatorMenuBarController.m in Sources */,
 				7B1245B81AA6730D00FDBDC8 /* FLDefaultPaths.swift in Sources */,
 				7BFBEB7814A222B100060B8B /* FLUtils.m in Sources */,
 				7BFBEB7B14A25B9A00060B8B /* FLMenuIndicatorView.m in Sources */,
+				7B1245BA1AA6820800FDBDC8 /* FLIsNotThree.swift in Sources */,
 				7BBB95B414A40E2700161989 /* FLCPUIndicatorDockController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
