@@ -15,13 +15,13 @@
 		7B70732813237D72000089B2 /* FLCPUIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B70732713237D71000089B2 /* FLCPUIndicatorView.m */; };
 		7B78A4C8131AA56500FE0D25 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B78A4C7131AA56500FE0D25 /* Cocoa.framework */; };
 		7B78A4D2131AA56500FE0D25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */; };
-		7B78A4D5131AA56500FE0D25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78A4D4131AA56500FE0D25 /* main.m */; };
 		7B78A4D8131AA56500FE0D25 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4D6131AA56500FE0D25 /* Credits.rtf */; };
 		7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */; };
 		7B78A4DE131AA56500FE0D25 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4DC131AA56500FE0D25 /* MainMenu.xib */; };
 		7B849F41132276920045854D /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F3E132276920045854D /* green.png */; };
 		7B849F42132276920045854D /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F3F132276920045854D /* orange.png */; };
 		7B849F43132276920045854D /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F40132276920045854D /* red.png */; };
+		7B84AAF51AA74F6400A039D2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B84AAF41AA74F6400A039D2 /* main.swift */; };
 		7B90A9671325CDDC003D00CA /* FLSkinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A9661325CDDC003D00CA /* FLSkinManager.m */; };
 		7B90A96B1325CE57003D00CA /* FLSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A96A1325CE56003D00CA /* FLSkin.m */; };
 		7B90A96D1326493D003D00CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A96C1326493D003D00CA /* Localizable.strings */; };
@@ -63,7 +63,6 @@
 		7B78A4CF131AA56500FE0D25 /* CPU_Indicator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CPU_Indicator-Info.plist"; sourceTree = "<group>"; };
 		7B78A4D1131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CPU_Indicator-Prefix.pch"; sourceTree = "<group>"; };
-		7B78A4D4131AA56500FE0D25 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7B78A4D7131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		7B78A4D9131AA56500FE0D25 /* CPU_IndicatorAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPU_IndicatorAppDelegate.h; sourceTree = "<group>"; };
 		7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CPU_IndicatorAppDelegate.m; sourceTree = "<group>"; };
@@ -71,6 +70,7 @@
 		7B849F3E132276920045854D /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		7B849F3F132276920045854D /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
 		7B849F40132276920045854D /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		7B84AAF41AA74F6400A039D2 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		7B90A9651325CDDC003D00CA /* FLSkinManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkinManager.h; sourceTree = "<group>"; };
 		7B90A9661325CDDC003D00CA /* FLSkinManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkinManager.m; sourceTree = "<group>"; };
 		7B90A9691325CE56003D00CA /* FLSkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkin.h; sourceTree = "<group>"; };
@@ -173,9 +173,9 @@
 				7B849F45132276960045854D /* Images */,
 				7B78A4CF131AA56500FE0D25 /* CPU_Indicator-Info.plist */,
 				7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */,
+				7B84AAF41AA74F6400A039D2 /* main.swift */,
 				7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */,
 				7B1245B41AA671C600FDBDC8 /* CPU Indicator-Bridging-Header.h */,
-				7B78A4D4131AA56500FE0D25 /* main.m */,
 				7B78A4D6131AA56500FE0D25 /* Credits.rtf */,
 				7BFBEB7614A222B100060B8B /* FLUtils.h */,
 				7BFBEB7714A222B100060B8B /* FLUtils.m */,
@@ -372,9 +372,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B78A4D5131AA56500FE0D25 /* main.m in Sources */,
 				7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */,
 				7B70732813237D72000089B2 /* FLCPUIndicatorView.m in Sources */,
+				7B84AAF51AA74F6400A039D2 /* main.swift in Sources */,
 				7B4CA51D1325156500C5A5CD /* FLPreferencesController.m in Sources */,
 				7B4CA52C1325306F00C5A5CD /* FLSkinPreviewCell.m in Sources */,
 				7B90A9671325CDDC003D00CA /* FLSkinManager.m in Sources */,
