@@ -7,299 +7,131 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B1245B81AA6730D00FDBDC8 /* FLDefaultPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1245B71AA6730D00FDBDC8 /* FLDefaultPaths.swift */; };
-		7B1245BA1AA6820800FDBDC8 /* FLIsNotThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1245B91AA6820800FDBDC8 /* FLIsNotThree.swift */; };
-		7B4CA5131325105E00C5A5CD /* FLPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B4CA5121325105E00C5A5CD /* FLPreferences.xib */; };
-		7B4CA51D1325156500C5A5CD /* FLPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CA51C1325156400C5A5CD /* FLPreferencesController.m */; };
-		7B4CA52C1325306F00C5A5CD /* FLSkinPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4CA52B1325306C00C5A5CD /* FLSkinPreviewCell.m */; };
-		7B70732813237D72000089B2 /* FLCPUIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B70732713237D71000089B2 /* FLCPUIndicatorView.m */; };
-		7B78A4C8131AA56500FE0D25 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B78A4C7131AA56500FE0D25 /* Cocoa.framework */; };
-		7B78A4D2131AA56500FE0D25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */; };
-		7B78A4D8131AA56500FE0D25 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4D6131AA56500FE0D25 /* Credits.rtf */; };
-		7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */; };
-		7B78A4DE131AA56500FE0D25 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B78A4DC131AA56500FE0D25 /* MainMenu.xib */; };
-		7B849F41132276920045854D /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F3E132276920045854D /* green.png */; };
-		7B849F42132276920045854D /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F3F132276920045854D /* orange.png */; };
-		7B849F43132276920045854D /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B849F40132276920045854D /* red.png */; };
-		7B84AAF51AA74F6400A039D2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B84AAF41AA74F6400A039D2 /* main.swift */; };
-		7B90A9671325CDDC003D00CA /* FLSkinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A9661325CDDC003D00CA /* FLSkinManager.m */; };
-		7B90A96B1325CE57003D00CA /* FLSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A96A1325CE56003D00CA /* FLSkin.m */; };
-		7B90A96D1326493D003D00CA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A96C1326493D003D00CA /* Localizable.strings */; };
-		7B90A96F13268BB0003D00CA /* check_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B90A96E13268BB0003D00CA /* check_mark.png */; };
-		7B90A97513269065003D00CA /* FLCenteredTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B90A9741326905E003D00CA /* FLCenteredTextCell.m */; };
-		7BAA01EF133F5D4C0085CB43 /* FLSkinMelter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */; };
-		7BB699251476A0E000D14408 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 7BB699241476A0E000D14408 /* Readme.md */; };
-		7BBB95B414A40E2700161989 /* FLCPUIndicatorDockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB95B314A40E2700161989 /* FLCPUIndicatorDockController.m */; };
-		7BBB95CC14A4ACFD00161989 /* dock.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BBB95CB14A4ACFD00161989 /* dock.png */; };
-		7BBB95CF14A4C4FA00161989 /* desktop.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BBB95CE14A4C4FA00161989 /* desktop.png */; };
-		7BBB95D114A4CBDC00161989 /* window.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BBB95D014A4CBDC00161989 /* window.png */; };
-		7BDAEC9E1326ABC200134455 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7BDAEC9D1326ABC200134455 /* icon.icns */; };
-		7BFBEB2B14A0F70E00060B8B /* FLCPUIndicatorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB2A14A0F70E00060B8B /* FLCPUIndicatorWindowController.m */; };
-		7BFBEB2D14A0F73100060B8B /* FLCPUIndicatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BFBEB2C14A0F73100060B8B /* FLCPUIndicatorWindow.xib */; };
-		7BFBEB6E14A145AE00060B8B /* FLGlobals.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB6D14A145AE00060B8B /* FLGlobals.c */; };
-		7BFBEB7314A2076A00060B8B /* FLCPUIndicatorMenuBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB7214A2076A00060B8B /* FLCPUIndicatorMenuBarController.m */; };
-		7BFBEB7514A2085400060B8B /* FLCPUIndicatorMenuBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BFBEB7414A2085400060B8B /* FLCPUIndicatorMenuBar.xib */; };
-		7BFBEB7814A222B100060B8B /* FLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB7714A222B100060B8B /* FLUtils.m */; };
-		7BFBEB7B14A25B9A00060B8B /* FLMenuIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBEB7A14A25B9A00060B8B /* FLMenuIndicatorView.m */; };
+		7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */; };
+		7B87C53C1B2C9D2A00A6B64A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C53B1B2C9D2A00A6B64A /* ViewController.swift */; };
+		7B87C53E1B2C9D2A00A6B64A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B87C53D1B2C9D2A00A6B64A /* Assets.xcassets */; };
+		7B87C5411B2C9D2A00A6B64A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B87C53F1B2C9D2A00A6B64A /* Main.storyboard */; };
+		7B87C54C1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C54B1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift */; };
+		7B87C5571B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C5561B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7B87C5481B2C9D2A00A6B64A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B87C52E1B2C9D2A00A6B64A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B87C5351B2C9D2A00A6B64A;
+			remoteInfo = "CPU Indicator";
+		};
+		7B87C5531B2C9D2B00A6B64A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B87C52E1B2C9D2A00A6B64A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B87C5351B2C9D2A00A6B64A;
+			remoteInfo = "CPU Indicator";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		7B1245B41AA671C600FDBDC8 /* CPU Indicator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CPU Indicator-Bridging-Header.h"; sourceTree = "<group>"; };
-		7B1245B71AA6730D00FDBDC8 /* FLDefaultPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FLDefaultPaths.swift; sourceTree = "<group>"; };
-		7B1245B91AA6820800FDBDC8 /* FLIsNotThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FLIsNotThree.swift; sourceTree = "<group>"; };
-		7B4CA5121325105E00C5A5CD /* FLPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLPreferences.xib; sourceTree = "<group>"; };
-		7B4CA51A1325113900C5A5CD /* FLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLConstants.h; sourceTree = "<group>"; };
-		7B4CA51B1325156400C5A5CD /* FLPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPreferencesController.h; sourceTree = "<group>"; };
-		7B4CA51C1325156400C5A5CD /* FLPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPreferencesController.m; sourceTree = "<group>"; };
-		7B4CA52A1325306B00C5A5CD /* FLSkinPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkinPreviewCell.h; sourceTree = "<group>"; };
-		7B4CA52B1325306C00C5A5CD /* FLSkinPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkinPreviewCell.m; sourceTree = "<group>"; };
-		7B70732613237D71000089B2 /* FLCPUIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCPUIndicatorView.h; sourceTree = "<group>"; };
-		7B70732713237D71000089B2 /* FLCPUIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCPUIndicatorView.m; sourceTree = "<group>"; };
-		7B78A4C3131AA56500FE0D25 /* CPU Indicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPU Indicator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B78A4C7131AA56500FE0D25 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		7B78A4CA131AA56500FE0D25 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		7B78A4CB131AA56500FE0D25 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		7B78A4CC131AA56500FE0D25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		7B78A4CF131AA56500FE0D25 /* CPU_Indicator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CPU_Indicator-Info.plist"; sourceTree = "<group>"; };
-		7B78A4D1131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CPU_Indicator-Prefix.pch"; sourceTree = "<group>"; };
-		7B78A4D7131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		7B78A4D9131AA56500FE0D25 /* CPU_IndicatorAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CPU_IndicatorAppDelegate.h; sourceTree = "<group>"; };
-		7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CPU_IndicatorAppDelegate.m; sourceTree = "<group>"; };
-		7B78A4DD131AA56500FE0D25 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		7B849F3E132276920045854D /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
-		7B849F3F132276920045854D /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
-		7B849F40132276920045854D /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
-		7B84AAF41AA74F6400A039D2 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		7B90A9651325CDDC003D00CA /* FLSkinManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkinManager.h; sourceTree = "<group>"; };
-		7B90A9661325CDDC003D00CA /* FLSkinManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkinManager.m; sourceTree = "<group>"; };
-		7B90A9691325CE56003D00CA /* FLSkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkin.h; sourceTree = "<group>"; };
-		7B90A96A1325CE56003D00CA /* FLSkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkin.m; sourceTree = "<group>"; };
-		7B90A96C1326493D003D00CA /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		7B90A96E13268BB0003D00CA /* check_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_mark.png; sourceTree = "<group>"; };
-		7B90A9731326905D003D00CA /* FLCenteredTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCenteredTextCell.h; sourceTree = "<group>"; };
-		7B90A9741326905E003D00CA /* FLCenteredTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCenteredTextCell.m; sourceTree = "<group>"; };
-		7B941339147A486600BAD29E /* CPU Indicator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CPU Indicator.entitlements"; sourceTree = "<group>"; };
-		7BAA01ED133F5D4C0085CB43 /* FLSkinMelter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSkinMelter.h; sourceTree = "<group>"; };
-		7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSkinMelter.m; sourceTree = "<group>"; };
-		7BB699241476A0E000D14408 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.md; sourceTree = "<group>"; };
-		7BBB95B214A40E2700161989 /* FLCPUIndicatorDockController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCPUIndicatorDockController.h; sourceTree = "<group>"; };
-		7BBB95B314A40E2700161989 /* FLCPUIndicatorDockController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCPUIndicatorDockController.m; sourceTree = "<group>"; };
-		7BBB95CB14A4ACFD00161989 /* dock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dock.png; sourceTree = "<group>"; };
-		7BBB95CE14A4C4FA00161989 /* desktop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = desktop.png; sourceTree = "<group>"; };
-		7BBB95D014A4CBDC00161989 /* window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = window.png; sourceTree = "<group>"; };
-		7BDAEC9D1326ABC200134455 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
-		7BFBEB2914A0F70E00060B8B /* FLCPUIndicatorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCPUIndicatorWindowController.h; sourceTree = "<group>"; };
-		7BFBEB2A14A0F70E00060B8B /* FLCPUIndicatorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCPUIndicatorWindowController.m; sourceTree = "<group>"; };
-		7BFBEB2C14A0F73100060B8B /* FLCPUIndicatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLCPUIndicatorWindow.xib; sourceTree = "<group>"; };
-		7BFBEB6D14A145AE00060B8B /* FLGlobals.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FLGlobals.c; sourceTree = "<group>"; };
-		7BFBEB6F14A145C000060B8B /* FLGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGlobals.h; sourceTree = "<group>"; };
-		7BFBEB7114A2076A00060B8B /* FLCPUIndicatorMenuBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCPUIndicatorMenuBarController.h; sourceTree = "<group>"; };
-		7BFBEB7214A2076A00060B8B /* FLCPUIndicatorMenuBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCPUIndicatorMenuBarController.m; sourceTree = "<group>"; };
-		7BFBEB7414A2085400060B8B /* FLCPUIndicatorMenuBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLCPUIndicatorMenuBar.xib; sourceTree = "<group>"; };
-		7BFBEB7614A222B100060B8B /* FLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUtils.h; sourceTree = "<group>"; };
-		7BFBEB7714A222B100060B8B /* FLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUtils.m; sourceTree = "<group>"; };
-		7BFBEB7914A25B9A00060B8B /* FLMenuIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMenuIndicatorView.h; sourceTree = "<group>"; };
-		7BFBEB7A14A25B9A00060B8B /* FLMenuIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMenuIndicatorView.m; sourceTree = "<group>"; };
+		7B87C5361B2C9D2A00A6B64A /* CPU Indicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPU Indicator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7B87C53B1B2C9D2A00A6B64A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7B87C53D1B2C9D2A00A6B64A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7B87C5401B2C9D2A00A6B64A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7B87C5421B2C9D2A00A6B64A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B87C5471B2C9D2A00A6B64A /* CPU IndicatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CPU IndicatorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B87C54B1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU_IndicatorTests.swift; sourceTree = "<group>"; };
+		7B87C54D1B2C9D2B00A6B64A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B87C5521B2C9D2B00A6B64A /* CPU IndicatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CPU IndicatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B87C5561B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU_IndicatorUITests.swift; sourceTree = "<group>"; };
+		7B87C5581B2C9D2B00A6B64A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7B78A4C0131AA56500FE0D25 /* Frameworks */ = {
+		7B87C5331B2C9D2A00A6B64A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B78A4C8131AA56500FE0D25 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B87C5441B2C9D2A00A6B64A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B87C54F1B2C9D2B00A6B64A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7B78A4B8131AA56500FE0D25 = {
+		7B87C52D1B2C9D2A00A6B64A = {
 			isa = PBXGroup;
 			children = (
-				7BB699241476A0E000D14408 /* Readme.md */,
-				7B78A4CD131AA56500FE0D25 /* CPU Indicator */,
-				7B78A4C6131AA56500FE0D25 /* Frameworks */,
-				7B78A4C4131AA56500FE0D25 /* Products */,
+				7B87C5381B2C9D2A00A6B64A /* CPU Indicator */,
+				7B87C54A1B2C9D2A00A6B64A /* CPU IndicatorTests */,
+				7B87C5551B2C9D2B00A6B64A /* CPU IndicatorUITests */,
+				7B87C5371B2C9D2A00A6B64A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		7B78A4C4131AA56500FE0D25 /* Products */ = {
+		7B87C5371B2C9D2A00A6B64A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7B78A4C3131AA56500FE0D25 /* CPU Indicator.app */,
+				7B87C5361B2C9D2A00A6B64A /* CPU Indicator.app */,
+				7B87C5471B2C9D2A00A6B64A /* CPU IndicatorTests.xctest */,
+				7B87C5521B2C9D2B00A6B64A /* CPU IndicatorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7B78A4C6131AA56500FE0D25 /* Frameworks */ = {
+		7B87C5381B2C9D2A00A6B64A /* CPU Indicator */ = {
 			isa = PBXGroup;
 			children = (
-				7B78A4C7131AA56500FE0D25 /* Cocoa.framework */,
-				7B78A4C9131AA56500FE0D25 /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7B78A4C9131AA56500FE0D25 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7B78A4CA131AA56500FE0D25 /* AppKit.framework */,
-				7B78A4CB131AA56500FE0D25 /* CoreData.framework */,
-				7B78A4CC131AA56500FE0D25 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		7B78A4CD131AA56500FE0D25 /* CPU Indicator */ = {
-			isa = PBXGroup;
-			children = (
-				7B941339147A486600BAD29E /* CPU Indicator.entitlements */,
-				7BFBEB3214A0F99D00060B8B /* Skin Stuff */,
-				7B78A4DC131AA56500FE0D25 /* MainMenu.xib */,
-				7B78A4D9131AA56500FE0D25 /* CPU_IndicatorAppDelegate.h */,
-				7B78A4DA131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m */,
-				7BFBEB2E14A0F7E400060B8B /* View and Controllers */,
-				7BFBEB3114A0F83600060B8B /* Utilities */,
-				7B78A4CE131AA56500FE0D25 /* Supporting Files */,
+				7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */,
+				7B87C53B1B2C9D2A00A6B64A /* ViewController.swift */,
+				7B87C53D1B2C9D2A00A6B64A /* Assets.xcassets */,
+				7B87C53F1B2C9D2A00A6B64A /* Main.storyboard */,
+				7B87C5421B2C9D2A00A6B64A /* Info.plist */,
 			);
 			path = "CPU Indicator";
 			sourceTree = "<group>";
 		};
-		7B78A4CE131AA56500FE0D25 /* Supporting Files */ = {
+		7B87C54A1B2C9D2A00A6B64A /* CPU IndicatorTests */ = {
 			isa = PBXGroup;
 			children = (
-				7B849F45132276960045854D /* Images */,
-				7B78A4CF131AA56500FE0D25 /* CPU_Indicator-Info.plist */,
-				7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */,
-				7B84AAF41AA74F6400A039D2 /* main.swift */,
-				7B78A4D3131AA56500FE0D25 /* CPU_Indicator-Prefix.pch */,
-				7B1245B41AA671C600FDBDC8 /* CPU Indicator-Bridging-Header.h */,
-				7B78A4D6131AA56500FE0D25 /* Credits.rtf */,
-				7BFBEB7614A222B100060B8B /* FLUtils.h */,
-				7BFBEB7714A222B100060B8B /* FLUtils.m */,
-				7BFBEB6F14A145C000060B8B /* FLGlobals.h */,
-				7BFBEB6D14A145AE00060B8B /* FLGlobals.c */,
-				7B4CA51A1325113900C5A5CD /* FLConstants.h */,
-				7B90A96C1326493D003D00CA /* Localizable.strings */,
+				7B87C54B1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift */,
+				7B87C54D1B2C9D2B00A6B64A /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "CPU IndicatorTests";
 			sourceTree = "<group>";
 		};
-		7B849F45132276960045854D /* Images */ = {
+		7B87C5551B2C9D2B00A6B64A /* CPU IndicatorUITests */ = {
 			isa = PBXGroup;
 			children = (
-				7BBB95CB14A4ACFD00161989 /* dock.png */,
-				7BBB95CE14A4C4FA00161989 /* desktop.png */,
-				7BBB95D014A4CBDC00161989 /* window.png */,
-				7B849F3E132276920045854D /* green.png */,
-				7B849F3F132276920045854D /* orange.png */,
-				7B849F40132276920045854D /* red.png */,
-				7BDAEC9D1326ABC200134455 /* icon.icns */,
-				7B90A96E13268BB0003D00CA /* check_mark.png */,
+				7B87C5561B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift */,
+				7B87C5581B2C9D2B00A6B64A /* Info.plist */,
 			);
-			name = Images;
-			sourceTree = "<group>";
-		};
-		7BBB95B114A40DE300161989 /* CPU Indicator Dock */ = {
-			isa = PBXGroup;
-			children = (
-				7BBB95B214A40E2700161989 /* FLCPUIndicatorDockController.h */,
-				7BBB95B314A40E2700161989 /* FLCPUIndicatorDockController.m */,
-			);
-			name = "CPU Indicator Dock";
-			sourceTree = "<group>";
-		};
-		7BFBEB2E14A0F7E400060B8B /* View and Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				7B70732613237D71000089B2 /* FLCPUIndicatorView.h */,
-				7B70732713237D71000089B2 /* FLCPUIndicatorView.m */,
-				7BFBEB6C14A13A1D00060B8B /* CPU Indicator Window */,
-				7BFBEB7014A2059100060B8B /* CPU Indicator Menu Bar */,
-				7BBB95B114A40DE300161989 /* CPU Indicator Dock */,
-				7BFBEB2F14A0F80200060B8B /* Preferences */,
-				7BFBEB3014A0F81800060B8B /* Cells */,
-			);
-			name = "View and Controllers";
-			sourceTree = "<group>";
-		};
-		7BFBEB2F14A0F80200060B8B /* Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				7B4CA5121325105E00C5A5CD /* FLPreferences.xib */,
-				7B4CA51B1325156400C5A5CD /* FLPreferencesController.h */,
-				7B4CA51C1325156400C5A5CD /* FLPreferencesController.m */,
-			);
-			name = Preferences;
-			sourceTree = "<group>";
-		};
-		7BFBEB3014A0F81800060B8B /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				7B4CA52A1325306B00C5A5CD /* FLSkinPreviewCell.h */,
-				7B4CA52B1325306C00C5A5CD /* FLSkinPreviewCell.m */,
-				7B90A9731326905D003D00CA /* FLCenteredTextCell.h */,
-				7B90A9741326905E003D00CA /* FLCenteredTextCell.m */,
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
-		7BFBEB3114A0F83600060B8B /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				7B1245B71AA6730D00FDBDC8 /* FLDefaultPaths.swift */,
-				7B1245B91AA6820800FDBDC8 /* FLIsNotThree.swift */,
-			);
-			name = Utilities;
-			sourceTree = "<group>";
-		};
-		7BFBEB3214A0F99D00060B8B /* Skin Stuff */ = {
-			isa = PBXGroup;
-			children = (
-				7B90A9691325CE56003D00CA /* FLSkin.h */,
-				7B90A96A1325CE56003D00CA /* FLSkin.m */,
-				7BAA01ED133F5D4C0085CB43 /* FLSkinMelter.h */,
-				7BAA01EE133F5D4C0085CB43 /* FLSkinMelter.m */,
-				7B90A9651325CDDC003D00CA /* FLSkinManager.h */,
-				7B90A9661325CDDC003D00CA /* FLSkinManager.m */,
-			);
-			name = "Skin Stuff";
-			sourceTree = "<group>";
-		};
-		7BFBEB6C14A13A1D00060B8B /* CPU Indicator Window */ = {
-			isa = PBXGroup;
-			children = (
-				7BFBEB2C14A0F73100060B8B /* FLCPUIndicatorWindow.xib */,
-				7BFBEB2914A0F70E00060B8B /* FLCPUIndicatorWindowController.h */,
-				7BFBEB2A14A0F70E00060B8B /* FLCPUIndicatorWindowController.m */,
-			);
-			name = "CPU Indicator Window";
-			sourceTree = "<group>";
-		};
-		7BFBEB7014A2059100060B8B /* CPU Indicator Menu Bar */ = {
-			isa = PBXGroup;
-			children = (
-				7BFBEB7914A25B9A00060B8B /* FLMenuIndicatorView.h */,
-				7BFBEB7A14A25B9A00060B8B /* FLMenuIndicatorView.m */,
-				7BFBEB7414A2085400060B8B /* FLCPUIndicatorMenuBar.xib */,
-				7BFBEB7114A2076A00060B8B /* FLCPUIndicatorMenuBarController.h */,
-				7BFBEB7214A2076A00060B8B /* FLCPUIndicatorMenuBarController.m */,
-			);
-			name = "CPU Indicator Menu Bar";
+			path = "CPU IndicatorUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7B78A4C2131AA56500FE0D25 /* CPU Indicator */ = {
+		7B87C5351B2C9D2A00A6B64A /* CPU Indicator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7B78A4E1131AA56500FE0D25 /* Build configuration list for PBXNativeTarget "CPU Indicator" */;
+			buildConfigurationList = 7B87C55B1B2C9D2B00A6B64A /* Build configuration list for PBXNativeTarget "CPU Indicator" */;
 			buildPhases = (
-				7B78A4BF131AA56500FE0D25 /* Sources */,
-				7B78A4C0131AA56500FE0D25 /* Frameworks */,
-				7B78A4C1131AA56500FE0D25 /* Resources */,
+				7B87C5321B2C9D2A00A6B64A /* Sources */,
+				7B87C5331B2C9D2A00A6B64A /* Frameworks */,
+				7B87C5341B2C9D2A00A6B64A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -307,303 +139,361 @@
 			);
 			name = "CPU Indicator";
 			productName = "CPU Indicator";
-			productReference = 7B78A4C3131AA56500FE0D25 /* CPU Indicator.app */;
+			productReference = 7B87C5361B2C9D2A00A6B64A /* CPU Indicator.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7B87C5461B2C9D2A00A6B64A /* CPU IndicatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B87C55E1B2C9D2B00A6B64A /* Build configuration list for PBXNativeTarget "CPU IndicatorTests" */;
+			buildPhases = (
+				7B87C5431B2C9D2A00A6B64A /* Sources */,
+				7B87C5441B2C9D2A00A6B64A /* Frameworks */,
+				7B87C5451B2C9D2A00A6B64A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B87C5491B2C9D2A00A6B64A /* PBXTargetDependency */,
+			);
+			name = "CPU IndicatorTests";
+			productName = "CPU IndicatorTests";
+			productReference = 7B87C5471B2C9D2A00A6B64A /* CPU IndicatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7B87C5511B2C9D2B00A6B64A /* CPU IndicatorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B87C5611B2C9D2B00A6B64A /* Build configuration list for PBXNativeTarget "CPU IndicatorUITests" */;
+			buildPhases = (
+				7B87C54E1B2C9D2B00A6B64A /* Sources */,
+				7B87C54F1B2C9D2B00A6B64A /* Frameworks */,
+				7B87C5501B2C9D2B00A6B64A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B87C5541B2C9D2B00A6B64A /* PBXTargetDependency */,
+			);
+			name = "CPU IndicatorUITests";
+			productName = "CPU IndicatorUITests";
+			productReference = 7B87C5521B2C9D2B00A6B64A /* CPU IndicatorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		7B78A4BA131AA56500FE0D25 /* Project object */ = {
+		7B87C52E1B2C9D2A00A6B64A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Frost Land";
 				TargetAttributes = {
-					7B78A4C2131AA56500FE0D25 = {
-						DevelopmentTeam = DVL8GW97S8;
+					7B87C5351B2C9D2A00A6B64A = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					7B87C5461B2C9D2A00A6B64A = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 7B87C5351B2C9D2A00A6B64A;
+					};
+					7B87C5511B2C9D2B00A6B64A = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 7B87C5351B2C9D2A00A6B64A;
 					};
 				};
 			};
-			buildConfigurationList = 7B78A4BD131AA56500FE0D25 /* Build configuration list for PBXProject "CPU Indicator" */;
+			buildConfigurationList = 7B87C5311B2C9D2A00A6B64A /* Build configuration list for PBXProject "CPU Indicator" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
-			mainGroup = 7B78A4B8131AA56500FE0D25;
-			productRefGroup = 7B78A4C4131AA56500FE0D25 /* Products */;
+			mainGroup = 7B87C52D1B2C9D2A00A6B64A;
+			productRefGroup = 7B87C5371B2C9D2A00A6B64A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7B78A4C2131AA56500FE0D25 /* CPU Indicator */,
+				7B87C5351B2C9D2A00A6B64A /* CPU Indicator */,
+				7B87C5461B2C9D2A00A6B64A /* CPU IndicatorTests */,
+				7B87C5511B2C9D2B00A6B64A /* CPU IndicatorUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7B78A4C1131AA56500FE0D25 /* Resources */ = {
+		7B87C5341B2C9D2A00A6B64A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B78A4D2131AA56500FE0D25 /* InfoPlist.strings in Resources */,
-				7B78A4D8131AA56500FE0D25 /* Credits.rtf in Resources */,
-				7B78A4DE131AA56500FE0D25 /* MainMenu.xib in Resources */,
-				7B849F41132276920045854D /* green.png in Resources */,
-				7B849F42132276920045854D /* orange.png in Resources */,
-				7B849F43132276920045854D /* red.png in Resources */,
-				7B4CA5131325105E00C5A5CD /* FLPreferences.xib in Resources */,
-				7B90A96D1326493D003D00CA /* Localizable.strings in Resources */,
-				7B90A96F13268BB0003D00CA /* check_mark.png in Resources */,
-				7BDAEC9E1326ABC200134455 /* icon.icns in Resources */,
-				7BB699251476A0E000D14408 /* Readme.md in Resources */,
-				7BFBEB2D14A0F73100060B8B /* FLCPUIndicatorWindow.xib in Resources */,
-				7BFBEB7514A2085400060B8B /* FLCPUIndicatorMenuBar.xib in Resources */,
-				7BBB95CC14A4ACFD00161989 /* dock.png in Resources */,
-				7BBB95CF14A4C4FA00161989 /* desktop.png in Resources */,
-				7BBB95D114A4CBDC00161989 /* window.png in Resources */,
+				7B87C53E1B2C9D2A00A6B64A /* Assets.xcassets in Resources */,
+				7B87C5411B2C9D2A00A6B64A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B87C5451B2C9D2A00A6B64A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B87C5501B2C9D2B00A6B64A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7B78A4BF131AA56500FE0D25 /* Sources */ = {
+		7B87C5321B2C9D2A00A6B64A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B78A4DB131AA56500FE0D25 /* CPU_IndicatorAppDelegate.m in Sources */,
-				7B70732813237D72000089B2 /* FLCPUIndicatorView.m in Sources */,
-				7B84AAF51AA74F6400A039D2 /* main.swift in Sources */,
-				7B4CA51D1325156500C5A5CD /* FLPreferencesController.m in Sources */,
-				7B4CA52C1325306F00C5A5CD /* FLSkinPreviewCell.m in Sources */,
-				7B90A9671325CDDC003D00CA /* FLSkinManager.m in Sources */,
-				7B90A96B1325CE57003D00CA /* FLSkin.m in Sources */,
-				7B90A97513269065003D00CA /* FLCenteredTextCell.m in Sources */,
-				7BAA01EF133F5D4C0085CB43 /* FLSkinMelter.m in Sources */,
-				7BFBEB2B14A0F70E00060B8B /* FLCPUIndicatorWindowController.m in Sources */,
-				7BFBEB6E14A145AE00060B8B /* FLGlobals.c in Sources */,
-				7BFBEB7314A2076A00060B8B /* FLCPUIndicatorMenuBarController.m in Sources */,
-				7B1245B81AA6730D00FDBDC8 /* FLDefaultPaths.swift in Sources */,
-				7BFBEB7814A222B100060B8B /* FLUtils.m in Sources */,
-				7BFBEB7B14A25B9A00060B8B /* FLMenuIndicatorView.m in Sources */,
-				7B1245BA1AA6820800FDBDC8 /* FLIsNotThree.swift in Sources */,
-				7BBB95B414A40E2700161989 /* FLCPUIndicatorDockController.m in Sources */,
+				7B87C53C1B2C9D2A00A6B64A /* ViewController.swift in Sources */,
+				7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B87C5431B2C9D2A00A6B64A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B87C54C1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B87C54E1B2C9D2B00A6B64A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B87C5571B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7B87C5491B2C9D2A00A6B64A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B87C5351B2C9D2A00A6B64A /* CPU Indicator */;
+			targetProxy = 7B87C5481B2C9D2A00A6B64A /* PBXContainerItemProxy */;
+		};
+		7B87C5541B2C9D2B00A6B64A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B87C5351B2C9D2A00A6B64A /* CPU Indicator */;
+			targetProxy = 7B87C5531B2C9D2B00A6B64A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		7B78A4D0131AA56500FE0D25 /* InfoPlist.strings */ = {
+		7B87C53F1B2C9D2A00A6B64A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7B78A4D1131AA56500FE0D25 /* en */,
+				7B87C5401B2C9D2A00A6B64A /* Base */,
 			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		7B78A4D6131AA56500FE0D25 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7B78A4D7131AA56500FE0D25 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		7B78A4DC131AA56500FE0D25 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7B78A4DD131AA56500FE0D25 /* en */,
-			);
-			name = MainMenu.xib;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		7B66B99E1326B1290037B017 /* Release and Sign */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx;
-			};
-			name = "Release and Sign";
-		};
-		7B66B99F1326B1290037B017 /* Release and Sign */ = {
+		7B87C5591B2C9D2B00A6B64A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 6;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CPU Indicator/CPU_Indicator-Prefix.pch";
-				INFOPLIST_FILE = "CPU Indicator/CPU_Indicator-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "CPU Indicator/CPU Indicator-Bridging-Header.h";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = FL;
-				WRAPPER_EXTENSION = app;
-			};
-			name = "Release and Sign";
-		};
-		7B78A4DF131AA56500FE0D25 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		7B78A4E0131AA56500FE0D25 /* Release */ = {
+		7B87C55A1B2C9D2B00A6B64A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		7B78A4E2131AA56500FE0D25 /* Debug */ = {
+		7B87C55C1B2C9D2B00A6B64A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer: Francois Lamboley (W8TA6H4G9U)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CPU Indicator/CPU_Indicator-Prefix.pch";
-				INFOPLIST_FILE = "CPU Indicator/CPU_Indicator-Info.plist";
+				INFOPLIST_FILE = "CPU Indicator/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.cpu-indicator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CPU Indicator/CPU Indicator-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = FL;
-				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		7B78A4E3131AA56500FE0D25 /* Release */ = {
+		7B87C55D1B2C9D2B00A6B64A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 6;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CPU Indicator/CPU_Indicator-Prefix.pch";
-				INFOPLIST_FILE = "CPU Indicator/CPU_Indicator-Info.plist";
+				INFOPLIST_FILE = "CPU Indicator/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.cpu-indicator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CPU Indicator/CPU Indicator-Bridging-Header.h";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = FL;
-				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		7B87C55F1B2C9D2B00A6B64A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CPU IndicatorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CPU Indicator.app/Contents/MacOS/CPU Indicator";
+			};
+			name = Debug;
+		};
+		7B87C5601B2C9D2B00A6B64A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CPU IndicatorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CPU Indicator.app/Contents/MacOS/CPU Indicator";
+			};
+			name = Release;
+		};
+		7B87C5621B2C9D2B00A6B64A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CPU IndicatorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "CPU Indicator";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		7B87C5631B2C9D2B00A6B64A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CPU IndicatorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "CPU Indicator";
+				USES_XCTRUNNER = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7B78A4BD131AA56500FE0D25 /* Build configuration list for PBXProject "CPU Indicator" */ = {
+		7B87C5311B2C9D2A00A6B64A /* Build configuration list for PBXProject "CPU Indicator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7B78A4DF131AA56500FE0D25 /* Debug */,
-				7B78A4E0131AA56500FE0D25 /* Release */,
-				7B66B99E1326B1290037B017 /* Release and Sign */,
+				7B87C5591B2C9D2B00A6B64A /* Debug */,
+				7B87C55A1B2C9D2B00A6B64A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7B78A4E1131AA56500FE0D25 /* Build configuration list for PBXNativeTarget "CPU Indicator" */ = {
+		7B87C55B1B2C9D2B00A6B64A /* Build configuration list for PBXNativeTarget "CPU Indicator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7B78A4E2131AA56500FE0D25 /* Debug */,
-				7B78A4E3131AA56500FE0D25 /* Release */,
-				7B66B99F1326B1290037B017 /* Release and Sign */,
+				7B87C55C1B2C9D2B00A6B64A /* Debug */,
+				7B87C55D1B2C9D2B00A6B64A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		};
+		7B87C55E1B2C9D2B00A6B64A /* Build configuration list for PBXNativeTarget "CPU IndicatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B87C55F1B2C9D2B00A6B64A /* Debug */,
+				7B87C5601B2C9D2B00A6B64A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7B87C5611B2C9D2B00A6B64A /* Build configuration list for PBXNativeTarget "CPU IndicatorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B87C5621B2C9D2B00A6B64A /* Debug */,
+				7B87C5631B2C9D2B00A6B64A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 7B78A4BA131AA56500FE0D25 /* Project object */;
+	rootObject = 7B87C52E1B2C9D2A00A6B64A /* Project object */;
 }
