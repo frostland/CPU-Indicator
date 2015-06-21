@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */; };
-		7B87C53C1B2C9D2A00A6B64A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C53B1B2C9D2A00A6B64A /* ViewController.swift */; };
+		7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C53B1B2C9D2A00A6B64A /* IntroViewController.swift */; };
 		7B87C53E1B2C9D2A00A6B64A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B87C53D1B2C9D2A00A6B64A /* Assets.xcassets */; };
 		7B87C5411B2C9D2A00A6B64A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B87C53F1B2C9D2A00A6B64A /* Main.storyboard */; };
 		7B87C54C1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C54B1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift */; };
@@ -35,7 +35,7 @@
 /* Begin PBXFileReference section */
 		7B87C5361B2C9D2A00A6B64A /* CPU Indicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPU Indicator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7B87C53B1B2C9D2A00A6B64A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7B87C53B1B2C9D2A00A6B64A /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		7B87C53D1B2C9D2A00A6B64A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B87C5401B2C9D2A00A6B64A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7B87C5421B2C9D2A00A6B64A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */,
-				7B87C53B1B2C9D2A00A6B64A /* ViewController.swift */,
+				7B87C53B1B2C9D2A00A6B64A /* IntroViewController.swift */,
 				7B87C53D1B2C9D2A00A6B64A /* Assets.xcassets */,
 				7B87C53F1B2C9D2A00A6B64A /* Main.storyboard */,
 				7B87C5421B2C9D2A00A6B64A /* Info.plist */,
@@ -251,7 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B87C53C1B2C9D2A00A6B64A /* ViewController.swift in Sources */,
+				7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */,
 				7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +476,7 @@
 				7B87C55D1B2C9D2B00A6B64A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B87C55E1B2C9D2B00A6B64A /* Build configuration list for PBXNativeTarget "CPU IndicatorTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +485,7 @@
 				7B87C5601B2C9D2B00A6B64A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B87C5611B2C9D2B00A6B64A /* Build configuration list for PBXNativeTarget "CPU IndicatorUITests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +494,7 @@
 				7B87C5631B2C9D2B00A6B64A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
