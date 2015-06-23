@@ -13,9 +13,11 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 	
+	var introWindowController: NSWindowController!
+	
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
-		let wc = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("IntroWindow") as! NSWindowController
-		wc.showWindow(self)
+		introWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("IntroWindow") as! NSWindowController
+		introWindowController.showWindow(self)
 	}
 	
 	func applicationWillTerminate(aNotification: NSNotification) {
