@@ -13,6 +13,7 @@
 		7B87C5411B2C9D2A00A6B64A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B87C53F1B2C9D2A00A6B64A /* Main.storyboard */; };
 		7B87C54C1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C54B1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift */; };
 		7B87C5571B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C5561B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift */; };
+		7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		7B87C5521B2C9D2B00A6B64A /* CPU IndicatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CPU IndicatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87C5561B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU_IndicatorUITests.swift; sourceTree = "<group>"; };
 		7B87C5581B2C9D2B00A6B64A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */,
 				7B87C53B1B2C9D2A00A6B64A /* IntroViewController.swift */,
+				7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */,
 				7B87C53D1B2C9D2A00A6B64A /* Assets.xcassets */,
 				7B87C53F1B2C9D2A00A6B64A /* Main.storyboard */,
 				7B87C5421B2C9D2A00A6B64A /* Info.plist */,
@@ -253,6 +256,7 @@
 			files = (
 				7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */,
 				7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */,
+				7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

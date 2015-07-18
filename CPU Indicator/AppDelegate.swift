@@ -13,7 +13,17 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 	
-	var introWindowController: NSWindowController!
+	static private(set) var sharedAppDelegate: AppDelegate!
+	
+	private var introWindowController: NSWindowController!
+	
+	override init() {
+		super.init()
+		
+		if self.dynamicType.sharedAppDelegate == nil {
+			self.dynamicType.sharedAppDelegate = self
+		}
+	}
 	
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
 		introWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("IntroWindow") as! NSWindowController
@@ -22,6 +32,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	func applicationWillTerminate(aNotification: NSNotification) {
 		// Insert code here to tear down your application
+	}
+	
+	func closeIntroWindow() {
+		introWindowController.close()
+		introWindowController = nil /* No need to keep a reference to a class we'll never use. */
 	}
 
 }

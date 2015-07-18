@@ -19,11 +19,7 @@ class IntroViewController: NSViewController {
 	}
 	
 	@IBAction func okButtonTapped(sender: AnyObject?) {
-		self.view.window?.windowController?.close()
-	}
-	
-	@IBAction func prefsButtonTapped(sender: AnyObject?) {
-		
+		AppDelegate.sharedAppDelegate.closeIntroWindow()
 	}
 	
 }
