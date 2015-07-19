@@ -14,6 +14,7 @@
 		7B87C54C1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C54B1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift */; };
 		7B87C5571B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C5561B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift */; };
 		7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */; };
+		7BDBBD331B5C0009005D21EF /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD59261B5BA48000E239ED /* Storyboards.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		7B87C5521B2C9D2B00A6B64A /* CPU IndicatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CPU IndicatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87C5561B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU_IndicatorUITests.swift; sourceTree = "<group>"; };
 		7B87C5581B2C9D2B00A6B64A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BAD59261B5BA48000E239ED /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 		7B87C5381B2C9D2A00A6B64A /* CPU Indicator */ = {
 			isa = PBXGroup;
 			children = (
+				7BAD59261B5BA48000E239ED /* Storyboards.swift */,
 				7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */,
 				7B87C53B1B2C9D2A00A6B64A /* IntroViewController.swift */,
 				7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */,
@@ -132,6 +135,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B87C55B1B2C9D2B00A6B64A /* Build configuration list for PBXNativeTarget "CPU Indicator" */;
 			buildPhases = (
+				7BAD59251B5BA35C00E239ED /* ShellScript */,
 				7B87C5321B2C9D2A00A6B64A /* Sources */,
 				7B87C5331B2C9D2A00A6B64A /* Frameworks */,
 				7B87C5341B2C9D2A00A6B64A /* Resources */,
@@ -249,11 +253,28 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7BAD59251B5BA35C00E239ED /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Natalie Generator: Determining if generated Swift file is up-to-date.\"\n\nNATALIE_PATH=\"$PROJECT_DIR/Dependencies/natalie/natalie.swift\"\n\nGO=0\nBASE_PATH=\"$PROJECT_DIR/$PROJECT_NAME\"\nOUTPUT_PATH=\"$BASE_PATH/Storyboards.swift\"\nif [ ! -e \"$OUTPUT_PATH\" ]; then\n    GO=1\nelif [ -n \"$(find \"$BASE_PATH\" -type f -name \"*.storyboard\" -newer \"$OUTPUT_PATH\" -print -quit)\" ]; then\n    GO=1\nfi\n\nif [ $GO -eq 1 ]; then\n    echo \"Natalie Generator: Generated Swift is out-of-date; re-generating...\"\n    \"$NATALIE_PATH\" \"$PROJECT_DIR/$PROJECT_NAME\" >\"$OUTPUT_PATH\"\n    echo \"Natalie Generator: Done.\"\nelse\n    echo \"Natalie Generator: Generated Swift is up-to-date; skipping re-generation.\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7B87C5321B2C9D2A00A6B64A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BDBBD331B5C0009005D21EF /* Storyboards.swift in Sources */,
 				7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */,
 				7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */,
 				7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */,

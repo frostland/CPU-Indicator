@@ -2,6 +2,9 @@
 .DS_Store
 xcuserdata/
 
+# Natalie
+/CPU Indicator/Storyboards.swift
+
 # Other
 /Skins/
 /App Store/

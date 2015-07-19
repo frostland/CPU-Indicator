@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
-		introWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("IntroWindow") as? NSWindowController
+		introWindowController = Storyboards.Main.instantiateIntroWindowController()
 		introWindowController!.showWindow(self)
 	}
 	
