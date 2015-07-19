@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	static private(set) var sharedAppDelegate: AppDelegate!
 	
-	private var introWindowController: NSWindowController!
+	private var introWindowController: NSWindowController?
 	
 	override init() {
 		super.init()
@@ -26,8 +26,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
-		introWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("IntroWindow") as! NSWindowController
-		introWindowController.showWindow(self)
+		introWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("IntroWindow") as? NSWindowController
+		introWindowController!.showWindow(self)
 	}
 	
 	func applicationWillTerminate(aNotification: NSNotification) {
@@ -35,8 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	func closeIntroWindow() {
-		introWindowController.close()
-		introWindowController = nil /* No need to keep a reference to a class we'll never use. */
+		introWindowController?.close()
+		introWindowController = nil /* No need to keep a reference to a class we'll never use again. */
 	}
 
 }
