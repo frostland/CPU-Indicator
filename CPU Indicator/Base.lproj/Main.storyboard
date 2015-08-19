@@ -596,7 +596,7 @@ DQ
                                                 <animations/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="K2m-hC-YT3"/>
                                             </slider>
-                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="6TZ-ym-Ph0">
+                                            <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6TZ-ym-Ph0">
                                                 <rect key="frame" x="-2" y="208" width="338" height="18"/>
                                                 <animations/>
                                                 <buttonCell key="cell" type="check" title="Disallow Indicator Window Shadow (Uses Less CPU)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="QdD-02-9rf">
@@ -638,7 +638,7 @@ DQ
                                                     </menu>
                                                 </popUpButtonCell>
                                             </popUpButton>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gKK-4b-cN5">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gKK-4b-cN5">
                                                 <rect key="frame" x="-2" y="239" width="107" height="17"/>
                                                 <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Opacity:" id="iVl-JA-25W">
@@ -647,7 +647,7 @@ DQ
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UMh-XE-4kX">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="UMh-XE-4kX">
                                                 <rect key="frame" x="-2" y="178" width="196" height="17"/>
                                                 <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="CPU Indicator Window Position:" id="Idb-3w-z3W">
@@ -661,7 +661,7 @@ DQ
                                                 <animations/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.10000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="t4r-Fe-cOm"/>
                                             </slider>
-                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="yp0-u0-AoW">
+                                            <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="yp0-u0-AoW">
                                                 <rect key="frame" x="18" y="-2" width="264" height="18"/>
                                                 <animations/>
                                                 <buttonCell key="cell" type="check" title="Render the Window Insensitive to Clicks" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="k0N-Qd-Zvr">
@@ -669,7 +669,7 @@ DQ
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
-                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="tth-dQ-Xpv">
+                                            <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="tth-dQ-Xpv">
                                                 <rect key="frame" x="-2" y="20" width="126" height="18"/>
                                                 <animations/>
                                                 <buttonCell key="cell" type="check" title="Lock the Window" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="lpB-2F-Xbw">
@@ -677,7 +677,7 @@ DQ
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
-                                            <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zkj-WJ-5az">
+                                            <button hidden="YES" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Zkj-WJ-5az">
                                                 <rect key="frame" x="-2" y="-31" width="280" height="18"/>
                                                 <animations/>
                                                 <buttonCell key="cell" type="check" title="Decrease Window Opacity on Mouse-Over" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Vfe-eP-MwC">
@@ -685,7 +685,7 @@ DQ
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2tm-Ea-6yJ">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="2tm-Ea-6yJ">
                                                 <rect key="frame" x="-2" y="264" width="86" height="17"/>
                                                 <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Size:" id="WWw-8D-4z5">
@@ -694,7 +694,7 @@ DQ
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ElA-38-EaO">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ElA-38-EaO">
                                                 <rect key="frame" x="-2" y="296" width="92" height="17"/>
                                                 <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Level:" id="GOI-AU-PB1">
@@ -840,7 +840,7 @@ DQ
                                         </constraints>
                                         <animations/>
                                     </customView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="kaY-CH-KHt">
+                                    <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="kaY-CH-KHt">
                                         <rect key="frame" x="18" y="340" width="195" height="18"/>
                                         <animations/>
                                         <buttonCell key="cell" type="check" title="Show CPU Indicator Window" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Wfl-za-UAm">
@@ -850,10 +850,9 @@ DQ
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="416" id="2O1-B1-Br8"/>
                                     <constraint firstItem="hjk-6T-Eut" firstAttribute="leading" secondItem="kaY-CH-KHt" secondAttribute="leading" constant="20" id="8ge-Pe-u57"/>
                                     <constraint firstAttribute="trailing" secondItem="hjk-6T-Eut" secondAttribute="trailing" constant="13" id="FoB-f2-wZU"/>
-                                    <constraint firstAttribute="height" constant="376" id="GGz-4d-cEm"/>
+                                    <constraint firstItem="hjk-6T-Eut" firstAttribute="top" secondItem="kaY-CH-KHt" secondAttribute="bottom" constant="8" id="S7T-yo-fQf"/>
                                     <constraint firstAttribute="bottom" secondItem="hjk-6T-Eut" secondAttribute="bottom" constant="20" id="Wuq-SD-7nU"/>
                                     <constraint firstItem="kaY-CH-KHt" firstAttribute="leading" secondItem="XWj-5X-OzR" secondAttribute="leading" constant="20" id="hP7-Wl-7hf"/>
                                     <constraint firstItem="kaY-CH-KHt" firstAttribute="top" secondItem="XWj-5X-OzR" secondAttribute="top" constant="20" id="kDs-p5-Rgh"/>
@@ -862,8 +861,10 @@ DQ
                             </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="XWj-5X-OzR" secondAttribute="bottom" id="Cf5-j1-dLY"/>
                             <constraint firstItem="XWj-5X-OzR" firstAttribute="top" secondItem="hpr-ZZ-HDh" secondAttribute="top" id="Xfr-va-JfZ"/>
                             <constraint firstItem="XWj-5X-OzR" firstAttribute="leading" secondItem="hpr-ZZ-HDh" secondAttribute="leading" id="iJ7-cs-rJr"/>
+                            <constraint firstAttribute="trailing" secondItem="XWj-5X-OzR" secondAttribute="trailing" id="tdu-3e-gVC"/>
                         </constraints>
                         <animations/>
                     </view>
