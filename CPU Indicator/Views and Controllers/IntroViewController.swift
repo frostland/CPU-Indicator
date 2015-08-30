@@ -14,8 +14,6 @@ class IntroViewController: NSViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		// Do any additional setup after loading the view.
 	}
 	
 	@IBAction func okButtonTapped(sender: AnyObject?) {

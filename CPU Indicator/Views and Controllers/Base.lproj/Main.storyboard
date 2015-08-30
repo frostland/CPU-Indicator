@@ -405,6 +405,7 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="CPU_Indicator" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM9"/>
             </objects>
             <point key="canvasLocation" x="-438" y="8"/>
         </scene>
@@ -422,6 +423,7 @@
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM1"/>
             </objects>
             <point key="canvasLocation" x="75" y="237.5"/>
         </scene>
@@ -439,6 +441,7 @@
                     </connections>
                 </windowController>
                 <customObject id="Y8A-iE-L5R" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM2"/>
             </objects>
             <point key="canvasLocation" x="621" y="226.5"/>
         </scene>
@@ -453,6 +456,7 @@
                     </view>
                 </viewController>
                 <customObject id="vfU-4O-2ij" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM3"/>
             </objects>
             <point key="canvasLocation" x="621" y="642"/>
         </scene>
@@ -460,6 +464,7 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM4"/>
                 <viewController id="XfG-lQ-9wD" customClass="IntroViewController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="115"/>
@@ -543,6 +548,7 @@ DQ
                     </connections>
                 </windowController>
                 <customObject id="7ZX-2S-rcP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rL2"/>
             </objects>
             <point key="canvasLocation" x="-234" y="915"/>
         </scene>
@@ -563,6 +569,7 @@ DQ
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
                         <connections>
+                            <binding destination="a6K-Ly-rL1" name="selectedIdentifier" keyPath="values.FLSelectedPrefsTabId" id="hZE-nq-FL4"/>
                             <outlet property="delegate" destination="D6F-oW-ezH" id="odV-eq-kTc"/>
                         </connections>
                     </tabView>
@@ -574,6 +581,7 @@ DQ
                     </connections>
                 </tabViewController>
                 <customObject id="sNl-JH-QpB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rL1"/>
             </objects>
             <point key="canvasLocation" x="-374" y="1326"/>
         </scene>
@@ -595,6 +603,9 @@ DQ
                                                 <rect key="frame" x="85" y="262" width="273" height="20"/>
                                                 <animations/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="K2m-hC-YT3"/>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="lsj-Xt-jPF"/>
+                                                </connections>
                                             </slider>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6TZ-ym-Ph0">
                                                 <rect key="frame" x="-2" y="208" width="338" height="18"/>
@@ -603,6 +614,10 @@ DQ
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLShadowlessWindow" id="gef-Fa-57P"/>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="pbP-KL-Bxu"/>
+                                                </connections>
                                             </button>
                                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ZG-cX-2be">
                                                 <rect key="frame" x="17" y="48" width="231" height="125"/>
@@ -625,18 +640,22 @@ DQ
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0SL-uC-6Qr">
                                                 <rect key="frame" x="91" y="290" width="195" height="26"/>
                                                 <animations/>
-                                                <popUpButtonCell key="cell" type="push" title="Behind All Other Windows" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Uhl-gO-fLK" id="fHf-M8-ypY">
+                                                <popUpButtonCell key="cell" type="push" title="Normal Window" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="aEe-UA-JE7" id="fHf-M8-ypY">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
                                                     <menu key="menu" title="OtherViews" id="9pB-vl-yfe">
                                                         <items>
-                                                            <menuItem title="Normal Window" id="aEe-UA-JE7"/>
+                                                            <menuItem title="Normal Window" state="on" tag="1" id="aEe-UA-JE7"/>
                                                             <menuItem isSeparatorItem="YES" id="TK4-gA-8IS"/>
-                                                            <menuItem title="Above All Other Windows" id="HK9-Bu-MpT"/>
-                                                            <menuItem title="Behind All Other Windows" state="on" id="Uhl-gO-fLK"/>
+                                                            <menuItem title="Above All Other Windows" tag="2" id="HK9-Bu-MpT"/>
+                                                            <menuItem title="Behind All Other Windows" tag="3" id="Uhl-gO-fLK"/>
                                                         </items>
                                                     </menu>
                                                 </popUpButtonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="sxy-8Y-ikK"/>
+                                                    <binding destination="a6K-Ly-rM5" name="selectedTag" keyPath="values.FLWindowLevel" id="hcS-Zx-2si"/>
+                                                </connections>
                                             </popUpButton>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gKK-4b-cN5">
                                                 <rect key="frame" x="-2" y="239" width="107" height="17"/>
@@ -660,6 +679,9 @@ DQ
                                                 <rect key="frame" x="106" y="237" width="252" height="20"/>
                                                 <animations/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.10000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="t4r-Fe-cOm"/>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="vH3-MW-nZn"/>
+                                                </connections>
                                             </slider>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="yp0-u0-AoW">
                                                 <rect key="frame" x="18" y="-2" width="264" height="18"/>
@@ -668,6 +690,26 @@ DQ
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled3" keyPath="values.FLLockWindow" previousBinding="bmo-1R-d4K" id="Q2t-lB-ABH">
+                                                        <dictionary key="options">
+                                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                                        </dictionary>
+                                                    </binding>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="ioj-Rz-oZb"/>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled2" keyPath="values.FLWindowLevel" previousBinding="ioj-Rz-oZb" id="bmo-1R-d4K">
+                                                        <dictionary key="options">
+                                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                                            <string key="NSValueTransformerName">IsNotThree</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
                                             </button>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="tth-dQ-Xpv">
                                                 <rect key="frame" x="-2" y="20" width="126" height="18"/>
@@ -676,6 +718,19 @@ DQ
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLLockWindow" id="qgY-Ak-NiL"/>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="0EL-fI-SLm"/>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled2" keyPath="values.FLWindowLevel" previousBinding="0EL-fI-SLm" id="Ygr-F9-QKW">
+                                                        <dictionary key="options">
+                                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                                            <string key="NSValueTransformerName">IsNotThree</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
                                             </button>
                                             <button hidden="YES" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Zkj-WJ-5az">
                                                 <rect key="frame" x="-2" y="-31" width="280" height="18"/>
@@ -684,6 +739,10 @@ DQ
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLDecreaseWindowOpacityOnHover" id="jx5-kI-ZQG"/>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="rog-9b-5Mn"/>
+                                                </connections>
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="2tm-Ea-6yJ">
                                                 <rect key="frame" x="-2" y="264" width="86" height="17"/>
@@ -710,6 +769,9 @@ DQ
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="TJw-vM-cZL"/>
+                                                </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TNA-zw-2f7">
                                                 <rect key="frame" x="29" y="72" width="25" height="13"/>
@@ -718,6 +780,9 @@ DQ
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="Xeq-Bm-Upk"/>
+                                                </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KSm-Pr-r3n">
                                                 <rect key="frame" x="211" y="60" width="25" height="13"/>
@@ -726,6 +791,9 @@ DQ
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="exy-Ox-9Ay"/>
+                                                </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ps1-dW-Xb7">
                                                 <rect key="frame" x="29" y="60" width="25" height="13"/>
@@ -734,6 +802,9 @@ DQ
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="8Cp-Hy-PAp"/>
+                                                </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lay-zA-GkC">
                                                 <rect key="frame" x="29" y="136" width="25" height="13"/>
@@ -742,6 +813,9 @@ DQ
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="h1C-bR-l08"/>
+                                                </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="51V-K4-iYp">
                                                 <rect key="frame" x="211" y="72" width="25" height="13"/>
@@ -750,6 +824,9 @@ DQ
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="YHo-ht-1Wh"/>
+                                                </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s0Q-RQ-NXV">
                                                 <rect key="frame" x="29" y="148" width="25" height="13"/>
@@ -762,6 +839,9 @@ DQ
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="Yed-l3-Kit"/>
+                                                </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xv4-pj-Eii">
                                                 <rect key="frame" x="211" y="148" width="25" height="13"/>
@@ -770,6 +850,9 @@ DQ
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="mH7-Ug-uX4"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -847,6 +930,9 @@ DQ
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLShowWindow" id="7Xk-zy-dwg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -870,6 +956,7 @@ DQ
                     </view>
                 </viewController>
                 <customObject id="UFp-IH-Y0p" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM5"/>
             </objects>
             <point key="canvasLocation" x="-969" y="1854"/>
         </scene>
@@ -891,6 +978,9 @@ DQ
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <binding destination="a6K-Ly-rM6" name="value" keyPath="values.FLShowDock" id="rL3-es-I5J"/>
+                                        </connections>
                                     </button>
                                     <textField verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YHW-hk-Hhd">
                                         <rect key="frame" x="18" y="20" width="429" height="68"/>
@@ -912,6 +1002,9 @@ DQ
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <binding destination="a6K-Ly-rM6" name="enabled" keyPath="values.FLShowDock" id="odx-Gv-DrV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -937,6 +1030,7 @@ DQ
                     </view>
                 </viewController>
                 <customObject id="aPj-MM-cyD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM6"/>
             </objects>
             <point key="canvasLocation" x="-120.5" y="1750.5"/>
         </scene>
@@ -1063,6 +1157,9 @@ DQ
                                                             </prototypeCellViews>
                                                         </tableColumn>
                                                     </tableColumns>
+                                                    <connections>
+                                                        <binding destination="NP6-lN-Ti5" name="content" keyPath="arrangedObjects" id="aIj-oe-0Mb"/>
+                                                    </connections>
                                                 </tableView>
                                             </subviews>
                                             <animations/>
@@ -1073,7 +1170,7 @@ DQ
                                         </constraints>
                                         <animations/>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="9C0-Xu-KBI">
-                                            <rect key="frame" x="1" y="176" width="448" height="16"/>
+                                            <rect key="frame" x="1" y="177" width="450" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </scroller>
@@ -1140,21 +1237,24 @@ DQ
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YPY-78-U70">
                                         <rect key="frame" x="142" y="14" width="171" height="26"/>
                                         <animations/>
-                                        <popUpButtonCell key="cell" type="push" title="Allow Transitions Only" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8dM-z2-0fP" id="ytN-Rp-WNo">
+                                        <popUpButtonCell key="cell" type="push" title="Use Skin Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-1" imageScaling="proportionallyDown" inset="2" selectedItem="1Ee-EG-bp2" id="ytN-Rp-WNo">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="Gu5-sA-fgv">
                                                 <items>
-                                                    <menuItem title="Use Skin Default" id="1Ee-EG-bp2"/>
+                                                    <menuItem title="Use Skin Default" state="on" tag="-1" id="1Ee-EG-bp2"/>
                                                     <menuItem isSeparatorItem="YES" id="ezV-xw-Pek"/>
-                                                    <menuItem title="Allow" id="gj9-JQ-a86"/>
-                                                    <menuItem title="Allow Transitions Only" state="on" id="8dM-z2-0fP"/>
-                                                    <menuItem title="Disallow" id="cLQ-jO-zuk">
+                                                    <menuItem title="Allow" tag="1" id="gj9-JQ-a86"/>
+                                                    <menuItem title="Allow Transitions Only" tag="2" id="8dM-z2-0fP"/>
+                                                    <menuItem title="Disallow" tag="3" id="cLQ-jO-zuk">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
+                                        <connections>
+                                            <binding destination="a6K-Ly-rM7" name="selectedTag" keyPath="values.FLMixedImageState" id="Rwc-60-MAO"/>
+                                        </connections>
                                     </popUpButton>
                                 </subviews>
                                 <constraints>
@@ -1197,6 +1297,8 @@ DQ
                     </view>
                 </viewController>
                 <customObject id="F6C-lE-JGo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <arrayController mode="entity" entityName="FLSkin" avoidsEmptySelection="NO" id="NP6-lN-Ti5"/>
+                <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM7"/>
             </objects>
             <point key="canvasLocation" x="350" y="1816"/>
         </scene>
@@ -1218,6 +1320,9 @@ DQ
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <binding destination="a6K-Ly-rM8" name="value" keyPath="values.FLShowMenu" id="rvy-Za-IAP"/>
+                                        </connections>
                                     </button>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="FJT-Fz-Bky">
                                         <rect key="frame" x="40" y="20" width="304" height="86"/>
@@ -1233,20 +1338,24 @@ DQ
                                                 </buttonCell>
                                                 <cells>
                                                     <column>
-                                                        <buttonCell type="radio" title="Show Indicator As an Image" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="zj2-mt-ueO">
+                                                        <buttonCell type="radio" title="Show Indicator As an Image" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" tag="1" inset="2" id="zj2-mt-ueO">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
-                                                        <buttonCell type="radio" title="Show Indicator As Text (Percentage of Usage)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hIa-lD-4DJ">
+                                                        <buttonCell type="radio" title="Show Indicator As Text (Percentage of Usage)" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="2" inset="2" id="hIa-lD-4DJ">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
-                                                        <buttonCell type="radio" title="Show Both" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Rfb-Af-Knw">
+                                                        <buttonCell type="radio" title="Show Both" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="3" inset="2" id="Rfb-Af-Knw">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                     </column>
                                                 </cells>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM8" name="selectedTag" keyPath="values.FLMenuMode" id="GT7-2k-ldG"/>
+                                                    <binding destination="a6K-Ly-rM8" name="enabled" keyPath="values.FLShowMenu" id="IrL-j1-bCn"/>
+                                                </connections>
                                             </matrix>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="eLq-nB-o3W">
                                                 <rect key="frame" x="-2" y="-2" width="176" height="18"/>
@@ -1255,6 +1364,9 @@ DQ
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <binding destination="a6K-Ly-rM8" name="enabled" keyPath="values.FLShowMenu" id="mfW-l6-MGO"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -1289,6 +1401,7 @@ DQ
                     </view>
                 </viewController>
                 <customObject id="poD-aJ-Po2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM8"/>
             </objects>
             <point key="canvasLocation" x="-559" y="1740"/>
         </scene>
@@ -1302,6 +1415,6 @@ DQ
         <image name="window" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pyR-ir-KHN"/>
+        <segue reference="9Ma-Vp-Jh6"/>
     </inferredMetricsTieBreakers>
 </document>
