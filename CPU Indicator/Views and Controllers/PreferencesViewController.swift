@@ -12,16 +12,28 @@ import Cocoa
 
 class PreferencesViewController: NSTabViewController {
 	
+	var delayedWindowSizeChange = false
 	var childSizes = [String : NSSize]()
 	var constraintsToChange = [String : [NSLayoutConstraint]]()
 	var addedConstraints = [String : (NSLayoutConstraint /* width */, NSLayoutConstraint /* height */)]()
 	
 	override func viewDidLoad() {
+		let idToSelect = NSUserDefaults.standardUserDefaults().objectForKey(kUDK_LatestSelectedPrefPaneId)
+		
 		super.viewDidLoad()
+		
+		for var i = 0; i < self.tabViewItems.count; ++i {
+			if self.tabViewItems[i].identifier.isEqual(idToSelect) {
+				self.selectedTabViewItemIndex = i
+			}
+		}
 	}
 	
 	override func viewWillAppear() {
 		super.viewWillAppear()
+		
+		self.tabView(self.tabView, didSelectTabViewItem: self.tabViewItems[self.selectedTabViewItemIndex])
+		delayedWindowSizeChange = true
 		
 		AppDelegate.sharedAppDelegate.closeIntroWindow()
 	}
@@ -94,24 +106,32 @@ class PreferencesViewController: NSTabViewController {
 		
 		if let identifier = tabViewItem?.identifier as? String {
 			if let window = self.view.window, s = self.childSizes[identifier] {
-				dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue()) { () -> Void in
+				let b = { () -> Void in
 					let destSize = window.frameRectForContentRect(NSMakeRect(0, 0, s.width, s.height)).size
 					var windowFrame = window.frame
 					windowFrame.origin.y += windowFrame.size.height - destSize.height
 					windowFrame.size = destSize
 					window.setFrame(windowFrame, display: true, animate: true)
 				}
+				if delayedWindowSizeChange {dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue(), b)}
+				else                       {b()}
 			}
+			
 			if let constraints = addedConstraints[identifier] {
-				dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue()) { () -> Void in
+				let b = { () -> Void in
 					constraints.0.active = false
 					constraints.1.active = false
 				}
+				if delayedWindowSizeChange {dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue(), b)}
+				else                       {b()}
 			}
+			
 			if let constraints = constraintsToChange[identifier] {
-				dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue()) { () -> Void in
+				let b = { () -> Void in
 					constraints.forEach {$0.active = true}
 				}
+				if delayedWindowSizeChange {dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue(), b)}
+				else                       {b()}
 			}
 		}
 	}

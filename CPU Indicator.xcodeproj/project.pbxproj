@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B71E76A1B964D8B00F037A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71E7691B964D8B00F037A3 /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
 		7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */; };
 		7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C53B1B2C9D2A00A6B64A /* IntroViewController.swift */; };
 		7B87C53E1B2C9D2A00A6B64A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B87C53D1B2C9D2A00A6B64A /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B71E7691B964D8B00F037A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7B87C5361B2C9D2A00A6B64A /* CPU Indicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPU Indicator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B87C53B1B2C9D2A00A6B64A /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				7BD930991B933D1F00EDED90 /* Model */,
 				7BD930981B933BD100EDED90 /* Views and Controllers */,
 				7B87C53D1B2C9D2A00A6B64A /* Assets.xcassets */,
+				7B71E7691B964D8B00F037A3 /* Constants.swift */,
 				7B87C5421B2C9D2A00A6B64A /* Info.plist */,
 			);
 			path = "CPU Indicator";
@@ -314,6 +317,7 @@
 				7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */,
 				7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */,
 				7BF95FD61B91E0DB00DC4947 /* IsNotThree.swift in Sources */,
+				7B71E76A1B964D8B00F037A3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
