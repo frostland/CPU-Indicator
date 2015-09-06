@@ -604,6 +604,7 @@ DQ
                                                 <animations/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="K2m-hC-YT3"/>
                                                 <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLWindowSize" id="Vsy-9v-NvY"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="lsj-Xt-jPF"/>
                                                 </connections>
                                             </slider>
@@ -680,6 +681,7 @@ DQ
                                                 <animations/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.10000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="t4r-Fe-cOm"/>
                                                 <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLWindowOpacity" id="Prd-Kg-ZnD"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="vH3-MW-nZn"/>
                                                 </connections>
                                             </slider>
@@ -691,7 +693,7 @@ DQ
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <binding destination="a6K-Ly-rM5" name="enabled3" keyPath="values.FLLockWindow" previousBinding="bmo-1R-d4K" id="Q2t-lB-ABH">
+                                                    <binding destination="a6K-Ly-rM5" name="enabled3" keyPath="values.FLWindowLocked" previousBinding="bmo-1R-d4K" id="CqG-WW-Gtp">
                                                         <dictionary key="options">
                                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                             <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -699,6 +701,7 @@ DQ
                                                             <integer key="NSNullPlaceholder" value="-1"/>
                                                         </dictionary>
                                                     </binding>
+                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLClicklessWindow" id="pOk-Yg-BXI"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="ioj-Rz-oZb"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled2" keyPath="values.FLWindowLevel" previousBinding="ioj-Rz-oZb" id="bmo-1R-d4K">
                                                         <dictionary key="options">
@@ -719,7 +722,7 @@ DQ
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLLockWindow" id="qgY-Ak-NiL"/>
+                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLWindowLocked" id="b7m-qB-vhN"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="0EL-fI-SLm"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled2" keyPath="values.FLWindowLevel" previousBinding="0EL-fI-SLm" id="Ygr-F9-QKW">
                                                         <dictionary key="options">
@@ -1003,6 +1006,7 @@ DQ
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
+                                            <binding destination="a6K-Ly-rM6" name="value" keyPath="values.FLShowCPUInDock" id="1a5-J2-lgG"/>
                                             <binding destination="a6K-Ly-rM6" name="enabled" keyPath="values.FLShowDock" id="odx-Gv-DrV"/>
                                         </connections>
                                     </button>
@@ -1052,7 +1056,7 @@ DQ
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" autosaveName="Skins Table View" rowHeight="141" viewBased="YES" id="CX0-An-lW0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="510" height="165"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="510" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -1365,6 +1369,7 @@ DQ
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
+                                                    <binding destination="a6K-Ly-rM8" name="value" keyPath="values.FLOneMenuPerCPU" id="upR-2T-eTv"/>
                                                     <binding destination="a6K-Ly-rM8" name="enabled" keyPath="values.FLShowMenu" id="mfW-l6-MGO"/>
                                                 </connections>
                                             </button>

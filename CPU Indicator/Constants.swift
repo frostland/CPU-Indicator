@@ -14,3 +14,34 @@ let kUDK_FirstRun = "FLFirstRun"
 
 let kUDK_PrefsPanesSizes          = "FLPrefsPanesSizes"
 let kUDK_LatestSelectedPrefPaneId = "FLLatestPrefPaneId"
+
+
+enum WindowIndicatorLevel: Int {
+	case Normal    = 1
+	case AboveAll  = 2
+	case BehindAll = 3
+}
+
+let kUDK_ShowWindowIndicator                   = "FLShowWindow"
+let kUDK_WindowIndicatorLevel                  = "FLWindowLevel"
+let kUDK_WindowIndicatorSize                   = "FLWindowSize"
+let kUDK_WindowIndicatorOpacity                = "FLWindowOpacity"
+let kUDK_WindowIndicatorDisableShadow          = "FLShadowlessWindow"
+let kUDK_WindowIndicatorLocked                 = "FLWindowLocked"
+let kUDK_WindowIndicatorClickless              = "FLClicklessWindow"
+let kUDK_WindowIndicatorDecreaseOpacityOnHover = "FLDecreaseWindowOpacityOnHover"
+
+
+enum MenuIndicatorMode: Int {
+	case Image = 1
+	case Text  = 2
+	case Both  = 3
+}
+
+let kUDK_ShowMenuIndicator      = "FLShowMenu"
+let kUDK_MenuIndicatorMode      = "FLMenuMode"
+let kUDK_MenuIndicatorOnePerCPU = "FLOneMenuPerCPU"
+
+
+let kUDK_ShowDockIcon = "FLShowDock"
+let kUDK_DockIconIsCPUIndicator = "FLShowCPUInDock"
