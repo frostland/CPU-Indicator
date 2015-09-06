@@ -19,6 +19,7 @@ class PreferencesViewController: NSTabViewController {
 	
 	override func viewDidLoad() {
 		let idToSelect = NSUserDefaults.standardUserDefaults().objectForKey(kUDK_LatestSelectedPrefPaneId)
+		childSizes = readSizesDictionaryFromKey(kUDK_PrefsPanesSizes)
 		
 		super.viewDidLoad()
 		
@@ -38,6 +39,16 @@ class PreferencesViewController: NSTabViewController {
 		AppDelegate.sharedAppDelegate.closeIntroWindow()
 	}
 	
+	override func viewWillDisappear() {
+		super.viewWillDisappear()
+		
+		if let identifier = tabView.selectedTabViewItem?.identifier as? String, v = tabView.selectedTabViewItem?.view {
+			childSizes[identifier] = v.frame.size
+		}
+		
+		saveSizesDictionary(childSizes, inKey: kUDK_PrefsPanesSizes)
+	}
+	
 	override func tabView(tabView: NSTabView, willSelectTabViewItem tabViewItem: NSTabViewItem?) {
 		super.tabView(tabView, willSelectTabViewItem: tabViewItem)
 		
@@ -50,6 +61,8 @@ class PreferencesViewController: NSTabViewController {
 		if let identifier = tabView.selectedTabViewItem?.identifier as? String, v = tabView.selectedTabViewItem?.view {
 			childSizes[identifier] = v.frame.size
 		}
+		
+		saveSizesDictionary(childSizes, inKey: kUDK_PrefsPanesSizes)
 		
 		for item in [tabViewItem, tabView.selectedTabViewItem] {
 			if let identifier = item?.identifier as? String, v = item?.view {
@@ -134,6 +147,23 @@ class PreferencesViewController: NSTabViewController {
 				else                       {b()}
 			}
 		}
+	}
+	
+	/* Writes the childSizes dictionary to the user defaults. */
+	private func saveSizesDictionary(sizes: [String: NSSize], inKey k: String) {
+		var serializableSizes = [String: String]()
+		for (key, val) in sizes {serializableSizes[key] = NSStringFromSize(val)}
+		NSUserDefaults.standardUserDefaults().setObject(serializableSizes, forKey: k)
+	}
+	
+	private func readSizesDictionaryFromKey(k: String) -> [String: NSSize] {
+		guard let sizes = NSUserDefaults.standardUserDefaults().objectForKey(k) as? [String: String] else {
+			return [:]
+		}
+		
+		var ret = [String: NSSize]()
+		for (key, val) in sizes {ret[key] = NSSizeFromString(val)}
+		return ret
 	}
 	
 }
