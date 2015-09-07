@@ -19,10 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	override class func initialize() {
 		if self === AppDelegate.self {
-/*			[defaultValues setValue:@0                           forKey:FL_UDK_SELECTED_SKIN];
-			[defaultValues setValue:@(FLMixedImageStateFromSkin) forKey:FL_UDK_MIXED_IMAGE_STATE];
-			[defaultValues setValue:@1.f                         forKey:FL_UDK_SKIN_X_SCALE];
-			[defaultValues setValue:@1.f                         forKey:FL_UDK_SKIN_Y_SCALE];*/
+/*			[defaultValues setValue:@0 forKey:FL_UDK_SELECTED_SKIN];*/
 			let defaults = [
 				kUDK_FirstRun: true,
 				
@@ -31,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				
 				kUDK_ShowWindowIndicator: true,
 				kUDK_WindowIndicatorLevel: NSNumber(integer: WindowIndicatorLevel.AboveAll.rawValue),
-				kUDK_WindowIndicatorSize: 1.0,
+				kUDK_WindowIndicatorScale: 1.0,
 				kUDK_WindowIndicatorOpacity: 1.0,
 				kUDK_WindowIndicatorDisableShadow: false,
 				kUDK_WindowIndicatorLocked: false,

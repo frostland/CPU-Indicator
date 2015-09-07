@@ -24,7 +24,7 @@ enum WindowIndicatorLevel: Int {
 
 let kUDK_ShowWindowIndicator                   = "FLShowWindow"
 let kUDK_WindowIndicatorLevel                  = "FLWindowLevel"
-let kUDK_WindowIndicatorSize                   = "FLWindowSize"
+let kUDK_WindowIndicatorScale                  = "FLWindowScale"
 let kUDK_WindowIndicatorOpacity                = "FLWindowOpacity"
 let kUDK_WindowIndicatorDisableShadow          = "FLShadowlessWindow"
 let kUDK_WindowIndicatorLocked                 = "FLWindowLocked"
