@@ -604,8 +604,8 @@ DQ
                                                 <animations/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="K2m-hC-YT3"/>
                                                 <connections>
-                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLWindowSize" id="Vsy-9v-NvY"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="lsj-Xt-jPF"/>
+                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLWindowSize" id="Vsy-9v-NvY"/>
                                                 </connections>
                                             </slider>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6TZ-ym-Ph0">
@@ -681,8 +681,8 @@ DQ
                                                 <animations/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.10000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="t4r-Fe-cOm"/>
                                                 <connections>
-                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLWindowOpacity" id="Prd-Kg-ZnD"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="vH3-MW-nZn"/>
+                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLWindowOpacity" id="Prd-Kg-ZnD"/>
                                                 </connections>
                                             </slider>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="yp0-u0-AoW">
@@ -693,14 +693,6 @@ DQ
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <binding destination="a6K-Ly-rM5" name="enabled3" keyPath="values.FLWindowLocked" previousBinding="bmo-1R-d4K" id="CqG-WW-Gtp">
-                                                        <dictionary key="options">
-                                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                                        </dictionary>
-                                                    </binding>
                                                     <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLClicklessWindow" id="pOk-Yg-BXI"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="ioj-Rz-oZb"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled2" keyPath="values.FLWindowLevel" previousBinding="ioj-Rz-oZb" id="bmo-1R-d4K">
@@ -710,6 +702,14 @@ DQ
                                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                             <integer key="NSNullPlaceholder" value="-1"/>
                                                             <string key="NSValueTransformerName">IsNotThree</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                    <binding destination="a6K-Ly-rM5" name="enabled3" keyPath="values.FLWindowLocked" previousBinding="bmo-1R-d4K" id="CqG-WW-Gtp">
+                                                        <dictionary key="options">
+                                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                            <integer key="NSNullPlaceholder" value="-1"/>
                                                         </dictionary>
                                                     </binding>
                                                 </connections>
@@ -722,7 +722,6 @@ DQ
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLWindowLocked" id="b7m-qB-vhN"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="0EL-fI-SLm"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled2" keyPath="values.FLWindowLevel" previousBinding="0EL-fI-SLm" id="Ygr-F9-QKW">
                                                         <dictionary key="options">
@@ -733,6 +732,7 @@ DQ
                                                             <string key="NSValueTransformerName">IsNotThree</string>
                                                         </dictionary>
                                                     </binding>
+                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLWindowLocked" id="b7m-qB-vhN"/>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Zkj-WJ-5az">

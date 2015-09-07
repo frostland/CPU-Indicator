@@ -45,3 +45,13 @@ let kUDK_MenuIndicatorOnePerCPU = "FLOneMenuPerCPU"
 
 let kUDK_ShowDockIcon = "FLShowDock"
 let kUDK_DockIconIsCPUIndicator = "FLShowCPUInDock"
+
+
+enum MixedImageState: Int {
+	case UseSkinDefault    = -1
+	case Allow             =  1
+	case AllowTransitions  =  2
+	case Disallow          =  3
+}
+
+let kUDK_MixedImageState = "FLMixedImageState"
