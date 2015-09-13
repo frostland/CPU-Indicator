@@ -16,6 +16,7 @@
 		7B87C5571B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C5561B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift */; };
 		7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */; };
 		7BDBBD331B5C0009005D21EF /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD59261B5BA48000E239ED /* Storyboards.swift */; };
+		7BEC78151BA5A5F700F08D88 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEC78141BA5A5F700F08D88 /* PreferencesWindowController.swift */; settings = {ASSET_TAGS = (); }; };
 		7BF95FD61B91E0DB00DC4947 /* IsNotThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF95FD51B91E0DB00DC4947 /* IsNotThree.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		7B87C5581B2C9D2B00A6B64A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BAD59261B5BA48000E239ED /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		7BEC78141BA5A5F700F08D88 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		7BF95FD51B91E0DB00DC4947 /* IsNotThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsNotThree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 		7BD9309A1B933D3300EDED90 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				7BEC78141BA5A5F700F08D88 /* PreferencesWindowController.swift */,
 				7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */,
 			);
 			name = Preferences;
@@ -316,6 +319,7 @@
 				7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */,
 				7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */,
 				7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */,
+				7BEC78151BA5A5F700F08D88 /* PreferencesWindowController.swift in Sources */,
 				7BF95FD61B91E0DB00DC4947 /* IsNotThree.swift in Sources */,
 				7B71E76A1B964D8B00F037A3 /* Constants.swift in Sources */,
 			);

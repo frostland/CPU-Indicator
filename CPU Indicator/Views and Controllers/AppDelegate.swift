@@ -15,7 +15,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	static private(set) var sharedAppDelegate: AppDelegate!
 	
+	@IBOutlet private var preferencesMenuItem: NSMenuItem!
+	
 	private var introWindowController: NSWindowController?
+	/* The preferences window controller keeps a reference to itself while it
+	 * needs itself. */
+	private weak var preferencesWindowController: PreferencesWindowController?
+	
+	private var dockIconShown = false
+	private var appDidBecomeActive = false
 	
 	override class func initialize() {
 		if self === AppDelegate.self {
@@ -56,13 +64,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 	
+	func applicationWillFinishLaunching(notification: NSNotification) {
+		if NSUserDefaults.standardUserDefaults().boolForKey(kUDK_ShowDockIcon) {
+			var psn = ProcessSerialNumber(highLongOfPSN: UInt32(0), lowLongOfPSN: UInt32(kCurrentProcess))
+			let returnCode = TransformProcessType(&psn, ProcessApplicationTransformState(kProcessTransformToForegroundApplication))
+			dockIconShown = (returnCode == 0)
+		}
+	}
+	
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
 		introWindowController = Storyboards.Main.instantiateIntroWindowController()
 		introWindowController!.showWindow(self)
 	}
 	
+	func applicationDidBecomeActive(notification: NSNotification) {
+		if appDidBecomeActive && !dockIconShown {showPrefs(nil)}
+		appDidBecomeActive = true
+	}
+	
 	func applicationWillTerminate(aNotification: NSNotification) {
 		// Insert code here to tear down your application
+	}
+	
+	@IBAction func showPrefs(sender: AnyObject?) {
+		let controller: PreferencesWindowController
+		if let pc = preferencesWindowController {controller = pc}
+		else                                    {controller = Storyboards.Main.instantiatePreferencesWindowController()}
+		preferencesWindowController = controller
+		controller.showWindow(sender)
 	}
 	
 	func closeIntroWindow() {

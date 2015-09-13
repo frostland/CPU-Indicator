@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="15A279b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8187.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -23,7 +23,7 @@
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
-                                                <segue destination="CHB-XQ-1lg" kind="show" id="pyR-ir-KHN"/>
+                                                <action selector="showPrefs:" target="Voe-Tx-rLC" id="3YM-tb-Guf"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -407,7 +407,7 @@
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM9"/>
             </objects>
-            <point key="canvasLocation" x="-438" y="8"/>
+            <point key="canvasLocation" x="-533" y="67"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -510,7 +510,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="CHB-XQ-1lg" kind="show" id="9Ma-Vp-Jh6"/>
+                                    <action selector="showPrefs:" target="rPt-NT-nkU" id="AgQ-2i-Txl"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -535,7 +535,7 @@ DQ
         <!--Window Controller-->
         <scene sceneID="Pwf-id-1DP">
             <objects>
-                <windowController id="CHB-XQ-1lg" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="PreferencesWindowController" id="CHB-XQ-1lg" customClass="PreferencesWindowController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="CPU Indicator Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="PrefsWindow" animationBehavior="default" id="gmb-a9-qhl" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
@@ -550,7 +550,7 @@ DQ
                 <customObject id="7ZX-2S-rcP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rL2"/>
             </objects>
-            <point key="canvasLocation" x="-234" y="915"/>
+            <point key="canvasLocation" x="-675" y="403"/>
         </scene>
         <!--Preferences View Controller-->
         <scene sceneID="tCR-Xq-jfJ">
@@ -583,7 +583,7 @@ DQ
                 <customObject id="sNl-JH-QpB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rL1"/>
             </objects>
-            <point key="canvasLocation" x="-374" y="1326"/>
+            <point key="canvasLocation" x="-815" y="814"/>
         </scene>
         <!--Window-->
         <scene sceneID="JdB-nn-o0K">
@@ -961,7 +961,7 @@ DQ
                 <customObject id="UFp-IH-Y0p" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM5"/>
             </objects>
-            <point key="canvasLocation" x="-969" y="1854"/>
+            <point key="canvasLocation" x="-1410" y="1342"/>
         </scene>
         <!--Dock-->
         <scene sceneID="coi-hP-DWJ">
@@ -1036,7 +1036,7 @@ DQ
                 <customObject id="aPj-MM-cyD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM6"/>
             </objects>
-            <point key="canvasLocation" x="-125" y="1750.5"/>
+            <point key="canvasLocation" x="-566" y="1238.5"/>
         </scene>
         <!--Skins-->
         <scene sceneID="ghU-3h-w49">
@@ -1304,7 +1304,7 @@ DQ
                 <arrayController mode="entity" entityName="FLSkin" avoidsEmptySelection="NO" id="NP6-lN-Ti5"/>
                 <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM7"/>
             </objects>
-            <point key="canvasLocation" x="380" y="1802.5"/>
+            <point key="canvasLocation" x="-61" y="1290.5"/>
         </scene>
         <!--Menu Bar-->
         <scene sceneID="0RD-6x-BBv">
@@ -1408,7 +1408,7 @@ DQ
                 <customObject id="poD-aJ-Po2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM8"/>
             </objects>
-            <point key="canvasLocation" x="-559" y="1740"/>
+            <point key="canvasLocation" x="-1000" y="1228"/>
         </scene>
     </scenes>
     <resources>
@@ -1419,7 +1419,4 @@ DQ
         <image name="skins" width="32" height="32"/>
         <image name="window" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="9Ma-Vp-Jh6"/>
-    </inferredMetricsTieBreakers>
 </document>
