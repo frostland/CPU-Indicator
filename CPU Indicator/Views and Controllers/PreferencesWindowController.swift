@@ -32,8 +32,8 @@ class PreferencesWindowController : NSWindowController, NSWindowDelegate {
 		timerNotUsingMyself = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("myselfNotNeededAnymore:"), userInfo: nil, repeats: false)
 	}
 	
-	/* Can't be private because used by a timer. */
-	func myselfNotNeededAnymore(timer: NSTimer) {
+	@objc /* Used by a timer. */
+	private func myselfNotNeededAnymore(timer: NSTimer) {
 		timerNotUsingMyself?.invalidate()
 		timerNotUsingMyself = nil
 		iUseMyself = nil
