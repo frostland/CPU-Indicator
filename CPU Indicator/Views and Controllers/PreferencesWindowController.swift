@@ -10,7 +10,7 @@ import Cocoa
 
 
 
-class PreferencesWindowController : NSWindowController, NSWindowDelegate {
+class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 	private var iUseMyself: PreferencesWindowController?
 	private var timerNotUsingMyself: NSTimer?
 	

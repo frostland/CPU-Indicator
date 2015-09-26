@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B17c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
@@ -430,8 +430,8 @@
         <!--Window Controller-->
         <scene sceneID="rNN-4s-sYN">
             <objects>
-                <windowController storyboardIdentifier="IndicatorWindowController" id="2oJ-Ra-5WE" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ze4-0I-6gO">
+                <windowController storyboardIdentifier="IndicatorWindowController" id="2oJ-Ra-5WE" customClass="IndicatorWindowController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Indicator" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="IndicatorWindow" animationBehavior="default" id="ze4-0I-6gO">
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="243" width="480" height="267"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
@@ -452,6 +452,17 @@
                     <view key="view" id="k9A-vZ-RKR">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qOf-Lm-2vK">
+                                <rect key="frame" x="62" y="53" width="353" height="180"/>
+                                <animations/>
+                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="E3v-8Y-h3i">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
                         <animations/>
                     </view>
                 </viewController>
@@ -535,7 +546,7 @@ DQ
         <!--Window Controller-->
         <scene sceneID="Pwf-id-1DP">
             <objects>
-                <windowController storyboardIdentifier="PreferencesWindowController" id="CHB-XQ-1lg" customClass="PreferencesWindowController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="PreferencesWindowController" showSeguePresentationStyle="single" id="CHB-XQ-1lg" customClass="PreferencesWindowController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="CPU Indicator Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="PrefsWindow" animationBehavior="default" id="gmb-a9-qhl" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>

@@ -22,6 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	 * needs itself. */
 	private weak var preferencesWindowController: PreferencesWindowController?
 	
+	private var mainWindowController: IndicatorWindowController!
+	
 	private var dockIconShown = false
 	private var appDidBecomeActive = false
 	
@@ -73,8 +75,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	func applicationDidFinishLaunching(aNotification: NSNotification) {
-		introWindowController = Storyboards.Main.instantiateIntroWindowController()
-		introWindowController!.showWindow(self)
+		let ud = NSUserDefaults.standardUserDefaults()
+		let firstRun = ud.boolForKey(kUDK_FirstRun)
+		
+		mainWindowController = Storyboards.Main.instantiateIndicatorWindowController()
+		
+		if firstRun {
+			ud.setBool(false, forKey: kUDK_FirstRun)
+			
+			introWindowController = Storyboards.Main.instantiateIntroWindowController()
+			introWindowController?.window?.level = Int(CGWindowLevelForKey(CGWindowLevelKey.StatusWindowLevelKey))
+			introWindowController!.showWindow(self)
+		}
 	}
 	
 	func applicationDidBecomeActive(notification: NSNotification) {
