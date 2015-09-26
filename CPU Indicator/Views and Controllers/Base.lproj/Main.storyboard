@@ -452,17 +452,6 @@
                     <view key="view" id="k9A-vZ-RKR">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qOf-Lm-2vK">
-                                <rect key="frame" x="62" y="53" width="353" height="180"/>
-                                <animations/>
-                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="E3v-8Y-h3i">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
                         <animations/>
                     </view>
                 </viewController>
@@ -615,8 +604,8 @@ DQ
                                                 <animations/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="K2m-hC-YT3"/>
                                                 <connections>
+                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLWindowScale" id="jgR-eL-tAC"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="lsj-Xt-jPF"/>
-                                                    <binding destination="a6K-Ly-rM5" name="value" keyPath="values.FLWindowSize" id="Vsy-9v-NvY"/>
                                                 </connections>
                                             </slider>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6TZ-ym-Ph0">
