@@ -40,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		7B4952A11BB75954001DE883 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		7B4952A21BB75988001DE883 /* CPU Indicator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CPU Indicator.entitlements"; sourceTree = "<group>"; };
 		7B71E7691B964D8B00F037A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7B87C5361B2C9D2A00A6B64A /* CPU Indicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPU Indicator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		7B87C5381B2C9D2A00A6B64A /* CPU Indicator */ = {
 			isa = PBXGroup;
 			children = (
+				7B4952A21BB75988001DE883 /* CPU Indicator.entitlements */,
 				7BF95FD41B91E0A700DC4947 /* Utilities */,
 				7BD930991B933D1F00EDED90 /* Model */,
 				7BD930981B933BD100EDED90 /* Views and Controllers */,
@@ -242,6 +244,11 @@
 				TargetAttributes = {
 					7B87C5351B2C9D2A00A6B64A = {
 						CreatedOnToolsVersion = 7.0;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					7B87C5461B2C9D2A00A6B64A = {
 						CreatedOnToolsVersion = 7.0;
@@ -458,6 +465,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "CPU Indicator/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -471,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "CPU Indicator/CPU Indicator.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "CPU Indicator/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
