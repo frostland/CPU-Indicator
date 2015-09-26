@@ -11,17 +11,31 @@ import Cocoa
 
 
 class IndicatorWindowController: NSWindowController {
+	private var observingUDC = false
+	private let observedUDCKeys = [
+		"values.\(kUDK_ShowWindowIndicator)",
+		"values.\(kUDK_WindowIndicatorLevel)", "values.\(kUDK_WindowIndicatorOpacity)",
+		"values.\(kUDK_WindowIndicatorClickless)", "values.\(kUDK_WindowIndicatorLocked)",
+		"values.\(kUDK_WindowIndicatorScale)", "values.\(kUDK_WindowIndicatorDisableShadow)",
+//		"values.\(kUDK_SelectedSkin)", "values.\(kUDK_MixedImageState)"
+	]
+	
+	deinit {
+		if observingUDC {
+			for keyPath in observedUDCKeys {
+				NSUserDefaultsController.sharedUserDefaultsController().removeObserver(self, forKeyPath: keyPath)
+			}
+		}
+	}
+	
 	override func windowDidLoad() {
+		super.windowDidLoad()
+		
 		let udc = NSUserDefaultsController.sharedUserDefaultsController()
-		udc.addObserver(self, forKeyPath: "values.\(kUDK_ShowWindowIndicator)",          options: .Initial, context: nil)
-		udc.addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorLevel)",         options: .Initial, context: nil)
-		udc.addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorOpacity)",       options: .Initial, context: nil)
-		udc.addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorClickless)",     options: .Initial, context: nil)
-		udc.addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorLocked)",        options: .Initial, context: nil)
-		udc.addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorScale)",         options: .Initial, context: nil)
-		udc.addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorDisableShadow)", options: .Initial, context: nil)
-//		udc.addObserver(self, forKeyPath: "values.\(kUDK_SelectedSkin)",                 options: .Initial, context: nil)
-//		udc.addObserver(self, forKeyPath: "values.\(kUDK_MixedImageState)",              options: .Initial, context: nil)
+		for keyPath in observedUDCKeys {
+			udc.addObserver(self, forKeyPath: keyPath, options: .Initial, context: nil)
+		}
+		observingUDC = true
 	}
 	
 	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
