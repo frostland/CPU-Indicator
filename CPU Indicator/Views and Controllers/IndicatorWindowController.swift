@@ -39,13 +39,13 @@ class IndicatorWindowController: NSWindowController {
 	}
 	
 	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-		let prefix = "values."
-		let ud = NSUserDefaults.standardUserDefaults()
-		guard let kp = keyPath where kp.hasPrefix(prefix) && object === NSUserDefaultsController.sharedUserDefaultsController() else {
+		guard let kp = keyPath where observedUDCKeys.contains(kp) && object === NSUserDefaultsController.sharedUserDefaultsController() else {
 			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
 			return
 		}
 		
+		let prefix = "values."
+		let ud = NSUserDefaults.standardUserDefaults()
 		switch kp.substringFromIndex(prefix.endIndex) {
 		case kUDK_ShowWindowIndicator:
 			if ud.boolForKey(kUDK_FirstRun) {
@@ -86,7 +86,7 @@ class IndicatorWindowController: NSWindowController {
 		case kUDK_WindowIndicatorDecreaseOpacityOnHover:
 			(/*TODO*/)
 		default:
-			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+			fatalError("Unreachable code has been reached!")
 		}
 	}
 }

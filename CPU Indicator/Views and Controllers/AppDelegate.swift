@@ -15,14 +15,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	static private(set) var sharedAppDelegate: AppDelegate!
 	
-	@IBOutlet private var preferencesMenuItem: NSMenuItem!
-	
 	private var introWindowController: NSWindowController?
 	/* The preferences window controller keeps a reference to itself while it
 	 * needs itself. */
 	private weak var preferencesWindowController: PreferencesWindowController?
 	
 	private var mainWindowController: IndicatorWindowController!
+	@IBOutlet private var menuBarController: IndicatorMenuBarController!
 	
 	private var dockIconShown = false
 	private var appDidBecomeActive = false

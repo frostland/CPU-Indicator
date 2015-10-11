@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B68FE0F1BC9D692004B900C /* IndicatorMenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68FE0E1BC9D692004B900C /* IndicatorMenuBarController.swift */; settings = {ASSET_TAGS = (); }; };
+		7B68FE111BC9D739004B900C /* IndicatorDockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68FE101BC9D739004B900C /* IndicatorDockController.swift */; settings = {ASSET_TAGS = (); }; };
 		7B71E76A1B964D8B00F037A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71E7691B964D8B00F037A3 /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
 		7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */; };
 		7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C53B1B2C9D2A00A6B64A /* IntroViewController.swift */; };
@@ -41,6 +43,8 @@
 /* Begin PBXFileReference section */
 		7B4952A11BB75954001DE883 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		7B4952A21BB75988001DE883 /* CPU Indicator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CPU Indicator.entitlements"; sourceTree = "<group>"; };
+		7B68FE0E1BC9D692004B900C /* IndicatorMenuBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorMenuBarController.swift; sourceTree = "<group>"; };
+		7B68FE101BC9D739004B900C /* IndicatorDockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorDockController.swift; sourceTree = "<group>"; };
 		7B71E7691B964D8B00F037A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7B87C5361B2C9D2A00A6B64A /* CPU Indicator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPU Indicator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 				7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */,
 				7B87C53B1B2C9D2A00A6B64A /* IntroViewController.swift */,
 				7BEF6D2A1BB34089002E074C /* IndicatorWindowController.swift */,
+				7B68FE0E1BC9D692004B900C /* IndicatorMenuBarController.swift */,
+				7B68FE101BC9D739004B900C /* IndicatorDockController.swift */,
 				7BD9309A1B933D3300EDED90 /* Preferences */,
 			);
 			path = "Views and Controllers";
@@ -331,7 +337,9 @@
 				7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */,
 				7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */,
 				7BEF6D2B1BB34089002E074C /* IndicatorWindowController.swift in Sources */,
+				7B68FE0F1BC9D692004B900C /* IndicatorMenuBarController.swift in Sources */,
 				7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */,
+				7B68FE111BC9D739004B900C /* IndicatorDockController.swift in Sources */,
 				7BEC78151BA5A5F700F08D88 /* PreferencesWindowController.swift in Sources */,
 				7BF95FD61B91E0DB00DC4947 /* IsNotThree.swift in Sources */,
 				7B71E76A1B964D8B00F037A3 /* Constants.swift in Sources */,
