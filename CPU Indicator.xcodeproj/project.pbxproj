@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B1F6D271BCADCB3003860E8 /* SkinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1F6D261BCADCB3003860E8 /* SkinCell.swift */; settings = {ASSET_TAGS = (); }; };
+		7B62756E1BCAFBEB007A0155 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B62756C1BCAFBEB007A0155 /* Model.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		7B6275741BCAFFA6007A0155 /* SkinFrame+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6275701BCAFFA6007A0155 /* SkinFrame+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		7B6275751BCAFFA6007A0155 /* SkinFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6275711BCAFFA6007A0155 /* SkinFrame.swift */; settings = {ASSET_TAGS = (); }; };
+		7B6275761BCAFFA6007A0155 /* Skin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6275721BCAFFA6007A0155 /* Skin+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		7B6275771BCAFFA6007A0155 /* Skin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6275731BCAFFA6007A0155 /* Skin.swift */; settings = {ASSET_TAGS = (); }; };
 		7B68FE0F1BC9D692004B900C /* IndicatorMenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68FE0E1BC9D692004B900C /* IndicatorMenuBarController.swift */; settings = {ASSET_TAGS = (); }; };
 		7B68FE111BC9D739004B900C /* IndicatorDockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68FE101BC9D739004B900C /* IndicatorDockController.swift */; settings = {ASSET_TAGS = (); }; };
 		7B71E76A1B964D8B00F037A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71E7691B964D8B00F037A3 /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
@@ -41,8 +47,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B1F6D261BCADCB3003860E8 /* SkinCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinCell.swift; sourceTree = "<group>"; };
 		7B4952A11BB75954001DE883 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		7B4952A21BB75988001DE883 /* CPU Indicator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CPU Indicator.entitlements"; sourceTree = "<group>"; };
+		7B62756D1BCAFBEB007A0155 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		7B6275701BCAFFA6007A0155 /* SkinFrame+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SkinFrame+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7B6275711BCAFFA6007A0155 /* SkinFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinFrame.swift; sourceTree = "<group>"; };
+		7B6275721BCAFFA6007A0155 /* Skin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Skin+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7B6275731BCAFFA6007A0155 /* Skin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Skin.swift; sourceTree = "<group>"; };
 		7B68FE0E1BC9D692004B900C /* IndicatorMenuBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorMenuBarController.swift; sourceTree = "<group>"; };
 		7B68FE101BC9D739004B900C /* IndicatorDockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorDockController.swift; sourceTree = "<group>"; };
 		7B71E7691B964D8B00F037A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -90,6 +102,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B62756F1BCAFEC9007A0155 /* NSManagedObject Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				7B6275731BCAFFA6007A0155 /* Skin.swift */,
+				7B6275721BCAFFA6007A0155 /* Skin+CoreDataProperties.swift */,
+				7B6275711BCAFFA6007A0155 /* SkinFrame.swift */,
+				7B6275701BCAFFA6007A0155 /* SkinFrame+CoreDataProperties.swift */,
+			);
+			path = "NSManagedObject Subclasses";
+			sourceTree = "<group>";
+		};
 		7B87C52D1B2C9D2A00A6B64A = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +176,7 @@
 				7B68FE0E1BC9D692004B900C /* IndicatorMenuBarController.swift */,
 				7B68FE101BC9D739004B900C /* IndicatorDockController.swift */,
 				7BD9309A1B933D3300EDED90 /* Preferences */,
+				7B1F6D261BCADCB3003860E8 /* SkinCell.swift */,
 			);
 			path = "Views and Controllers";
 			sourceTree = "<group>";
@@ -160,6 +184,8 @@
 		7BD930991B933D1F00EDED90 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7B62756C1BCAFBEB007A0155 /* Model.xcdatamodeld */,
+				7B62756F1BCAFEC9007A0155 /* NSManagedObject Subclasses */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -337,12 +363,18 @@
 				7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */,
 				7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */,
 				7BEF6D2B1BB34089002E074C /* IndicatorWindowController.swift in Sources */,
+				7B6275761BCAFFA6007A0155 /* Skin+CoreDataProperties.swift in Sources */,
 				7B68FE0F1BC9D692004B900C /* IndicatorMenuBarController.swift in Sources */,
+				7B6275741BCAFFA6007A0155 /* SkinFrame+CoreDataProperties.swift in Sources */,
+				7B6275751BCAFFA6007A0155 /* SkinFrame.swift in Sources */,
 				7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */,
+				7B1F6D271BCADCB3003860E8 /* SkinCell.swift in Sources */,
+				7B6275771BCAFFA6007A0155 /* Skin.swift in Sources */,
 				7B68FE111BC9D739004B900C /* IndicatorDockController.swift in Sources */,
 				7BEC78151BA5A5F700F08D88 /* PreferencesWindowController.swift in Sources */,
 				7BF95FD61B91E0DB00DC4947 /* IsNotThree.swift in Sources */,
 				7B71E76A1B964D8B00F037A3 /* Constants.swift in Sources */,
+				7B62756E1BCAFBEB007A0155 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,6 +621,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7B62756C1BCAFBEB007A0155 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7B62756D1BCAFBEB007A0155 /* Model.xcdatamodel */,
+			);
+			currentVersion = 7B62756D1BCAFBEB007A0155 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7B87C52E1B2C9D2A00A6B64A /* Project object */;
 }
