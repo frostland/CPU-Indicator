@@ -47,7 +47,8 @@ let kUDK_ShowDockIcon = "FLShowDock"
 let kUDK_DockIconIsCPUIndicator = "FLShowCPUInDock"
 
 
-enum MixedImageState: Int {
+@objc
+enum MixedImageState: Int16 {
 	case UseSkinDefault    = -1
 	case Allow             =  1
 	case AllowTransitions  =  2

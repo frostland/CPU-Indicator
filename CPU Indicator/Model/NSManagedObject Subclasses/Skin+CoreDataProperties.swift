@@ -15,7 +15,7 @@ import CoreData
 extension Skin {
 
     @NSManaged var height: Int32
-    @NSManaged var mixedImageState: Int16
+    @NSManaged var mixedImageState: MixedImageState
     @NSManaged var name: String!
     @NSManaged var sortPosition: Int32
     @NSManaged var source: String?

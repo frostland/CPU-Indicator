@@ -51,7 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				kUDK_ShowDockIcon: true,
 				kUDK_DockIconIsCPUIndicator: false,
 				
-				kUDK_MixedImageState: NSNumber(integer: MixedImageState.UseSkinDefault.rawValue)
+				kUDK_MixedImageState: NSNumber(integer: Int(MixedImageState.UseSkinDefault.rawValue))
 			]
 			NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
 		}
