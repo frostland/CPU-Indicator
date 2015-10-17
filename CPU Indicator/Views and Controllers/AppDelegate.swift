@@ -65,12 +65,124 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 	
+	lazy var applicationDocumentsDirectory: NSURL = {
+		/* The directory the application uses to store the Core Data store file */
+		let urls = NSFileManager.defaultManager().URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
+		let appSupportURL = urls.last!
+		return appSupportURL.URLByAppendingPathComponent("fr.frostland.cpu-indicator")
+	}()
+	
+	lazy var managedObjectModel: NSManagedObjectModel = {
+		/* The managed object model for the application */
+		let modelURL = NSBundle.mainBundle().URLForResource("Model", withExtension: "momd")!
+		return NSManagedObjectModel(contentsOfURL: modelURL)!
+	}()
+	
+	lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+		/* The persistent store coordinator for the application. This
+		 * implementation creates and return a coordinator, having added the store
+		 * for the application to it. (The directory for the store is created, if
+		 * necessary.) */
+		let fileManager = NSFileManager.defaultManager()
+		let defaultError = NSError(domain: kAppErrorDomainName, code: kErr_CoreDataSetup, userInfo: [NSLocalizedDescriptionKey: "There was an error creating or loading the application’s saved data."])
+		
+		do {
+			/* Make sure the application files directory is there */
+			do {
+				let properties = try self.applicationDocumentsDirectory.resourceValuesForKeys([NSURLIsDirectoryKey])
+				if !properties[NSURLIsDirectoryKey]!.boolValue {
+					throw NSError(domain: kAppErrorDomainName, code: kErr_CoreDataSetup, userInfo: [NSLocalizedDescriptionKey: "Expected a folder to store application data, found a file \(self.applicationDocumentsDirectory.path)."])
+				}
+			} catch  {
+				if (error as NSError).code == NSFileReadNoSuchFileError {
+					guard let _ = try? fileManager.createDirectoryAtPath(self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil) else {
+						throw defaultError
+					}
+				}
+			}
+			
+			/* Create the coordinator and store */
+			let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+			let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("CPUIndicator.storedata")
+			try coordinator.addPersistentStoreWithType(NSXMLStoreType, configuration: nil, URL: url, options: nil)
+			return coordinator
+		} catch {
+			NSApplication.sharedApplication().presentError(error as NSError)
+			abort()
+		}
+	}()
+	
+	lazy var mainManagedObjectContext: NSManagedObjectContext = {
+		/* Returns the managed object context for the application (which is
+		 * already bound to the persistent store coordinator for the application.) */
+		let coordinator = self.persistentStoreCoordinator
+		var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+		managedObjectContext.persistentStoreCoordinator = coordinator
+		return managedObjectContext
+	}()
+	
 	func applicationWillFinishLaunching(notification: NSNotification) {
+		/* Show the Dock icon if needed */
 		if NSUserDefaults.standardUserDefaults().boolForKey(kUDK_ShowDockIcon) {
 			var psn = ProcessSerialNumber(highLongOfPSN: UInt32(0), lowLongOfPSN: UInt32(kCurrentProcess))
 			let returnCode = TransformProcessType(&psn, ProcessApplicationTransformState(kProcessTransformToForegroundApplication))
 			dockIconShown = (returnCode == 0)
 		}
+		
+		/* To create a skin. */
+		#if false
+		if #available(OSX 10.11, *) {
+			let openPanel = NSOpenPanel()
+			openPanel.canChooseDirectories = true
+			openPanel.canChooseFiles = false
+			openPanel.beginWithCompletionHandler { r in
+				guard let imagesBaseURL = openPanel.URL else {
+					return
+				}
+				
+				var images = [(NSImage, Int32, Int32)]()
+				var maxWidth = Int32(0), maxHeight = Int32(0)
+				let imagesRelativePaths = ["babe0.png", "babe1.png", "babe2.png", "babe3.png", "babe4.png"]
+				for relativePath in imagesRelativePaths {
+					let url = NSURL(fileURLWithPath: relativePath, relativeToURL: imagesBaseURL)
+					guard let image = NSImage(contentsOfURL: url) else {
+						print("*** Warning: Cannot load image at url \(url). Skipping.")
+						continue
+					}
+					let w = Int32(ceil(image.size.width)), h = Int32(ceil(image.size.height))
+					if maxWidth  < w {maxWidth = w}
+					if maxHeight < h {maxHeight = h}
+					images.append((image, w, h))
+				}
+				self.mainManagedObjectContext.performBlockAndWait {
+					let skin = NSEntityDescription.insertNewObjectForEntityForName("Skin", inManagedObjectContext: self.mainManagedObjectContext) as! Skin
+					skin.name = "Babes"
+					skin.sortPosition = 0
+					skin.width = maxWidth
+					skin.height = maxHeight
+					skin.source = "Bruno Bellamy"
+					skin.uid = "fr.frostland.cpu-indicator.babes"
+					skin.mixedImageState = MixedImageState.AllowTransitions
+					let mutableFrames = skin.mutableOrderedSetValueForKey("frames")
+					for (image, w, h) in images {
+						let frame = NSEntityDescription.insertNewObjectForEntityForName("SkinFrame", inManagedObjectContext: self.mainManagedObjectContext) as! SkinFrame
+						frame.width = w
+						frame.height = h
+						frame.xPos = (maxWidth  - w)/2
+						frame.yPos = (maxHeight - h)/2
+						frame.imageData = image.TIFFRepresentationUsingCompression(NSTIFFCompression.LZW, factor: 0)
+						mutableFrames.addObject(frame)
+					}
+					do {
+						try self.mainManagedObjectContext.save()
+					} catch {
+						print("*** Warning: Cannot save managed object context, got error \(error). Rollbacking.")
+						self.mainManagedObjectContext.rollback()
+					}
+				}
+			}
+		}
+		#endif
 	}
 	
 	func applicationDidFinishLaunching(aNotification: NSNotification) {

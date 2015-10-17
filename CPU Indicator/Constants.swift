@@ -10,6 +10,11 @@ import Foundation
 
 
 
+let kAppErrorDomainName = "fr.frostland.cpu-indicator"
+let kErr_CoreDataSetup = 1
+
+
+
 let kUDK_FirstRun = "FLFirstRun"
 
 let kUDK_PrefsPanesSizes          = "FLPrefsPanesSizes"
