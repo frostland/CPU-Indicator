@@ -10,7 +10,7 @@ import Cocoa
 
 
 
-class SkinCellValue : NSObject, NSCopying {
+class SizedSkin : NSObject {
 	
 	let skin: Skin
 	let size: CGSize
@@ -87,8 +87,30 @@ class SkinCellValue : NSObject, NSCopying {
 		scale = CGPointMake(finalSize.width / skinSize.width, finalSize.height / skinSize.height)
 	}
 	
+	func imageForProgress(p: Float) -> NSImage {
+		return NSImage()
+	}
+	
+}
+
+
+
+class SkinCellValue : NSObject, NSCopying {
+	
+	let sizedSkin: SizedSkin
+	let progress: Float /* Between 0 and 1 */
+	
+	var imageValue: NSImage {
+		return sizedSkin.imageForProgress(progress)
+	}
+	
+	init(sizedSkin ss: SizedSkin, progress p: Float) {
+		sizedSkin = ss
+		progress = p
+	}
+	
 	func copyWithZone(zone: NSZone) -> AnyObject {
-		return SkinCellValue(skin: skin, size: size, allowDistortion: true)
+		return SkinCellValue(sizedSkin: sizedSkin, progress: progress)
 	}
 	
 }
@@ -99,8 +121,12 @@ class SkinCell : NSCell {
 	
 	override var representedObject: AnyObject? {
 		didSet {
-			assert(representedObject is SkinCellValue?)
-//			self.objectValue = imageForSkinCellValue
+			guard representedObject != nil else {
+				self.objectValue = nil
+				return
+			}
+			let scv = representedObject as! SkinCellValue
+			self.objectValue = scv.imageValue
 		}
 	}
 	

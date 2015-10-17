@@ -22,6 +22,8 @@
 		7B87C5411B2C9D2A00A6B64A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B87C53F1B2C9D2A00A6B64A /* Main.storyboard */; };
 		7B87C54C1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C54B1B2C9D2B00A6B64A /* CPU_IndicatorTests.swift */; };
 		7B87C5571B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C5561B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift */; };
+		7B99A38A1BD2E4C40020D13E /* SkinsPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99A3891BD2E4C40020D13E /* SkinsPrefsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		7B99A38C1BD2FE750020D13E /* VerticallyCenteredTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99A38B1BD2FE750020D13E /* VerticallyCenteredTextFieldCell.swift */; settings = {ASSET_TAGS = (); }; };
 		7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */; };
 		7BDBBD331B5C0009005D21EF /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD59261B5BA48000E239ED /* Storyboards.swift */; };
 		7BEC78151BA5A5F700F08D88 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEC78141BA5A5F700F08D88 /* PreferencesWindowController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -70,6 +72,8 @@
 		7B87C5521B2C9D2B00A6B64A /* CPU IndicatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CPU IndicatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B87C5561B2C9D2B00A6B64A /* CPU_IndicatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU_IndicatorUITests.swift; sourceTree = "<group>"; };
 		7B87C5581B2C9D2B00A6B64A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B99A3891BD2E4C40020D13E /* SkinsPrefsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinsPrefsViewController.swift; sourceTree = "<group>"; };
+		7B99A38B1BD2FE750020D13E /* VerticallyCenteredTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextFieldCell.swift; sourceTree = "<group>"; };
 		7BAD59261B5BA48000E239ED /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		7BEC78141BA5A5F700F08D88 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 			children = (
 				7BEC78141BA5A5F700F08D88 /* PreferencesWindowController.swift */,
 				7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */,
+				7B99A3891BD2E4C40020D13E /* SkinsPrefsViewController.swift */,
+				7B99A38B1BD2FE750020D13E /* VerticallyCenteredTextFieldCell.swift */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -361,11 +367,13 @@
 			files = (
 				7BDBBD331B5C0009005D21EF /* Storyboards.swift in Sources */,
 				7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */,
+				7B99A38C1BD2FE750020D13E /* VerticallyCenteredTextFieldCell.swift in Sources */,
 				7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */,
 				7BEF6D2B1BB34089002E074C /* IndicatorWindowController.swift in Sources */,
 				7B6275761BCAFFA6007A0155 /* Skin+CoreDataProperties.swift in Sources */,
 				7B68FE0F1BC9D692004B900C /* IndicatorMenuBarController.swift in Sources */,
 				7B6275741BCAFFA6007A0155 /* SkinFrame+CoreDataProperties.swift in Sources */,
+				7B99A38A1BD2E4C40020D13E /* SkinsPrefsViewController.swift in Sources */,
 				7B6275751BCAFFA6007A0155 /* SkinFrame.swift in Sources */,
 				7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */,
 				7B1F6D271BCADCB3003860E8 /* SkinCell.swift in Sources */,
