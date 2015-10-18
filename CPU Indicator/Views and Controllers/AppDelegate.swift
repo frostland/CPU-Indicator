@@ -156,7 +156,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				}
 				self.mainManagedObjectContext.performBlockAndWait {
 					let skin = NSEntityDescription.insertNewObjectForEntityForName("Skin", inManagedObjectContext: self.mainManagedObjectContext) as! Skin
-					skin.name = "Babes"
+					skin.name = "Hot Babe"
+					skin.selected = true
 					skin.sortPosition = 0
 					skin.width = maxWidth
 					skin.height = maxHeight

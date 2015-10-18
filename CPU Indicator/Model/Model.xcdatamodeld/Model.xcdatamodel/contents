@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15B30a" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15B38b" minimumToolsVersion="Xcode 7.0">
     <entity name="Skin" representedClassName=".Skin" syncable="YES">
         <attribute name="height" attributeType="Integer 32" syncable="YES"/>
         <attribute name="mixedImageState" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="selected" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="sortPosition" attributeType="Integer 32" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="uid" attributeType="String" indexed="YES" syncable="YES"/>
@@ -19,7 +20,7 @@
         <relationship name="skin" maxCount="1" deletionRule="Nullify" destinationEntity="Skin" inverseName="frames" inverseEntity="Skin" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Skin" positionX="-261" positionY="-9" width="128" height="163"/>
-        <element name="SkinFrame" positionX="-47" positionY="53" width="128" height="135"/>
+        <element name="Skin" positionX="-261" positionY="-9" width="128" height="178"/>
+        <element name="SkinFrame" positionX="-47" positionY="63" width="128" height="135"/>
     </elements>
 </model>
