@@ -111,7 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			return coordinator
 		} catch {
 			NSApplication.sharedApplication().presentError(error as NSError)
-			abort()
+			exit(0)
 		}
 	}()
 	
