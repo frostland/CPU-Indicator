@@ -104,7 +104,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			/* Create the coordinator and store */
 			let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
 			let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("CPUIndicator.storedata")
-			try coordinator.addPersistentStoreWithType(NSXMLStoreType, configuration: nil, URL: url, options: nil)
+			try coordinator.addPersistentStoreWithType(NSXMLStoreType, configuration: nil, URL: url, options: [
+				NSMigratePersistentStoresAutomaticallyOption: true,
+				NSInferMappingModelAutomaticallyOption: true
+			])
 			return coordinator
 		} catch {
 			NSApplication.sharedApplication().presentError(error as NSError)
