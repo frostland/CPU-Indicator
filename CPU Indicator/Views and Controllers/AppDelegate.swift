@@ -15,6 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	static private(set) var sharedAppDelegate: AppDelegate!
 	
+	dynamic var selectedSkinObjectID: NSManagedObjectID!
+	
 	private var introWindowController: NSWindowController?
 	/* The preferences window controller keeps a reference to itself while it
 	 * needs itself. */
@@ -28,7 +30,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	override class func initialize() {
 		if self === AppDelegate.self {
-/*			[defaultValues setValue:@0 forKey:FL_UDK_SELECTED_SKIN];*/
 			let defaults = [
 				kUDK_FirstRun: true,
 				
@@ -51,6 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				kUDK_ShowDockIcon: true,
 				kUDK_DockIconIsCPUIndicator: false,
 				
+				kUDK_SelectedSkinUID: "fr.frostland.cpu-indicator.built-in",
 				kUDK_MixedImageState: NSNumber(integer: Int(MixedImageState.UseSkinDefault.rawValue))
 			]
 			NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
@@ -132,6 +134,57 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			dockIconShown = (returnCode == 0)
 		}
 		
+		/* Let's check the selected skin is indeed in the database. */
+		self.mainManagedObjectContext.performBlockAndWait {
+			do {
+				let selectedSkinUID = NSUserDefaults.standardUserDefaults().stringForKey(kUDK_SelectedSkinUID)!
+				let fRequest = NSFetchRequest(entityName: "Skin")
+				fRequest.predicate = NSPredicate(format: "%K == %@", "uid", selectedSkinUID)
+				fRequest.sortDescriptors = [NSSortDescriptor(key: "sortPosition", ascending: true)]
+				let results = try self.mainManagedObjectContext.executeFetchRequest(fRequest) as! [Skin]
+				if results.count > 1 {print("*** Warning: Got more than one skin for UID \(selectedSkinUID). Taking the first one.")}
+				if results.count > 0 {
+					self.selectedSkinObjectID = results[0].objectID
+				} else {
+					let fRequest = NSFetchRequest(entityName: "Skin")
+					fRequest.fetchLimit = 1
+					fRequest.sortDescriptors = [NSSortDescriptor(key: "sortPosition", ascending: true)]
+					let results = try self.mainManagedObjectContext.executeFetchRequest(fRequest) as! [Skin]
+					if results.count > 0 {
+						/* The UID of the selected skin from the prefs was not found.
+						 * we take the first skin and make it the selected one. */
+						NSUserDefaults.standardUserDefaults().setObject(results[0].uid, forKey: kUDK_SelectedSkinUID)
+						self.selectedSkinObjectID = results[0].objectID
+					} else {
+						/* There are no skins in the db. We create the default one! */
+						let images = [
+							NSImage(named: "green.png")!,
+							NSImage(named: "orange.png")!,
+							NSImage(named: "red.png")!
+						]
+						var maxWidth = Int32(0), maxHeight = Int32(0)
+						let imagesInfo = self.imagesInfoFromImages(images, maxWidth: &maxWidth, maxHeight: &maxHeight)
+						let skin = NSEntityDescription.insertNewObjectForEntityForName("Skin", inManagedObjectContext: self.mainManagedObjectContext) as! Skin
+						skin.name = "Default"
+						skin.sortPosition = 0
+						skin.isBuiltIn = true
+						skin.width = maxWidth
+						skin.height = maxHeight
+						skin.source = "Frost Land"
+						skin.uid = "fr.frostland.cpu-indicator.built-in"
+						skin.mixedImageState = MixedImageState.AllowTransitions
+						self.importSkinFramesFromImagesInfo(imagesInfo, inSkin: skin)
+						try self.mainManagedObjectContext.save()
+						self.selectedSkinObjectID = skin.objectID
+					}
+				}
+			} catch {
+				self.mainManagedObjectContext.rollback()
+				NSApplication.sharedApplication().presentError(error as NSError)
+				exit(0)
+			}
+		}
+		
 		/* To create a skin. */
 		#if false
 		if #available(OSX 10.11, *) {
@@ -143,40 +196,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 					return
 				}
 				
-				var images = [(NSImage, Int32, Int32)]()
-				var maxWidth = Int32(0), maxHeight = Int32(0)
+				var images = [NSImage]()
 				let imagesRelativePaths = ["babe0.png", "babe1.png", "babe2.png", "babe3.png", "babe4.png"]
 				for relativePath in imagesRelativePaths {
 					let url = NSURL(fileURLWithPath: relativePath, relativeToURL: imagesBaseURL)
-					guard let image = NSImage(contentsOfURL: url) else {
-						print("*** Warning: Cannot load image at url \(url). Skipping.")
-						continue
-					}
-					let w = Int32(ceil(image.size.width)), h = Int32(ceil(image.size.height))
-					if maxWidth  < w {maxWidth = w}
-					if maxHeight < h {maxHeight = h}
-					images.append((image, w, h))
+					if let image = NSImage(contentsOfURL: url) {images.append(image)}
+					else                                       {print("*** Warning: Cannot load image at url \(url). Skipping.")}
 				}
+				var maxWidth = Int32(0), maxHeight = Int32(0)
+				let imagesInfo = self.imagesInfoFromImages(images, maxWidth: &maxWidth, maxHeight: &maxHeight)
 				self.mainManagedObjectContext.performBlockAndWait {
 					let skin = NSEntityDescription.insertNewObjectForEntityForName("Skin", inManagedObjectContext: self.mainManagedObjectContext) as! Skin
 					skin.name = "Hot Babe"
-					skin.selected = true
 					skin.sortPosition = 0
 					skin.width = maxWidth
 					skin.height = maxHeight
 					skin.source = "Bruno Bellamy"
-					skin.uid = "fr.frostland.cpu-indicator.babes"
+					skin.uid = "fr.frostland.cpu-indicator.hot-babe"
 					skin.mixedImageState = MixedImageState.AllowTransitions
-					let mutableFrames = skin.mutableOrderedSetValueForKey("frames")
-					for (image, w, h) in images {
-						let frame = NSEntityDescription.insertNewObjectForEntityForName("SkinFrame", inManagedObjectContext: self.mainManagedObjectContext) as! SkinFrame
-						frame.width = w
-						frame.height = h
-						frame.xPos = (maxWidth  - w)/2
-						frame.yPos = (maxHeight - h)/2
-						frame.imageData = image.TIFFRepresentationUsingCompression(NSTIFFCompression.LZW, factor: 0)
-						mutableFrames.addObject(frame)
-					}
+					self.importSkinFramesFromImagesInfo(imagesInfo, inSkin: skin)
 					do {
 						try self.mainManagedObjectContext.save()
 					} catch {
@@ -224,6 +262,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func closeIntroWindow() {
 		introWindowController?.close()
 		introWindowController = nil /* No need to keep a reference to a class we'll never use again. */
+	}
+	
+	private func imagesInfoFromImages(images: [NSImage], inout maxWidth: Int32, inout maxHeight: Int32) -> [(NSImage, Int32, Int32, Int32, Int32)] {
+		var imagesInfo = [(NSImage, Int32, Int32, Int32, Int32)]()
+		for image in images {
+			let w = Int32(ceil(image.size.width)), h = Int32(ceil(image.size.height))
+			if maxWidth  < w {maxWidth = w}
+			if maxHeight < h {maxHeight = h}
+			imagesInfo.append((image, -1, -1, w, h))
+		}
+		return imagesInfo
+	}
+	
+	/* Expects to be called on the given context's queue.
+	 * The images array contains a quintuplet of the image, and in that order,
+	 * the x, y position of the image and the width and height.
+	 * These values can individually be negative or zero, in which case the value
+	 * is inferred from the skin width and height. */
+	private func importSkinFramesFromImagesInfo(images: [(NSImage, Int32, Int32, Int32, Int32)], inSkin skin: Skin) {
+		let mutableFrames = skin.mutableOrderedSetValueForKey("frames")
+		for (image, x, y, w, h) in images {
+			let frame = NSEntityDescription.insertNewObjectForEntityForName("SkinFrame", inManagedObjectContext: self.mainManagedObjectContext) as! SkinFrame
+			frame.width  = (w > 0 ? w : skin.width)
+			frame.height = (h > 0 ? h : skin.height)
+			frame.xPos = (x > 0 ? x : (skin.width  - frame.width)/2)
+			frame.yPos = (y > 0 ? y : (skin.height - frame.height)/2)
+			frame.imageData = image.TIFFRepresentationUsingCompression(NSTIFFCompression.LZW, factor: 0)
+			mutableFrames.addObject(frame)
+		}
 	}
 
 }

@@ -15,10 +15,10 @@ import CoreData
 extension Skin {
 
     @NSManaged var height: Int32/*!*/
+    @NSManaged var isBuiltIn: Bool/*!*/
     @NSManaged var mixedImageState: MixedImageState/*!*/
     @NSManaged var name: String!
     @NSManaged var sortPosition: Int32/*!*/
-    @NSManaged var selected: Bool/*!*/
     @NSManaged var source: String?
     @NSManaged var uid: String!
     @NSManaged var width: Int32

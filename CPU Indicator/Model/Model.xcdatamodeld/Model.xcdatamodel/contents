@@ -2,9 +2,9 @@
 <model userDefinedModelVersionIdentifier="1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15B38b" minimumToolsVersion="Xcode 7.0">
     <entity name="Skin" representedClassName=".Skin" syncable="YES">
         <attribute name="height" attributeType="Integer 32" syncable="YES"/>
-        <attribute name="mixedImageState" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="isBuiltIn" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="mixedImageState" attributeType="Integer 16" minValueString="1" maxValueString="3" defaultValueString="2" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="selected" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="sortPosition" attributeType="Integer 32" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="uid" attributeType="String" indexed="YES" syncable="YES"/>

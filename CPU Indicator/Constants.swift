@@ -11,7 +11,9 @@ import Foundation
 
 
 let kAppErrorDomainName = "fr.frostland.cpu-indicator"
-let kErr_CoreDataSetup = 1
+let kErr_Unknown = 1
+let kErr_CoreDataSetup = 2
+let kErr_CannotSaveRollbacked = 3
 
 
 
@@ -59,5 +61,5 @@ enum MixedImageState: Int16 {
 	case AllowTransitions  =  2
 	case Disallow          =  3
 }
-
+let kUDK_SelectedSkinUID = "FLSelectedSkinUID"
 let kUDK_MixedImageState = "FLMixedImageState"
