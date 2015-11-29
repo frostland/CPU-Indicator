@@ -14,7 +14,9 @@ class SkinView : NSView {
 	
 	/* The three methods below are not useful on Xcode > 3 as the support for
 	 * displaying custom bindings in the Interface Editor (aka. Interface Builder
-	 * on Xcode 3) has been removed... */
+	 * on Xcode 3) has been removed...
+	 * In the meantime, we have cheated in the storyboard to have a binding with
+	 * the sizedSkin property anyway by editing the storyboard XML manually... */
 	/*
 	override static func initialize() {
 		if self == SkinCell.self {
