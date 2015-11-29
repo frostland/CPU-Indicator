@@ -56,6 +56,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				kUDK_MixedImageState: NSNumber(integer: Int(MixedImageState.UseSkinDefault.rawValue))
 			]
 			NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
+			
+			let skinPreviewTransformer = SkinToSizedSkinTransformer(destSize: CGSizeMake(141, 141), allowDistortion: false)
+			NSValueTransformer.setValueTransformer(skinPreviewTransformer, forName: "SkinPreviewTransformer")
 		}
 	}
 	

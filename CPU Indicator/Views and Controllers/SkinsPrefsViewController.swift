@@ -10,7 +10,7 @@ import Cocoa
 
 
 
-class SkinsPrefsViewController: NSViewController {
+class SkinsPrefsViewController: NSViewController, NSTableViewDelegate {
 	
 	dynamic let managedObjectContext = AppDelegate.sharedAppDelegate.mainManagedObjectContext
 	dynamic let sortDescriptors = [NSSortDescriptor(key: "sortPosition", ascending: true)]
@@ -36,7 +36,10 @@ class SkinsPrefsViewController: NSViewController {
 			}
 			switch (object, keyPath) {
 			case (let o, "selectedSkinObjectID") where o === AppDelegate.sharedAppDelegate:
-				tableView.setNeedsDisplayInRect(tableView.rectOfColumn(tableView.columnWithIdentifier("isSelected")))
+				tableView.reloadDataForRowIndexes(
+					NSIndexSet(indexesInRange: NSMakeRange(0, tableView.numberOfRows) /* Too lazy to compute exactly which row should be reloaded right now... */),
+					columnIndexes: NSIndexSet(index: tableView.columnWithIdentifier("isSelected"))
+				)
 			default:
 				throw e
 			}
