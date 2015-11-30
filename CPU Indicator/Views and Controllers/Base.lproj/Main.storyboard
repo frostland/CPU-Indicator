@@ -1188,6 +1188,11 @@ DQ
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="iq8-W2-jdR" customClass="SkinView" customModule="CPU_Indicator" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="141" height="141"/>
                                                                             <animations/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                                                                    <real key="value" value="-1"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
                                                                             <connections>
                                                                                 <binding destination="ndX-sc-bcV" name="sizedSkin" keyPath="objectValue" id="iaM-Rb-exe">
                                                                                     <dictionary key="options">
