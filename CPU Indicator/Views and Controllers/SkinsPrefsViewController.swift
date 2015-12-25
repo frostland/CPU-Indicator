@@ -15,6 +15,7 @@ class SkinsPrefsViewController: NSViewController, NSTableViewDelegate {
 	dynamic let managedObjectContext = AppDelegate.sharedAppDelegate.mainManagedObjectContext
 	dynamic let sortDescriptors = [NSSortDescriptor(key: "sortPosition", ascending: true)]
 	
+	private var observingUDC = false
 	@IBOutlet private var arrayController: NSArrayController!
 	@IBOutlet private var tableView: NSTableView!
 	
@@ -22,10 +23,13 @@ class SkinsPrefsViewController: NSViewController, NSTableViewDelegate {
 		super.viewDidLoad()
 		
 		AppDelegate.sharedAppDelegate.addObserver(self, forKeyPath: "selectedSkinObjectID", options: [], context: nil)
+		observingUDC = true
 	}
 	
 	deinit {
-		AppDelegate.sharedAppDelegate.removeObserver(self, forKeyPath: "selectedSkinObjectID", context: nil)
+		if observingUDC {
+			AppDelegate.sharedAppDelegate.removeObserver(self, forKeyPath: "selectedSkinObjectID", context: nil)
+		}
 	}
 	
 	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
