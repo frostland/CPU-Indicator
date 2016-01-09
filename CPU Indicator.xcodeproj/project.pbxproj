@@ -30,6 +30,7 @@
 		7BD2CD681BDCE02000E8A00C /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BD2CD651BDCE02000E8A00C /* orange.png */; };
 		7BD2CD691BDCE02000E8A00C /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BD2CD661BDCE02000E8A00C /* red.png */; };
 		7BDBBD331B5C0009005D21EF /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD59261B5BA48000E239ED /* Storyboards.swift */; };
+		7BDE20FC1C41492E002B50C7 /* WindowPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDE20FB1C41492E002B50C7 /* WindowPrefsViewController.swift */; };
 		7BEC78151BA5A5F700F08D88 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEC78141BA5A5F700F08D88 /* PreferencesWindowController.swift */; };
 		7BEF6D2B1BB34089002E074C /* IndicatorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEF6D2A1BB34089002E074C /* IndicatorWindowController.swift */; };
 		7BF8B47A1C01ED0600D3FE61 /* SizedSkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF8B4791C01ED0600D3FE61 /* SizedSkin.swift */; };
@@ -85,6 +86,7 @@
 		7BD2CD641BDCE02000E8A00C /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		7BD2CD651BDCE02000E8A00C /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
 		7BD2CD661BDCE02000E8A00C /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		7BDE20FB1C41492E002B50C7 /* WindowPrefsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPrefsViewController.swift; sourceTree = "<group>"; };
 		7BEC78141BA5A5F700F08D88 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		7BEF6D2A1BB34089002E074C /* IndicatorWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorWindowController.swift; sourceTree = "<group>"; };
 		7BF8B4791C01ED0600D3FE61 /* SizedSkin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizedSkin.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				7BEC78141BA5A5F700F08D88 /* PreferencesWindowController.swift */,
 				7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */,
+				7BDE20FB1C41492E002B50C7 /* WindowPrefsViewController.swift */,
 				7B99A3891BD2E4C40020D13E /* SkinsPrefsViewController.swift */,
 				7B99A38B1BD2FE750020D13E /* VerticallyCenteredTextFieldCell.swift */,
 				7B591C3F1BE5779300DAAB57 /* CheckImageFromSkinObjectID.swift */,
@@ -391,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BDE20FC1C41492E002B50C7 /* WindowPrefsViewController.swift in Sources */,
 				7BDBBD331B5C0009005D21EF /* Storyboards.swift in Sources */,
 				7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */,
 				7BF8B47A1C01ED0600D3FE61 /* SizedSkin.swift in Sources */,

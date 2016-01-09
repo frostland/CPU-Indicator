@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	 * needs itself. */
 	private weak var preferencesWindowController: PreferencesWindowController?
 	
-	private var mainWindowController: IndicatorWindowController!
+	private(set) var mainWindowController: IndicatorWindowController!
 	@IBOutlet private var menuBarController: IndicatorMenuBarController!
 	
 	private var dockIconShown = false

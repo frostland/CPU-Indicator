@@ -16,12 +16,12 @@ class IndicatorWindowController: NSWindowController {
 		"values.\(kUDK_ShowWindowIndicator)",
 		"values.\(kUDK_WindowIndicatorLevel)", "values.\(kUDK_WindowIndicatorOpacity)",
 		"values.\(kUDK_WindowIndicatorClickless)", "values.\(kUDK_WindowIndicatorLocked)",
-		"values.\(kUDK_WindowIndicatorScale)", "values.\(kUDK_WindowIndicatorDisableShadow)",
-//		"values.\(kUDK_SelectedSkin)", "values.\(kUDK_MixedImageState)"
+		"values.\(kUDK_WindowIndicatorScale)", "values.\(kUDK_WindowIndicatorDisableShadow)"
 	]
 	
 	deinit {
 		if observingUDC {
+			AppDelegate.sharedAppDelegate.removeObserver(self, forKeyPath: "selectedSkinObjectID", context: nil)
 			for keyPath in observedUDCKeys {
 				NSUserDefaultsController.sharedUserDefaultsController().removeObserver(self, forKeyPath: keyPath)
 			}
@@ -35,6 +35,7 @@ class IndicatorWindowController: NSWindowController {
 		for keyPath in observedUDCKeys {
 			udc.addObserver(self, forKeyPath: keyPath, options: .Initial, context: nil)
 		}
+		AppDelegate.sharedAppDelegate.addObserver(self, forKeyPath: "selectedSkinObjectID", options: [], context: nil)
 		observingUDC = true
 	}
 	
@@ -89,4 +90,77 @@ class IndicatorWindowController: NSWindowController {
 			fatalError("Unreachable code has been reached!")
 		}
 	}
+	
+	@IBAction func moveWindowToTopLeft(sender: AnyObject!) {
+		guard let screenRect = self.window?.screen?.frame, var f = self.window?.frame else {
+			return
+		}
+		f.origin.x = screenRect.origin.x
+		f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height
+		self.window?.setFrame(f, display: true, animate: true)
+	}
+	
+	@IBAction func moveWindowToPseudoTopLeft(sender: AnyObject!) {
+		guard let screenRect = self.window?.screen?.visibleFrame, var f = self.window?.frame else {
+			return
+		}
+		f.origin.x = screenRect.origin.x
+		f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height
+		self.window?.setFrame(f, display: true, animate: true)
+	}
+	
+	@IBAction func moveWindowToTopRight(sender: AnyObject!) {
+		guard let screenRect = self.window?.screen?.frame, var f = self.window?.frame else {
+			return
+		}
+		f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width
+		f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height
+		self.window?.setFrame(f, display: true, animate: true)
+	}
+	
+	@IBAction func moveWindowToPseudoTopRight(sender: AnyObject!) {
+		guard let screenRect = self.window?.screen?.visibleFrame, var f = self.window?.frame else {
+			return
+		}
+		f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width
+		f.origin.y = screenRect.origin.y + screenRect.size.height - f.size.height
+		self.window?.setFrame(f, display: true, animate: true)
+	}
+	
+	@IBAction func moveWindowToBottomLeft(sender: AnyObject!) {
+		guard let screenRect = self.window?.screen?.frame, var f = self.window?.frame else {
+			return
+		}
+		f.origin.x = screenRect.origin.x
+		f.origin.y = screenRect.origin.y
+		self.window?.setFrame(f, display: true, animate: true)
+	}
+	
+	@IBAction func moveWindowToPseudoBottomLeft(sender: AnyObject!) {
+		guard let screenRect = self.window?.screen?.visibleFrame, var f = self.window?.frame else {
+			return
+		}
+		f.origin.x = screenRect.origin.x
+		f.origin.y = screenRect.origin.y
+		self.window?.setFrame(f, display: true, animate: true)
+	}
+	
+	@IBAction func moveWindowToBottomRight(sender: AnyObject!) {
+		guard let screenRect = self.window?.screen?.frame, var f = self.window?.frame else {
+			return
+		}
+		f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width
+		f.origin.y = screenRect.origin.y
+		self.window?.setFrame(f, display: true, animate: true)
+	}
+	
+	@IBAction func moveWindowToPseudoBottomRight(sender: AnyObject!) {
+		guard let screenRect = self.window?.screen?.visibleFrame, var f = self.window?.frame else {
+			return
+		}
+		f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width
+		f.origin.y = screenRect.origin.y
+		self.window?.setFrame(f, display: true, animate: true)
+	}
+	
 }

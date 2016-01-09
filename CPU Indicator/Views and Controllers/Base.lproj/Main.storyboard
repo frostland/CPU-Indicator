@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -475,7 +475,17 @@
                     <view key="view" id="k9A-vZ-RKR">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="yw3-Ce-cay" customClass="SkinView" customModule="CPU_Indicator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="yw3-Ce-cay" firstAttribute="leading" secondItem="k9A-vZ-RKR" secondAttribute="leading" id="KCK-ds-ccm"/>
+                            <constraint firstItem="yw3-Ce-cay" firstAttribute="top" secondItem="k9A-vZ-RKR" secondAttribute="top" id="UPQ-sk-fBV"/>
+                            <constraint firstAttribute="trailing" secondItem="yw3-Ce-cay" secondAttribute="trailing" id="mvv-d7-4bB"/>
+                            <constraint firstAttribute="bottom" secondItem="yw3-Ce-cay" secondAttribute="bottom" id="nP2-kf-7oJ"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="vfU-4O-2ij" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -495,7 +505,6 @@
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w1c-u9-Uvv">
                                 <rect key="frame" x="129" y="74" width="222" height="21"/>
-                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Welcome to CPU Indicator" id="CPm-l6-Lnd">
                                     <font key="font" metaFont="systemBold" size="17"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -504,7 +513,6 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="neu-JA-5jE">
                                 <rect key="frame" x="18" y="49" width="444" height="17"/>
-                                <animations/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Great intro text." id="UfJ-uG-pJC">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -513,7 +521,6 @@
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KhB-qH-wjM">
                                 <rect key="frame" x="407" y="13" width="59" height="32"/>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1ey-IK-qa9">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -527,7 +534,6 @@ DQ
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9rM-yL-Y62">
                                 <rect key="frame" x="283" y="13" width="124" height="32"/>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Preferences…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="U9C-Yp-HPE">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -549,7 +555,6 @@ DQ
                             <constraint firstAttribute="trailing" secondItem="neu-JA-5jE" secondAttribute="trailing" constant="20" id="a62-nO-x8l"/>
                             <constraint firstItem="neu-JA-5jE" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="r3M-Mr-10l"/>
                         </constraints>
-                        <animations/>
                     </view>
                 </viewController>
             </objects>
@@ -588,7 +593,6 @@ DQ
                     <tabView key="tabView" type="noTabsNoBorder" id="kkG-BU-Ow3">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
                         <connections>
@@ -611,7 +615,7 @@ DQ
         <!--Window-->
         <scene sceneID="JdB-nn-o0K">
             <objects>
-                <viewController title="Window" id="Tjp-MF-5Ef" sceneMemberID="viewController">
+                <viewController title="Window" id="Tjp-MF-5Ef" customClass="WindowPrefsViewController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hpr-ZZ-HDh">
                         <rect key="frame" x="0.0" y="0.0" width="416" height="376"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -624,7 +628,6 @@ DQ
                                         <subviews>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BYO-33-p2Q">
                                                 <rect key="frame" x="85" y="262" width="273" height="20"/>
-                                                <animations/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="K2m-hC-YT3"/>
                                                 <connections>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="lsj-Xt-jPF"/>
@@ -633,7 +636,6 @@ DQ
                                             </slider>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6TZ-ym-Ph0">
                                                 <rect key="frame" x="-2" y="208" width="338" height="18"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="check" title="Disallow Indicator Window Shadow (Uses Less CPU)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="QdD-02-9rf">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -649,12 +651,10 @@ DQ
                                                     <constraint firstAttribute="height" constant="119" id="9gr-R6-rPo"/>
                                                     <constraint firstAttribute="width" constant="225" id="rib-6j-11w"/>
                                                 </constraints>
-                                                <animations/>
                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="rm3-Cj-JsE"/>
                                             </imageView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uXk-Y9-A1c">
                                                 <rect key="frame" x="109" y="102" width="47" height="17"/>
-                                                <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Screen" id="kF7-ER-nHR">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -663,7 +663,6 @@ DQ
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0SL-uC-6Qr">
                                                 <rect key="frame" x="91" y="290" width="195" height="26"/>
-                                                <animations/>
                                                 <popUpButtonCell key="cell" type="push" title="Normal Window" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="aEe-UA-JE7" id="fHf-M8-ypY">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
@@ -683,7 +682,6 @@ DQ
                                             </popUpButton>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gKK-4b-cN5">
                                                 <rect key="frame" x="-2" y="239" width="107" height="17"/>
-                                                <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Opacity:" id="iVl-JA-25W">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -692,7 +690,6 @@ DQ
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="UMh-XE-4kX">
                                                 <rect key="frame" x="-2" y="178" width="196" height="17"/>
-                                                <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="CPU Indicator Window Position:" id="Idb-3w-z3W">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -701,7 +698,6 @@ DQ
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZMs-hE-prx">
                                                 <rect key="frame" x="106" y="237" width="252" height="20"/>
-                                                <animations/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.10000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="t4r-Fe-cOm"/>
                                                 <connections>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="vH3-MW-nZn"/>
@@ -710,7 +706,6 @@ DQ
                                             </slider>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="yp0-u0-AoW">
                                                 <rect key="frame" x="18" y="-2" width="264" height="18"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="check" title="Render the Window Insensitive to Clicks" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="k0N-Qd-Zvr">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -739,7 +734,6 @@ DQ
                                             </button>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="tth-dQ-Xpv">
                                                 <rect key="frame" x="-2" y="20" width="126" height="18"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="check" title="Lock the Window" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="lpB-2F-Xbw">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -760,7 +754,6 @@ DQ
                                             </button>
                                             <button hidden="YES" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Zkj-WJ-5az">
                                                 <rect key="frame" x="-2" y="-31" width="280" height="18"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="check" title="Decrease Window Opacity on Mouse-Over" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Vfe-eP-MwC">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -772,7 +765,6 @@ DQ
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="2tm-Ea-6yJ">
                                                 <rect key="frame" x="-2" y="264" width="86" height="17"/>
-                                                <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Size:" id="WWw-8D-4z5">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -781,7 +773,6 @@ DQ
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ElA-38-EaO">
                                                 <rect key="frame" x="-2" y="296" width="92" height="17"/>
-                                                <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Level:" id="GOI-AU-PB1">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -790,67 +781,67 @@ DQ
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S1C-Ct-AiV">
                                                 <rect key="frame" x="211" y="136" width="25" height="13"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MbL-Op-g7m">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
+                                                    <action selector="moveWindowToPseudoTopRight:" target="Tjp-MF-5Ef" id="XiF-d6-hhX"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="TJw-vM-cZL"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TNA-zw-2f7">
                                                 <rect key="frame" x="29" y="72" width="25" height="13"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jng-uj-OUh">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
+                                                    <action selector="moveWindowToPseudoBottomLeft:" target="Tjp-MF-5Ef" id="uyX-qo-bKo"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="Xeq-Bm-Upk"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KSm-Pr-r3n">
                                                 <rect key="frame" x="211" y="60" width="25" height="13"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="e3M-WD-9kk">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
+                                                    <action selector="moveWindowToBottomRight:" target="Tjp-MF-5Ef" id="DLg-Yc-uam"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="exy-Ox-9Ay"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ps1-dW-Xb7">
                                                 <rect key="frame" x="29" y="60" width="25" height="13"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ucy-vA-Wnq">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
+                                                    <action selector="moveWindowToBottomLeft:" target="Tjp-MF-5Ef" id="92d-s2-tlo"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="8Cp-Hy-PAp"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lay-zA-GkC">
                                                 <rect key="frame" x="29" y="136" width="25" height="13"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ek5-FS-SxR">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
+                                                    <action selector="moveWindowToPseudoTopLeft:" target="Tjp-MF-5Ef" id="wcw-OY-aPu"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="h1C-bR-l08"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="51V-K4-iYp">
                                                 <rect key="frame" x="211" y="72" width="25" height="13"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VQz-w6-dAl">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
+                                                    <action selector="moveWindowToPseudoBottomRight:" target="Tjp-MF-5Ef" id="Ntg-vZ-dcw"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="YHo-ht-1Wh"/>
                                                 </connections>
                                             </button>
@@ -860,23 +851,23 @@ DQ
                                                     <constraint firstAttribute="width" constant="25" id="5Df-Pp-4ui"/>
                                                     <constraint firstAttribute="height" constant="13" id="jFd-qx-G6I"/>
                                                 </constraints>
-                                                <animations/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nnE-yS-wyc">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
+                                                    <action selector="moveWindowToTopLeft:" target="Tjp-MF-5Ef" id="5ix-2R-Qw3"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="Yed-l3-Kit"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xv4-pj-Eii">
                                                 <rect key="frame" x="211" y="148" width="25" height="13"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7Qa-kj-OAZ">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
+                                                    <action selector="moveWindowToTopRight:" target="Tjp-MF-5Ef" id="yNe-Cw-Fhv"/>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="mH7-Ug-uX4"/>
                                                 </connections>
                                             </button>
@@ -947,11 +938,9 @@ DQ
                                             <constraint firstItem="Lay-zA-GkC" firstAttribute="top" secondItem="s0Q-RQ-NXV" secondAttribute="bottom" constant="-1" id="xcB-iY-c0Q"/>
                                             <constraint firstItem="ElA-38-EaO" firstAttribute="leading" secondItem="hjk-6T-Eut" secondAttribute="leading" id="zNx-qR-2ye"/>
                                         </constraints>
-                                        <animations/>
                                     </customView>
                                     <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="kaY-CH-KHt">
                                         <rect key="frame" x="18" y="340" width="195" height="18"/>
-                                        <animations/>
                                         <buttonCell key="cell" type="check" title="Show CPU Indicator Window" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Wfl-za-UAm">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -969,7 +958,6 @@ DQ
                                     <constraint firstItem="kaY-CH-KHt" firstAttribute="leading" secondItem="XWj-5X-OzR" secondAttribute="leading" constant="20" id="hP7-Wl-7hf"/>
                                     <constraint firstItem="kaY-CH-KHt" firstAttribute="top" secondItem="XWj-5X-OzR" secondAttribute="top" constant="20" id="kDs-p5-Rgh"/>
                                 </constraints>
-                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -978,7 +966,6 @@ DQ
                             <constraint firstItem="XWj-5X-OzR" firstAttribute="leading" secondItem="hpr-ZZ-HDh" secondAttribute="leading" id="iJ7-cs-rJr"/>
                             <constraint firstAttribute="trailing" secondItem="XWj-5X-OzR" secondAttribute="trailing" id="tdu-3e-gVC"/>
                         </constraints>
-                        <animations/>
                     </view>
                 </viewController>
                 <customObject id="UFp-IH-Y0p" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -999,7 +986,6 @@ DQ
                                 <subviews>
                                     <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="1n9-WT-ObD">
                                         <rect key="frame" x="18" y="133" width="300" height="18"/>
-                                        <animations/>
                                         <buttonCell key="cell" type="check" title="Show Dock Icon (Requires Restart of the App)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="J8J-3e-aFZ">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1010,7 +996,6 @@ DQ
                                     </button>
                                     <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YHW-hk-Hhd">
                                         <rect key="frame" x="18" y="20" width="420" height="68"/>
-                                        <animations/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3bF-kY-VbH">
                                             <font key="font" metaFont="system"/>
                                             <string key="title">To Access the preferences while the Dock icon is hidden, you can :
@@ -1023,7 +1008,6 @@ DQ
                                     </textField>
                                     <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Cdf-ae-7WK">
                                         <rect key="frame" x="38" y="106" width="173" height="18"/>
-                                        <animations/>
                                         <buttonCell key="cell" type="check" title="Indicate CPU in the Dock" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="85g-wp-CMk">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1044,7 +1028,6 @@ DQ
                                     <constraint firstItem="Cdf-ae-7WK" firstAttribute="top" secondItem="1n9-WT-ObD" secondAttribute="bottom" constant="13" id="hbz-aT-07j"/>
                                     <constraint firstItem="YHW-hk-Hhd" firstAttribute="top" secondItem="Cdf-ae-7WK" secondAttribute="bottom" constant="20" id="vVi-D1-WcC"/>
                                 </constraints>
-                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -1053,7 +1036,6 @@ DQ
                             <constraint firstItem="jsU-9a-cYo" firstAttribute="leading" secondItem="pol-Hh-dLk" secondAttribute="leading" id="sjX-HB-O4p"/>
                             <constraint firstItem="jsU-9a-cYo" firstAttribute="top" secondItem="pol-Hh-dLk" secondAttribute="top" id="w1v-Vm-NUs"/>
                         </constraints>
-                        <animations/>
                     </view>
                 </viewController>
                 <customObject id="aPj-MM-cyD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1081,7 +1063,6 @@ DQ
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" typeSelect="NO" autosaveName="Skins Table View" rowHeight="141" viewBased="YES" id="Dah-Of-Maa">
                                                     <rect key="frame" x="0.0" y="0.0" width="510" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <animations/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
@@ -1105,7 +1086,6 @@ DQ
                                                                     <subviews>
                                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wEj-qH-qKf">
                                                                             <rect key="frame" x="0.0" y="0.0" width="35" height="141"/>
-                                                                            <animations/>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="YDz-E3-8eS"/>
                                                                             <connections>
                                                                                 <binding destination="c5t-gg-Tpd" name="value" keyPath="objectValue.objectID" id="ikM-Rb-exe">
@@ -1122,7 +1102,6 @@ DQ
                                                                         <constraint firstAttribute="trailing" secondItem="wEj-qH-qKf" secondAttribute="trailing" id="YSR-xV-hdL"/>
                                                                         <constraint firstAttribute="bottom" secondItem="wEj-qH-qKf" secondAttribute="bottom" id="iQd-bQ-bCH"/>
                                                                     </constraints>
-                                                                    <animations/>
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
@@ -1146,7 +1125,6 @@ DQ
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YVt-0H-V4E">
                                                                             <rect key="frame" x="-2" y="51" width="329" height="39"/>
-                                                                            <animations/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Skin Name" id="Fgf-EA-amK">
                                                                                 <font key="font" metaFont="systemBold" size="32"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1162,7 +1140,6 @@ DQ
                                                                         <constraint firstItem="YVt-0H-V4E" firstAttribute="leading" secondItem="1Xx-YJ-Gul" secondAttribute="leading" id="c5m-BW-JeN"/>
                                                                         <constraint firstItem="YVt-0H-V4E" firstAttribute="centerY" secondItem="1Xx-YJ-Gul" secondAttribute="centerY" id="zbH-6S-Otv"/>
                                                                     </constraints>
-                                                                    <animations/>
                                                                     <connections>
                                                                         <outlet property="textField" destination="YVt-0H-V4E" id="HYw-Kj-3Bg"/>
                                                                     </connections>
@@ -1187,7 +1164,6 @@ DQ
                                                                     <subviews>
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="iq8-W2-jdR" customClass="SkinView" customModule="CPU_Indicator" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="141" height="141"/>
-                                                                            <animations/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="number" keyPath="progress">
                                                                                     <real key="value" value="-1"/>
@@ -1208,7 +1184,6 @@ DQ
                                                                         <constraint firstItem="iq8-W2-jdR" firstAttribute="leading" secondItem="ndX-sc-bcV" secondAttribute="leading" id="v7k-Aw-lOQ"/>
                                                                         <constraint firstItem="iq8-W2-jdR" firstAttribute="top" secondItem="ndX-sc-bcV" secondAttribute="top" id="xVh-9h-xjA"/>
                                                                     </constraints>
-                                                                    <animations/>
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
@@ -1219,27 +1194,22 @@ DQ
                                                     </connections>
                                                 </tableView>
                                             </subviews>
-                                            <animations/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="140" id="arJ-yc-QEC"/>
                                         </constraints>
-                                        <animations/>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="CKZ-8J-wcf">
                                             <rect key="frame" x="1" y="150" width="510" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="yDY-9S-ugD">
                                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </scroller>
                                     </scrollView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qWZ-EW-ZXj">
                                         <rect key="frame" x="18" y="20" width="120" height="17"/>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mixed Image State:" id="JhE-oV-hVk">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1248,7 +1218,6 @@ DQ
                                     </textField>
                                     <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="X43-4A-x4a">
                                         <rect key="frame" x="0.0" y="53" width="510" height="5"/>
-                                        <animations/>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <font key="titleFont" metaFont="system"/>
@@ -1258,7 +1227,6 @@ DQ
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="qFc-Z3-WVE"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="smallSquare" title="Find More Skins Online…      " bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pM6-gu-piR">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1269,7 +1237,6 @@ DQ
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="d1l-FX-Ylq"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qNI-Y4-Zki">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1290,7 +1257,6 @@ DQ
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Re0-UX-NNU">
                                         <rect key="frame" x="317" y="75" width="135" height="23"/>
-                                        <animations/>
                                         <buttonCell key="cell" type="smallSquare" title="Use selected skin      " bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A9w-kT-TlF">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1306,7 +1272,6 @@ DQ
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TK5-Ri-Lpv">
                                         <rect key="frame" x="451" y="75" width="25" height="23"/>
-                                        <animations/>
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hR5-wd-Wws">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1314,7 +1279,6 @@ DQ
                                     </button>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YPY-78-U70">
                                         <rect key="frame" x="142" y="14" width="171" height="26"/>
-                                        <animations/>
                                         <popUpButtonCell key="cell" type="push" title="Use Skin Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-1" imageScaling="proportionallyDown" inset="2" selectedItem="1Ee-EG-bp2" id="ytN-Rp-WNo">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -1362,7 +1326,6 @@ DQ
                                     <constraint firstItem="c8y-ri-UC3" firstAttribute="top" secondItem="eOB-ht-u4d" secondAttribute="bottom" constant="10" id="wOW-ut-mQf"/>
                                     <constraint firstItem="eOB-ht-u4d" firstAttribute="leading" secondItem="bd8-bi-gsC" secondAttribute="leading" constant="-1" id="yIe-v2-VLs"/>
                                 </constraints>
-                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -1371,7 +1334,6 @@ DQ
                             <constraint firstItem="bd8-bi-gsC" firstAttribute="top" secondItem="khG-tK-gwV" secondAttribute="top" id="WJB-SP-cp7"/>
                             <constraint firstAttribute="trailing" secondItem="bd8-bi-gsC" secondAttribute="trailing" id="vho-nP-1qh"/>
                         </constraints>
-                        <animations/>
                     </view>
                     <connections>
                         <outlet property="arrayController" destination="NP6-lN-Ti5" id="3gc-hs-PZj"/>
@@ -1402,7 +1364,6 @@ DQ
                                 <subviews>
                                     <button verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="3PC-mK-S7p">
                                         <rect key="frame" x="18" y="112" width="180" height="18"/>
-                                        <animations/>
                                         <buttonCell key="cell" type="check" title="Show CPU Indicator Menu" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Fbg-0S-gso">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1416,7 +1377,6 @@ DQ
                                         <subviews>
                                             <matrix horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtu-C3-tZ6">
                                                 <rect key="frame" x="0.0" y="27" width="304" height="54"/>
-                                                <animations/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 <size key="cellSize" width="304" height="18"/>
                                                 <buttonCell key="prototype" type="radio" title="Radio" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="JWT-LQ-C5B">
@@ -1446,7 +1406,6 @@ DQ
                                             </matrix>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="eLq-nB-o3W">
                                                 <rect key="frame" x="-2" y="-2" width="176" height="18"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="check" title="Show One Menu Per CPU" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k7t-91-3hb">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -1465,7 +1424,6 @@ DQ
                                             <constraint firstItem="eLq-nB-o3W" firstAttribute="top" secondItem="vtu-C3-tZ6" secondAttribute="bottom" constant="13" id="k3x-Rd-HTx"/>
                                             <constraint firstItem="vtu-C3-tZ6" firstAttribute="leading" secondItem="FJT-Fz-Bky" secondAttribute="leading" id="vCE-Fe-60U"/>
                                         </constraints>
-                                        <animations/>
                                     </customView>
                                 </subviews>
                                 <constraints>
@@ -1476,7 +1434,6 @@ DQ
                                     <constraint firstItem="3PC-mK-S7p" firstAttribute="top" secondItem="JTj-Al-NDU" secondAttribute="top" constant="20" id="sXH-Nf-D3r"/>
                                     <constraint firstItem="FJT-Fz-Bky" firstAttribute="leading" secondItem="3PC-mK-S7p" secondAttribute="leading" constant="20" id="uzg-Rq-rPs"/>
                                 </constraints>
-                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -1485,7 +1442,6 @@ DQ
                             <constraint firstAttribute="trailing" secondItem="JTj-Al-NDU" secondAttribute="trailing" id="7dp-j1-dh2"/>
                             <constraint firstItem="JTj-Al-NDU" firstAttribute="leading" secondItem="C96-5F-fm6" secondAttribute="leading" id="Ul1-t9-y8a"/>
                         </constraints>
-                        <animations/>
                     </view>
                 </viewController>
                 <customObject id="poD-aJ-Po2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
