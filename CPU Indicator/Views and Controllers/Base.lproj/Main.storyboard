@@ -468,10 +468,10 @@
             </objects>
             <point key="canvasLocation" x="621" y="226.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Indicator Window Content View Controller-->
         <scene sceneID="uVW-oE-dkC">
             <objects>
-                <viewController id="ZOT-Yk-M7U" sceneMemberID="viewController">
+                <viewController id="ZOT-Yk-M7U" customClass="IndicatorWindowContentViewController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="k9A-vZ-RKR">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -487,6 +487,9 @@
                             <constraint firstAttribute="bottom" secondItem="yw3-Ce-cay" secondAttribute="bottom" id="nP2-kf-7oJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="skinView" destination="yw3-Ce-cay" id="rKz-Pt-yhI"/>
+                    </connections>
                 </viewController>
                 <customObject id="vfU-4O-2ij" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM3"/>
