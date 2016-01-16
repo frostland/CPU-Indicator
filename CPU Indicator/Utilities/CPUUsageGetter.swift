@@ -10,6 +10,10 @@ import Cocoa
 
 
 
+protocol CPUUsageObserver : AnyObject {
+	func cpuUsageChangedFromGetter(getter: CPUUsageGetter)
+}
+
 class CPUUsageGetter {
 	
 	/* lazy; only instanciated when needed (but never de-instanciated). */
@@ -34,11 +38,11 @@ class CPUUsageGetter {
 		timer = nil
 	}
 	
-	func addObserverForKnownUsageModification(observer: AnyObject) {
+	func addObserverForKnownUsageModification(observer: CPUUsageObserver) {
 		observers.addObject(observer)
 	}
 	
-	func removeObserverForKnownUsageModification(observer: AnyObject) {
+	func removeObserverForKnownUsageModification(observer: CPUUsageObserver) {
 		observers.removeObject(observer)
 	}
 	
@@ -108,11 +112,11 @@ class CPUUsageGetter {
 		
 		vm_deallocate(mach_task_self_, unsafeBitCast(infoArray, vm_address_t.self), vm_size_t(infoCount))
 		
-		NSLog("%@", "Current CPU Usage: \(globalCPUUsage)")
-		NSLog("%@", "CPU Usages: \(cpuUsages)")
+//		NSLog("%@", "Current CPU Usage: \(globalCPUUsage)")
+//		NSLog("%@", "CPU Usages: \(cpuUsages)")
 		let frozenObservers = observers.allObjects
 		for observer in frozenObservers {
-			/* TODO: Notify observer the CPU Info changed. */
+			(observer as? CPUUsageObserver)?.cpuUsageChangedFromGetter(self)
 		}
 	}
 	

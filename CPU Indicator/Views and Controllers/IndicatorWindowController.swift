@@ -10,7 +10,7 @@ import Cocoa
 
 
 
-class IndicatorWindowController: NSWindowController {
+class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 	private var skinView: SkinView! {
 		return (self.contentViewController as? IndicatorWindowContentViewController)?.skinView
 	}
@@ -25,6 +25,7 @@ class IndicatorWindowController: NSWindowController {
 	
 	deinit {
 		if observingUDC {
+			CPUUsageGetter.sharedCPUUsageGetter.removeObserverForKnownUsageModification(self)
 			AppDelegate.sharedAppDelegate.removeObserver(self, forKeyPath: "selectedSkinObjectID", context: nil)
 			for keyPath in observedUDCKeys {
 				NSUserDefaultsController.sharedUserDefaultsController().removeObserver(self, forKeyPath: keyPath)
@@ -46,6 +47,7 @@ class IndicatorWindowController: NSWindowController {
 			udc.addObserver(self, forKeyPath: keyPath, options: [.Initial], context: nil)
 		}
 		AppDelegate.sharedAppDelegate.addObserver(self, forKeyPath: "selectedSkinObjectID", options: [.Initial], context: nil)
+		CPUUsageGetter.sharedCPUUsageGetter.addObserverForKnownUsageModification(self)
 		observingUDC = true
 	}
 	
@@ -177,6 +179,14 @@ class IndicatorWindowController: NSWindowController {
 		f.origin.x = screenRect.origin.x + screenRect.size.width - f.size.width
 		f.origin.y = screenRect.origin.y
 		self.window?.setFrame(f, display: true, animate: true)
+	}
+	
+	/* **************************
+	   MARK: - CPU Usage Observer
+	   ************************** */
+	
+	func cpuUsageChangedFromGetter(getter: CPUUsageGetter) {
+		self.skinView.progress = Float(getter.globalCPUUsage)
 	}
 	
 	/* ***************
