@@ -110,10 +110,10 @@ class SkinView : NSView {
 	}
 	
 	/**
-  If lower than 0, the shared "preview" progress will be used, else the actual
+   If lower than 0, the shared "preview" progress will be used, else the actual
 	given value will be used.
 	
-  Ideally, I would have set the type to Float?, but the property can't be
+	Ideally, I would have set the type to Float?, but the property can't be
 	designable if I did so... */
 	@IBInspectable var progress: Float = 0 {
 		didSet {
@@ -125,6 +125,7 @@ class SkinView : NSView {
 				})
 			} else {
 				removePreviewProgressObserverIfNeeded()
+				self.setNeedsDisplayInRect(self.bounds)
 			}
 		}
 	}
