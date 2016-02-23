@@ -85,7 +85,7 @@ class SkinView : NSView {
 				} else if oldValue == 0 && nPreviewProgressObserver > 0 {
 					/* Let's start the preview progress observer: somebody is interested... */
 					timerUpdatePreviewProgress?.invalidate()
-					timerUpdatePreviewProgress = NSTimer.scheduledTimerWithTimeInterval(1.0/Double(previewFPS), target: self, selector: Selector("advancePreviewProgress:"), userInfo: nil, repeats: true)
+					timerUpdatePreviewProgress = NSTimer.scheduledTimerWithTimeInterval(1.0/Double(previewFPS), target: self, selector: #selector(PreviewProgress.advancePreviewProgress(_:)), userInfo: nil, repeats: true)
 				}
 			}
 		}
@@ -119,7 +119,7 @@ class SkinView : NSView {
 		didSet {
 			if progress < 0 {
 				assert(previewProgressObserver == nil)
-				++PreviewProgress.sharedPreviewProgress.nPreviewProgressObserver
+				PreviewProgress.sharedPreviewProgress.nPreviewProgressObserver += 1
 				previewProgressObserver = NSNotificationCenter.defaultCenter().addObserverForName(PreviewProgress.kPreviewProgressChangeNotificationName, object: nil, queue: nil, usingBlock: { [weak self] n in
 					self?.setNeedsDisplayInRect(self!.bounds)
 				})

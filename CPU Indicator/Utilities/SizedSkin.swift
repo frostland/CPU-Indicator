@@ -139,8 +139,8 @@ class SizedSkin : NSObject {
 			let img2Pixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>>.alloc(5); defer {img2Pixels.dealloc(5)}
 			resizedSkinImages[imageIdx  ].getBitmapDataPlanes(img1Pixels)
 			resizedSkinImages[imageIdx-1].getBitmapDataPlanes(img2Pixels)
-			for var y = 0; y < h; ++y {
-				for var x = 0; x < w; ++x {
+			for y in 0..<h {
+				for x in 0..<w {
 					let val1 = img1Pixels.memory.advancedBy(4*(y * w  +  x) + 3).memory
 					let val2 = img2Pixels.memory.advancedBy(4*(y * w  +  x) + 3).memory
 					meltedPixels.memory.advancedBy(4*(y * w  +  x) + 3).memory = max(val1, UInt8((Float(imageIdx) - f) * Float(val2)))

@@ -29,7 +29,7 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 	
 	func windowWillClose(notification: NSNotification) {
 		assert(timerNotUsingMyself == nil)
-		timerNotUsingMyself = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("myselfNotNeededAnymore:"), userInfo: nil, repeats: false)
+		timerNotUsingMyself = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(PreferencesWindowController.myselfNotNeededAnymore(_:)), userInfo: nil, repeats: false)
 	}
 	
 	@objc /* Used by a timer. */

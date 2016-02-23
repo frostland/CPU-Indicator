@@ -23,7 +23,7 @@ class PreferencesViewController: NSTabViewController {
 		
 		super.viewDidLoad()
 		
-		for var i = 0; i < self.tabViewItems.count; ++i {
+		for i in 0..<self.tabViewItems.count {
 			if self.tabViewItems[i].identifier.isEqual(idToSelect) {
 				self.selectedTabViewItemIndex = i
 			}

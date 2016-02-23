@@ -28,7 +28,7 @@ class CPUUsageGetter {
 	init(refreshInterval: NSTimeInterval) {
 		timer = nil
 		if refreshInterval >= 0 {
-			timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: Selector("refreshKnownUsage:"), userInfo: nil, repeats: true)
+			timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: #selector(CPUUsageGetter.refreshKnownUsage(_:)), userInfo: nil, repeats: true)
 			timer?.fire()
 		}
 	}
@@ -64,8 +64,8 @@ class CPUUsageGetter {
 	@objc
 	private func refreshKnownUsage(timer: NSTimer?) {
 		var newCPUCountNatural = natural_t()
-		var infoArray = processor_info_array_t()
 		var infoCount = mach_msg_type_number_t()
+		var infoArray: processor_info_array_t = nil
 		
 		let error = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &newCPUCountNatural, &infoArray, &infoCount)
 		guard error == 0 else {
@@ -86,7 +86,7 @@ class CPUUsageGetter {
 		
 		var totalTicks = 0.0, totalTicksNoIdle = 0.0
 		let cpuLoadInfo = unsafeBitCast(infoArray, UnsafeMutablePointer<processor_cpu_load_info_data_t>.self)
-		for var cpu = 0; cpu < newCPUCount; ++cpu {
+		for cpu in 0..<newCPUCount {
 			/* Note: In C/Objective-C, cpu_ticks is an array of size 4, which is
 			 *       translated in Swift as a tuple of four elements.
 			 *       If ever cpu_ticks contained more (or less) entries in another
