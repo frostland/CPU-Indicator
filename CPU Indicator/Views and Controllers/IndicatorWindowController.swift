@@ -74,6 +74,7 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 				}
 				if ud.boolForKey(kUDK_ShowWindowIndicator) {self.showWindow(self)}
 				else                                       {self.close()}
+				
 			case kUDK_WindowIndicatorLevel:
 				switch WindowIndicatorLevel(rawValue: ud.integerForKey(kUDK_WindowIndicatorLevel)) ?? WindowIndicatorLevel.AboveAll {
 				case .BehindAll:
@@ -81,25 +82,34 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 					ud.setBool(true, forKey: kUDK_WindowIndicatorLocked)
 					self.window?.level = Int(CGWindowLevelForKey(CGWindowLevelKey.DesktopWindowLevelKey))
 					self.window?.collectionBehavior = [.CanJoinAllSpaces, .Transient]
+					
 				case .Normal:
 					self.window?.level = Int(CGWindowLevelForKey(CGWindowLevelKey.NormalWindowLevelKey))
 					self.window?.collectionBehavior = [.CanJoinAllSpaces, .Managed]
+					
 				case .AboveAll:
 					self.window?.level = Int(CGWindowLevelForKey(CGWindowLevelKey.StatusWindowLevelKey))
 					self.window?.collectionBehavior = [.CanJoinAllSpaces, .Stationary]
 				}
+				
 			case kUDK_WindowIndicatorOpacity:
 				self.window?.alphaValue = CGFloat(ud.floatForKey(kUDK_WindowIndicatorOpacity))
+				
 			case kUDK_WindowIndicatorClickless:
 				self.window?.ignoresMouseEvents = ud.boolForKey(kUDK_WindowIndicatorClickless)
+				
 			case kUDK_WindowIndicatorLocked:
 				self.window?.movable = !ud.boolForKey(kUDK_WindowIndicatorLocked)
+				
 			case kUDK_WindowIndicatorScale:
 				self.updateSkinAndScale()
+				
 			case kUDK_WindowIndicatorDisableShadow:
 				self.window?.hasShadow = !ud.boolForKey(kUDK_WindowIndicatorDisableShadow)
+				
 			case kUDK_WindowIndicatorDecreaseOpacityOnHover:
 				(/*TODO*/)
+				
 			default:
 				fatalError("Unreachable code has been reached!")
 			}
