@@ -101,6 +101,12 @@ class SizedSkin : NSObject {
 	func imageForProgress(p: Float) -> NSImageRep {
 		precondition(p > -0.000001 && p < 1.000001, "Progress must be greater than 0, lower than 1")
 		
+		/* We round the progress so that only roundPrecision+1 values are possible
+		 * in order to have a meaningful caching system which won't eat up all of
+		 * the RAM. */
+		let roundPrecision = Float(500.0)
+		let p = round(p * roundPrecision)/roundPrecision
+		
 		if let img = cachedImagesByProgress[p] {
 			return img
 		}
