@@ -24,6 +24,12 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 		"values.\(kUDK_WindowIndicatorScale)", "values.\(kUDK_WindowIndicatorDisableShadow)"
 	]
 	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		
+		self.windowFrameAutosaveName = "IndicatorWindow"
+	}
+	
 	deinit {
 		if observingUDC {
 			CPUUsageGetter.sharedCPUUsageGetter.removeObserverForKnownUsageModification(self)

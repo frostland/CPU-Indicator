@@ -11,12 +11,19 @@ import Cocoa
 
 
 class PreferencesWindowController: NSWindowController, NSWindowDelegate {
+	
 	private var iUseMyself: PreferencesWindowController?
 	private var timerNotUsingMyself: NSTimer?
 	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		
+		self.windowFrameAutosaveName = "PrefsWindow"
+	}
+	
 	override var window: NSWindow? {
 		didSet {
-			assert(window?.delegate ==  nil)
+			assert(window?.delegate == nil)
 			window?.delegate = self
 		}
 	}
@@ -38,4 +45,5 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 		timerNotUsingMyself = nil
 		iUseMyself = nil
 	}
+	
 }

@@ -454,7 +454,7 @@
         <scene sceneID="rNN-4s-sYN">
             <objects>
                 <windowController storyboardIdentifier="IndicatorWindowController" id="2oJ-Ra-5WE" customClass="IndicatorWindowController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Indicator" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="IndicatorWindow" animationBehavior="default" id="ze4-0I-6gO">
+                    <window key="window" title="Indicator" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ze4-0I-6gO">
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="243" width="480" height="267"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
@@ -567,7 +567,7 @@ DQ
         <scene sceneID="Pwf-id-1DP">
             <objects>
                 <windowController storyboardIdentifier="PreferencesWindowController" showSeguePresentationStyle="single" id="CHB-XQ-1lg" customClass="PreferencesWindowController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="CPU Indicator Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="PrefsWindow" animationBehavior="default" id="gmb-a9-qhl" customClass="NSPanel">
+                    <window key="window" title="CPU Indicator Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="gmb-a9-qhl" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
