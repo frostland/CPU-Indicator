@@ -54,7 +54,94 @@ class SkinView : NSView {
 		}
 	}*/
 	
-	class PreviewProgress {
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		
+		self.wantsLayer = true /* Don't know why this does not work in Storyboard directly... */
+		self.layer?.contentsGravity = kCAGravityResizeAspect
+	}
+	
+	deinit {
+		removePreviewProgressObserverIfNeeded()
+	}
+	
+	var sizedSkin: SizedSkin? {
+		didSet {
+			updateImageFromCurrentProgress(animated: false)
+		}
+	}
+	
+	/**
+   If lower than 0, the shared "preview" progress will be used, else the actual
+	given value will be used.
+	
+	Ideally, I would have set the type to Float?, but the property can't be
+	designable if I did so... */
+	@IBInspectable var progress: Float = 0 {
+		didSet {
+			assert(NSThread.isMainThread())
+			if progress < 0 {
+				assert(previewProgressObserver == nil)
+				PreviewProgress.sharedPreviewProgress.nPreviewProgressObserver += 1
+				previewProgressObserver = NSNotificationCenter.defaultCenter().addObserverForName(PreviewProgress.kPreviewProgressChangeNotificationName, object: nil, queue: nil, usingBlock: { [weak self] n in
+					self?.updateImageFromCurrentProgress(animated: false)
+				})
+			} else {
+				removePreviewProgressObserverIfNeeded()
+				updateImageFromCurrentProgress(animated: true)
+			}
+		}
+	}
+	private var previewProgressObserver: NSObjectProtocol?
+	
+	private func removePreviewProgressObserverIfNeeded() {
+		if let obs = previewProgressObserver {
+			PreviewProgress.sharedPreviewProgress.nPreviewProgressObserver -= 1
+			NSNotificationCenter.defaultCenter().removeObserver(obs, name: PreviewProgress.kPreviewProgressChangeNotificationName, object: nil)
+			previewProgressObserver = nil
+		}
+	}
+	
+	private func updateImageFromCurrentProgress(animated animated: Bool) {
+		let p = (progress >= 0 ? progress : PreviewProgress.sharedPreviewProgress.currentProgress)
+		
+		/* Core Animation version */
+		let image = self.sizedSkin?.imageForProgress(p).CGImageForProposedRect(nil, context: nil, hints: nil)
+		let anim = CABasicAnimation(keyPath: "contents")
+		anim.fromValue = self.layer?.contents
+		anim.duration = 1.0
+		self.layer?.contents = image
+		self.layer?.addAnimation(anim, forKey: "contents")
+		
+		/* Non Core Animation version (in pair with drawRect, non-animated) */
+//		self.setNeedsDisplayInRect(self.bounds)
+	}
+	
+	/*override func drawRect(dirtyRect: NSRect) {
+		guard let sizedSkin = sizedSkin else {
+			return
+		}
+		
+		let myFrame = self.frame
+		
+		let drawnSize = sizedSkin.size
+		let p = NSPoint(
+			x: myFrame.origin.x +  myFrame.size.width  - drawnSize.width,
+			y: myFrame.origin.y + (myFrame.size.height - drawnSize.height)/2.0
+		)
+		
+		let drawRect = NSRect(origin: p, size: drawnSize)
+		sizedSkin.imageForProgress(progress >= 0 ? progress : PreviewProgress.sharedPreviewProgress.currentProgress).drawInRect(
+			drawRect,
+			fromRect: NSRect(origin: CGPointZero, size: drawnSize),
+			operation: .CompositeSourceOver,
+			fraction: 1,
+			respectFlipped: true,
+			hints: nil
+		)
+	}*/
+	
+	private class PreviewProgress {
 		private static let sharedPreviewProgress = PreviewProgress()
 		private static let kPreviewProgressChangeNotificationName = "SkinView Preview Progress Change Notification"
 		
@@ -101,70 +188,6 @@ class SkinView : NSView {
 			}
 			NSNotificationCenter.defaultCenter().postNotificationName(self.dynamicType.kPreviewProgressChangeNotificationName, object: self)
 		}
-	}
-	
-	var sizedSkin: SizedSkin? {
-		didSet {
-			self.setNeedsDisplayInRect(self.bounds)
-		}
-	}
-	
-	/**
-   If lower than 0, the shared "preview" progress will be used, else the actual
-	given value will be used.
-	
-	Ideally, I would have set the type to Float?, but the property can't be
-	designable if I did so... */
-	@IBInspectable var progress: Float = 0 {
-		didSet {
-			if progress < 0 {
-				assert(previewProgressObserver == nil)
-				PreviewProgress.sharedPreviewProgress.nPreviewProgressObserver += 1
-				previewProgressObserver = NSNotificationCenter.defaultCenter().addObserverForName(PreviewProgress.kPreviewProgressChangeNotificationName, object: nil, queue: nil, usingBlock: { [weak self] n in
-					self?.setNeedsDisplayInRect(self!.bounds)
-				})
-			} else {
-				removePreviewProgressObserverIfNeeded()
-				self.setNeedsDisplayInRect(self.bounds)
-			}
-		}
-	}
-	private var previewProgressObserver: NSObjectProtocol?
-	
-	deinit {
-		removePreviewProgressObserverIfNeeded()
-	}
-	
-	private func removePreviewProgressObserverIfNeeded() {
-		if let obs = previewProgressObserver {
-			--PreviewProgress.sharedPreviewProgress.nPreviewProgressObserver
-			NSNotificationCenter.defaultCenter().removeObserver(obs, name: PreviewProgress.kPreviewProgressChangeNotificationName, object: nil)
-			previewProgressObserver = nil
-		}
-	}
-	
-	override func drawRect(dirtyRect: NSRect) {
-		guard let sizedSkin = sizedSkin else {
-			return
-		}
-		
-		let myFrame = self.frame
-		
-		let drawnSize = sizedSkin.size
-		let p = NSPoint(
-			x: myFrame.origin.x +  myFrame.size.width  - drawnSize.width,
-			y: myFrame.origin.y + (myFrame.size.height - drawnSize.height)/2.0
-		)
-		
-		let drawRect = NSRect(origin: p, size: drawnSize)
-		sizedSkin.imageForProgress(progress >= 0 ? progress : PreviewProgress.sharedPreviewProgress.currentProgress).drawInRect(
-			drawRect,
-			fromRect: NSRect(origin: CGPointZero, size: drawnSize),
-			operation: .CompositeSourceOver,
-			fraction: 1,
-			respectFlipped: true,
-			hints: nil
-		)
 	}
 	
 }

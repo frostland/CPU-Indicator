@@ -11,6 +11,7 @@ import Cocoa
 
 
 class IndicatorWindowController: NSWindowController, CPUUsageObserver {
+	
 	private var skinView: SkinView! {
 		return (self.contentViewController as? IndicatorWindowContentViewController)?.skinView
 	}
