@@ -15,7 +15,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	static private(set) var sharedAppDelegate: AppDelegate!
 	
-	dynamic var selectedSkinObjectID: NSManagedObjectID!
+	dynamic var selectedSkinObjectID: NSManagedObjectID! {
+		didSet {
+			self.mainManagedObjectContext.performBlock {
+				if let uid = ((try? self.mainManagedObjectContext.existingObjectWithID(self.selectedSkinObjectID)) as? Skin)?.uid {
+					NSUserDefaults.standardUserDefaults().setObject(uid, forKey: kUDK_SelectedSkinUID)
+				}
+			}
+		}
+	}
 	
 	private var introWindowController: NSWindowController?
 	/* The preferences window controller keeps a reference to itself while it
