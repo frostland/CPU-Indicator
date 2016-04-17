@@ -67,9 +67,18 @@ class SkinView : NSView {
 	
 	var sizedSkin: SizedSkin? {
 		didSet {
-			updateImageFromCurrentProgress(animated: false)
+			updateResolvedMixedImageState(forceImageUpdate: true)
 		}
 	}
+	
+	var defaultMixedImageState: MixedImageState = .UseSkinDefault {
+		didSet {
+			guard oldValue != defaultMixedImageState else {return}
+			updateResolvedMixedImageState(forceImageUpdate: false)
+		}
+	}
+	
+	private(set) var resolvedMixedImageState: MixedImageState?
 	
 	/**
    If lower than 0, the shared "preview" progress will be used, else the actual
@@ -83,12 +92,12 @@ class SkinView : NSView {
 			if progress < 0 {
 				assert(previewProgressObserver == nil)
 				PreviewProgress.sharedPreviewProgress.nPreviewProgressObserver += 1
-				previewProgressObserver = NSNotificationCenter.defaultCenter().addObserverForName(PreviewProgress.kPreviewProgressChangeNotificationName, object: nil, queue: nil, usingBlock: { [weak self] n in
-					self?.updateImageFromCurrentProgress(animated: false)
+				previewProgressObserver = NSNotificationCenter.defaultCenter().addObserverForName(PreviewProgress.previewProgressChangeNotificationName, object: nil, queue: nil, usingBlock: { [weak self] n in
+					self?.updateImageFromCurrentProgress(allowAnimation: false)
 				})
 			} else {
 				removePreviewProgressObserverIfNeeded()
-				updateImageFromCurrentProgress(animated: true)
+				updateImageFromCurrentProgress(allowAnimation: true)
 			}
 		}
 	}
@@ -97,24 +106,66 @@ class SkinView : NSView {
 	private func removePreviewProgressObserverIfNeeded() {
 		if let obs = previewProgressObserver {
 			PreviewProgress.sharedPreviewProgress.nPreviewProgressObserver -= 1
-			NSNotificationCenter.defaultCenter().removeObserver(obs, name: PreviewProgress.kPreviewProgressChangeNotificationName, object: nil)
+			NSNotificationCenter.defaultCenter().removeObserver(obs, name: PreviewProgress.previewProgressChangeNotificationName, object: nil)
 			previewProgressObserver = nil
 		}
 	}
 	
-	private func updateImageFromCurrentProgress(animated animated: Bool) {
-		let p = (progress >= 0 ? progress : PreviewProgress.sharedPreviewProgress.currentProgress)
-		
-		/* Core Animation version */
-		let image = self.sizedSkin?.imageForProgress(p).CGImageForProposedRect(nil, context: nil, hints: nil)
-		let anim = CABasicAnimation(keyPath: "contents")
-		anim.fromValue = self.layer?.contents
-		anim.duration = 1.0
-		self.layer?.contents = image
-		self.layer?.addAnimation(anim, forKey: "contents")
-		
-		/* Non Core Animation version (in pair with drawRect, non-animated) */
-//		self.setNeedsDisplayInRect(self.bounds)
+	private func updateResolvedMixedImageState(forceImageUpdate forceImageUpdate: Bool) {
+		let currentResolvedMixedImageState = resolvedMixedImageState
+		if defaultMixedImageState == .UseSkinDefault {resolvedMixedImageState = sizedSkin?.skin.mixedImageState ?? .Disallow}
+		else                                         {resolvedMixedImageState = defaultMixedImageState}
+		if forceImageUpdate || resolvedMixedImageState != currentResolvedMixedImageState {
+			displayedProgress = nil
+			updateImageFromCurrentProgress(allowAnimation: true)
+		}
+	}
+	
+	private func updateImageFromCurrentProgress(allowAnimation allowAnimation: Bool) {
+		allowedToAnimatedDisplayedProgressChange = allowAnimation
+		if progress < 0 {displayedProgress = PreviewProgress.sharedPreviewProgress.currentProgress}
+		else {
+			if resolvedMixedImageState == .Allow {displayedProgress = progress}
+			else {
+				/* We must stick to the reference frames. */
+				let n = sizedSkin?.skin.frames?.count ?? 1
+				guard n > 1 else {displayedProgress = 0; return}
+				
+				let imageIdx = Int(progress * Float(n-1))
+				displayedProgress = (Float(imageIdx) / Float(n-1));
+			}
+		}
+	}
+	
+	/* Always set to true after a change of displayedProgress */
+	private var allowedToAnimatedDisplayedProgressChange = true
+	/* If set to nil, nothing is done. */
+	private var displayedProgress: Float? {
+		willSet {
+			assert(NSThread.isMainThread())
+			defer {allowedToAnimatedDisplayedProgressChange = true}
+			
+			guard let newValue = newValue else {return}
+			
+			assert(newValue >= 0 && newValue <= 1)
+			guard abs(newValue - (displayedProgress ?? -1)) > 0.0001 else {return}
+			
+			let animate = (allowedToAnimatedDisplayedProgressChange && resolvedMixedImageState != .Disallow)
+			
+			/* Core Animation version */
+			let image = self.sizedSkin?.imageForProgress(newValue).CGImageForProposedRect(nil, context: nil, hints: nil)
+			if !animate {self.layer?.contents = image}
+			else {
+				let anim = CABasicAnimation(keyPath: "contents")
+				anim.fromValue = self.layer?.contents
+				anim.duration = 1.0
+				self.layer?.contents = image
+				self.layer?.addAnimation(anim, forKey: "contents")
+			}
+			
+			/* Non Core Animation version (in pair with drawRect, non-animated; use standard methods to animate) */
+//			self.setNeedsDisplayInRect(self.bounds)
+		}
 	}
 	
 	/*override func drawRect(dirtyRect: NSRect) {
@@ -143,7 +194,7 @@ class SkinView : NSView {
 	
 	private class PreviewProgress {
 		private static let sharedPreviewProgress = PreviewProgress()
-		private static let kPreviewProgressChangeNotificationName = "SkinView Preview Progress Change Notification"
+		private static let previewProgressChangeNotificationName = "SkinView Preview Progress Change Notification"
 		
 		private let previewFPS: Int
 		private let previewTimeBetweenFirstAndLastImage: Int
@@ -186,7 +237,7 @@ class SkinView : NSView {
 			if curProgress >= nFramesBetweenFirstAndLastImage || curProgress <= 0 {
 				delta *= -1
 			}
-			NSNotificationCenter.defaultCenter().postNotificationName(self.dynamicType.kPreviewProgressChangeNotificationName, object: self)
+			NSNotificationCenter.defaultCenter().postNotificationName(self.dynamicType.previewProgressChangeNotificationName, object: self)
 		}
 	}
 	
