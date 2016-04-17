@@ -36,8 +36,6 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 	}
 	
 	override func windowDidLoad() {
-		super.windowDidLoad()
-		
 		self.window?.opaque = false
 		self.window?.movableByWindowBackground = true
 		self.window?.backgroundColor = NSColor.clearColor()
