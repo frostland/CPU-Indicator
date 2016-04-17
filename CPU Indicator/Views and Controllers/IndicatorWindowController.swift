@@ -21,7 +21,8 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 		"values.\(kUDK_ShowWindowIndicator)",
 		"values.\(kUDK_WindowIndicatorLevel)", "values.\(kUDK_WindowIndicatorOpacity)",
 		"values.\(kUDK_WindowIndicatorClickless)", "values.\(kUDK_WindowIndicatorLocked)",
-		"values.\(kUDK_WindowIndicatorScale)", "values.\(kUDK_WindowIndicatorDisableShadow)"
+		"values.\(kUDK_WindowIndicatorScale)", "values.\(kUDK_WindowIndicatorDisableShadow)",
+		"values.\(kUDK_MixedImageState)"
 	]
 	
 	required init?(coder: NSCoder) {
@@ -115,6 +116,9 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 				
 			case kUDK_WindowIndicatorDecreaseOpacityOnHover:
 				(/*TODO*/)
+				
+			case kUDK_MixedImageState:
+				skinView.defaultMixedImageState = MixedImageState(rawValue: Int16(ud.integerForKey(kUDK_MixedImageState))) ?? .UseSkinDefault
 				
 			default:
 				fatalError("Unreachable code has been reached!")
