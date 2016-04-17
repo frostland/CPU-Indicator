@@ -22,7 +22,7 @@ class SizedSkin : NSObject {
 	private let imageConstruction: NSBitmapImageRep
 	private var cachedImagesByProgress = [Float: NSBitmapImageRep]()
 	
-	lazy var resizedSkinImages: [NSBitmapImageRep] = {
+	private(set) lazy var resizedSkinImages: [NSBitmapImageRep] = {
 		var res = [NSBitmapImageRep]()
 		
 		var infos = [(NSData, CGRect)]()
