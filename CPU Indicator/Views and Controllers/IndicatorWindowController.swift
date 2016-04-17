@@ -25,12 +25,6 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 		"values.\(kUDK_MixedImageState)"
 	]
 	
-	required init?(coder: NSCoder) {
-		super.init(coder: coder)
-		
-		self.windowFrameAutosaveName = "IndicatorWindow"
-	}
-	
 	deinit {
 		if observingUDC {
 			CPUUsageGetter.sharedCPUUsageGetter.removeObserverForKnownUsageModification(self)
@@ -47,6 +41,8 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 		self.window?.opaque = false
 		self.window?.movableByWindowBackground = true
 		self.window?.backgroundColor = NSColor.clearColor()
+		
+		self.windowFrameAutosaveName = "IndicatorWindow"
 		
 		super.windowDidLoad()
 		
