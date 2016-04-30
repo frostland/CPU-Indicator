@@ -31,7 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	private weak var preferencesWindowController: PreferencesWindowController?
 	
 	private(set) var mainWindowController: IndicatorWindowController!
-	@IBOutlet private var menuBarController: IndicatorMenuBarController!
+	@IBOutlet var menuBarController: IndicatorMenuBarController!
+	@IBOutlet var dockIndicatorController: IndicatorDockController!
 	
 	private var dockIconShown = false
 	private var appDidBecomeActive = false
@@ -199,6 +200,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				exit(0)
 			}
 		}
+		
+		menuBarController.applicationWillFinishLaunching()
+		dockIndicatorController.applicationWillFinishLaunching()
 		
 		/* To create a skin. */
 		#if false

@@ -405,6 +405,7 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="CPU_Indicator" customModuleProvider="target">
                     <connections>
+                        <outlet property="dockIndicatorController" destination="32B-gM-vhI" id="0SP-GN-hzd"/>
                         <outlet property="menuBarController" destination="JcB-9f-kAM" id="ytB-5f-ClI"/>
                     </connections>
                 </customObject>
@@ -413,6 +414,7 @@
                         <outlet property="menu" destination="T7t-A2-Jj6" id="Agy-ja-DfP"/>
                     </connections>
                 </customObject>
+                <customObject id="32B-gM-vhI" customClass="IndicatorDockController" customModule="CPU_Indicator" customModuleProvider="target"/>
                 <menu id="T7t-A2-Jj6">
                     <items>
                         <menuItem title="CPU Number" tag="42" enabled="NO" id="Zug-Ae-QjI">

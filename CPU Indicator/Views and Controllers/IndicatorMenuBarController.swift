@@ -24,9 +24,7 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 		}
 	}
 	
-	override func awakeFromNib() {
-		super.awakeFromNib()
-		
+	func applicationWillFinishLaunching() {
 		let udc = NSUserDefaultsController.sharedUserDefaultsController()
 		for keyPath in observedUDCKeys {
 			udc.addObserver(self, forKeyPath: keyPath, options: .Initial, context: nil)
@@ -172,12 +170,8 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 		
 		emptyImageForItem = nil
 		
-		guard let selectedSkinObjectId = appDelegate.selectedSkinObjectID else {
-			return
-		}
-		
 		context.performBlockAndWait {
-			guard let skin = (try? context.existingObjectWithID(selectedSkinObjectId)) as? Skin else {
+			guard let skin = (try? context.existingObjectWithID(appDelegate.selectedSkinObjectID)) as? Skin else {
 				return
 			}
 			
