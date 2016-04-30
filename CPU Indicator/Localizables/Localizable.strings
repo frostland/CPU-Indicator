@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  CPU Indicator
+
+  Created by François Lamboley on 4/30/16.
+  Copyright © 2016 Frost Land. All rights reserved.
+*/
+
+"ok maj" = "OK";
+"proc %lu" = "Proc. %lu";
+"global cpu usage" = "Global CPU Usage";

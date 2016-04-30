@@ -415,15 +415,21 @@
                 </customObject>
                 <menu id="T7t-A2-Jj6">
                     <items>
-                        <menuItem title="CPU Number" enabled="NO" id="Zug-Ae-QjI">
+                        <menuItem title="CPU Number" tag="42" enabled="NO" id="Zug-Ae-QjI">
                             <modifierMask key="keyEquivalentModifierMask"/>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="ECO-in-lSb"/>
                         <menuItem title="Preferences…" id="YY9-3i-4vJ">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="showPrefs:" target="Ady-hI-5gd" id="7AO-t9-Qbk"/>
+                            </connections>
                         </menuItem>
                         <menuItem title="Quit CPU Indicator" id="Yiy-ar-8ZP">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="terminate:" target="Ady-hI-5gd" id="xFi-pb-Kp1"/>
+                            </connections>
                         </menuItem>
                     </items>
                 </menu>

@@ -115,7 +115,7 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 				skinView.defaultMixedImageState = MixedImageState(rawValue: Int16(ud.integerForKey(kUDK_MixedImageState))) ?? .UseSkinDefault
 				
 			default:
-				fatalError("Unreachable code has been reached!")
+				super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
 			}
 		} else if kp == "selectedSkinObjectID" && object === AppDelegate.sharedAppDelegate {
 			self.updateSkinAndScale()
@@ -201,7 +201,7 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 	   ************************** */
 	
 	func cpuUsageChangedFromGetter(getter: CPUUsageGetter) {
-		self.skinView.progress = Float(getter.globalCPUUsage)
+		skinView.progress = Float(getter.globalCPUUsage)
 	}
 	
 	/* ***************

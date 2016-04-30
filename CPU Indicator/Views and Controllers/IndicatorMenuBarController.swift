@@ -10,7 +10,7 @@ import Cocoa
 
 
 
-class IndicatorMenuBarController : NSObject {
+class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 	
 	@IBOutlet private var menu: NSMenu!
 	
@@ -22,68 +22,102 @@ class IndicatorMenuBarController : NSObject {
 	private let observedUDCKeys = [
 		"values.\(kUDK_ShowMenuIndicator)",
 		"values.\(kUDK_MenuIndicatorOnePerCPU)", "values.\(kUDK_MenuIndicatorMode)",
-//		"values.\(kUDK_SelectedSkin)", "values.\(kUDK_MixedImageState)"
+		"values.\(kUDK_MixedImageState)"
 	]
-	
-	override init() {
-		super.init()
-		
-		let udc = NSUserDefaultsController.sharedUserDefaultsController()
-		for keyPath in observedUDCKeys {
-			udc.addObserver(self, forKeyPath: keyPath, options: .Initial, context: nil)
-		}
-		observingUDC = true
-	}
 	
 	deinit {
 		if observingUDC {
+			CPUUsageGetter.sharedCPUUsageGetter.removeObserverForKnownUsageModification(self)
+			AppDelegate.sharedAppDelegate.removeObserver(self, forKeyPath: "selectedSkinObjectID", context: nil)
 			for keyPath in observedUDCKeys {
 				NSUserDefaultsController.sharedUserDefaultsController().removeObserver(self, forKeyPath: keyPath)
 			}
 		}
 	}
 	
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		
+		let udc = NSUserDefaultsController.sharedUserDefaultsController()
+		for keyPath in observedUDCKeys {
+			udc.addObserver(self, forKeyPath: keyPath, options: .Initial, context: nil)
+		}
+		AppDelegate.sharedAppDelegate.addObserver(self, forKeyPath: "selectedSkinObjectID", options: [.Initial], context: nil)
+		CPUUsageGetter.sharedCPUUsageGetter.addObserverForKnownUsageModification(self)
+		observingUDC = true
+	}
+	
 	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-		guard let kp = keyPath where observedUDCKeys.contains(kp) && object === NSUserDefaultsController.sharedUserDefaultsController() else {
+		guard let kp = keyPath else {
 			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
 			return
 		}
 		
-		let prefix = "values."
-		let ud = NSUserDefaults.standardUserDefaults()
-		switch kp.substringFromIndex(prefix.endIndex) {
-		case kUDK_ShowMenuIndicator:
-			if ud.boolForKey(kUDK_ShowMenuIndicator) {showIndicatorsIfNeeded()}
-			else                                     {hideIndicatorsIfNeeded()}
-		case kUDK_MenuIndicatorOnePerCPU:
-			if ud.boolForKey(kUDK_ShowMenuIndicator) {
-				/* Let's refresh the number of status items shown by hidding/showing
+		if observedUDCKeys.contains(kp) && object === NSUserDefaultsController.sharedUserDefaultsController() {
+			let prefix = "values."
+			let ud = NSUserDefaults.standardUserDefaults()
+			switch kp.substringFromIndex(prefix.endIndex) {
+			case kUDK_ShowMenuIndicator:
+				if ud.boolForKey(kUDK_ShowMenuIndicator) {showIndicatorsIfNeeded()}
+				else                                     {hideIndicatorsIfNeeded()}
+				
+			case kUDK_MenuIndicatorOnePerCPU:
+				if ud.boolForKey(kUDK_ShowMenuIndicator) {
+					/* Let's refresh the number of status items shown by hiding/showing
 				 * the indicators. */
-				hideIndicatorsIfNeeded()
-				showIndicatorsIfNeeded()
+					hideIndicatorsIfNeeded()
+					showIndicatorsIfNeeded()
+				}
+				
+			case kUDK_MenuIndicatorMode:
+				refreshStatusItemsMode()
+				
+			case kUDK_MixedImageState:
+				(/*TODO*/)
+				
+			default:
+				super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
 			}
-		case kUDK_MenuIndicatorMode:
-			refreshStatusItemsMode()
-		default:
-			fatalError("Unreachable code has been reached!")
+		} else if kp == "selectedSkinObjectID" && object === AppDelegate.sharedAppDelegate {
+			(/*TODO*/)
+		} else {
+			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
 		}
 	}
 	
 	private func showIndicatorsIfNeeded() {
-		if statusItems.count > 0 {
+		guard statusItems.count == 0 else {
 			/* The status items are already being shown. */
 			return
+		}
+		
+		let oneMenuPerCPU = NSUserDefaults.standardUserDefaults().boolForKey(kUDK_MenuIndicatorOnePerCPU)
+		let n = oneMenuPerCPU ? CPUUsageGetter.sharedCPUUsageGetter.cpuCount : 1
+		for i in 1...n {
+			let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+			statusItem.menu = (menu.copy() as! NSMenu)
+			statusItem.menu?.itemWithTag(42)?.title = (oneMenuPerCPU ? String(format: NSLocalizedString("proc %lu", comment: ""), i) : NSLocalizedString("global cpu usage", comment: ""))
+			statusItems.append(statusItem)
 		}
 	}
 	
 	private func hideIndicatorsIfNeeded() {
-		if statusItems.count == 0 {
-			/* The status items are already hidden. */
-			return
+		for statusItem in statusItems {
+			NSStatusBar.systemStatusBar().removeStatusItem(statusItem)
 		}
+		statusItems.removeAll()
 	}
 	
 	private func refreshStatusItemsMode() {
+		for statusItem in statusItems {
+		}
+	}
+	
+	/* **************************
+	   MARK: - CPU Usage Observer
+	   ************************** */
+	
+	func cpuUsageChangedFromGetter(getter: CPUUsageGetter) {
 		for statusItem in statusItems {
 		}
 	}
