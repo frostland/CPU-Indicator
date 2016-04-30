@@ -93,10 +93,11 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 		
 		let oneMenuPerCPU = NSUserDefaults.standardUserDefaults().boolForKey(kUDK_MenuIndicatorOnePerCPU)
 		let n = oneMenuPerCPU ? CPUUsageGetter.sharedCPUUsageGetter.cpuCount : 1
-		for i in 1...n {
+		for i in 0..<n {
 			let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
 			statusItem.menu = (menu.copy() as! NSMenu)
-			statusItem.menu?.itemWithTag(42)?.title = (oneMenuPerCPU ? String(format: NSLocalizedString("proc %lu", comment: ""), i) : NSLocalizedString("global cpu usage", comment: ""))
+			statusItem.menu?.itemWithTag(42)?.title = (oneMenuPerCPU ? String(format: NSLocalizedString("proc %lu", comment: ""), i+1) : NSLocalizedString("global cpu usage", comment: ""))
+			updateStatusItem(statusItem, forProcAtIndex: (oneMenuPerCPU ? i : nil))
 			statusItems.append(statusItem)
 		}
 	}
@@ -109,8 +110,7 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 	}
 	
 	private func refreshStatusItemsMode() {
-		for statusItem in statusItems {
-		}
+		updateStatusItems()
 	}
 	
 	/* **************************
@@ -118,8 +118,24 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 	   ************************** */
 	
 	func cpuUsageChangedFromGetter(getter: CPUUsageGetter) {
-		for statusItem in statusItems {
+		updateStatusItems()
+	}
+	
+	/* ***************
+	   MARK: - Private
+	   *************** */
+	
+	private func updateStatusItems() {
+		let oneMenuPerCPU = NSUserDefaults.standardUserDefaults().boolForKey(kUDK_MenuIndicatorOnePerCPU)
+		for (i, statusItem) in statusItems.enumerate() {
+			updateStatusItem(statusItem, forProcAtIndex: (oneMenuPerCPU ? i : nil))
 		}
+	}
+	
+	private func updateStatusItem(statusItem: NSStatusItem, forProcAtIndex procIndex: Int?) {
+		let mode = NSUserDefaults.standardUserDefaults().integerForKey(kUDK_MenuIndicatorMode)
+		let load = (procIndex != nil ? CPUUsageGetter.sharedCPUUsageGetter.cpuUsages[procIndex!] : CPUUsageGetter.sharedCPUUsageGetter.globalCPUUsage)
+		statusItem.title = (mode == MenuIndicatorMode.Text.rawValue || mode == MenuIndicatorMode.Both.rawValue ? String(format: NSLocalizedString("%lu%%", comment: ""), Int(load*100 + 0.5)) : nil)
 	}
 	
 }

@@ -7,5 +7,8 @@
 */
 
 "ok maj" = "OK";
+
 "proc %lu" = "Proc. %lu";
 "global cpu usage" = "Global CPU Usage";
+
+"%lu%%" = "%lu%%";
