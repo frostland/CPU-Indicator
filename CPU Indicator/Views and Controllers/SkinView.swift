@@ -75,8 +75,6 @@ class SkinView : NSView {
 		removePreviewProgressObserverIfNeeded()
 	}
 	
-	var ignoreClicks = false
-	
 	var sizedSkin: SizedSkin? {
 		didSet {
 			updateResolvedMixedImageState(forceImageUpdate: true)
@@ -203,11 +201,6 @@ class SkinView : NSView {
 			hints: nil
 		)
 	}*/
-	
-	override func hitTest(aPoint: NSPoint) -> NSView? {
-		let hitView = super.hitTest(aPoint)
-		return (ignoreClicks && hitView === self ? nil : hitView)
-	}
 	
 	private class PreviewProgress {
 		private static let sharedPreviewProgress = PreviewProgress()
