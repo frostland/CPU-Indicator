@@ -54,16 +54,28 @@ class SkinView : NSView {
 		}
 	}*/
 	
+	private func commonInit() {
+		self.wantsLayer = true /* Don't know why this does not work in Storyboard directly... */
+		self.layer?.contentsGravity = kCAGravityResizeAspect
+	}
+	
+	override init(frame frameRect: NSRect) {
+		super.init(frame: frameRect)
+		
+		commonInit()
+	}
+	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		
-		self.wantsLayer = true /* Don't know why this does not work in Storyboard directly... */
-		self.layer?.contentsGravity = kCAGravityResizeAspect
+		commonInit()
 	}
 	
 	deinit {
 		removePreviewProgressObserverIfNeeded()
 	}
+	
+	var ignoreClicks = false
 	
 	var sizedSkin: SizedSkin? {
 		didSet {
@@ -191,6 +203,11 @@ class SkinView : NSView {
 			hints: nil
 		)
 	}*/
+	
+	override func hitTest(aPoint: NSPoint) -> NSView? {
+		let hitView = super.hitTest(aPoint)
+		return (ignoreClicks && hitView === self ? nil : hitView)
+	}
 	
 	private class PreviewProgress {
 		private static let sharedPreviewProgress = PreviewProgress()
