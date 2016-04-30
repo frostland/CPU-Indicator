@@ -59,11 +59,11 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 				}
 				
 			case kUDK_MenuIndicatorMode:
-				updateStatusItems()
+				updateStatusItems(allowAnimation: true)
 				
 			case kUDK_MixedImageState:
 				updateResolvedMixedImageState()
-				updateStatusItems()
+				updateStatusItems(allowAnimation: true)
 				
 			default:
 				super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
@@ -95,7 +95,7 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 			statusItem.button?.layer?.addSublayer(layer)
 			
 			let fullItem = (item: statusItem, skinLayer: layer)
-			updateStatusItem(fullItem, forProcAtIndex: (oneMenuPerCPU ? i : nil))
+			updateStatusItem(fullItem, forProcAtIndex: (oneMenuPerCPU ? i : nil), allowAnimation: false)
 			statusItems.append(fullItem)
 		}
 	}
@@ -112,7 +112,7 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 	   ************************** */
 	
 	func cpuUsageChangedFromGetter(getter: CPUUsageGetter) {
-		updateStatusItems()
+		updateStatusItems(allowAnimation: true)
 	}
 	
 	/* ************************
@@ -199,18 +199,18 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 		/* Updating the status items if they show the image. */
 		let mode = NSUserDefaults.standardUserDefaults().integerForKey(kUDK_MenuIndicatorMode)
 		if mode == MenuIndicatorMode.Image.rawValue || mode == MenuIndicatorMode.Both.rawValue {
-			updateStatusItems()
+			updateStatusItems(allowAnimation: false)
 		}
 	}
 	
-	private func updateStatusItems() {
+	private func updateStatusItems(allowAnimation allowAnimation: Bool) {
 		let oneMenuPerCPU = NSUserDefaults.standardUserDefaults().boolForKey(kUDK_MenuIndicatorOnePerCPU)
 		for (i, statusItem) in statusItems.enumerate() {
-			updateStatusItem(statusItem, forProcAtIndex: (oneMenuPerCPU ? i : nil))
+			updateStatusItem(statusItem, forProcAtIndex: (oneMenuPerCPU ? i : nil), allowAnimation: allowAnimation)
 		}
 	}
 	
-	private func updateStatusItem(statusItem: (item: NSStatusItem, skinLayer: CALayer), forProcAtIndex procIndex: Int?) {
+	private func updateStatusItem(statusItem: (item: NSStatusItem, skinLayer: CALayer), forProcAtIndex procIndex: Int?, allowAnimation: Bool) {
 		let mode = NSUserDefaults.standardUserDefaults().integerForKey(kUDK_MenuIndicatorMode)
 		let load = (procIndex != nil ? CPUUsageGetter.sharedCPUUsageGetter.cpuUsages[procIndex!] : CPUUsageGetter.sharedCPUUsageGetter.globalCPUUsage)
 		
@@ -220,7 +220,7 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 		/* Updating image */
 		if mode == MenuIndicatorMode.Image.rawValue || mode == MenuIndicatorMode.Both.rawValue, let sizedSkin = sizedSkin {
 			statusItem.item.button?.image = emptyImageForItem
-			sizedSkin.setLayerContents(statusItem.skinLayer, forProgress: Float(load), mixedImageState: resolvedMixedImageState ?? .Disallow, allowAnimation: true)
+			sizedSkin.setLayerContents(statusItem.skinLayer, forProgress: Float(load), mixedImageState: resolvedMixedImageState ?? .Disallow, allowAnimation: allowAnimation)
 		} else {
 			statusItem.item.button?.image = nil
 			statusItem.skinLayer.contents = nil
