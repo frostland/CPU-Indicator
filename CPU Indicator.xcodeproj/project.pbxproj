@@ -132,6 +132,14 @@
 			name = "Indicator Menu";
 			sourceTree = "<group>";
 		};
+		7B3E25361CD540EA006F66A1 /* Indicator Dock */ = {
+			isa = PBXGroup;
+			children = (
+				7B68FE101BC9D739004B900C /* IndicatorDockController.swift */,
+			);
+			name = "Indicator Dock";
+			sourceTree = "<group>";
+		};
 		7B62756F1BCAFEC9007A0155 /* NSManagedObject Subclasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,7 +224,7 @@
 				7B87C53B1B2C9D2A00A6B64A /* IntroViewController.swift */,
 				7BDE20FD1C41611C002B50C7 /* Indicator Window */,
 				7B3E252F1CD42368006F66A1 /* Indicator Menu */,
-				7B68FE101BC9D739004B900C /* IndicatorDockController.swift */,
+				7B3E25361CD540EA006F66A1 /* Indicator Dock */,
 				7BD9309A1B933D3300EDED90 /* Preferences */,
 				7B1F6D261BCADCB3003860E8 /* SkinView.swift */,
 			);
