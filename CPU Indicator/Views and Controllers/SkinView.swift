@@ -20,7 +20,7 @@ class SkinView : NSView {
 	/*
 	override static func initialize() {
 		if self == SkinCell.self {
-			self.exposeBinding("sizedSkin")
+			exposeBinding("sizedSkin")
 		}
 		
 		super.initialize()
@@ -55,8 +55,9 @@ class SkinView : NSView {
 	}*/
 	
 	private func commonInit() {
-		self.wantsLayer = true /* Don't know why this does not work in Storyboard directly... */
-		self.layer?.contentsGravity = kCAGravityResizeAspect
+		wantsLayer = true /* Don't know why this does not work in Storyboard directly... */
+		layer?.contentsGravity = kCAGravityResizeAspect
+		layerContentsRedrawPolicy = .BeforeViewResize
 	}
 	
 	override init(frame frameRect: NSRect) {
@@ -127,7 +128,7 @@ class SkinView : NSView {
 		else                                         {resolvedMixedImageState = defaultMixedImageState}
 		if forceImageUpdate || resolvedMixedImageState != currentResolvedMixedImageState {
 			displayedProgress = nil
-			updateImageFromCurrentProgress(allowAnimation: true)
+			updateImageFromCurrentProgress(allowAnimation: !forceImageUpdate)
 		}
 	}
 	
@@ -152,55 +153,45 @@ class SkinView : NSView {
 	/* If set to nil, nothing is done. */
 	private var displayedProgress: Float? {
 		willSet {
-			assert(NSThread.isMainThread())
-			defer {allowedToAnimatedDisplayedProgressChange = true}
-			
 			guard let newValue = newValue else {return}
 			
 			assert(newValue >= 0 && newValue <= 1)
-			guard abs(newValue - (displayedProgress ?? -1)) > 0.0001 else {return}
+			guard abs(newValue - (displayedProgress ?? -1)) > 0.01 else {return}
 			
-			let animate = (allowedToAnimatedDisplayedProgressChange && resolvedMixedImageState != .Disallow)
-			
-			/* Core Animation version */
-			let image = self.sizedSkin?.imageForProgress(newValue).CGImageForProposedRect(nil, context: nil, hints: nil)
-			if !animate {self.layer?.contents = image}
-			else {
-				let anim = CABasicAnimation(keyPath: "contents")
-				anim.fromValue = self.layer?.contents
-				anim.duration = 1.0
-				self.layer?.contents = image
-				self.layer?.addAnimation(anim, forKey: "contents")
-			}
-			
-			/* Non Core Animation version (in pair with drawRect, non-animated; use standard methods to animate) */
-//			self.setNeedsDisplayInRect(self.bounds)
+			setNeedsDisplayInRect(bounds)
 		}
 	}
 	
-	/*override func drawRect(dirtyRect: NSRect) {
-		guard let sizedSkin = sizedSkin else {
-			return
+	override var wantsUpdateLayer: Bool {
+		return true
+	}
+	
+	override func updateLayer() {
+		super.updateLayer()
+		guard let layer = layer else {return}
+		
+		assert(NSThread.isMainThread())
+		defer {allowedToAnimatedDisplayedProgressChange = false}
+		let animate = (allowedToAnimatedDisplayedProgressChange && resolvedMixedImageState != .Disallow)
+		
+		layer.removeAnimationForKey("contents")
+		
+		let image: CGImage?
+		if let progress = displayedProgress {image = sizedSkin?.imageForProgress(progress).CGImageForProposedRect(nil, context: nil, hints: nil)}
+		else                                {image = nil}
+		if !animate {layer.contents = image}
+		else {
+			let anim = CABasicAnimation(keyPath: "contents")
+			anim.fromValue = layer.contents
+			anim.duration = 1.0
+			layer.contents = image
+			layer.addAnimation(anim, forKey: "contents")
 		}
-		
-		let myFrame = self.frame
-		
-		let drawnSize = sizedSkin.size
-		let p = NSPoint(
-			x: myFrame.origin.x +  myFrame.size.width  - drawnSize.width,
-			y: myFrame.origin.y + (myFrame.size.height - drawnSize.height)/2.0
-		)
-		
-		let drawRect = NSRect(origin: p, size: drawnSize)
-		sizedSkin.imageForProgress(progress >= 0 ? progress : PreviewProgress.sharedPreviewProgress.currentProgress).drawInRect(
-			drawRect,
-			fromRect: NSRect(origin: CGPointZero, size: drawnSize),
-			operation: .CompositeSourceOver,
-			fraction: 1,
-			respectFlipped: true,
-			hints: nil
-		)
-	}*/
+	}
+	
+	/* ***************
+	   MARK: - Private
+	   *************** */
 	
 	private class PreviewProgress {
 		private static let sharedPreviewProgress = PreviewProgress()
