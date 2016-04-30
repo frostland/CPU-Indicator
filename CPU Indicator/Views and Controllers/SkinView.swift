@@ -78,6 +78,7 @@ class SkinView : NSView {
 	
 	var sizedSkin: SizedSkin? {
 		didSet {
+			assert(sizedSkin?.skin.managedObjectContext?.concurrencyType == nil || sizedSkin?.skin.managedObjectContext?.concurrencyType == .MainQueueConcurrencyType)
 			updateResolvedMixedImageState(forceImageUpdate: true)
 		}
 	}
@@ -123,6 +124,7 @@ class SkinView : NSView {
 	}
 	
 	private func updateResolvedMixedImageState(forceImageUpdate forceImageUpdate: Bool) {
+		assert(NSThread.isMainThread()) /* Must be on main thread because we're accessing the skin, which is on a main queue managed object context */
 		let currentResolvedMixedImageState = resolvedMixedImageState
 		if defaultMixedImageState == .UseSkinDefault {resolvedMixedImageState = sizedSkin?.skin.mixedImageState ?? .Disallow}
 		else                                         {resolvedMixedImageState = defaultMixedImageState}

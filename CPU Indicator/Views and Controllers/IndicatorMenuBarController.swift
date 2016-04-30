@@ -59,10 +59,11 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 				}
 				
 			case kUDK_MenuIndicatorMode:
-				refreshStatusItemsMode()
+				updateStatusItems()
 				
 			case kUDK_MixedImageState:
-				(/*TODO*/)
+				updateResolvedMixedImageState()
+				updateStatusItems()
 				
 			default:
 				super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
@@ -89,6 +90,7 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 			statusItem.button?.imagePosition = .ImageLeft
 			
 			let layer = CALayer()
+			layer.delegate = self /* To disable the animations */
 			statusItem.button?.wantsLayer = true
 			statusItem.button?.layer?.addSublayer(layer)
 			
@@ -105,16 +107,29 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 		statusItems.removeAll()
 	}
 	
-	private func refreshStatusItemsMode() {
-		updateStatusItems()
-	}
-	
 	/* **************************
 	   MARK: - CPU Usage Observer
 	   ************************** */
 	
 	func cpuUsageChangedFromGetter(getter: CPUUsageGetter) {
 		updateStatusItems()
+	}
+	
+	/* ************************
+	   MARK: - CALayer Delegate
+	   ************************ */
+	
+	override func actionForLayer(layer: CALayer, forKey event: String) -> CAAction? {
+		/* Disables the animation for any property change. */
+		return NSNull()
+		
+		/* We must override the method or the Swift compiler is unhappy, BUT the
+		 * method is actually not implemented by super... If it were, here is the
+		 * code we would have used: */
+		/*if statusItems.indexOf({$0.skinLayer === layer}) != nil {
+			return NSNull()
+		}
+		return super.actionForLayer(layer, forKey: event) */
 	}
 	
 	/* ***************
@@ -135,6 +150,21 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 	
 	private var sizedSkin: SizedSkin?
 	private var emptyImageForItem: NSImage?
+	private var resolvedMixedImageState: MixedImageState?
+	
+	private func updateResolvedMixedImageState() {
+		guard let sizedSkin = sizedSkin else {
+			resolvedMixedImageState = nil
+			return
+		}
+		
+		/* Must be on main thread to be able to access properties of the managed object. */
+		assert(NSThread.isMainThread())
+		
+		let defaultMixedImageState = MixedImageState(rawValue: Int16(NSUserDefaults.standardUserDefaults().integerForKey(kUDK_MixedImageState))) ?? .UseSkinDefault
+		if defaultMixedImageState == .UseSkinDefault {resolvedMixedImageState = sizedSkin.skin.mixedImageState ?? .Disallow}
+		else                                         {resolvedMixedImageState = defaultMixedImageState}
+	}
 	
 	private func updateSkin() {
 		let appDelegate = AppDelegate.sharedAppDelegate
@@ -156,6 +186,8 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 			let w = h * r
 			self.sizedSkin = SizedSkin(skin: skin, size: NSSize(width: w, height: h), allowDistortion: false)
 		}
+		
+		updateResolvedMixedImageState()
 		
 		if let sizedSkin = sizedSkin {
 			emptyImageForItem = NSImage(size: sizedSkin.size)
@@ -186,9 +218,9 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 		statusItem.item.button?.title = (mode == MenuIndicatorMode.Text.rawValue || mode == MenuIndicatorMode.Both.rawValue ? String(format: NSLocalizedString("%lu%%", comment: ""), Int(load*100 + 0.5)) : "")
 		
 		/* Updating image */
-		if mode == MenuIndicatorMode.Image.rawValue || mode == MenuIndicatorMode.Both.rawValue, let sizedSkin = sizedSkin, cgimage = sizedSkin.imageForProgress(Float(load)).CGImageForProposedRect(nil, context: nil, hints: nil) {
+		if mode == MenuIndicatorMode.Image.rawValue || mode == MenuIndicatorMode.Both.rawValue, let sizedSkin = sizedSkin {
 			statusItem.item.button?.image = emptyImageForItem
-			statusItem.skinLayer.contents = cgimage
+			sizedSkin.setLayerContents(statusItem.skinLayer, forProgress: Float(load), mixedImageState: resolvedMixedImageState ?? .Disallow, allowAnimation: true)
 		} else {
 			statusItem.item.button?.image = nil
 			statusItem.skinLayer.contents = nil

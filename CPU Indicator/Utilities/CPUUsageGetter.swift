@@ -102,11 +102,13 @@ class CPUUsageGetter {
 			totalTicksNoIdlePerCPU[cpu] = totalNoIdle
 			
 			cpuUsages[cpu] = (totalTicksNoIdlePerCPU[cpu] - previousTotalTicksNoIdlePerCPU[cpu])/(totalTicksPerCPU[cpu] - previousTotalTicksPerCPU[cpu])
+//			cpuUsages[cpu] = Double(random())/Double(RAND_MAX)
 			previousTotalTicksPerCPU[cpu] = totalTicksPerCPU[cpu]
 			previousTotalTicksNoIdlePerCPU[cpu] = totalTicksNoIdlePerCPU[cpu]
 		}
 		
 		globalCPUUsage = (totalTicksNoIdle - previousTotalTicksNoIdle)/(totalTicks - previousTotalTicks)
+//		globalCPUUsage = Double(random())/Double(RAND_MAX)
 		previousTotalTicks = totalTicks
 		previousTotalTicksNoIdle = totalTicksNoIdle
 		

@@ -128,6 +128,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}()
 	
+	/** The main managed object context is on the main queue. */
 	lazy var mainManagedObjectContext: NSManagedObjectContext = {
 		/* Returns the managed object context for the application (which is
 		 * already bound to the persistent store coordinator for the application.) */
