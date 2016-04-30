@@ -28,6 +28,12 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 		}
 	}
 	
+	override func windowDidLoad() {
+		timerNotUsingMyself?.invalidate()
+		timerNotUsingMyself = nil
+		iUseMyself = self
+	}
+	
 	func windowDidBecomeKey(notification: NSNotification) {
 		timerNotUsingMyself?.invalidate()
 		timerNotUsingMyself = nil
