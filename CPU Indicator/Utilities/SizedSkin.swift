@@ -95,7 +95,7 @@ class SizedSkin : NSObject {
 			bitmapDataPlanes: nil, pixelsWide: Int(size.width), pixelsHigh: Int(size.height),
 			bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
 			colorSpaceName: NSCalibratedRGBColorSpace, bytesPerRow: 4 * Int(finalSize.width), bitsPerPixel: 32
-			)!
+		)!
 	}
 	
 	func imageForProgress(p: Float) -> NSImageRep {
