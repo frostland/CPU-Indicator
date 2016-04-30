@@ -168,25 +168,15 @@ class SkinView : NSView {
 	
 	override func updateLayer() {
 		super.updateLayer()
+		
+		defer {allowedToAnimatedDisplayedProgressChange = false}
 		guard let layer = layer else {return}
 		
-		assert(NSThread.isMainThread())
-		defer {allowedToAnimatedDisplayedProgressChange = false}
-		let animate = (allowedToAnimatedDisplayedProgressChange && resolvedMixedImageState != .Disallow)
-		
-		layer.removeAnimationForKey("contents")
-		
-		let image: CGImage?
-		if let progress = displayedProgress {image = sizedSkin?.imageForProgress(progress).CGImageForProposedRect(nil, context: nil, hints: nil)}
-		else                                {image = nil}
-		if !animate {layer.contents = image}
-		else {
-			let anim = CABasicAnimation(keyPath: "contents")
-			anim.fromValue = layer.contents
-			anim.duration = 1.0
-			layer.contents = image
-			layer.addAnimation(anim, forKey: "contents")
+		guard let sizedSkin = sizedSkin, progress = displayedProgress else {
+			layer.contents = nil
+			return
 		}
+		sizedSkin.setLayerContents(layer, forProgress: progress, mixedImageState: resolvedMixedImageState ?? .Disallow, allowAnimation: allowedToAnimatedDisplayedProgressChange)
 	}
 	
 	/* ***************

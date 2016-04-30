@@ -159,6 +159,22 @@ class SizedSkin : NSObject {
 		return imageConstruction
 	}
 	
+	func setLayerContents(layer: CALayer, forProgress progress: Float, mixedImageState: MixedImageState, allowAnimation: Bool) {
+		layer.removeAnimationForKey("contents")
+		
+		let animate = (allowAnimation && mixedImageState != .Disallow)
+		let image = imageForProgress(progress).CGImageForProposedRect(nil, context: nil, hints: nil)
+		
+		if !animate {layer.contents = image}
+		else {
+			let anim = CABasicAnimation(keyPath: "contents")
+			anim.fromValue = layer.contents
+			anim.duration = 1.0
+			layer.contents = image
+			layer.addAnimation(anim, forKey: "contents")
+		}
+	}
+	
 }
 
 
