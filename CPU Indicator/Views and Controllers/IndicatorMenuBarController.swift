@@ -135,7 +135,7 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 	private func updateStatusItem(statusItem: NSStatusItem, forProcAtIndex procIndex: Int?) {
 		let mode = NSUserDefaults.standardUserDefaults().integerForKey(kUDK_MenuIndicatorMode)
 		let load = (procIndex != nil ? CPUUsageGetter.sharedCPUUsageGetter.cpuUsages[procIndex!] : CPUUsageGetter.sharedCPUUsageGetter.globalCPUUsage)
-		statusItem.title = (mode == MenuIndicatorMode.Text.rawValue || mode == MenuIndicatorMode.Both.rawValue ? String(format: NSLocalizedString("%lu%%", comment: ""), Int(load*100 + 0.5)) : nil)
+		statusItem.button?.title = (mode == MenuIndicatorMode.Text.rawValue || mode == MenuIndicatorMode.Both.rawValue ? String(format: NSLocalizedString("%lu%%", comment: ""), Int(load*100 + 0.5)) : "")
 	}
 	
 }
