@@ -152,6 +152,8 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 		private var resolvedMixedImageState: MixedImageState?
 		private var sizedSkin: SizedSkin?
 		
+		private var currentAnimation: ProgressAnimation?
+		
 		private func updateResolvedMixedImageState(forceImageUpdate forceImageUpdate: Bool) {
 			assert(NSThread.isMainThread()) /* Must be on main thread because we're accessing the skin, which is on a main queue managed object context */
 			let currentResolvedMixedImageState = resolvedMixedImageState
@@ -164,17 +166,27 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 		}
 		
 		private func updateImageFromCurrentProgress(allowAnimation allowAnimation: Bool) {
-			/* TODO: The (manual) animation... */
-			let animate = (allowAnimation && resolvedMixedImageState != .Disallow)
+			let destinationProgress: Float
+			defer {
+				if !allowAnimation || resolvedMixedImageState == .Disallow {
+					displayedProgress = destinationProgress
+				} else {
+					/* Let's setup an animation from current progress to destination
+					 * progress. */
+					currentAnimation?.stopAnimation()
+					currentAnimation = ProgressAnimation(linkedView: self, startIndicatorProgress: self.displayedProgress ?? 0, endIndicatorProgress: destinationProgress, duration: 0.25, animationCurve: .Linear)
+					currentAnimation?.startAnimation()
+				}
+			}
 			
-			if resolvedMixedImageState == .Allow {displayedProgress = progress}
+			if resolvedMixedImageState == .Allow {destinationProgress = progress}
 			else {
 				/* We must stick to the reference frames. */
 				let n = skin.frames?.count ?? 1
-				guard n > 1 else {displayedProgress = 0; return}
+				guard n > 1 else {destinationProgress = 0; return}
 				
 				let imageIdx = Int(progress * Float(n-1))
-				displayedProgress = (Float(imageIdx) / Float(n-1));
+				destinationProgress = (Float(imageIdx) / Float(n-1));
 			}
 		}
 		
@@ -224,6 +236,35 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 			)
 			
 			finalSizedSkin.imageForProgress(displayedProgress)
+		}
+		
+		private class ProgressAnimation : NSAnimation {
+			
+			private let endIndicatorProgress: Float
+			private let startIndicatorProgress: Float
+			private weak var linkedView: DockTileIndicatorView?
+			
+			init(linkedView v: DockTileIndicatorView, startIndicatorProgress sip: Float, endIndicatorProgress eip: Float, duration: NSTimeInterval, animationCurve: NSAnimationCurve) {
+				linkedView = v
+				endIndicatorProgress = eip
+				startIndicatorProgress = sip
+				super.init(duration: duration, animationCurve: animationCurve)
+			}
+			
+			required init?(coder aDecoder: NSCoder) {
+				fatalError("Cannot init this class with a coder")
+			}
+			
+			private override var currentProgress: NSAnimationProgress {
+				get {return super.currentProgress}
+				set {
+					super.currentProgress = newValue
+					let p = currentProgress
+					
+					linkedView?.displayedProgress = startIndicatorProgress + (endIndicatorProgress - startIndicatorProgress)*p
+				}
+			}
+			
 		}
 		
 	}
