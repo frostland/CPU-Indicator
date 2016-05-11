@@ -154,11 +154,11 @@ class SkinView : NSView {
 	private var allowedToAnimatedDisplayedProgressChange = true
 	/* If set to nil, nothing is done. */
 	private var displayedProgress: Float? {
-		willSet {
-			guard let newValue = newValue else {return}
+		didSet {
+			guard let displayedProgress = displayedProgress else {return}
 			
-			assert(newValue >= 0 && newValue <= 1)
-			guard abs(newValue - (displayedProgress ?? -1)) > 0.01 else {return}
+			assert(displayedProgress >= 0 && displayedProgress <= 1)
+			guard abs(displayedProgress - (oldValue ?? -1)) > 0.01 else {return}
 			
 			setNeedsDisplayInRect(bounds)
 		}
