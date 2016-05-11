@@ -68,6 +68,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 	   ************************ */
 	
 	func cpuUsageChangedFromGetter(getter: CPUUsageGetter) {
+		NSApp.dockTile.display()
 	}
 	
 	/* ***************
@@ -81,9 +82,33 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 	]
 	
 	private func showIndicatorIfNeeded() {
+		NSApp.dockTile.contentView = DockTileIndicatorView(dockTile: NSApp.dockTile)
+		NSApp.dockTile.display()
 	}
 	
 	private func hideIndicatorIfNeeded() {
+		NSApp.dockTile.contentView = nil
+	}
+	
+	/** Expects to be the content view of a dock tile. Uses dockTile.display when
+	redraw is needed. */
+	private class DockTileIndicatorView : NSView {
+		
+		let dockTile: NSDockTile
+		
+		init(dockTile dt: NSDockTile) {
+			dockTile = dt
+			super.init(frame: CGRect(origin: CGPointZero, size: dt.size))
+		}
+		
+		required init?(coder: NSCoder) {
+			fatalError("Cannot init this class with a coder")
+		}
+		
+		private override func drawRect(dirtyRect: NSRect) {
+			/* TODO */
+		}
+		
 	}
 	
 }
