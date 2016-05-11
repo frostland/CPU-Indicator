@@ -14,6 +14,8 @@ class SizedSkin : NSObject {
 	
 	let skin: Skin
 	let size: CGSize
+	/** The size given at init time, before retrictions were applied. */
+	let originalSize: CGSize
 	
 	/* x and y represent resp. the ratio between the skin size and the given skin
 	* cell value size. */
@@ -70,6 +72,7 @@ class SizedSkin : NSObject {
 	
 	init(skin s: Skin, size destSize: CGSize, allowDistortion forceDestinationSize: Bool) {
 		skin = s
+		originalSize = destSize
 		var skinSize: CGSize!
 		s.managedObjectContext!.performBlockAndWait {
 			skinSize = CGSizeMake(CGFloat(s.width), CGFloat(s.height))
