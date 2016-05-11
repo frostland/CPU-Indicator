@@ -51,13 +51,15 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 				else                                          {hideIndicatorIfNeeded()}
 				
 			case kUDK_MixedImageState:
-				(/*TODO*/)
+				dockTileIndicatorView?.defaultMixedImageState = defaultMixedImageState
 				
 			default:
 				super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
 			}
 		} else if kp == "selectedSkinObjectID" && object === AppDelegate.sharedAppDelegate {
-			(/*TODO*/)
+			if let skin = skin {dockTileIndicatorView?.skin = skin}
+			else               {NSLog("Weird... Cannot get current skin.")}
+			
 		} else {
 			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
 		}
@@ -68,7 +70,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 	   ************************ */
 	
 	func cpuUsageChangedFromGetter(getter: CPUUsageGetter) {
-		NSApp.dockTile.display()
+		dockTileIndicatorView?.progress = Float(getter.globalCPUUsage)
 	}
 	
 	/* ***************
@@ -81,8 +83,25 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 		"values.\(kUDK_MixedImageState)"
 	]
 	
+	private var skin: Skin? {
+		let appDelegate = AppDelegate.sharedAppDelegate
+		let context = appDelegate.mainManagedObjectContext
+		assert(context.concurrencyType == .MainQueueConcurrencyType)
+		
+		return (try? context.existingObjectWithID(appDelegate.selectedSkinObjectID)) as? Skin
+	}
+	
+	private var defaultMixedImageState: MixedImageState {
+		return MixedImageState(rawValue: Int16(NSUserDefaults.standardUserDefaults().integerForKey(kUDK_MixedImageState))) ?? .UseSkinDefault
+	}
+	
+	private var dockTileIndicatorView: DockTileIndicatorView?
+	
 	private func showIndicatorIfNeeded() {
-		NSApp.dockTile.contentView = DockTileIndicatorView(dockTile: NSApp.dockTile)
+		guard let skin = skin else {return}
+		
+		dockTileIndicatorView = DockTileIndicatorView(dockTile: NSApp.dockTile, skin: skin, defaultMixedImageState: defaultMixedImageState)
+		NSApp.dockTile.contentView = dockTileIndicatorView
 		NSApp.dockTile.display()
 	}
 	
@@ -96,17 +115,115 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 		
 		let dockTile: NSDockTile
 		
-		init(dockTile dt: NSDockTile) {
+		init(dockTile dt: NSDockTile, skin s: Skin, defaultMixedImageState dmis: MixedImageState) {
+			skin = s
 			dockTile = dt
+			defaultMixedImageState = dmis
 			super.init(frame: CGRect(origin: CGPointZero, size: dt.size))
+			
+			updateResolvedMixedImageState(forceImageUpdate: true)
 		}
 		
 		required init?(coder: NSCoder) {
 			fatalError("Cannot init this class with a coder")
 		}
 		
+		var skin: Skin {
+			didSet {
+				assert(skin.managedObjectContext?.concurrencyType == nil || skin.managedObjectContext?.concurrencyType == .MainQueueConcurrencyType)
+				updateResolvedMixedImageState(forceImageUpdate: true)
+			}
+		}
+		
+		var defaultMixedImageState: MixedImageState {
+			didSet {
+				guard oldValue != defaultMixedImageState else {return}
+				updateResolvedMixedImageState(forceImageUpdate: false)
+			}
+		}
+		
+		var progress: Float = 0 {
+			didSet {
+				assert(NSThread.isMainThread())
+				updateImageFromCurrentProgress(allowAnimation: true)
+			}
+		}
+		
+		private var resolvedMixedImageState: MixedImageState?
+		private var sizedSkin: SizedSkin?
+		
+		private func updateResolvedMixedImageState(forceImageUpdate forceImageUpdate: Bool) {
+			assert(NSThread.isMainThread()) /* Must be on main thread because we're accessing the skin, which is on a main queue managed object context */
+			let currentResolvedMixedImageState = resolvedMixedImageState
+			if defaultMixedImageState == .UseSkinDefault {resolvedMixedImageState = skin.mixedImageState ?? .Disallow}
+			else                                         {resolvedMixedImageState = defaultMixedImageState}
+			if forceImageUpdate || resolvedMixedImageState != currentResolvedMixedImageState {
+				displayedProgress = nil
+				updateImageFromCurrentProgress(allowAnimation: !forceImageUpdate)
+			}
+		}
+		
+		private func updateImageFromCurrentProgress(allowAnimation allowAnimation: Bool) {
+			/* TODO: The (manual) animation... */
+			let animate = (allowAnimation && resolvedMixedImageState != .Disallow)
+			
+			if resolvedMixedImageState == .Allow {displayedProgress = progress}
+			else {
+				/* We must stick to the reference frames. */
+				let n = skin.frames?.count ?? 1
+				guard n > 1 else {displayedProgress = 0; return}
+				
+				let imageIdx = Int(progress * Float(n-1))
+				displayedProgress = (Float(imageIdx) / Float(n-1));
+			}
+		}
+		
+		/* If set to nil, nothing is done. */
+		private var displayedProgress: Float? {
+			didSet {
+				guard let displayedProgress = displayedProgress else {return}
+				
+				assert(displayedProgress >= 0 && displayedProgress <= 1)
+				guard abs(displayedProgress - (oldValue ?? -1)) > 0.01 else {return}
+				
+				setNeedsDisplayInRect(bounds)
+				dockTile.display()
+			}
+		}
+		
 		private override func drawRect(dirtyRect: NSRect) {
-			/* TODO */
+			guard let displayedProgress = displayedProgress else {return}
+			
+			let finalSizedSkin: SizedSkin
+			if let sizedSkin = sizedSkin where
+				sizedSkin.skin.objectID == skin.objectID &&
+				(abs(sizedSkin.originalSize.width  - dockTile.size.width)  < 0.5 &&
+				 abs(sizedSkin.originalSize.height - dockTile.size.height) < 0.5)
+			{
+				finalSizedSkin = sizedSkin
+			} else {
+				finalSizedSkin = SizedSkin(skin: skin, size: dockTile.size, allowDistortion: false)
+			}
+			
+			let myFrame = self.frame
+			
+			let drawnSize = finalSizedSkin.size
+			let p = NSPoint(
+				x: myFrame.origin.x + (myFrame.size.width  - drawnSize.width)/2,
+				y: myFrame.origin.y + (myFrame.size.height - drawnSize.height)/2
+			)
+			
+			let drawRect = NSRect(origin: p, size: drawnSize)
+			finalSizedSkin.imageForProgress(displayedProgress).drawInRect(
+				drawRect,
+				fromRect: NSRect(origin: CGPointZero, size: drawnSize),
+				operation: .CompositeSourceOver,
+				fraction: 1,
+				respectFlipped: true,
+				hints: nil
+			)
+			
+			finalSizedSkin.imageForProgress(displayedProgress)
 		}
 		
 	}
