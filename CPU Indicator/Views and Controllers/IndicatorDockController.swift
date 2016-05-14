@@ -178,7 +178,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 					if abs(destinationProgress - (displayedProgress ?? -1)) > 0.01 {
 						/* Destination progress is sufficiently than current displayed
 						 * progress: the animation is worth it. */
-						currentAnimation = ProgressAnimation(linkedView: self, startIndicatorProgress: displayedProgress ?? 0, endIndicatorProgress: destinationProgress, duration: 0.25, animationCurve: .Linear)
+						currentAnimation = ProgressAnimation(linkedView: self, startIndicatorProgress: displayedProgress ?? 0, endIndicatorProgress: destinationProgress, duration: 0.5, animationCurve: .Linear)
 						currentAnimation?.startAnimation()
 					}
 				}

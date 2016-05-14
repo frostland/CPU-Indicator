@@ -172,7 +172,7 @@ class SizedSkin : NSObject {
 		else {
 			let anim = CABasicAnimation(keyPath: "contents")
 			anim.fromValue = layer.contents
-			anim.duration = 1.0
+			anim.duration = 0.5
 			layer.contents = image
 			layer.addAnimation(anim, forKey: "contents")
 		}
