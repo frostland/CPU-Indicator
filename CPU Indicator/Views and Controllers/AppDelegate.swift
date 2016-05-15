@@ -37,6 +37,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	private var dockIconShown = false
 	private var appDidBecomeActive = false
 	
+	private var kvoContextUDWindowLocked = "UD Window Locked"
+	
 	override class func initialize() {
 		if self === AppDelegate.self {
 			let defaults = [
@@ -201,6 +203,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			}
 		}
 		
+		/* Adding observer of "Window Locked" user defaults to set clickless to
+		 * false if locked is false. */
+		NSUserDefaultsController.sharedUserDefaultsController().addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorLocked)", options: [.Initial], context: &kvoContextUDWindowLocked)
+		
 		menuBarController.applicationWillFinishLaunching()
 		dockIndicatorController.applicationWillFinishLaunching()
 		
@@ -267,7 +273,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	func applicationWillTerminate(aNotification: NSNotification) {
-		// Insert code here to tear down your application
+		NSUserDefaultsController.sharedUserDefaultsController().removeObserver(self, forKeyPath: "values."+kUDK_WindowIndicatorLocked, context: &kvoContextUDWindowLocked)
 	}
 	
 	@IBAction func showPrefs(sender: AnyObject?) {
@@ -281,6 +287,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func closeIntroWindow() {
 		introWindowController?.close()
 		introWindowController = nil /* No need to keep a reference to a class we'll never use again. */
+	}
+	
+	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+		switch context {
+		case &kvoContextUDWindowLocked:
+			let ud = NSUserDefaults.standardUserDefaults()
+			if !ud.boolForKey(kUDK_WindowIndicatorLocked) {ud.setBool(false, forKey: kUDK_WindowIndicatorClickless)}
+			
+		default: super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+		}
 	}
 	
 	private func imagesInfoFromImages(images: [NSImage], inout maxWidth: Int32, inout maxHeight: Int32) -> [(NSImage, Int32, Int32, Int32, Int32)] {
