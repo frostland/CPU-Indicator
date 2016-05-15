@@ -50,8 +50,8 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 				
 			case kUDK_MenuIndicatorOnePerCPU:
 				if ud.boolForKey(kUDK_ShowMenuIndicator) {
-					/* Let's refresh the number of status items shown by hiding/showing
-				 * the indicators. */
+					/* Let's refresh the number of status items shown by
+					 * hiding/showing the indicators. */
 					hideIndicatorsIfNeeded()
 					showIndicatorsIfNeeded()
 				}
@@ -91,6 +91,7 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 			layer.delegate = self /* To disable the animations */
 			statusItem.button?.wantsLayer = true
 			statusItem.button?.layer?.addSublayer(layer)
+			if let sizedSkin = sizedSkin {updateStatusItemLayerFrame(layer, withSizedSkin: sizedSkin)}
 			
 			let fullItem = (item: statusItem, skinLayer: layer)
 			updateStatusItem(fullItem, forProcAtIndex: (oneMenuPerCPU ? i : nil), allowAnimation: false)
@@ -99,9 +100,7 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 	}
 	
 	private func hideIndicatorsIfNeeded() {
-		for (statusItem, _) in statusItems {
-			NSStatusBar.systemStatusBar().removeStatusItem(statusItem)
-		}
+		statusItems.forEach {NSStatusBar.systemStatusBar().removeStatusItem($0.item)}
 		statusItems.removeAll()
 	}
 	
@@ -185,9 +184,7 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 		
 		if let sizedSkin = sizedSkin {
 			emptyImageForItem = NSImage(size: sizedSkin.size)
-			for (_, layer) in statusItems {
-				layer.frame = CGRect(x: 3 /* Magic number (visually pleasant) */, y: self.vSpacing, width: sizedSkin.size.width, height: sizedSkin.size.height)
-			}
+			statusItems.forEach {updateStatusItemLayerFrame($0.skinLayer, withSizedSkin: sizedSkin)}
 		}
 		
 		/* Updating the status items if they show the image. */
@@ -195,6 +192,10 @@ class IndicatorMenuBarController : NSObject, CPUUsageObserver {
 		if mode == MenuIndicatorMode.Image.rawValue || mode == MenuIndicatorMode.Both.rawValue {
 			updateStatusItems(allowAnimation: false)
 		}
+	}
+	
+	private func updateStatusItemLayerFrame(layer: CALayer, withSizedSkin sizedSkin: SizedSkin) {
+		layer.frame = CGRect(x: 3 /* Magic number (visually pleasant) */, y: self.vSpacing, width: sizedSkin.size.width, height: sizedSkin.size.height)
 	}
 	
 	private func updateStatusItems(allowAnimation allowAnimation: Bool) {
