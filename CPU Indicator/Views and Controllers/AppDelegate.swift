@@ -150,7 +150,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 		
 		/* Let's initialize and start the shared CPU Usage Getter. */
-		let _ = CPUUsageGetter.sharedCPUUsageGetter
+		_ = CPUUsageGetter.sharedCPUUsageGetter
 		
 		/* Let's check the selected skin is indeed in the database. */
 		self.mainManagedObjectContext.performBlockAndWait {
