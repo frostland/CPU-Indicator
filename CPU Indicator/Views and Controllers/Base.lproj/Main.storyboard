@@ -1066,9 +1066,9 @@ DQ
                                 <rect key="frame" x="0.0" y="0.0" width="510" height="273"/>
                                 <subviews>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="143" horizontalPageScroll="10" verticalLineScroll="143" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOB-ht-u4d">
-                                        <rect key="frame" x="-1" y="107" width="512" height="167"/>
+                                        <rect key="frame" x="-1" y="76" width="512" height="198"/>
                                         <clipView key="contentView" id="hbK-QL-OpZ">
-                                            <rect key="frame" x="1" y="1" width="510" height="165"/>
+                                            <rect key="frame" x="1" y="1" width="510" height="196"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" typeSelect="NO" autosaveName="Skins Table View" rowHeight="141" viewBased="YES" id="Dah-Of-Maa">
@@ -1227,67 +1227,53 @@ DQ
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="X43-4A-x4a">
-                                        <rect key="frame" x="0.0" y="53" width="510" height="5"/>
-                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <font key="titleFont" metaFont="system"/>
-                                    </box>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c8y-ri-UC3">
-                                        <rect key="frame" x="10" y="75" width="177" height="23"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="f8A-5P-twu">
+                                        <rect key="frame" x="-1" y="56" width="512" height="21"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c8y-ri-UC3">
+                                                <rect key="frame" x="159" y="-1" width="152" height="23"/>
+                                                <buttonCell key="cell" type="smallSquare" title="Restore Purchases…      " bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pM6-gu-piR">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Re0-UX-NNU">
+                                                <rect key="frame" x="310" y="-1" width="138" height="23"/>
+                                                <buttonCell key="cell" type="smallSquare" title="Use Selected Skin      " bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A9w-kT-TlF">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="useSelectedSkin:" target="Ks3-AB-QsZ" id="IEf-Wt-QZ4"/>
+                                                    <binding destination="NP6-lN-Ti5" name="enabled" keyPath="selection.uid" id="64t-bK-0QD">
+                                                        <dictionary key="options">
+                                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IEb-kc-6qI">
+                                                <rect key="frame" x="0.0" y="-1" width="160" height="23"/>
+                                                <buttonCell key="cell" type="smallSquare" title="Show Purchased Only      " bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="anX-5T-98U">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="qFc-Z3-WVE"/>
+                                            <constraint firstAttribute="bottom" secondItem="c8y-ri-UC3" secondAttribute="bottom" id="0Zt-pe-cSC"/>
+                                            <constraint firstItem="IEb-kc-6qI" firstAttribute="leading" secondItem="f8A-5P-twu" secondAttribute="leading" id="7Re-WA-dVA"/>
+                                            <constraint firstAttribute="bottom" secondItem="IEb-kc-6qI" secondAttribute="bottom" id="9Ce-fX-Jte"/>
+                                            <constraint firstItem="IEb-kc-6qI" firstAttribute="top" secondItem="f8A-5P-twu" secondAttribute="top" id="EbJ-Z9-lTK"/>
+                                            <constraint firstItem="c8y-ri-UC3" firstAttribute="top" secondItem="f8A-5P-twu" secondAttribute="top" id="KA7-Jr-Ybr"/>
+                                            <constraint firstAttribute="height" constant="21" id="LZh-Lc-bfq"/>
+                                            <constraint firstItem="Re0-UX-NNU" firstAttribute="leading" secondItem="c8y-ri-UC3" secondAttribute="trailing" constant="-1" id="M0w-C4-qIH"/>
+                                            <constraint firstItem="c8y-ri-UC3" firstAttribute="leading" secondItem="IEb-kc-6qI" secondAttribute="trailing" constant="-1" id="g67-NY-4ci"/>
+                                            <constraint firstItem="Re0-UX-NNU" firstAttribute="top" secondItem="f8A-5P-twu" secondAttribute="top" id="mDX-KF-jrC"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Re0-UX-NNU" secondAttribute="trailing" id="nNb-Rk-wi6"/>
+                                            <constraint firstAttribute="bottom" secondItem="Re0-UX-NNU" secondAttribute="bottom" id="yZ1-dO-Qr4"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="smallSquare" title="Find More Skins Online…      " bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pM6-gu-piR">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sNg-YF-Y0r">
-                                        <rect key="frame" x="475" y="75" width="25" height="23"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="d1l-FX-Ylq"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qNI-Y4-Zki">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="remove:" target="NP6-lN-Ti5" id="Ybi-qg-Bqp"/>
-                                            <binding destination="NP6-lN-Ti5" name="enabled" keyPath="canRemove" id="RII-Wy-Dio"/>
-                                            <binding destination="NP6-lN-Ti5" name="enabled2" keyPath="selection.isBuiltIn" previousBinding="RII-Wy-Dio" id="RGl-Rk-NT1">
-                                                <dictionary key="options">
-                                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                    <integer key="NSNullPlaceholder" value="-1"/>
-                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                </dictionary>
-                                            </binding>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Re0-UX-NNU">
-                                        <rect key="frame" x="317" y="75" width="135" height="23"/>
-                                        <buttonCell key="cell" type="smallSquare" title="Use selected skin      " bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A9w-kT-TlF">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="useSelectedSkin:" target="Ks3-AB-QsZ" id="IEf-Wt-QZ4"/>
-                                            <binding destination="NP6-lN-Ti5" name="enabled" keyPath="selection.uid" id="64t-bK-0QD">
-                                                <dictionary key="options">
-                                                    <string key="NSValueTransformerName">NSIsNotNil</string>
-                                                </dictionary>
-                                            </binding>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TK5-Ri-Lpv">
-                                        <rect key="frame" x="451" y="75" width="25" height="23"/>
-                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hR5-wd-Wws">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
+                                    </customView>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YPY-78-U70">
                                         <rect key="frame" x="142" y="14" width="171" height="26"/>
                                         <popUpButtonCell key="cell" type="push" title="Use Skin Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-1" imageScaling="proportionallyDown" inset="2" selectedItem="1Ee-EG-bp2" id="ytN-Rp-WNo">
@@ -1311,30 +1297,17 @@ DQ
                                     </popUpButton>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="sNg-YF-Y0r" firstAttribute="height" secondItem="c8y-ri-UC3" secondAttribute="height" id="6nE-gY-CoD"/>
-                                    <constraint firstItem="X43-4A-x4a" firstAttribute="top" secondItem="c8y-ri-UC3" secondAttribute="bottom" constant="20" id="9IC-CI-7nK"/>
-                                    <constraint firstAttribute="trailing" secondItem="sNg-YF-Y0r" secondAttribute="trailing" constant="10" id="GMr-WL-bbf"/>
-                                    <constraint firstItem="sNg-YF-Y0r" firstAttribute="centerY" secondItem="Re0-UX-NNU" secondAttribute="centerY" id="Kyn-xw-fjn"/>
+                                    <constraint firstItem="YPY-78-U70" firstAttribute="top" secondItem="f8A-5P-twu" secondAttribute="bottom" constant="18" id="Etz-Mx-kMu"/>
                                     <constraint firstItem="qWZ-EW-ZXj" firstAttribute="leading" secondItem="bd8-bi-gsC" secondAttribute="leading" constant="20" id="Mcs-hm-TTv"/>
-                                    <constraint firstItem="TK5-Ri-Lpv" firstAttribute="leading" secondItem="Re0-UX-NNU" secondAttribute="trailing" constant="-1" id="O5Q-EG-0T9"/>
-                                    <constraint firstItem="TK5-Ri-Lpv" firstAttribute="centerY" secondItem="Re0-UX-NNU" secondAttribute="centerY" id="PCo-on-vuw"/>
-                                    <constraint firstItem="Re0-UX-NNU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c8y-ri-UC3" secondAttribute="trailing" constant="20" id="PFa-1D-do6"/>
                                     <constraint firstItem="eOB-ht-u4d" firstAttribute="top" secondItem="bd8-bi-gsC" secondAttribute="top" constant="-1" id="S1c-BS-rvv"/>
+                                    <constraint firstItem="f8A-5P-twu" firstAttribute="leading" secondItem="bd8-bi-gsC" secondAttribute="leading" constant="-1" id="Smg-k8-utA"/>
                                     <constraint firstAttribute="trailing" secondItem="eOB-ht-u4d" secondAttribute="trailing" constant="-1" id="Up3-LM-QI5"/>
                                     <constraint firstAttribute="bottom" secondItem="qWZ-EW-ZXj" secondAttribute="bottom" constant="20" id="W5G-P2-baT"/>
-                                    <constraint firstAttribute="trailing" secondItem="X43-4A-x4a" secondAttribute="trailing" id="XbC-Kw-AvO"/>
-                                    <constraint firstItem="X43-4A-x4a" firstAttribute="leading" secondItem="bd8-bi-gsC" secondAttribute="leading" id="YBh-Zg-zVT"/>
-                                    <constraint firstItem="Re0-UX-NNU" firstAttribute="height" secondItem="c8y-ri-UC3" secondAttribute="height" id="Zcr-bB-5aL"/>
                                     <constraint firstItem="YPY-78-U70" firstAttribute="leading" secondItem="qWZ-EW-ZXj" secondAttribute="trailing" constant="8" id="ZxA-jh-dqB"/>
-                                    <constraint firstItem="TK5-Ri-Lpv" firstAttribute="height" secondItem="c8y-ri-UC3" secondAttribute="height" id="Zyj-AS-Cxp"/>
-                                    <constraint firstItem="sNg-YF-Y0r" firstAttribute="leading" secondItem="TK5-Ri-Lpv" secondAttribute="trailing" constant="-1" id="a4G-t1-wgR"/>
-                                    <constraint firstItem="sNg-YF-Y0r" firstAttribute="top" secondItem="eOB-ht-u4d" secondAttribute="bottom" constant="10" id="bdg-qG-N10"/>
                                     <constraint firstItem="YPY-78-U70" firstAttribute="baseline" secondItem="qWZ-EW-ZXj" secondAttribute="baseline" id="c8f-LC-jbD"/>
-                                    <constraint firstItem="YPY-78-U70" firstAttribute="top" secondItem="X43-4A-x4a" secondAttribute="bottom" constant="17" id="oCY-no-dOF"/>
+                                    <constraint firstAttribute="trailing" secondItem="f8A-5P-twu" secondAttribute="trailing" constant="-1" id="iY2-Jk-3gj"/>
+                                    <constraint firstItem="f8A-5P-twu" firstAttribute="top" secondItem="eOB-ht-u4d" secondAttribute="bottom" constant="-1" id="kwf-py-Z3T"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YPY-78-U70" secondAttribute="trailing" constant="20" id="of3-Cp-Sg4"/>
-                                    <constraint firstItem="c8y-ri-UC3" firstAttribute="leading" secondItem="bd8-bi-gsC" secondAttribute="leading" constant="10" id="plI-9Q-TMU"/>
-                                    <constraint firstItem="sNg-YF-Y0r" firstAttribute="width" secondItem="TK5-Ri-Lpv" secondAttribute="width" id="sgx-AV-ivp"/>
-                                    <constraint firstItem="c8y-ri-UC3" firstAttribute="top" secondItem="eOB-ht-u4d" secondAttribute="bottom" constant="10" id="wOW-ut-mQf"/>
                                     <constraint firstItem="eOB-ht-u4d" firstAttribute="leading" secondItem="bd8-bi-gsC" secondAttribute="leading" constant="-1" id="yIe-v2-VLs"/>
                                 </constraints>
                             </customView>
@@ -1462,8 +1435,6 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="desktop" width="32" height="32"/>
         <image name="dock" width="32" height="32"/>
         <image name="skins" width="32" height="32"/>
