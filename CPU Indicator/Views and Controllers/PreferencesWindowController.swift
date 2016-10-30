@@ -13,12 +13,12 @@ import Cocoa
 class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 	
 	private var iUseMyself: PreferencesWindowController?
-	private var timerNotUsingMyself: NSTimer?
+	private var timerNotUsingMyself: Timer?
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		
-		self.windowFrameAutosaveName = "PrefsWindow"
+		windowFrameAutosaveName = "PrefsWindow"
 	}
 	
 	override var window: NSWindow? {
@@ -34,19 +34,19 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 		iUseMyself = self
 	}
 	
-	func windowDidBecomeKey(notification: NSNotification) {
+	func windowDidBecomeKey(_ notification: Notification) {
 		timerNotUsingMyself?.invalidate()
 		timerNotUsingMyself = nil
 		iUseMyself = self
 	}
 	
-	func windowWillClose(notification: NSNotification) {
+	func windowWillClose(_ notification: Notification) {
 		assert(timerNotUsingMyself == nil)
-		timerNotUsingMyself = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(PreferencesWindowController.myselfNotNeededAnymore(_:)), userInfo: nil, repeats: false)
+		timerNotUsingMyself = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(PreferencesWindowController.myselfNotNeededAnymore(_:)), userInfo: nil, repeats: false)
 	}
 	
 	@objc /* Used by a timer. */
-	private func myselfNotNeededAnymore(timer: NSTimer) {
+	private func myselfNotNeededAnymore(_ timer: Timer) {
 		timerNotUsingMyself?.invalidate()
 		timerNotUsingMyself = nil
 		iUseMyself = nil

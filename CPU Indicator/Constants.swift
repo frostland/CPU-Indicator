@@ -24,9 +24,9 @@ let kUDK_LatestSelectedPrefPaneId = "FLLatestPrefPaneId"
 
 
 enum WindowIndicatorLevel: Int {
-	case Normal    = 1
-	case AboveAll  = 2
-	case BehindAll = 3
+	case normal    = 1
+	case aboveAll  = 2
+	case behindAll = 3
 }
 
 let kUDK_ShowWindowIndicator                   = "FLShowWindow"
@@ -40,9 +40,9 @@ let kUDK_WindowIndicatorDecreaseOpacityOnHover = "FLDecreaseWindowOpacityOnHover
 
 
 enum MenuIndicatorMode: Int {
-	case Image = 1
-	case Text  = 2
-	case Both  = 3
+	case image = 1
+	case text  = 2
+	case both  = 3
 }
 
 let kUDK_ShowMenuIndicator      = "FLShowMenu"
@@ -56,10 +56,10 @@ let kUDK_DockIconIsCPUIndicator = "FLShowCPUInDock"
 
 @objc
 enum MixedImageState: Int16 {
-	case UseSkinDefault    = -1
-	case Allow             =  1
-	case AllowTransitions  =  2
-	case Disallow          =  3
+	case useSkinDefault    = -1
+	case allow             =  1
+	case allowTransitions  =  2
+	case disallow          =  3
 }
 let kUDK_SelectedSkinUID = "FLSelectedSkinUID"
 let kUDK_MixedImageState = "FLMixedImageState"

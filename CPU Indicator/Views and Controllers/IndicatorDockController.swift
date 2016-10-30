@@ -17,17 +17,17 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 			CPUUsageGetter.sharedCPUUsageGetter.removeObserverForKnownUsageModification(self)
 			AppDelegate.sharedAppDelegate.removeObserver(self, forKeyPath: "selectedSkinObjectID", context: nil)
 			for keyPath in observedUDCKeys {
-				NSUserDefaultsController.sharedUserDefaultsController().removeObserver(self, forKeyPath: keyPath)
+				NSUserDefaultsController.shared().removeObserver(self, forKeyPath: keyPath)
 			}
 		}
 	}
 	
 	func applicationWillFinishLaunching() {
-		let udc = NSUserDefaultsController.sharedUserDefaultsController()
+		let udc = NSUserDefaultsController.shared()
 		for keyPath in observedUDCKeys {
-			udc.addObserver(self, forKeyPath: keyPath, options: .Initial, context: nil)
+			udc.addObserver(self, forKeyPath: keyPath, options: .initial, context: nil)
 		}
-		AppDelegate.sharedAppDelegate.addObserver(self, forKeyPath: "selectedSkinObjectID", options: [.Initial], context: nil)
+		AppDelegate.sharedAppDelegate.addObserver(self, forKeyPath: "selectedSkinObjectID", options: [.initial], context: nil)
 		CPUUsageGetter.sharedCPUUsageGetter.addObserverForKnownUsageModification(self)
 		observingUDC = true
 	}
@@ -36,32 +36,32 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 	   MARK: - KVO Handling
 	   ******************** */
 	
-	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		guard let kp = keyPath else {
-			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+			super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
 			return
 		}
 		
-		if observedUDCKeys.contains(kp) && object === NSUserDefaultsController.sharedUserDefaultsController() {
+		if observedUDCKeys.contains(kp) && object as? NSUserDefaultsController === NSUserDefaultsController.shared() {
 			let prefix = "values."
-			let ud = NSUserDefaults.standardUserDefaults()
-			switch kp.substringFromIndex(prefix.endIndex) {
+			let ud = UserDefaults.standard
+			switch kp.substring(from: prefix.endIndex) {
 			case kUDK_DockIconIsCPUIndicator:
-				if ud.boolForKey(kUDK_DockIconIsCPUIndicator) {showIndicatorIfNeeded()}
+				if ud.bool(forKey: kUDK_DockIconIsCPUIndicator) {showIndicatorIfNeeded()}
 				else                                          {hideIndicatorIfNeeded()}
 				
 			case kUDK_MixedImageState:
 				dockTileIndicatorView?.defaultMixedImageState = defaultMixedImageState
 				
 			default:
-				super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+				super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
 			}
-		} else if kp == "selectedSkinObjectID" && object === AppDelegate.sharedAppDelegate {
+		} else if kp == "selectedSkinObjectID" && object as? AppDelegate === AppDelegate.sharedAppDelegate {
 			if let skin = skin {dockTileIndicatorView?.skin = skin}
 			else               {NSLog("Weird... Cannot get current skin.")}
 			
 		} else {
-			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+			super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
 		}
 	}
 	
@@ -69,7 +69,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 	   MARK: CPU Usage Observer
 	   ************************ */
 	
-	func cpuUsageChangedFromGetter(getter: CPUUsageGetter) {
+	func cpuUsageChanged(getter: CPUUsageGetter) {
 		dockTileIndicatorView?.progress = Float(getter.globalCPUUsage)
 	}
 	
@@ -84,15 +84,15 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 	]
 	
 	private var skin: Skin? {
-		let appDelegate = AppDelegate.sharedAppDelegate
+		let appDelegate = AppDelegate.sharedAppDelegate!
 		let context = appDelegate.mainManagedObjectContext
-		assert(context.concurrencyType == .MainQueueConcurrencyType)
+		assert(context.concurrencyType == .mainQueueConcurrencyType)
 		
-		return (try? context.existingObjectWithID(appDelegate.selectedSkinObjectID)) as? Skin
+		return (try? context.existingObject(with: appDelegate.selectedSkinObjectID)) as? Skin
 	}
 	
 	private var defaultMixedImageState: MixedImageState {
-		return MixedImageState(rawValue: Int16(NSUserDefaults.standardUserDefaults().integerForKey(kUDK_MixedImageState))) ?? .UseSkinDefault
+		return MixedImageState(rawValue: Int16(UserDefaults.standard.integer(forKey: kUDK_MixedImageState))) ?? .useSkinDefault
 	}
 	
 	private var dockTileIndicatorView: DockTileIndicatorView?
@@ -119,7 +119,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 			skin = s
 			dockTile = dt
 			defaultMixedImageState = dmis
-			super.init(frame: CGRect(origin: CGPointZero, size: dt.size))
+			super.init(frame: CGRect(origin: CGPoint.zero, size: dt.size))
 			
 			updateResolvedMixedImageState(forceImageUpdate: true)
 		}
@@ -130,7 +130,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 		
 		var skin: Skin {
 			didSet {
-				assert(skin.managedObjectContext?.concurrencyType == nil || skin.managedObjectContext?.concurrencyType == .MainQueueConcurrencyType)
+				assert(skin.managedObjectContext?.concurrencyType == nil || skin.managedObjectContext?.concurrencyType == .mainQueueConcurrencyType)
 				updateResolvedMixedImageState(forceImageUpdate: true)
 			}
 		}
@@ -144,7 +144,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 		
 		var progress: Float = 0 {
 			didSet {
-				assert(NSThread.isMainThread())
+				assert(Thread.isMainThread)
 				updateImageFromCurrentProgress(allowAnimation: true)
 			}
 		}
@@ -154,10 +154,10 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 		
 		private var currentAnimation: ProgressAnimation?
 		
-		private func updateResolvedMixedImageState(forceImageUpdate forceImageUpdate: Bool) {
-			assert(NSThread.isMainThread()) /* Must be on main thread because we're accessing the skin, which is on a main queue managed object context */
+		private func updateResolvedMixedImageState(forceImageUpdate: Bool) {
+			assert(Thread.isMainThread) /* Must be on main thread because we're accessing the skin, which is on a main queue managed object context */
 			let currentResolvedMixedImageState = resolvedMixedImageState
-			if defaultMixedImageState == .UseSkinDefault {resolvedMixedImageState = skin.mixedImageState ?? .Disallow}
+			if defaultMixedImageState == .useSkinDefault {resolvedMixedImageState = skin.mixedImageState}
 			else                                         {resolvedMixedImageState = defaultMixedImageState}
 			if forceImageUpdate || resolvedMixedImageState != currentResolvedMixedImageState {
 				displayedProgress = nil
@@ -165,26 +165,26 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 			}
 		}
 		
-		private func updateImageFromCurrentProgress(allowAnimation allowAnimation: Bool) {
+		private func updateImageFromCurrentProgress(allowAnimation: Bool) {
 			let destinationProgress: Float
 			defer {
-				if !allowAnimation || resolvedMixedImageState == .Disallow {
+				if !allowAnimation || resolvedMixedImageState == .disallow {
 					displayedProgress = destinationProgress
 				} else {
 					/* Let's setup an animation from current progress to destination
 					 * progress. */
-					currentAnimation?.stopAnimation()
+					currentAnimation?.stop()
 					
 					if abs(destinationProgress - (displayedProgress ?? -1)) > 0.01 {
 						/* Destination progress is sufficiently than current displayed
 						 * progress: the animation is worth it. */
-						currentAnimation = ProgressAnimation(linkedView: self, startIndicatorProgress: displayedProgress ?? 0, endIndicatorProgress: destinationProgress, duration: 0.5, animationCurve: .Linear)
-						currentAnimation?.startAnimation()
+						currentAnimation = ProgressAnimation(linkedView: self, startIndicatorProgress: displayedProgress ?? 0, endIndicatorProgress: destinationProgress, duration: 0.5, animationCurve: .linear)
+						currentAnimation?.start()
 					}
 				}
 			}
 			
-			if resolvedMixedImageState == .Allow {destinationProgress = progress}
+			if resolvedMixedImageState == .allow {destinationProgress = progress}
 			else {
 				/* We must stick to the reference frames. */
 				let n = skin.frames?.count ?? 1
@@ -203,16 +203,16 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 				assert(displayedProgress >= 0 && displayedProgress <= 1)
 				guard abs(displayedProgress - (oldValue ?? -1)) > 0.01 else {return}
 				
-				setNeedsDisplayInRect(bounds)
+				setNeedsDisplay(bounds)
 				dockTile.display()
 			}
 		}
 		
-		private override func drawRect(dirtyRect: NSRect) {
+		override func draw(_ dirtyRect: NSRect) {
 			guard let displayedProgress = displayedProgress else {return}
 			
 			let finalSizedSkin: SizedSkin
-			if let sizedSkin = sizedSkin where
+			if let sizedSkin = sizedSkin,
 				sizedSkin.skin.objectID == skin.objectID &&
 				(abs(sizedSkin.originalSize.width  - dockTile.size.width)  < 0.5 &&
 				 abs(sizedSkin.originalSize.height - dockTile.size.height) < 0.5)
@@ -222,7 +222,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 				finalSizedSkin = SizedSkin(skin: skin, size: dockTile.size, allowDistortion: false)
 			}
 			
-			let myFrame = self.frame
+			let myFrame = frame
 			
 			let drawnSize = finalSizedSkin.size
 			let p = NSPoint(
@@ -231,16 +231,14 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 			)
 			
 			let drawRect = NSRect(origin: p, size: drawnSize)
-			finalSizedSkin.imageForProgress(displayedProgress).drawInRect(
-				drawRect,
-				fromRect: NSRect(origin: CGPointZero, size: drawnSize),
-				operation: .CompositeSourceOver,
+			finalSizedSkin.imageForProgress(displayedProgress).draw(
+				in: drawRect,
+				from: NSRect(origin: CGPoint.zero, size: drawnSize),
+				operation: .sourceOver,
 				fraction: 1,
 				respectFlipped: true,
 				hints: nil
 			)
-			
-			finalSizedSkin.imageForProgress(displayedProgress)
 		}
 		
 		private class ProgressAnimation : NSAnimation {
@@ -249,7 +247,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 			private let startIndicatorProgress: Float
 			private weak var linkedView: DockTileIndicatorView?
 			
-			init(linkedView v: DockTileIndicatorView, startIndicatorProgress sip: Float, endIndicatorProgress eip: Float, duration: NSTimeInterval, animationCurve: NSAnimationCurve) {
+			init(linkedView v: DockTileIndicatorView, startIndicatorProgress sip: Float, endIndicatorProgress eip: Float, duration: TimeInterval, animationCurve: NSAnimationCurve) {
 				linkedView = v
 				endIndicatorProgress = eip
 				startIndicatorProgress = sip
@@ -260,7 +258,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 				fatalError("Cannot init this class with a coder")
 			}
 			
-			private override var currentProgress: NSAnimationProgress {
+			override var currentProgress: NSAnimationProgress {
 				get {return super.currentProgress}
 				set {
 					super.currentProgress = newValue

@@ -16,7 +16,7 @@ class IntroViewController: NSViewController {
 		super.viewDidLoad()
 	}
 	
-	@IBAction func okButtonTapped(sender: AnyObject?) {
+	@IBAction func okButtonTapped(_ sender: AnyObject?) {
 		AppDelegate.sharedAppDelegate.closeIntroWindow()
 	}
 	

@@ -10,25 +10,30 @@ import Cocoa
 
 
 
-protocol CPUUsageObserver : AnyObject {
-	func cpuUsageChangedFromGetter(getter: CPUUsageGetter)
+@objc /* Because contained in an NSHashTable */
+protocol CPUUsageObserver {
+	func cpuUsageChanged(getter: CPUUsageGetter)
 }
 
-class CPUUsageGetter {
+/* Subclass of NSObject because used in @objc protocol.
+ * Note: I tried making the protocol not @objc, but it is hell to do so, at
+ *       least in Swift 3. For the time being we let it go! */
+class CPUUsageGetter : NSObject {
 	
 	/* lazy; only instanciated when needed (but never de-instanciated). */
 	static var sharedCPUUsageGetter: CPUUsageGetter = {
 		CPUUsageGetter(refreshInterval: 1.5)
 	}()
 	
-	private var timer: NSTimer?
+	private var timer: Timer?
 	
-	private let observers = NSHashTable.weakObjectsHashTable()
+	private let observers = NSHashTable<CPUUsageObserver>.weakObjects()
 	
-	init(refreshInterval: NSTimeInterval) {
+	init(refreshInterval: TimeInterval) {
 		timer = nil
+		super.init()
 		if refreshInterval >= 0 {
-			timer = NSTimer.scheduledTimerWithTimeInterval(refreshInterval, target: self, selector: #selector(CPUUsageGetter.refreshKnownUsage(_:)), userInfo: nil, repeats: true)
+			timer = Timer.scheduledTimer(timeInterval: refreshInterval, target: self, selector: #selector(CPUUsageGetter.refreshKnownUsage(_:)), userInfo: nil, repeats: true)
 			timer?.fire()
 		}
 	}
@@ -38,12 +43,12 @@ class CPUUsageGetter {
 		timer = nil
 	}
 	
-	func addObserverForKnownUsageModification(observer: CPUUsageObserver) {
-		observers.addObject(observer)
+	func addObserverForKnownUsageModification<H : CPUUsageObserver>(_ observer: H) {
+		observers.add(observer)
 	}
 	
-	func removeObserverForKnownUsageModification(observer: CPUUsageObserver) {
-		observers.removeObject(observer)
+	func removeObserverForKnownUsageModification<H : CPUUsageObserver>(_ observer: H) {
+		observers.remove(observer)
 	}
 	
 	func refreshKnownUsage() {
@@ -62,10 +67,10 @@ class CPUUsageGetter {
 	private var previousTotalTicksPerCPU = [0.0], previousTotalTicksNoIdlePerCPU = [0.0]
 	
 	@objc
-	private func refreshKnownUsage(timer: NSTimer?) {
+	private func refreshKnownUsage(_ timer: Timer?) {
 		var newCPUCountNatural = natural_t()
 		var infoCount = mach_msg_type_number_t()
-		var infoArray: processor_info_array_t = nil
+		var infoArray: processor_info_array_t? = nil
 		
 		let error = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &newCPUCountNatural, &infoArray, &infoCount)
 		guard error == 0 else {
@@ -77,15 +82,15 @@ class CPUUsageGetter {
 		
 		if newCPUCount != cpuCount {
 			cpuCount = newCPUCount
-			cpuUsages                      = [Double](count: newCPUCount, repeatedValue: 0.0)
-			totalTicksPerCPU               = [Double](count: newCPUCount, repeatedValue: 0.0)
-			totalTicksNoIdlePerCPU         = [Double](count: newCPUCount, repeatedValue: 0.0)
-			previousTotalTicksPerCPU       = [Double](count: newCPUCount, repeatedValue: 0.0)
-			previousTotalTicksNoIdlePerCPU = [Double](count: newCPUCount, repeatedValue: 0.0)
+			cpuUsages                      = [Double](repeating: 0.0, count: newCPUCount)
+			totalTicksPerCPU               = [Double](repeating: 0.0, count: newCPUCount)
+			totalTicksNoIdlePerCPU         = [Double](repeating: 0.0, count: newCPUCount)
+			previousTotalTicksPerCPU       = [Double](repeating: 0.0, count: newCPUCount)
+			previousTotalTicksNoIdlePerCPU = [Double](repeating: 0.0, count: newCPUCount)
 		}
 		
 		var totalTicks = 0.0, totalTicksNoIdle = 0.0
-		let cpuLoadInfo = unsafeBitCast(infoArray, UnsafeMutablePointer<processor_cpu_load_info_data_t>.self)
+		let cpuLoadInfo = unsafeBitCast(infoArray, to: UnsafeMutablePointer<processor_cpu_load_info_data_t>.self)
 		for cpu in 0..<newCPUCount {
 			/* Note: In C/Objective-C, cpu_ticks is an array of size 4, which is
 			 *       translated in Swift as a tuple of four elements.
@@ -93,7 +98,7 @@ class CPUUsageGetter {
 			 *       Mac OS version, we would have to change this code.
 			 *       In Objective-C, we used to have a generic version by itering
 			 *       values from 0 to CPU_STATE_MAX... */
-			let (user, system, idle, nice) = cpuLoadInfo.advancedBy(cpu).memory.cpu_ticks
+			let (user, system, idle, nice) = cpuLoadInfo.advanced(by: cpu).pointee.cpu_ticks
 			let total = Double(user + system + idle + nice)
 			let totalNoIdle = Double(user + system + nice)
 			totalTicks += total
@@ -112,13 +117,13 @@ class CPUUsageGetter {
 		previousTotalTicks = totalTicks
 		previousTotalTicksNoIdle = totalTicksNoIdle
 		
-		vm_deallocate(mach_task_self_, unsafeBitCast(infoArray, vm_address_t.self), vm_size_t(infoCount))
+		vm_deallocate(mach_task_self_, unsafeBitCast(infoArray, to: vm_address_t.self), vm_size_t(infoCount))
 		
 //		NSLog("%@", "Current CPU Usage: \(globalCPUUsage)")
 //		NSLog("%@", "CPU Usages: \(cpuUsages)")
 		let frozenObservers = observers.allObjects
 		for observer in frozenObservers {
-			(observer as? CPUUsageObserver)?.cpuUsageChangedFromGetter(self)
+			observer.cpuUsageChanged(getter: self)
 		}
 	}
 	

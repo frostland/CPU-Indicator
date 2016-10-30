@@ -32,32 +32,32 @@ class SkinsPrefsViewController: NSViewController, NSTableViewDelegate {
 		}
 	}
 	
-	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		do {
 			let e = NSError(domain: "fr.frostland.cpu-indicator.SkinsPrefsViewController.KVOHandling", code: 1, userInfo: [NSLocalizedDescriptionKey: "Cannot handle observation change."])
 			guard let keyPath = keyPath else {
 				throw e
 			}
 			switch (object, keyPath) {
-			case (let o, "selectedSkinObjectID") where o === AppDelegate.sharedAppDelegate:
-				tableView.reloadDataForRowIndexes(
-					NSIndexSet(indexesInRange: NSMakeRange(0, tableView.numberOfRows) /* Too lazy to compute exactly which row should be reloaded right now... */),
-					columnIndexes: NSIndexSet(index: tableView.columnWithIdentifier("isSelected"))
+			case (let o, "selectedSkinObjectID") where o as? AppDelegate === AppDelegate.sharedAppDelegate:
+				tableView.reloadData(
+					forRowIndexes: IndexSet(integersIn: NSMakeRange(0, tableView.numberOfRows).toRange()! /* Too lazy to compute exactly which row should be reloaded right now... */),
+					columnIndexes: IndexSet(integer: tableView.column(withIdentifier: "isSelected"))
 				)
 			default:
 				throw e
 			}
 		} catch {
-			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+			super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
 		}
 	}
 	
-	@IBAction func useSelectedSkin(sender: AnyObject) {
+	@IBAction func useSelectedSkin(_ sender: AnyObject) {
 		/* About arrayController.selection: it's a proxy object which can be used
 		 * to KVC (and KVO?) on the selection, but not much more... */
 		// print(arrayController.selection.valueForKey("objectID"))
 		
-		guard let selectedObjects = arrayController.selectedObjects as? [Skin] where selectedObjects.count == 1 else {
+		guard let selectedObjects = arrayController.selectedObjects as? [Skin], selectedObjects.count == 1 else {
 			return
 		}
 		

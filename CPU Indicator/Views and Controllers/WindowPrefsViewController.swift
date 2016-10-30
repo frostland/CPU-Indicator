@@ -12,35 +12,35 @@ import Cocoa
 
 class WindowPrefsViewController: NSViewController {
 	
-	@IBAction func moveWindowToTopLeft(sender: AnyObject!) {
+	@IBAction func moveWindowToTopLeft(_ sender: AnyObject!) {
 		AppDelegate.sharedAppDelegate.mainWindowController.moveWindowToTopLeft(sender)
 	}
 	
-	@IBAction func moveWindowToPseudoTopLeft(sender: AnyObject!) {
+	@IBAction func moveWindowToPseudoTopLeft(_ sender: AnyObject!) {
 		AppDelegate.sharedAppDelegate.mainWindowController.moveWindowToPseudoTopLeft(sender)
 	}
 	
-	@IBAction func moveWindowToTopRight(sender: AnyObject!) {
+	@IBAction func moveWindowToTopRight(_ sender: AnyObject!) {
 		AppDelegate.sharedAppDelegate.mainWindowController.moveWindowToTopRight(sender)
 	}
 	
-	@IBAction func moveWindowToPseudoTopRight(sender: AnyObject!) {
+	@IBAction func moveWindowToPseudoTopRight(_ sender: AnyObject!) {
 		AppDelegate.sharedAppDelegate.mainWindowController.moveWindowToPseudoTopRight(sender)
 	}
 	
-	@IBAction func moveWindowToBottomLeft(sender: AnyObject!) {
+	@IBAction func moveWindowToBottomLeft(_ sender: AnyObject!) {
 		AppDelegate.sharedAppDelegate.mainWindowController.moveWindowToBottomLeft(sender)
 	}
 	
-	@IBAction func moveWindowToPseudoBottomLeft(sender: AnyObject!) {
+	@IBAction func moveWindowToPseudoBottomLeft(_ sender: AnyObject!) {
 		AppDelegate.sharedAppDelegate.mainWindowController.moveWindowToPseudoBottomLeft(sender)
 	}
 	
-	@IBAction func moveWindowToBottomRight(sender: AnyObject!) {
+	@IBAction func moveWindowToBottomRight(_ sender: AnyObject!) {
 		AppDelegate.sharedAppDelegate.mainWindowController.moveWindowToBottomRight(sender)
 	}
 	
-	@IBAction func moveWindowToPseudoBottomRight(sender: AnyObject!) {
+	@IBAction func moveWindowToPseudoBottomRight(_ sender: AnyObject!) {
 		AppDelegate.sharedAppDelegate.mainWindowController.moveWindowToPseudoBottomRight(sender)
 	}
 	

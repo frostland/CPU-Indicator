@@ -15,7 +15,7 @@ import Cocoa
  * Another solution would have been to create an IsNotThree value transformer at
  * launch time and register it with this name. */
 @objc(IsNotThree)
-class IsNotThree: NSValueTransformer {
+class IsNotThree: ValueTransformer {
 	
 	override class func transformedValueClass() -> AnyClass {
 		return NSNumber.self
@@ -25,8 +25,8 @@ class IsNotThree: NSValueTransformer {
 		return false
 	}
 	
-	override func transformedValue(value: AnyObject?) -> AnyObject? {
-		return NSNumber(bool: value?.integerValue != 3)
+	override func transformedValue(_ value: Any?) -> Any? {
+		return NSNumber(value: (value as AnyObject).intValue != 3)
 	}
 
 }

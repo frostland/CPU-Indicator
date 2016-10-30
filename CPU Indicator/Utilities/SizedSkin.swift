@@ -27,15 +27,15 @@ class SizedSkin : NSObject {
 	private(set) lazy var resizedSkinImages: [NSBitmapImageRep] = {
 		var res = [NSBitmapImageRep]()
 		
-		var infos = [(NSData, CGRect)]()
-		self.skin.managedObjectContext!.performBlockAndWait {
-			for f in self.skin.frames {
+		var infos = [(Data, CGRect)]()
+		self.skin.managedObjectContext!.performAndWait {
+			for f in self.skin.frames! {
 				let frame = f as! SkinFrame
 				infos.append((
-					frame.imageData,
-					CGRectMake(
-						CGFloat(frame.xPos)  * self.scale.x, CGFloat(frame.yPos)   * self.scale.y,
-						CGFloat(frame.width) * self.scale.x, CGFloat(frame.height) * self.scale.y)
+					frame.imageData! as Data,
+					CGRect(
+						    x: CGFloat(frame.xPos)  * self.scale.x,      y: CGFloat(frame.yPos)   * self.scale.y,
+						width: CGFloat(frame.width) * self.scale.x, height: CGFloat(frame.height) * self.scale.y)
 				))
 			}
 		}
@@ -55,11 +55,11 @@ class SizedSkin : NSObject {
 			}
 			
 			NSGraphicsContext.saveGraphicsState()
-			NSGraphicsContext.setCurrentContext(NSGraphicsContext(bitmapImageRep: curImageRep))
+			NSGraphicsContext.setCurrent(NSGraphicsContext(bitmapImageRep: curImageRep))
 			
-			image.drawInRect(
-				frameRect, fromRect: NSMakeRect(0, 0, image.size.width, image.size.height),
-				operation: NSCompositingOperation.CompositeCopy,
+			image.draw(
+				in: frameRect, from: NSMakeRect(0, 0, image.size.width, image.size.height),
+				operation: NSCompositingOperation.copy,
 				fraction: 1
 			)
 			
@@ -74,8 +74,8 @@ class SizedSkin : NSObject {
 		skin = s
 		originalSize = destSize
 		var skinSize: CGSize!
-		s.managedObjectContext!.performBlockAndWait {
-			skinSize = CGSizeMake(CGFloat(s.width), CGFloat(s.height))
+		s.managedObjectContext!.performAndWait {
+			skinSize = CGSize(width: CGFloat(s.width), height: CGFloat(s.height))
 		}
 		
 		var finalSize = destSize
@@ -92,7 +92,7 @@ class SizedSkin : NSObject {
 		
 		size = finalSize
 		
-		scale = CGPointMake(finalSize.width / skinSize.width, finalSize.height / skinSize.height)
+		scale = CGPoint(x: finalSize.width / skinSize.width, y: finalSize.height / skinSize.height)
 		
 		imageConstruction = NSBitmapImageRep(
 			bitmapDataPlanes: nil, pixelsWide: Int(size.width), pixelsHigh: Int(size.height),
@@ -101,7 +101,7 @@ class SizedSkin : NSObject {
 		)!
 	}
 	
-	func imageForProgress(p: Float) -> NSImageRep {
+	func imageForProgress(_ p: Float) -> NSImageRep {
 		precondition(p > -0.000001 && p < 1.000001, "Progress must be greater than 0, lower than 1")
 		
 		/* We round the progress so that only roundPrecision+1 values are possible
@@ -116,43 +116,43 @@ class SizedSkin : NSObject {
 		
 		let nImages = resizedSkinImages.count
 		
-		let meltedPixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>>.alloc(5)
-		defer {meltedPixels.dealloc(5)}
+		let meltedPixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>.allocate(capacity: 5)
+		defer {meltedPixels.deallocate(capacity: 5)}
 		
 		imageConstruction.getBitmapDataPlanes(meltedPixels)
 		
 		let w = Int(imageConstruction.size.width)
 		let h = Int(imageConstruction.size.height)
-		memset(meltedPixels.memory, 0, 4 * w * h * sizeof(UInt8.self))
+		memset(meltedPixels.pointee, 0, 4 * w * h * MemoryLayout<UInt8>.size)
 		
 		let drawRect = NSMakeRect(0, 0, CGFloat(w), CGFloat(h))
 		
 		NSGraphicsContext.saveGraphicsState()
-		NSGraphicsContext.setCurrentContext(NSGraphicsContext(bitmapImageRep: imageConstruction))
+		NSGraphicsContext.setCurrent(NSGraphicsContext(bitmapImageRep: imageConstruction))
 		
 		let f = p * Float(nImages - 1)
 		let imageIdx = Int(f + 1)
 		if imageIdx < nImages {
-			resizedSkinImages[imageIdx].drawAtPoint(NSZeroPoint)
+			resizedSkinImages[imageIdx].draw(at: NSZeroPoint)
 			if imageIdx != 0 {
-				resizedSkinImages[imageIdx - 1].drawInRect(drawRect, fromRect: drawRect, operation: .CompositeSourceOver, fraction: (CGFloat(imageIdx) - CGFloat(f)), respectFlipped: true, hints: nil)
+				resizedSkinImages[imageIdx - 1].draw(in: drawRect, from: drawRect, operation: .sourceOver, fraction: (CGFloat(imageIdx) - CGFloat(f)), respectFlipped: true, hints: nil)
 			}
 		} else {
-			resizedSkinImages.last!.drawAtPoint(NSZeroPoint)
+			resizedSkinImages.last!.draw(at: NSZeroPoint)
 		}
 		
 		NSGraphicsContext.restoreGraphicsState()
 		
 		if imageIdx < nImages && imageIdx != 0 {
-			let img1Pixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>>.alloc(5); defer {img1Pixels.dealloc(5)}
-			let img2Pixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>>.alloc(5); defer {img2Pixels.dealloc(5)}
+			let img1Pixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>.allocate(capacity: 5); defer {img1Pixels.deallocate(capacity: 5)}
+			let img2Pixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>.allocate(capacity: 5); defer {img2Pixels.deallocate(capacity: 5)}
 			resizedSkinImages[imageIdx  ].getBitmapDataPlanes(img1Pixels)
 			resizedSkinImages[imageIdx-1].getBitmapDataPlanes(img2Pixels)
 			for y in 0..<h {
 				for x in 0..<w {
-					let val1 = img1Pixels.memory.advancedBy(4*(y * w  +  x) + 3).memory
-					let val2 = img2Pixels.memory.advancedBy(4*(y * w  +  x) + 3).memory
-					meltedPixels.memory.advancedBy(4*(y * w  +  x) + 3).memory = max(val1, UInt8((Float(imageIdx) - f) * Float(val2)))
+					guard let val1 = img1Pixels.pointee?.advanced(by: 4*(y * w  +  x) + 3).pointee else {continue}
+					guard let val2 = img2Pixels.pointee?.advanced(by: 4*(y * w  +  x) + 3).pointee else {continue}
+					meltedPixels.pointee?.advanced(by: 4*(y * w  +  x) + 3).pointee = max(val1, UInt8((Float(imageIdx) - f) * Float(val2)))
 				}
 			}
 		}
@@ -162,11 +162,11 @@ class SizedSkin : NSObject {
 		return imageConstruction
 	}
 	
-	func setLayerContents(layer: CALayer, forProgress progress: Float, mixedImageState: MixedImageState, allowAnimation: Bool) {
-		layer.removeAnimationForKey("contents")
+	func setLayerContents(_ layer: CALayer, forProgress progress: Float, mixedImageState: MixedImageState, allowAnimation: Bool) {
+		layer.removeAnimation(forKey: "contents")
 		
-		let animate = (allowAnimation && mixedImageState != .Disallow)
-		let image = imageForProgress(progress).CGImageForProposedRect(nil, context: nil, hints: nil)
+		let animate = (allowAnimation && mixedImageState != .disallow)
+		let image = imageForProgress(progress).cgImage(forProposedRect: nil, context: nil, hints: nil)
 		
 		if !animate {layer.contents = image}
 		else {
@@ -174,7 +174,7 @@ class SizedSkin : NSObject {
 			anim.fromValue = layer.contents
 			anim.duration = 0.5
 			layer.contents = image
-			layer.addAnimation(anim, forKey: "contents")
+			layer.add(anim, forKey: "contents")
 		}
 	}
 	
@@ -185,7 +185,7 @@ class SizedSkin : NSObject {
 /**
 Transforms a given skin to a sized skin, for a given destination size, allowing
 distortion or not. */
-class SkinToSizedSkinTransformer: NSValueTransformer {
+class SkinToSizedSkinTransformer: ValueTransformer {
 	
 	let destSize: CGSize
 	let allowDistortion: Bool
@@ -203,7 +203,7 @@ class SkinToSizedSkinTransformer: NSValueTransformer {
 		return false
 	}
 	
-	override func transformedValue(value: AnyObject?) -> AnyObject? {
+	override func transformedValue(_ value: Any?) -> Any? {
 		guard let value = value as? Skin else {
 			return nil
 		}

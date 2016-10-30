@@ -17,9 +17,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	dynamic var selectedSkinObjectID: NSManagedObjectID! {
 		didSet {
-			self.mainManagedObjectContext.performBlock {
-				if let uid = ((try? self.mainManagedObjectContext.existingObjectWithID(self.selectedSkinObjectID)) as? Skin)?.uid {
-					NSUserDefaults.standardUserDefaults().setObject(uid, forKey: kUDK_SelectedSkinUID)
+			mainManagedObjectContext.perform {
+				if let uid = ((try? self.mainManagedObjectContext.existingObject(with: self.selectedSkinObjectID)) as? Skin)?.uid {
+					UserDefaults.standard.set(uid, forKey: kUDK_SelectedSkinUID)
 				}
 			}
 		}
@@ -41,14 +41,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	override class func initialize() {
 		if self === AppDelegate.self {
-			let defaults = [
+			let defaults: [String: Any] = [
 				kUDK_FirstRun: true,
 				
 				kUDK_PrefsPanesSizes: [:],
 				kUDK_LatestSelectedPrefPaneId: "skins",
 				
 				kUDK_ShowWindowIndicator: true,
-				kUDK_WindowIndicatorLevel: NSNumber(integer: WindowIndicatorLevel.AboveAll.rawValue),
+				kUDK_WindowIndicatorLevel: NSNumber(value: WindowIndicatorLevel.aboveAll.rawValue),
 				kUDK_WindowIndicatorScale: 1.0,
 				kUDK_WindowIndicatorOpacity: 1.0,
 				kUDK_WindowIndicatorDisableShadow: false,
@@ -57,41 +57,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				kUDK_WindowIndicatorDecreaseOpacityOnHover: false,
 				
 				kUDK_ShowMenuIndicator: false,
-				kUDK_MenuIndicatorMode: NSNumber(integer: MenuIndicatorMode.Text.rawValue),
+				kUDK_MenuIndicatorMode: NSNumber(value: MenuIndicatorMode.text.rawValue),
 				kUDK_MenuIndicatorOnePerCPU: false,
 				
 				kUDK_ShowDockIcon: true,
 				kUDK_DockIconIsCPUIndicator: false,
 				
 				kUDK_SelectedSkinUID: "fr.frostland.cpu-indicator.built-in",
-				kUDK_MixedImageState: NSNumber(integer: Int(MixedImageState.UseSkinDefault.rawValue))
+				kUDK_MixedImageState: NSNumber(value: Int(MixedImageState.useSkinDefault.rawValue))
 			]
-			NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
+			UserDefaults.standard.register(defaults: defaults)
 			
-			let skinPreviewTransformer = SkinToSizedSkinTransformer(destSize: CGSizeMake(141, 141), allowDistortion: false)
-			NSValueTransformer.setValueTransformer(skinPreviewTransformer, forName: "SkinPreviewTransformer")
+			let skinPreviewTransformer = SkinToSizedSkinTransformer(destSize: CGSize(width: 141, height: 141), allowDistortion: false)
+			ValueTransformer.setValueTransformer(skinPreviewTransformer, forName: NSValueTransformerName(rawValue: "SkinPreviewTransformer"))
 		}
 	}
 	
 	override init() {
 		super.init()
 		
-		if self.dynamicType.sharedAppDelegate == nil {
-			self.dynamicType.sharedAppDelegate = self
+		if type(of: self).sharedAppDelegate == nil {
+			type(of: self).sharedAppDelegate = self
 		}
 	}
 	
-	lazy var applicationDocumentsDirectory: NSURL = {
+	lazy var applicationDocumentsDirectory: URL = {
 		/* The directory the application uses to store the Core Data store file */
-		let urls = NSFileManager.defaultManager().URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
+		let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
 		let appSupportURL = urls.last!
-		return appSupportURL.URLByAppendingPathComponent("fr.frostland.cpu-indicator")
+		return appSupportURL.appendingPathComponent("fr.frostland.cpu-indicator")
 	}()
 	
 	lazy var managedObjectModel: NSManagedObjectModel = {
 		/* The managed object model for the application */
-		let modelURL = NSBundle.mainBundle().URLForResource("Model", withExtension: "momd")!
-		return NSManagedObjectModel(contentsOfURL: modelURL)!
+		let modelURL = Bundle.main.url(forResource: "Model", withExtension: "momd")!
+		return NSManagedObjectModel(contentsOf: modelURL)!
 	}()
 	
 	lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
@@ -99,19 +99,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		 * implementation creates and return a coordinator, having added the store
 		 * for the application to it. (The directory for the store is created, if
 		 * necessary.) */
-		let fileManager = NSFileManager.defaultManager()
+		let fileManager = FileManager.default
 		let defaultError = NSError(domain: kAppErrorDomainName, code: kErr_CoreDataSetup, userInfo: [NSLocalizedDescriptionKey: "There was an error creating or loading the application’s saved data."])
 		
 		do {
 			/* Make sure the application files directory is there */
 			do {
-				let properties = try self.applicationDocumentsDirectory.resourceValuesForKeys([NSURLIsDirectoryKey])
-				if !properties[NSURLIsDirectoryKey]!.boolValue {
+				let properties = try self.applicationDocumentsDirectory.resourceValues(forKeys: [URLResourceKey.isDirectoryKey])
+				if !properties.isDirectory! {
 					throw NSError(domain: kAppErrorDomainName, code: kErr_CoreDataSetup, userInfo: [NSLocalizedDescriptionKey: "Expected a folder to store application data, found a file \(self.applicationDocumentsDirectory.path)."])
 				}
 			} catch  {
 				if (error as NSError).code == NSFileReadNoSuchFileError {
-					guard let _ = try? fileManager.createDirectoryAtPath(self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil) else {
+					guard let _ = try? fileManager.createDirectory(atPath: self.applicationDocumentsDirectory.path, withIntermediateDirectories: true, attributes: nil) else {
 						throw defaultError
 					}
 				}
@@ -119,14 +119,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			
 			/* Create the coordinator and store */
 			let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-			let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("CPUIndicator.storedata")
-			try coordinator.addPersistentStoreWithType(NSXMLStoreType, configuration: nil, URL: url, options: [
+			let url = self.applicationDocumentsDirectory.appendingPathComponent("CPUIndicator.storedata")
+			try coordinator.addPersistentStore(ofType: NSXMLStoreType, configurationName: nil, at: url, options: [
 				NSMigratePersistentStoresAutomaticallyOption: true,
 				NSInferMappingModelAutomaticallyOption: true
 			])
 			return coordinator
 		} catch {
-			NSApplication.sharedApplication().presentError(error as NSError)
+			NSApplication.shared().presentError(error as NSError)
 			exit(0)
 		}
 	}()
@@ -136,14 +136,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		/* Returns the managed object context for the application (which is
 		 * already bound to the persistent store coordinator for the application.) */
 		let coordinator = self.persistentStoreCoordinator
-		var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+		var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 		managedObjectContext.persistentStoreCoordinator = coordinator
 		return managedObjectContext
 	}()
 	
-	func applicationWillFinishLaunching(notification: NSNotification) {
+	func applicationWillFinishLaunching(_ notification: Notification) {
 		/* Show the Dock icon if needed */
-		if NSUserDefaults.standardUserDefaults().boolForKey(kUDK_ShowDockIcon) {
+		if UserDefaults.standard.bool(forKey: kUDK_ShowDockIcon) {
 			var psn = ProcessSerialNumber(highLongOfPSN: UInt32(0), lowLongOfPSN: UInt32(kCurrentProcess))
 			let returnCode = TransformProcessType(&psn, ProcessApplicationTransformState(kProcessTransformToForegroundApplication))
 			dockIconShown = (returnCode == 0)
@@ -153,25 +153,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		_ = CPUUsageGetter.sharedCPUUsageGetter
 		
 		/* Let's check the selected skin is indeed in the database. */
-		self.mainManagedObjectContext.performBlockAndWait {
+		mainManagedObjectContext.performAndWait {
 			do {
-				let selectedSkinUID = NSUserDefaults.standardUserDefaults().stringForKey(kUDK_SelectedSkinUID)!
-				let fRequest = NSFetchRequest(entityName: "Skin")
+				let selectedSkinUID = UserDefaults.standard.string(forKey: kUDK_SelectedSkinUID)!
+				let fRequest: NSFetchRequest<Skin> = Skin.fetchRequest()
 				fRequest.predicate = NSPredicate(format: "%K == %@", "uid", selectedSkinUID)
 				fRequest.sortDescriptors = [NSSortDescriptor(key: "sortPosition", ascending: true)]
-				let results = try self.mainManagedObjectContext.executeFetchRequest(fRequest) as! [Skin]
+				let results = try self.mainManagedObjectContext.fetch(fRequest)
 				if results.count > 1 {print("*** Warning: Got more than one skin for UID \(selectedSkinUID). Taking the first one.")}
 				if results.count > 0 {
 					self.selectedSkinObjectID = results[0].objectID
 				} else {
-					let fRequest = NSFetchRequest(entityName: "Skin")
+					let fRequest: NSFetchRequest<Skin> = Skin.fetchRequest()
 					fRequest.fetchLimit = 1
 					fRequest.sortDescriptors = [NSSortDescriptor(key: "sortPosition", ascending: true)]
-					let results = try self.mainManagedObjectContext.executeFetchRequest(fRequest) as! [Skin]
+					let results = try self.mainManagedObjectContext.fetch(fRequest)
 					if results.count > 0 {
 						/* The UID of the selected skin from the prefs was not found.
 						 * we take the first skin and make it the selected one. */
-						NSUserDefaults.standardUserDefaults().setObject(results[0].uid, forKey: kUDK_SelectedSkinUID)
+						UserDefaults.standard.set(results[0].uid, forKey: kUDK_SelectedSkinUID)
 						self.selectedSkinObjectID = results[0].objectID
 					} else {
 						/* There are no skins in the db. We create the default one! */
@@ -182,7 +182,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 						]
 						var maxWidth = Int32(0), maxHeight = Int32(0)
 						let imagesInfo = self.imagesInfoFromImages(images, maxWidth: &maxWidth, maxHeight: &maxHeight)
-						let skin = NSEntityDescription.insertNewObjectForEntityForName("Skin", inManagedObjectContext: self.mainManagedObjectContext) as! Skin
+						let skin = NSEntityDescription.insertNewObject(forEntityName: "Skin", into: self.mainManagedObjectContext) as! Skin
 						skin.name = "Default"
 						skin.sortPosition = 0
 						skin.isBuiltIn = true
@@ -190,7 +190,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 						skin.height = maxHeight
 						skin.source = "Frost Land"
 						skin.uid = "fr.frostland.cpu-indicator.built-in"
-						skin.mixedImageState = MixedImageState.AllowTransitions
+						skin.mixedImageState = MixedImageState.allowTransitions
 						self.importSkinFramesFromImagesInfo(imagesInfo, inSkin: skin)
 						try self.mainManagedObjectContext.save()
 						self.selectedSkinObjectID = skin.objectID
@@ -198,14 +198,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				}
 			} catch {
 				self.mainManagedObjectContext.rollback()
-				NSApplication.sharedApplication().presentError(error as NSError)
+				NSApplication.shared().presentError(error as NSError)
 				exit(0)
 			}
 		}
 		
 		/* Adding observer of "Window Locked" user defaults to set clickless to
 		 * false if locked is false. */
-		NSUserDefaultsController.sharedUserDefaultsController().addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorLocked)", options: [.Initial], context: &kvoContextUDWindowLocked)
+		NSUserDefaultsController.shared().addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorLocked)", options: [.initial], context: &kvoContextUDWindowLocked)
 		
 		menuBarController.applicationWillFinishLaunching()
 		dockIndicatorController.applicationWillFinishLaunching()
@@ -252,31 +252,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		#endif
 	}
 	
-	func applicationDidFinishLaunching(aNotification: NSNotification) {
-		let ud = NSUserDefaults.standardUserDefaults()
-		let firstRun = ud.boolForKey(kUDK_FirstRun)
+	func applicationDidFinishLaunching(_ aNotification: Notification) {
+		let ud = UserDefaults.standard
+		let firstRun = ud.bool(forKey: kUDK_FirstRun)
 		
 		mainWindowController = Storyboards.Main.instantiateIndicatorWindowController()
 		
 		if firstRun {
-			ud.setBool(false, forKey: kUDK_FirstRun)
+			ud.set(false, forKey: kUDK_FirstRun)
 			
 			introWindowController = Storyboards.Main.instantiateIntroWindowController()
-			introWindowController?.window?.level = Int(CGWindowLevelForKey(CGWindowLevelKey.StatusWindowLevelKey))
+			introWindowController?.window?.level = Int(CGWindowLevelForKey(CGWindowLevelKey.statusWindow))
 			introWindowController!.showWindow(self)
 		}
 	}
 	
-	func applicationDidBecomeActive(notification: NSNotification) {
+	func applicationDidBecomeActive(_ notification: Notification) {
 		if appDidBecomeActive && !dockIconShown {showPrefs(nil)}
 		appDidBecomeActive = true
 	}
 	
-	func applicationWillTerminate(aNotification: NSNotification) {
-		NSUserDefaultsController.sharedUserDefaultsController().removeObserver(self, forKeyPath: "values."+kUDK_WindowIndicatorLocked, context: &kvoContextUDWindowLocked)
+	func applicationWillTerminate(_ aNotification: Notification) {
+		NSUserDefaultsController.shared().removeObserver(self, forKeyPath: "values."+kUDK_WindowIndicatorLocked, context: &kvoContextUDWindowLocked)
 	}
 	
-	@IBAction func showPrefs(sender: AnyObject?) {
+	@IBAction func showPrefs(_ sender: AnyObject?) {
 		let controller: PreferencesWindowController
 		if let pc = preferencesWindowController {controller = pc}
 		else                                    {controller = Storyboards.Main.instantiatePreferencesWindowController()}
@@ -289,17 +289,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		introWindowController = nil /* No need to keep a reference to a class we'll never use again. */
 	}
 	
-	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		switch context {
-		case &kvoContextUDWindowLocked:
-			let ud = NSUserDefaults.standardUserDefaults()
-			if !ud.boolForKey(kUDK_WindowIndicatorLocked) {ud.setBool(false, forKey: kUDK_WindowIndicatorClickless)}
+		case (&kvoContextUDWindowLocked)?:
+			let ud = UserDefaults.standard
+			if !ud.bool(forKey: kUDK_WindowIndicatorLocked) {ud.set(false, forKey: kUDK_WindowIndicatorClickless)}
 			
-		default: super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+		default: super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
 		}
 	}
 	
-	private func imagesInfoFromImages(images: [NSImage], inout maxWidth: Int32, inout maxHeight: Int32) -> [(NSImage, Int32, Int32, Int32, Int32)] {
+	private func imagesInfoFromImages(_ images: [NSImage], maxWidth: inout Int32, maxHeight: inout Int32) -> [(NSImage, Int32, Int32, Int32, Int32)] {
 		var imagesInfo = [(NSImage, Int32, Int32, Int32, Int32)]()
 		for image in images {
 			let w = Int32(ceil(image.size.width)), h = Int32(ceil(image.size.height))
@@ -315,16 +315,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	 * the x, y position of the image and the width and height.
 	 * These values can individually be negative or zero, in which case the value
 	 * is inferred from the skin width and height. */
-	private func importSkinFramesFromImagesInfo(images: [(NSImage, Int32, Int32, Int32, Int32)], inSkin skin: Skin) {
-		let mutableFrames = skin.mutableOrderedSetValueForKey("frames")
+	private func importSkinFramesFromImagesInfo(_ images: [(NSImage, Int32, Int32, Int32, Int32)], inSkin skin: Skin) {
+		let mutableFrames = skin.mutableOrderedSetValue(forKey: "frames")
 		for (image, x, y, w, h) in images {
-			let frame = NSEntityDescription.insertNewObjectForEntityForName("SkinFrame", inManagedObjectContext: self.mainManagedObjectContext) as! SkinFrame
+			let frame = NSEntityDescription.insertNewObject(forEntityName: "SkinFrame", into: mainManagedObjectContext) as! SkinFrame
 			frame.width  = (w > 0 ? w : skin.width)
 			frame.height = (h > 0 ? h : skin.height)
 			frame.xPos = (x > 0 ? x : (skin.width  - frame.width)/2)
 			frame.yPos = (y > 0 ? y : (skin.height - frame.height)/2)
-			frame.imageData = image.TIFFRepresentationUsingCompression(NSTIFFCompression.LZW, factor: 0)
-			mutableFrames.addObject(frame)
+			frame.imageData = image.tiffRepresentation(using: NSTIFFCompression.LZW, factor: 0) as NSData?
+			mutableFrames.add(frame)
 		}
 	}
 

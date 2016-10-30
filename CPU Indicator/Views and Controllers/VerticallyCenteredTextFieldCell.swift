@@ -12,9 +12,9 @@ import Cocoa
 
 class VerticallyCenteredTextFieldCell: NSTextFieldCell {
 	
-	override func drawingRectForBounds(theRect: NSRect) -> NSRect {
-		var r = super.drawingRectForBounds(theRect)
-		let s = self.cellSizeForBounds(theRect)
+	override func drawingRect(forBounds theRect: NSRect) -> NSRect {
+		var r = super.drawingRect(forBounds: theRect)
+		let s = self.cellSize(forBounds: theRect)
 		
 		r.origin.y += (r.size.height - s.height)/2;
 		r.size.height = cellSize.height;

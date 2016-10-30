@@ -18,14 +18,14 @@ class PreferencesViewController: NSTabViewController {
 	var addedConstraints = [String : (NSLayoutConstraint /* width */, NSLayoutConstraint /* height */)]()
 	
 	override func viewDidLoad() {
-		let idToSelect = NSUserDefaults.standardUserDefaults().objectForKey(kUDK_LatestSelectedPrefPaneId)
+		let idToSelect = UserDefaults.standard.object(forKey: kUDK_LatestSelectedPrefPaneId)
 		childSizes = readSizesDictionaryFromKey(kUDK_PrefsPanesSizes)
 		
 		super.viewDidLoad()
 		
-		for i in 0..<self.tabViewItems.count {
-			if self.tabViewItems[i].identifier.isEqual(idToSelect) {
-				self.selectedTabViewItemIndex = i
+		for i in 0..<tabViewItems.count {
+			if let id = tabViewItems[i].identifier, let idToSelect = idToSelect, (id as AnyObject).isEqual(idToSelect as AnyObject) {
+				selectedTabViewItemIndex = i
 			}
 		}
 	}
@@ -33,7 +33,7 @@ class PreferencesViewController: NSTabViewController {
 	override func viewWillAppear() {
 		super.viewWillAppear()
 		
-		self.tabView(self.tabView, didSelectTabViewItem: self.tabViewItems[self.selectedTabViewItemIndex])
+		tabView(tabView, didSelect: tabViewItems[selectedTabViewItemIndex])
 		delayedWindowSizeChange = true
 		
 		AppDelegate.sharedAppDelegate.closeIntroWindow()
@@ -42,30 +42,30 @@ class PreferencesViewController: NSTabViewController {
 	override func viewWillDisappear() {
 		super.viewWillDisappear()
 		
-		if let identifier = tabView.selectedTabViewItem?.identifier as? String, v = tabView.selectedTabViewItem?.view {
+		if let identifier = tabView.selectedTabViewItem?.identifier as? String, let v = tabView.selectedTabViewItem?.view {
 			childSizes[identifier] = v.frame.size
 		}
 		
 		saveSizesDictionary(childSizes, inKey: kUDK_PrefsPanesSizes)
 	}
 	
-	override func tabView(tabView: NSTabView, willSelectTabViewItem tabViewItem: NSTabViewItem?) {
-		super.tabView(tabView, willSelectTabViewItem: tabViewItem)
+	override func tabView(_ tabView: NSTabView, willSelect tabViewItem: NSTabViewItem?) {
+		super.tabView(tabView, willSelect: tabViewItem)
 		
-		if let identifier = tabViewItem?.identifier as? String, v = tabViewItem?.view {
+		if let identifier = tabViewItem?.identifier as? String, let v = tabViewItem?.view {
 			if childSizes[identifier] == nil {
 				childSizes[identifier] = v.frame.size
 			}
 		}
 		
-		if let identifier = tabView.selectedTabViewItem?.identifier as? String, v = tabView.selectedTabViewItem?.view {
+		if let identifier = tabView.selectedTabViewItem?.identifier as? String, let v = tabView.selectedTabViewItem?.view {
 			childSizes[identifier] = v.frame.size
 		}
 		
 		saveSizesDictionary(childSizes, inKey: kUDK_PrefsPanesSizes)
 		
 		for item in [tabViewItem, tabView.selectedTabViewItem] {
-			guard let identifier = item?.identifier as? String, v = item?.view else {
+			guard let identifier = item?.identifier as? String, let v = item?.view else {
 				continue
 			}
 			
@@ -75,9 +75,9 @@ class PreferencesViewController: NSTabViewController {
 			if constraintsToChange[identifier] == nil {
 				var constraints = [NSLayoutConstraint]()
 				
-				func swapOrErasePair<T>(pair: (T, T), withCheck check: (firstItem: T, secondItem: T) -> Bool) -> (T, T)? {
-					if check(firstItem: pair.0, secondItem: pair.1) {return pair}
-					if check(firstItem: pair.1, secondItem: pair.0) {return (pair.1, pair.0)}
+				func swapOrErasePair<T>(_ pair: (T, T), withCheck check: (_ firstItem: T, _ secondItem: T) -> Bool) -> (T, T)? {
+					if check(pair.0, pair.1) {return pair}
+					if check(pair.1, pair.0) {return (pair.1, pair.0)}
 					return nil
 				}
 				
@@ -91,7 +91,7 @@ class PreferencesViewController: NSTabViewController {
 								 * and they link the same attribute, which can either be
 								 * bottom or tailing. */
 								firstItem.0 === sv && secondItem.0 === v &&
-									(firstItem.1 == .Bottom || firstItem.1 == .Trailing) &&
+									(firstItem.1 == .bottom || firstItem.1 == .trailing) &&
 									secondItem.1 == firstItem.1
 							)
 					}) {
@@ -101,70 +101,70 @@ class PreferencesViewController: NSTabViewController {
 				
 				constraintsToChange[identifier] = constraints
 			}
-			constraintsToChange[identifier]!.forEach {$0.active = false}
+			constraintsToChange[identifier]!.forEach {$0.isActive = false}
 			
 			
 			if let (constraintWidth, constraintHeight) = addedConstraints[identifier] {
 				constraintWidth.constant  = sv.frame.size.width
 				constraintHeight.constant = sv.frame.size.height
 			} else {
-				let cw = NSLayoutConstraint(item: sv, attribute: .Width,  relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: sv.frame.size.width)
-				let ch = NSLayoutConstraint(item: sv, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: sv.frame.size.height)
+				let cw = NSLayoutConstraint(item: sv, attribute: .width,  relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: sv.frame.size.width)
+				let ch = NSLayoutConstraint(item: sv, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: sv.frame.size.height)
 				addedConstraints[identifier] = (cw, ch)
 			}
 			
 			let (cw, ch) = addedConstraints[identifier]!
-			cw.active = true
-			ch.active = true
+			cw.isActive = true
+			ch.isActive = true
 		}
 	}
 	
-	override func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
-		super.tabView(tabView, didSelectTabViewItem: tabViewItem)
+	override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+		super.tabView(tabView, didSelect: tabViewItem)
 		
 		guard let identifier = tabViewItem?.identifier as? String else {
 			return
 		}
 		
-		if let window = self.view.window, s = self.childSizes[identifier] {
+		if let window = view.window, let s = childSizes[identifier] {
 			let b = { () -> Void in
-				let destSize = window.frameRectForContentRect(NSMakeRect(0, 0, s.width, s.height)).size
+				let destSize = window.frameRect(forContentRect: NSMakeRect(0, 0, s.width, s.height)).size
 				var windowFrame = window.frame
 				windowFrame.origin.y += windowFrame.size.height - destSize.height
 				windowFrame.size = destSize
 				window.setFrame(windowFrame, display: true, animate: true)
 			}
-			if delayedWindowSizeChange {dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue(), b)}
+			if delayedWindowSizeChange {DispatchQueue.main.asyncAfter(deadline: DispatchTime.now(), execute: b)}
 			else                       {b()}
 		}
 		
 		if let constraints = addedConstraints[identifier] {
 			let b = { () -> Void in
-				constraints.0.active = false
-				constraints.1.active = false
+				constraints.0.isActive = false
+				constraints.1.isActive = false
 			}
-			if delayedWindowSizeChange {dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue(), b)}
+			if delayedWindowSizeChange {DispatchQueue.main.asyncAfter(deadline: DispatchTime.now(), execute: b)}
 			else                       {b()}
 		}
 		
 		if let constraints = constraintsToChange[identifier] {
 			let b = { () -> Void in
-				constraints.forEach {$0.active = true}
+				constraints.forEach {$0.isActive = true}
 			}
-			if delayedWindowSizeChange {dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue(), b)}
+			if delayedWindowSizeChange {DispatchQueue.main.asyncAfter(deadline: DispatchTime.now(), execute: b)}
 			else                       {b()}
 		}
 	}
 	
 	/* Writes the childSizes dictionary to the user defaults. */
-	private func saveSizesDictionary(sizes: [String: NSSize], inKey k: String) {
+	private func saveSizesDictionary(_ sizes: [String: NSSize], inKey k: String) {
 		var serializableSizes = [String: String]()
 		for (key, val) in sizes {serializableSizes[key] = NSStringFromSize(val)}
-		NSUserDefaults.standardUserDefaults().setObject(serializableSizes, forKey: k)
+		UserDefaults.standard.set(serializableSizes, forKey: k)
 	}
 	
-	private func readSizesDictionaryFromKey(k: String) -> [String: NSSize] {
-		guard let sizes = NSUserDefaults.standardUserDefaults().objectForKey(k) as? [String: String] else {
+	private func readSizesDictionaryFromKey(_ k: String) -> [String: NSSize] {
+		guard let sizes = UserDefaults.standard.object(forKey: k) as? [String: String] else {
 			return [:]
 		}
 		

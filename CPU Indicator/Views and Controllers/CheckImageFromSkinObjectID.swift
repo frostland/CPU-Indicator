@@ -11,7 +11,7 @@ import Cocoa
 
 
 @objc(CheckImageFromSkinObjectID)
-class CheckImageFromSkinObjectID: NSValueTransformer {
+class CheckImageFromSkinObjectID: ValueTransformer {
 	
 	override class func transformedValueClass() -> AnyClass {
 		return NSImage.self
@@ -21,8 +21,8 @@ class CheckImageFromSkinObjectID: NSValueTransformer {
 		return false
 	}
 	
-	override func transformedValue(value: AnyObject?) -> AnyObject? {
-		if let id = value as? NSManagedObjectID where id == AppDelegate.sharedAppDelegate.selectedSkinObjectID {
+	override func transformedValue(_ value: Any?) -> Any? {
+		if let id = value as? NSManagedObjectID, id == AppDelegate.sharedAppDelegate.selectedSkinObjectID {
 			return NSImage(named: "check_mark")
 		}
 		return nil

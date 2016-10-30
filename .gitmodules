@@ -1,3 +1,0 @@
-[submodule "Dependencies/natalie"]
-	path = Dependencies/natalie
-	url = git@github.com:krzyzanowskim/Natalie.git

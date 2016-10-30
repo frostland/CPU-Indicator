@@ -57,7 +57,7 @@ class SkinView : NSView {
 	private func commonInit() {
 		wantsLayer = true /* Don't know why this does not work in Storyboard directly... */
 		layer?.contentsGravity = kCAGravityResizeAspect
-		layerContentsRedrawPolicy = .BeforeViewResize
+		layerContentsRedrawPolicy = .beforeViewResize
 	}
 	
 	override init(frame frameRect: NSRect) {
@@ -78,12 +78,12 @@ class SkinView : NSView {
 	
 	var sizedSkin: SizedSkin? {
 		didSet {
-			assert(sizedSkin?.skin.managedObjectContext?.concurrencyType == nil || sizedSkin?.skin.managedObjectContext?.concurrencyType == .MainQueueConcurrencyType)
+			assert(sizedSkin?.skin.managedObjectContext?.concurrencyType == nil || sizedSkin?.skin.managedObjectContext?.concurrencyType == .mainQueueConcurrencyType)
 			updateResolvedMixedImageState(forceImageUpdate: true)
 		}
 	}
 	
-	var defaultMixedImageState: MixedImageState = .UseSkinDefault {
+	var defaultMixedImageState: MixedImageState = .useSkinDefault {
 		didSet {
 			guard oldValue != defaultMixedImageState else {return}
 			updateResolvedMixedImageState(forceImageUpdate: false)
@@ -100,11 +100,11 @@ class SkinView : NSView {
 	designable if I did so... */
 	@IBInspectable var progress: Float = 0 {
 		didSet {
-			assert(NSThread.isMainThread())
+			assert(Thread.isMainThread)
 			if progress < 0 {
 				assert(previewProgressObserver == nil)
 				PreviewProgress.sharedPreviewProgress.nPreviewProgressObserver += 1
-				previewProgressObserver = NSNotificationCenter.defaultCenter().addObserverForName(PreviewProgress.previewProgressChangeNotificationName, object: nil, queue: nil, usingBlock: { [weak self] n in
+				previewProgressObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: PreviewProgress.previewProgressChangeNotificationName), object: nil, queue: nil, using: { [weak self] n in
 					self?.updateImageFromCurrentProgress(allowAnimation: false)
 				})
 			} else {
@@ -118,15 +118,15 @@ class SkinView : NSView {
 	private func removePreviewProgressObserverIfNeeded() {
 		if let obs = previewProgressObserver {
 			PreviewProgress.sharedPreviewProgress.nPreviewProgressObserver -= 1
-			NSNotificationCenter.defaultCenter().removeObserver(obs, name: PreviewProgress.previewProgressChangeNotificationName, object: nil)
+			NotificationCenter.default.removeObserver(obs, name: NSNotification.Name(rawValue: PreviewProgress.previewProgressChangeNotificationName), object: nil)
 			previewProgressObserver = nil
 		}
 	}
 	
-	private func updateResolvedMixedImageState(forceImageUpdate forceImageUpdate: Bool) {
-		assert(NSThread.isMainThread()) /* Must be on main thread because we're accessing the skin, which is on a main queue managed object context */
+	private func updateResolvedMixedImageState(forceImageUpdate: Bool) {
+		assert(Thread.isMainThread) /* Must be on main thread because we're accessing the skin, which is on a main queue managed object context */
 		let currentResolvedMixedImageState = resolvedMixedImageState
-		if defaultMixedImageState == .UseSkinDefault {resolvedMixedImageState = sizedSkin?.skin.mixedImageState ?? .Disallow}
+		if defaultMixedImageState == .useSkinDefault {resolvedMixedImageState = sizedSkin?.skin.mixedImageState ?? .disallow}
 		else                                         {resolvedMixedImageState = defaultMixedImageState}
 		if forceImageUpdate || resolvedMixedImageState != currentResolvedMixedImageState {
 			displayedProgress = nil
@@ -134,11 +134,11 @@ class SkinView : NSView {
 		}
 	}
 	
-	private func updateImageFromCurrentProgress(allowAnimation allowAnimation: Bool) {
+	private func updateImageFromCurrentProgress(allowAnimation: Bool) {
 		allowedToAnimatedDisplayedProgressChange = allowAnimation
 		if progress < 0 {displayedProgress = PreviewProgress.sharedPreviewProgress.currentProgress}
 		else {
-			if resolvedMixedImageState == .Allow {displayedProgress = progress}
+			if resolvedMixedImageState == .allow {displayedProgress = progress}
 			else {
 				/* We must stick to the reference frames. */
 				let n = sizedSkin?.skin.frames?.count ?? 1
@@ -160,7 +160,7 @@ class SkinView : NSView {
 			assert(displayedProgress >= 0 && displayedProgress <= 1)
 			guard abs(displayedProgress - (oldValue ?? -1)) > 0.01 else {return}
 			
-			setNeedsDisplayInRect(bounds)
+			setNeedsDisplay(bounds)
 		}
 	}
 	
@@ -174,11 +174,11 @@ class SkinView : NSView {
 		defer {allowedToAnimatedDisplayedProgressChange = false}
 		guard let layer = layer else {return}
 		
-		guard let sizedSkin = sizedSkin, progress = displayedProgress else {
+		guard let sizedSkin = sizedSkin, let progress = displayedProgress else {
 			layer.contents = nil
 			return
 		}
-		sizedSkin.setLayerContents(layer, forProgress: progress, mixedImageState: resolvedMixedImageState ?? .Disallow, allowAnimation: allowedToAnimatedDisplayedProgressChange)
+		sizedSkin.setLayerContents(layer, forProgress: progress, mixedImageState: resolvedMixedImageState ?? .disallow, allowAnimation: allowedToAnimatedDisplayedProgressChange)
 	}
 	
 	/* ***************
@@ -186,8 +186,8 @@ class SkinView : NSView {
 	   *************** */
 	
 	private class PreviewProgress {
-		private static let sharedPreviewProgress = PreviewProgress()
-		private static let previewProgressChangeNotificationName = "SkinView Preview Progress Change Notification"
+		fileprivate static let sharedPreviewProgress = PreviewProgress()
+		fileprivate static let previewProgressChangeNotificationName = "SkinView Preview Progress Change Notification"
 		
 		private let previewFPS: Int
 		private let previewTimeBetweenFirstAndLastImage: Int
@@ -206,8 +206,8 @@ class SkinView : NSView {
 			nFramesBetweenFirstAndLastImage = previewFPS * previewTimeBetweenFirstAndLastImage
 		}
 		
-		private var timerUpdatePreviewProgress: NSTimer?
-		private var nPreviewProgressObserver: Int = 0 {
+		private var timerUpdatePreviewProgress: Timer?
+		fileprivate var nPreviewProgressObserver: Int = 0 {
 			didSet {
 				if oldValue > 0 && nPreviewProgressObserver == 0 {
 					/* Let's stop the preview progress observer as nobobdy observes it... */
@@ -216,7 +216,7 @@ class SkinView : NSView {
 				} else if oldValue == 0 && nPreviewProgressObserver > 0 {
 					/* Let's start the preview progress observer: somebody is interested... */
 					timerUpdatePreviewProgress?.invalidate()
-					timerUpdatePreviewProgress = NSTimer.scheduledTimerWithTimeInterval(1.0/Double(previewFPS), target: self, selector: #selector(PreviewProgress.advancePreviewProgress(_:)), userInfo: nil, repeats: true)
+					timerUpdatePreviewProgress = Timer.scheduledTimer(timeInterval: 1.0/Double(previewFPS), target: self, selector: #selector(PreviewProgress.advancePreviewProgress(_:)), userInfo: nil, repeats: true)
 				}
 			}
 		}
@@ -225,12 +225,12 @@ class SkinView : NSView {
 		}
 		
 		@objc
-		private func advancePreviewProgress(timer: NSTimer!) {
+		private func advancePreviewProgress(_ timer: Timer!) {
 			curProgress += delta
 			if curProgress >= nFramesBetweenFirstAndLastImage || curProgress <= 0 {
 				delta *= -1
 			}
-			NSNotificationCenter.defaultCenter().postNotificationName(self.dynamicType.previewProgressChangeNotificationName, object: self)
+			NotificationCenter.default.post(name: Notification.Name(rawValue: type(of: self).previewProgressChangeNotificationName), object: self)
 		}
 	}
 	

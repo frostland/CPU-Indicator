@@ -11,9 +11,6 @@
 		7B3E25331CD4FE40006F66A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B3E25321CD4FE40006F66A1 /* Localizable.strings */; };
 		7B591C401BE5779300DAAB57 /* CheckImageFromSkinObjectID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B591C3F1BE5779300DAAB57 /* CheckImageFromSkinObjectID.swift */; };
 		7B62756E1BCAFBEB007A0155 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B62756C1BCAFBEB007A0155 /* Model.xcdatamodeld */; };
-		7B6275741BCAFFA6007A0155 /* SkinFrame+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6275701BCAFFA6007A0155 /* SkinFrame+CoreDataProperties.swift */; };
-		7B6275751BCAFFA6007A0155 /* SkinFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6275711BCAFFA6007A0155 /* SkinFrame.swift */; };
-		7B6275761BCAFFA6007A0155 /* Skin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6275721BCAFFA6007A0155 /* Skin+CoreDataProperties.swift */; };
 		7B6275771BCAFFA6007A0155 /* Skin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6275731BCAFFA6007A0155 /* Skin.swift */; };
 		7B68FE0F1BC9D692004B900C /* IndicatorMenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68FE0E1BC9D692004B900C /* IndicatorMenuBarController.swift */; };
 		7B68FE111BC9D739004B900C /* IndicatorDockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68FE101BC9D739004B900C /* IndicatorDockController.swift */; };
@@ -64,9 +61,6 @@
 		7B4952A21BB75988001DE883 /* CPU Indicator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CPU Indicator.entitlements"; sourceTree = "<group>"; };
 		7B591C3F1BE5779300DAAB57 /* CheckImageFromSkinObjectID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckImageFromSkinObjectID.swift; sourceTree = "<group>"; };
 		7B62756D1BCAFBEB007A0155 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		7B6275701BCAFFA6007A0155 /* SkinFrame+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SkinFrame+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		7B6275711BCAFFA6007A0155 /* SkinFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinFrame.swift; sourceTree = "<group>"; };
-		7B6275721BCAFFA6007A0155 /* Skin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Skin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7B6275731BCAFFA6007A0155 /* Skin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Skin.swift; sourceTree = "<group>"; };
 		7B68FE0E1BC9D692004B900C /* IndicatorMenuBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorMenuBarController.swift; sourceTree = "<group>"; };
 		7B68FE101BC9D739004B900C /* IndicatorDockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorDockController.swift; sourceTree = "<group>"; };
@@ -144,9 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				7B6275731BCAFFA6007A0155 /* Skin.swift */,
-				7B6275721BCAFFA6007A0155 /* Skin+CoreDataProperties.swift */,
-				7B6275711BCAFFA6007A0155 /* SkinFrame.swift */,
-				7B6275701BCAFFA6007A0155 /* SkinFrame+CoreDataProperties.swift */,
 			);
 			path = "NSManagedObject Subclasses";
 			sourceTree = "<group>";
@@ -336,11 +327,12 @@
 		7B87C52E1B2C9D2A00A6B64A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Frost Land";
 				TargetAttributes = {
 					7B87C5351B2C9D2A00A6B64A = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -349,10 +341,12 @@
 					};
 					7B87C5461B2C9D2A00A6B64A = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 						TestTargetID = 7B87C5351B2C9D2A00A6B64A;
 					};
 					7B87C5511B2C9D2B00A6B64A = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 						TestTargetID = 7B87C5351B2C9D2A00A6B64A;
 					};
 				};
@@ -418,8 +412,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"Natalie Generator: Determining if generated Swift file is up-to-date.\"\n\nNATALIE_PATH=\"$PROJECT_DIR/Dependencies/natalie/natalie.swift\"\n\nGO=0\nBASE_PATH=\"$PROJECT_DIR/$PROJECT_NAME\"\nOUTPUT_PATH=\"$BASE_PATH/Utilities/Storyboards.swift\"\nif [ ! -e \"$OUTPUT_PATH\" ]; then\n    GO=1\nelif [ -n \"$(find \"$BASE_PATH\" -type f -name \"*.storyboard\" -newer \"$OUTPUT_PATH\" -print -quit)\" ]; then\n    GO=1\nfi\n\nif [ $GO -eq 1 ]; then\n    echo \"Natalie Generator: Generated Swift is out-of-date; re-generating...\"\n    \"$NATALIE_PATH\" \"$PROJECT_DIR/$PROJECT_NAME\" >\"$OUTPUT_PATH\"\n    echo \"Natalie Generator: Done.\"\nelse\n    echo \"Natalie Generator: Generated Swift is up-to-date; skipping re-generation.\"\nfi";
+			shellPath = /bin/bash;
+			shellScript = "echo \"Natalie Generator: Determining if generated Swift file is up-to-date.\"\n\nNATALIE_PATH=\"/usr/local/bin/natalie\"\n\nGO=0\nBASE_PATH=\"$PROJECT_DIR/$PROJECT_NAME\"\nOUTPUT_PATH=\"$BASE_PATH/Utilities/Storyboards.swift\"\nif [ ! -e \"$OUTPUT_PATH\" ]; then\n    GO=1\nelif [ -n \"$(find \"$BASE_PATH\" -type f -name \"*.storyboard\" -newer \"$OUTPUT_PATH\" -print -quit)\" ]; then\n    GO=1\nfi\n\nif [ $GO -eq 1 ]; then\n    echo \"Natalie Generator: Generated Swift is out-of-date; re-generating...\"\n    \"$NATALIE_PATH\" \"$PROJECT_DIR/$PROJECT_NAME\" >\"$OUTPUT_PATH\"\n    echo \"Natalie Generator: Done.\"\nelse\n    echo \"Natalie Generator: Generated Swift is up-to-date; skipping re-generation.\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -437,11 +431,8 @@
 				7B99A38C1BD2FE750020D13E /* VerticallyCenteredTextFieldCell.swift in Sources */,
 				7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */,
 				7BEF6D2B1BB34089002E074C /* IndicatorWindowController.swift in Sources */,
-				7B6275761BCAFFA6007A0155 /* Skin+CoreDataProperties.swift in Sources */,
 				7B68FE0F1BC9D692004B900C /* IndicatorMenuBarController.swift in Sources */,
-				7B6275741BCAFFA6007A0155 /* SkinFrame+CoreDataProperties.swift in Sources */,
 				7B99A38A1BD2E4C40020D13E /* SkinsPrefsViewController.swift in Sources */,
-				7B6275751BCAFFA6007A0155 /* SkinFrame.swift in Sources */,
 				7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */,
 				7B1F6D271BCADCB3003860E8 /* SkinView.swift in Sources */,
 				7B6275771BCAFFA6007A0155 /* Skin.swift in Sources */,
@@ -510,8 +501,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -554,8 +547,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -574,6 +569,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -588,6 +584,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.cpu-indicator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -602,6 +599,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.cpu-indicator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -614,6 +612,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CPU Indicator.app/Contents/MacOS/CPU Indicator";
 			};
 			name = Debug;
@@ -627,6 +626,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CPU Indicator.app/Contents/MacOS/CPU Indicator";
 			};
 			name = Release;
@@ -639,6 +639,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "CPU Indicator";
 				USES_XCTRUNNER = YES;
 			};
@@ -652,6 +653,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "CPU Indicator";
 				USES_XCTRUNNER = YES;
 			};
