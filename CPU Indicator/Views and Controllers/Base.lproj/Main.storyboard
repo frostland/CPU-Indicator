@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -989,11 +990,11 @@ DQ
             <objects>
                 <viewController title="Dock" id="71v-QF-o1T" sceneMemberID="viewController">
                     <view key="view" id="pol-Hh-dLk">
-                        <rect key="frame" x="0.0" y="0.0" width="456" height="169"/>
+                        <rect key="frame" x="0.0" y="0.0" width="444" height="169"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="jsU-9a-cYo">
-                                <rect key="frame" x="0.0" y="0.0" width="456" height="169"/>
+                                <rect key="frame" x="0.0" y="0.0" width="444" height="169"/>
                                 <subviews>
                                     <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="1n9-WT-ObD">
                                         <rect key="frame" x="18" y="133" width="300" height="18"/>
@@ -1006,7 +1007,7 @@ DQ
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YHW-hk-Hhd">
-                                        <rect key="frame" x="18" y="20" width="420" height="68"/>
+                                        <rect key="frame" x="18" y="20" width="408" height="68"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3bF-kY-VbH">
                                             <font key="font" metaFont="system"/>
                                             <string key="title">To Access the preferences while the Dock icon is hidden, you can :
