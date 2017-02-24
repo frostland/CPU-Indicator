@@ -39,42 +39,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	private var kvoContextUDWindowLocked = "UD Window Locked"
 	
-	override class func initialize() {
-		if self === AppDelegate.self {
-			let defaults: [String: Any] = [
-				kUDK_FirstRun: true,
-				
-				kUDK_PrefsPanesSizes: [:],
-				kUDK_LatestSelectedPrefPaneId: "skins",
-				
-				kUDK_ShowWindowIndicator: true,
-				kUDK_WindowIndicatorLevel: NSNumber(value: WindowIndicatorLevel.aboveAll.rawValue),
-				kUDK_WindowIndicatorScale: 1.0,
-				kUDK_WindowIndicatorOpacity: 1.0,
-				kUDK_WindowIndicatorDisableShadow: false,
-				kUDK_WindowIndicatorLocked: false,
-				kUDK_WindowIndicatorClickless: false,
-				kUDK_WindowIndicatorDecreaseOpacityOnHover: false,
-				
-				kUDK_ShowMenuIndicator: false,
-				kUDK_MenuIndicatorMode: NSNumber(value: MenuIndicatorMode.text.rawValue),
-				kUDK_MenuIndicatorOnePerCPU: false,
-				
-				kUDK_ShowDockIcon: true,
-				kUDK_DockIconIsCPUIndicator: false,
-				
-				kUDK_SelectedSkinUID: "fr.frostland.cpu-indicator.built-in",
-				kUDK_MixedImageState: NSNumber(value: Int(MixedImageState.useSkinDefault.rawValue))
-			]
-			UserDefaults.standard.register(defaults: defaults)
-			
-			let skinPreviewTransformer = SkinToSizedSkinTransformer(destSize: CGSize(width: 141, height: 141), allowDistortion: false)
-			ValueTransformer.setValueTransformer(skinPreviewTransformer, forName: NSValueTransformerName(rawValue: "SkinPreviewTransformer"))
-		}
-	}
-	
 	override init() {
 		super.init()
+		
+		let defaults: [String: Any] = [
+			kUDK_FirstRun: true,
+			
+			kUDK_PrefsPanesSizes: [:],
+			kUDK_LatestSelectedPrefPaneId: "skins",
+			
+			kUDK_ShowWindowIndicator: true,
+			kUDK_WindowIndicatorLevel: NSNumber(value: WindowIndicatorLevel.aboveAll.rawValue),
+			kUDK_WindowIndicatorScale: 1.0,
+			kUDK_WindowIndicatorOpacity: 1.0,
+			kUDK_WindowIndicatorDisableShadow: false,
+			kUDK_WindowIndicatorLocked: false,
+			kUDK_WindowIndicatorClickless: false,
+			kUDK_WindowIndicatorDecreaseOpacityOnHover: false,
+			
+			kUDK_ShowMenuIndicator: false,
+			kUDK_MenuIndicatorMode: NSNumber(value: MenuIndicatorMode.text.rawValue),
+			kUDK_MenuIndicatorOnePerCPU: false,
+			
+			kUDK_ShowDockIcon: true,
+			kUDK_DockIconIsCPUIndicator: false,
+			
+			kUDK_SelectedSkinUID: "fr.frostland.cpu-indicator.built-in",
+			kUDK_MixedImageState: NSNumber(value: Int(MixedImageState.useSkinDefault.rawValue))
+		]
+		UserDefaults.standard.register(defaults: defaults)
+		
+		let skinPreviewTransformer = SkinToSizedSkinTransformer(destSize: CGSize(width: 141, height: 141), allowDistortion: false)
+		ValueTransformer.setValueTransformer(skinPreviewTransformer, forName: NSValueTransformerName(rawValue: "SkinPreviewTransformer"))
 		
 		if type(of: self).sharedAppDelegate == nil {
 			type(of: self).sharedAppDelegate = self
