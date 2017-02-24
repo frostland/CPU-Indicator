@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12113" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -515,7 +515,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="115"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w1c-u9-Uvv">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w1c-u9-Uvv">
                                 <rect key="frame" x="129" y="74" width="222" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Welcome to CPU Indicator" id="CPm-l6-Lnd">
                                     <font key="font" metaFont="systemBold" size="17"/>
@@ -523,7 +523,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="neu-JA-5jE">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="neu-JA-5jE">
                                 <rect key="frame" x="18" y="49" width="444" height="17"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Great intro text." id="UfJ-uG-pJC">
                                     <font key="font" metaFont="system"/>
@@ -665,7 +665,7 @@ DQ
                                                 </constraints>
                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="rm3-Cj-JsE"/>
                                             </imageView>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uXk-Y9-A1c">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uXk-Y9-A1c">
                                                 <rect key="frame" x="109" y="102" width="47" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Screen" id="kF7-ER-nHR">
                                                     <font key="font" metaFont="system"/>
@@ -692,7 +692,7 @@ DQ
                                                     <binding destination="a6K-Ly-rM5" name="selectedTag" keyPath="values.FLWindowLevel" id="hcS-Zx-2si"/>
                                                 </connections>
                                             </popUpButton>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gKK-4b-cN5">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gKK-4b-cN5">
                                                 <rect key="frame" x="-2" y="239" width="107" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Opacity:" id="iVl-JA-25W">
                                                     <font key="font" metaFont="system"/>
@@ -700,7 +700,7 @@ DQ
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="UMh-XE-4kX">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UMh-XE-4kX">
                                                 <rect key="frame" x="-2" y="178" width="196" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="CPU Indicator Window Position:" id="Idb-3w-z3W">
                                                     <font key="font" metaFont="system"/>
@@ -775,7 +775,7 @@ DQ
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="rog-9b-5Mn"/>
                                                 </connections>
                                             </button>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="2tm-Ea-6yJ">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2tm-Ea-6yJ">
                                                 <rect key="frame" x="-2" y="264" width="86" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Size:" id="WWw-8D-4z5">
                                                     <font key="font" metaFont="system"/>
@@ -783,7 +783,7 @@ DQ
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ElA-38-EaO">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ElA-38-EaO">
                                                 <rect key="frame" x="-2" y="296" width="92" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Level:" id="GOI-AU-PB1">
                                                     <font key="font" metaFont="system"/>
@@ -1006,7 +1006,7 @@ DQ
                                             <binding destination="a6K-Ly-rM6" name="value" keyPath="values.FLShowDock" id="rL3-es-I5J"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YHW-hk-Hhd">
+                                    <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YHW-hk-Hhd">
                                         <rect key="frame" x="18" y="20" width="408" height="68"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3bF-kY-VbH">
                                             <font key="font" metaFont="system"/>
@@ -1135,7 +1135,7 @@ DQ
                                                                     <rect key="frame" x="39" y="1" width="325" height="141"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YVt-0H-V4E">
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YVt-0H-V4E">
                                                                             <rect key="frame" x="-2" y="51" width="329" height="39"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Skin Name" id="Fgf-EA-amK">
                                                                                 <font key="font" metaFont="systemBold" size="32"/>
@@ -1219,7 +1219,7 @@ DQ
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qWZ-EW-ZXj">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qWZ-EW-ZXj">
                                         <rect key="frame" x="18" y="20" width="120" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mixed Image State:" id="JhE-oV-hVk">
                                             <font key="font" metaFont="system"/>
