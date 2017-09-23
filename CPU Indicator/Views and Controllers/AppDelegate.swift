@@ -157,18 +157,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				fRequest.sortDescriptors = [NSSortDescriptor(key: "sortPosition", ascending: true)]
 				let results = try self.mainManagedObjectContext.fetch(fRequest)
 				if results.count > 1 {print("*** Warning: Got more than one skin for UID \(selectedSkinUID). Taking the first one.")}
-				if results.count > 0 {
-					self.selectedSkinObjectID = results[0].objectID
+				if let result = results.first {
+					self.selectedSkinObjectID = result.objectID
 				} else {
 					let fRequest: NSFetchRequest<Skin> = Skin.fetchRequest()
 					fRequest.fetchLimit = 1
 					fRequest.sortDescriptors = [NSSortDescriptor(key: "sortPosition", ascending: true)]
 					let results = try self.mainManagedObjectContext.fetch(fRequest)
-					if results.count > 0 {
+					if let result = results.first {
 						/* The UID of the selected skin from the prefs was not found.
 						 * we take the first skin and make it the selected one. */
-						UserDefaults.standard.set(results[0].uid, forKey: kUDK_SelectedSkinUID)
-						self.selectedSkinObjectID = results[0].objectID
+						UserDefaults.standard.set(result.uid, forKey: kUDK_SelectedSkinUID)
+						self.selectedSkinObjectID = result.objectID
 					} else {
 						/* There are no skins in the db. We create the default one! */
 						let images = [
@@ -181,7 +181,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 						let skin = NSEntityDescription.insertNewObject(forEntityName: "Skin", into: self.mainManagedObjectContext) as! Skin
 						skin.name = "Default"
 						skin.sortPosition = 0
-						skin.isBuiltIn = true
 						skin.width = maxWidth
 						skin.height = maxHeight
 						skin.source = "Frost Land"
