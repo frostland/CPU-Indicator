@@ -10,10 +10,17 @@ import Cocoa
 
 
 
+private extension NSUserInterfaceItemIdentifier {
+	
+	static let isSelectedColumn = NSUserInterfaceItemIdentifier(rawValue: "isSelected")
+	
+}
+
+
 class SkinsPrefsViewController: NSViewController, NSTableViewDelegate {
 	
-	dynamic let managedObjectContext = AppDelegate.sharedAppDelegate.mainManagedObjectContext
-	dynamic let sortDescriptors = [NSSortDescriptor(key: "sortPosition", ascending: true)]
+	@objc dynamic let managedObjectContext = AppDelegate.sharedAppDelegate.mainManagedObjectContext
+	@objc dynamic let sortDescriptors = [NSSortDescriptor(key: "sortPosition", ascending: true)]
 	
 	private var observingUDC = false
 	@IBOutlet private var arrayController: NSArrayController!
@@ -41,8 +48,8 @@ class SkinsPrefsViewController: NSViewController, NSTableViewDelegate {
 			switch (object, keyPath) {
 			case (let o, "selectedSkinObjectID") where o as? AppDelegate === AppDelegate.sharedAppDelegate:
 				tableView.reloadData(
-					forRowIndexes: IndexSet(integersIn: NSMakeRange(0, tableView.numberOfRows).toRange()! /* Too lazy to compute exactly which row should be reloaded right now... */),
-					columnIndexes: IndexSet(integer: tableView.column(withIdentifier: "isSelected"))
+					forRowIndexes: IndexSet(integersIn: 0..<tableView.numberOfRows /* Too lazy to compute exactly which row should be reloaded right now... */),
+					columnIndexes: IndexSet(integer: tableView.column(withIdentifier: .isSelectedColumn))
 				)
 			default:
 				throw e

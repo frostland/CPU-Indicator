@@ -23,7 +23,7 @@ class CheckImageFromSkinObjectID: ValueTransformer {
 	
 	override func transformedValue(_ value: Any?) -> Any? {
 		if let id = value as? NSManagedObjectID, id == AppDelegate.sharedAppDelegate.selectedSkinObjectID {
-			return NSImage(named: "check_mark")
+			return #imageLiteral(resourceName: "check_mark")
 		}
 		return nil
 	}

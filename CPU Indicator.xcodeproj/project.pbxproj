@@ -25,10 +25,6 @@
 		7B99A38A1BD2E4C40020D13E /* SkinsPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99A3891BD2E4C40020D13E /* SkinsPrefsViewController.swift */; };
 		7B99A38C1BD2FE750020D13E /* VerticallyCenteredTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99A38B1BD2FE750020D13E /* VerticallyCenteredTextFieldCell.swift */; };
 		7BCB49581B5AAF2600F5D341 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */; };
-		7BD2CD671BDCE02000E8A00C /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BD2CD641BDCE02000E8A00C /* green.png */; };
-		7BD2CD681BDCE02000E8A00C /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BD2CD651BDCE02000E8A00C /* orange.png */; };
-		7BD2CD691BDCE02000E8A00C /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BD2CD661BDCE02000E8A00C /* red.png */; };
-		7BDBBD331B5C0009005D21EF /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD59261B5BA48000E239ED /* Storyboards.swift */; };
 		7BDE20FC1C41492E002B50C7 /* WindowPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDE20FB1C41492E002B50C7 /* WindowPrefsViewController.swift */; };
 		7BDE20FF1C416155002B50C7 /* IndicatorWindowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDE20FE1C416155002B50C7 /* IndicatorWindowContentViewController.swift */; };
 		7BEC78151BA5A5F700F08D88 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEC78141BA5A5F700F08D88 /* PreferencesWindowController.swift */; };
@@ -80,11 +76,7 @@
 		7B92E3CE1C430B9D0091F561 /* CPUUsageGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPUUsageGetter.swift; sourceTree = "<group>"; };
 		7B99A3891BD2E4C40020D13E /* SkinsPrefsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinsPrefsViewController.swift; sourceTree = "<group>"; };
 		7B99A38B1BD2FE750020D13E /* VerticallyCenteredTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextFieldCell.swift; sourceTree = "<group>"; };
-		7BAD59261B5BA48000E239ED /* Storyboards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
-		7BD2CD641BDCE02000E8A00C /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
-		7BD2CD651BDCE02000E8A00C /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
-		7BD2CD661BDCE02000E8A00C /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
 		7BDE20FB1C41492E002B50C7 /* WindowPrefsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPrefsViewController.swift; sourceTree = "<group>"; };
 		7BDE20FE1C416155002B50C7 /* IndicatorWindowContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorWindowContentViewController.swift; sourceTree = "<group>"; };
 		7BEC78141BA5A5F700F08D88 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
@@ -173,7 +165,6 @@
 				7B71E7691B964D8B00F037A3 /* Constants.swift */,
 				7B3E25321CD4FE40006F66A1 /* Localizable.strings */,
 				7B87C53D1B2C9D2A00A6B64A /* Assets.xcassets */,
-				7BD2CD631BDCDFEA00E8A00C /* Default Theme Images */,
 				7B87C5421B2C9D2A00A6B64A /* Info.plist */,
 			);
 			path = "CPU Indicator";
@@ -195,16 +186,6 @@
 				7B87C5581B2C9D2B00A6B64A /* Info.plist */,
 			);
 			path = "CPU IndicatorUITests";
-			sourceTree = "<group>";
-		};
-		7BD2CD631BDCDFEA00E8A00C /* Default Theme Images */ = {
-			isa = PBXGroup;
-			children = (
-				7BD2CD641BDCE02000E8A00C /* green.png */,
-				7BD2CD651BDCE02000E8A00C /* orange.png */,
-				7BD2CD661BDCE02000E8A00C /* red.png */,
-			);
-			path = "Default Theme Images";
 			sourceTree = "<group>";
 		};
 		7BD930981B933BD100EDED90 /* Views and Controllers */ = {
@@ -258,7 +239,6 @@
 			children = (
 				7BF8B4791C01ED0600D3FE61 /* SizedSkin.swift */,
 				7BF95FD51B91E0DB00DC4947 /* IsNotThree.swift */,
-				7BAD59261B5BA48000E239ED /* Storyboards.swift */,
 				7B92E3CE1C430B9D0091F561 /* CPUUsageGetter.swift */,
 			);
 			path = Utilities;
@@ -271,7 +251,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B87C55B1B2C9D2B00A6B64A /* Build configuration list for PBXNativeTarget "CPU Indicator" */;
 			buildPhases = (
-				7BAD59251B5BA35C00E239ED /* ShellScript */,
 				7B87C5321B2C9D2A00A6B64A /* Sources */,
 				7B87C5331B2C9D2A00A6B64A /* Frameworks */,
 				7B87C5341B2C9D2A00A6B64A /* Resources */,
@@ -332,7 +311,7 @@
 				TargetAttributes = {
 					7B87C5351B2C9D2A00A6B64A = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -341,12 +320,12 @@
 					};
 					7B87C5461B2C9D2A00A6B64A = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						TestTargetID = 7B87C5351B2C9D2A00A6B64A;
 					};
 					7B87C5511B2C9D2B00A6B64A = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						TestTargetID = 7B87C5351B2C9D2A00A6B64A;
 					};
 				};
@@ -376,11 +355,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BD2CD671BDCE02000E8A00C /* green.png in Resources */,
 				7B3E25331CD4FE40006F66A1 /* Localizable.strings in Resources */,
-				7BD2CD681BDCE02000E8A00C /* orange.png in Resources */,
 				7B87C53E1B2C9D2A00A6B64A /* Assets.xcassets in Resources */,
-				7BD2CD691BDCE02000E8A00C /* red.png in Resources */,
 				7B87C5411B2C9D2A00A6B64A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,29 +377,12 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		7BAD59251B5BA35C00E239ED /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "echo \"Natalie Generator: Determining if generated Swift file is up-to-date.\"\n\nNATALIE_PATH=\"/usr/local/bin/natalie\"\n\nGO=0\nBASE_PATH=\"$PROJECT_DIR/$PROJECT_NAME\"\nOUTPUT_PATH=\"$BASE_PATH/Utilities/Storyboards.swift\"\nif [ ! -e \"$OUTPUT_PATH\" ]; then\n    GO=1\nelif [ -n \"$(find \"$BASE_PATH\" -type f -name \"*.storyboard\" -newer \"$OUTPUT_PATH\" -print -quit)\" ]; then\n    GO=1\nfi\n\nif [ $GO -eq 1 ]; then\n    echo \"Natalie Generator: Generated Swift is out-of-date; re-generating...\"\n    \"$NATALIE_PATH\" \"$PROJECT_DIR/$PROJECT_NAME\" >\"$OUTPUT_PATH\"\n    echo \"Natalie Generator: Done.\"\nelse\n    echo \"Natalie Generator: Generated Swift is up-to-date; skipping re-generation.\"\nfi";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		7B87C5321B2C9D2A00A6B64A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7BDE20FC1C41492E002B50C7 /* WindowPrefsViewController.swift in Sources */,
-				7BDBBD331B5C0009005D21EF /* Storyboards.swift in Sources */,
 				7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */,
 				7BF8B47A1C01ED0600D3FE61 /* SizedSkin.swift in Sources */,
 				7BDE20FF1C416155002B50C7 /* IndicatorWindowContentViewController.swift in Sources */,
@@ -537,6 +496,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -582,6 +542,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -596,7 +557,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.cpu-indicator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -611,7 +571,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.cpu-indicator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -624,7 +583,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CPU Indicator.app/Contents/MacOS/CPU Indicator";
 			};
 			name = Debug;
@@ -638,7 +596,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CPU Indicator.app/Contents/MacOS/CPU Indicator";
 			};
 			name = Release;
@@ -651,7 +608,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "CPU Indicator";
 				USES_XCTRUNNER = YES;
 			};
@@ -665,7 +621,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "CPU Indicator";
 				USES_XCTRUNNER = YES;
 			};

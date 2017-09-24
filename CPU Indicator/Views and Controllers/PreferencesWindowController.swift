@@ -10,6 +10,13 @@ import Cocoa
 
 
 
+private extension NSWindow.FrameAutosaveName {
+	
+	static let prefsWindow = NSWindow.FrameAutosaveName(rawValue: "PrefsWindow")
+	
+}
+
+
 class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 	
 	private var iUseMyself: PreferencesWindowController?
@@ -18,7 +25,7 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		
-		windowFrameAutosaveName = "PrefsWindow"
+		windowFrameAutosaveName = .prefsWindow
 	}
 	
 	override var window: NSWindow? {

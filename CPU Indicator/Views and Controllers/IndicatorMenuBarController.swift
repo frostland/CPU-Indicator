@@ -19,13 +19,13 @@ class IndicatorMenuBarController : NSObject, CALayerDelegate, CPUUsageObserver {
 			CPUUsageGetter.sharedCPUUsageGetter.removeObserverForKnownUsageModification(self)
 			AppDelegate.sharedAppDelegate.removeObserver(self, forKeyPath: "selectedSkinObjectID", context: nil)
 			for keyPath in observedUDCKeys {
-				NSUserDefaultsController.shared().removeObserver(self, forKeyPath: keyPath)
+				NSUserDefaultsController.shared.removeObserver(self, forKeyPath: keyPath)
 			}
 		}
 	}
 	
 	func applicationWillFinishLaunching() {
-		let udc = NSUserDefaultsController.shared()
+		let udc = NSUserDefaultsController.shared
 		for keyPath in observedUDCKeys {
 			udc.addObserver(self, forKeyPath: keyPath, options: .initial, context: nil)
 		}
@@ -40,10 +40,10 @@ class IndicatorMenuBarController : NSObject, CALayerDelegate, CPUUsageObserver {
 			return
 		}
 		
-		if observedUDCKeys.contains(kp) && object as? NSUserDefaultsController === NSUserDefaultsController.shared() {
+		if observedUDCKeys.contains(kp) && object as? NSUserDefaultsController === NSUserDefaultsController.shared {
 			let prefix = "values."
 			let ud = UserDefaults.standard
-			switch kp.substring(from: prefix.endIndex) {
+			switch String(kp[prefix.endIndex...]) {
 			case kUDK_ShowMenuIndicator:
 				if ud.bool(forKey: kUDK_ShowMenuIndicator) {showIndicatorsIfNeeded()}
 				else                                     {hideIndicatorsIfNeeded()}
@@ -82,7 +82,7 @@ class IndicatorMenuBarController : NSObject, CALayerDelegate, CPUUsageObserver {
 		let oneMenuPerCPU = UserDefaults.standard.bool(forKey: kUDK_MenuIndicatorOnePerCPU)
 		let n = oneMenuPerCPU ? CPUUsageGetter.sharedCPUUsageGetter.cpuCount : 1
 		for i in 0..<n {
-			let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+			let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 			statusItem.menu = (menu.copy() as! NSMenu)
 			statusItem.menu?.item(withTag: 42)?.title = (oneMenuPerCPU ? String(format: NSLocalizedString("proc %lu", comment: ""), i+1) : NSLocalizedString("global cpu usage", comment: ""))
 			statusItem.button?.imagePosition = .imageLeft
@@ -100,7 +100,7 @@ class IndicatorMenuBarController : NSObject, CALayerDelegate, CPUUsageObserver {
 	}
 	
 	private func hideIndicatorsIfNeeded() {
-		statusItems.forEach {NSStatusBar.system().removeStatusItem($0.item)}
+		statusItems.forEach{ NSStatusBar.system.removeStatusItem($0.item) }
 		statusItems.removeAll()
 	}
 	
@@ -132,7 +132,7 @@ class IndicatorMenuBarController : NSObject, CALayerDelegate, CPUUsageObserver {
 		"values.\(kUDK_MixedImageState)"
 	]
 	
-	private let menuBarHeight = NSStatusBar.system().thickness
+	private let menuBarHeight = NSStatusBar.system.thickness
 	private let vSpacing = CGFloat(1)
 	
 	private var statusItems = [(item: NSStatusItem, skinLayer: CALayer)]()

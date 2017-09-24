@@ -10,12 +10,28 @@ import Cocoa
 
 
 
+private extension NSStoryboard.Name {
+	
+	static let main = NSStoryboard.Name(rawValue: "Main")
+	
+}
+
+
+private extension NSStoryboard.SceneIdentifier {
+	
+	static let introWindowController = NSStoryboard.SceneIdentifier(rawValue: "IntroWindowController")
+	static let indicatorWindowController = NSStoryboard.SceneIdentifier(rawValue: "IndicatorWindowController")
+	static let preferencesWindowController = NSStoryboard.SceneIdentifier(rawValue: "PreferencesWindowController")
+	
+}
+
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	static private(set) var sharedAppDelegate: AppDelegate!
 	
-	dynamic var selectedSkinObjectID: NSManagedObjectID! {
+	@objc dynamic var selectedSkinObjectID: NSManagedObjectID! {
 		didSet {
 			mainManagedObjectContext.perform {
 				if let uid = ((try? self.mainManagedObjectContext.existingObject(with: self.selectedSkinObjectID)) as? Skin)?.uid {
@@ -37,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	private var dockIconShown = false
 	private var appDidBecomeActive = false
 	
-	private var kvoContextUDWindowLocked = "UD Window Locked"
+	private lazy var kvoContextUDWindowLockedPtr = Unmanaged.passUnretained("UD Window Locked" as NSString).toOpaque()
 	
 	override init() {
 		super.init()
@@ -122,7 +138,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			])
 			return coordinator
 		} catch {
-			NSApplication.shared().presentError(error as NSError)
+			NSApplication.shared.presentError(error as NSError)
 			exit(0)
 		}
 	}()
@@ -171,11 +187,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 						self.selectedSkinObjectID = result.objectID
 					} else {
 						/* There are no skins in the db. We create the default one! */
-						let images = [
-							NSImage(named: "green.png")!,
-							NSImage(named: "orange.png")!,
-							NSImage(named: "red.png")!
-						]
+						let images = [#imageLiteral(resourceName: "green"), #imageLiteral(resourceName: "orange"), #imageLiteral(resourceName: "red")]
 						var maxWidth = Int32(0), maxHeight = Int32(0)
 						let imagesInfo = self.imagesInfoFromImages(images, maxWidth: &maxWidth, maxHeight: &maxHeight)
 						let skin = NSEntityDescription.insertNewObject(forEntityName: "Skin", into: self.mainManagedObjectContext) as! Skin
@@ -193,14 +205,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				}
 			} catch {
 				self.mainManagedObjectContext.rollback()
-				NSApplication.shared().presentError(error as NSError)
+				NSApplication.shared.presentError(error as NSError)
 				exit(0)
 			}
 		}
 		
 		/* Adding observer of "Window Locked" user defaults to set clickless to
 		 * false if locked is false. */
-		NSUserDefaultsController.shared().addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorLocked)", options: [.initial], context: &kvoContextUDWindowLocked)
+		NSUserDefaultsController.shared.addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorLocked)", options: [.initial], context: kvoContextUDWindowLockedPtr)
 		
 		menuBarController.applicationWillFinishLaunching()
 		dockIndicatorController.applicationWillFinishLaunching()
@@ -251,13 +263,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		let ud = UserDefaults.standard
 		let firstRun = ud.bool(forKey: kUDK_FirstRun)
 		
-		mainWindowController = Storyboards.Main.instantiateIndicatorWindowController()
+		mainWindowController = NSStoryboard(name: .main, bundle: nil).instantiateController(withIdentifier: .indicatorWindowController) as! IndicatorWindowController
 		
 		if firstRun {
 			ud.set(false, forKey: kUDK_FirstRun)
 			
-			introWindowController = Storyboards.Main.instantiateIntroWindowController()
-			introWindowController?.window?.level = Int(CGWindowLevelForKey(CGWindowLevelKey.statusWindow))
+			introWindowController = (NSStoryboard(name: .main, bundle: nil).instantiateController(withIdentifier: .introWindowController) as! NSWindowController)
+			introWindowController!.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(CGWindowLevelKey.statusWindow)))
 			introWindowController!.showWindow(self)
 		}
 	}
@@ -268,13 +280,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	func applicationWillTerminate(_ aNotification: Notification) {
-		NSUserDefaultsController.shared().removeObserver(self, forKeyPath: "values."+kUDK_WindowIndicatorLocked, context: &kvoContextUDWindowLocked)
+		NSUserDefaultsController.shared.removeObserver(self, forKeyPath: "values."+kUDK_WindowIndicatorLocked, context: kvoContextUDWindowLockedPtr)
 	}
 	
 	@IBAction func showPrefs(_ sender: AnyObject?) {
 		let controller: PreferencesWindowController
 		if let pc = preferencesWindowController {controller = pc}
-		else                                    {controller = Storyboards.Main.instantiatePreferencesWindowController()}
+		else                                    {controller = NSStoryboard(name: .main, bundle: nil).instantiateController(withIdentifier: .preferencesWindowController) as! PreferencesWindowController}
 		preferencesWindowController = controller
 		controller.showWindow(sender)
 	}
@@ -286,7 +298,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		switch context {
-		case (&kvoContextUDWindowLocked)?:
+		case kvoContextUDWindowLockedPtr?:
 			let ud = UserDefaults.standard
 			if !ud.bool(forKey: kUDK_WindowIndicatorLocked) {ud.set(false, forKey: kUDK_WindowIndicatorClickless)}
 			
@@ -318,7 +330,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			frame.height = (h > 0 ? h : skin.height)
 			frame.xPos = (x > 0 ? x : (skin.width  - frame.width)/2)
 			frame.yPos = (y > 0 ? y : (skin.height - frame.height)/2)
-			frame.imageData = image.tiffRepresentation(using: NSTIFFCompression.LZW, factor: 0) as NSData?
+			frame.imageData = image.tiffRepresentation(using: .lzw, factor: 0)
 			mutableFrames.add(frame)
 		}
 	}

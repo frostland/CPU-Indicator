@@ -10,6 +10,13 @@ import Cocoa
 
 
 
+private extension NSWindow.FrameAutosaveName {
+	
+	static let indicatorWindow = NSWindow.FrameAutosaveName(rawValue: "IndicatorWindow")
+	
+}
+
+
 class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 	
 	private var skinView: SkinView! {
@@ -30,7 +37,7 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 			CPUUsageGetter.sharedCPUUsageGetter.removeObserverForKnownUsageModification(self)
 			AppDelegate.sharedAppDelegate.removeObserver(self, forKeyPath: "selectedSkinObjectID", context: nil)
 			for keyPath in observedUDCKeys {
-				NSUserDefaultsController.shared().removeObserver(self, forKeyPath: keyPath)
+				NSUserDefaultsController.shared.removeObserver(self, forKeyPath: keyPath)
 			}
 		}
 	}
@@ -40,11 +47,11 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 		window?.isMovableByWindowBackground = true
 		window?.backgroundColor = NSColor.clear
 		
-		windowFrameAutosaveName = "IndicatorWindow"
+		windowFrameAutosaveName = .indicatorWindow
 		
 		super.windowDidLoad()
 		
-		let udc = NSUserDefaultsController.shared()
+		let udc = NSUserDefaultsController.shared
 		for keyPath in observedUDCKeys {
 			udc.addObserver(self, forKeyPath: keyPath, options: [.initial], context: nil)
 		}
@@ -59,10 +66,10 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 			return
 		}
 		
-		if observedUDCKeys.contains(kp) && object as? NSUserDefaultsController === NSUserDefaultsController.shared() {
+		if observedUDCKeys.contains(kp) && object as? NSUserDefaultsController === NSUserDefaultsController.shared {
 			let prefix = "values."
 			let ud = UserDefaults.standard
-			switch kp.substring(from: prefix.endIndex) {
+			switch String(kp[prefix.endIndex...]) {
 			case kUDK_ShowWindowIndicator:
 				if ud.bool(forKey: kUDK_FirstRun) {
 					if let window = window {
@@ -81,16 +88,16 @@ class IndicatorWindowController: NSWindowController, CPUUsageObserver {
 				case .behindAll:
 					ud.set(true, forKey: kUDK_WindowIndicatorClickless)
 					ud.set(true, forKey: kUDK_WindowIndicatorLocked)
-					window?.level = Int(CGWindowLevelForKey(CGWindowLevelKey.desktopWindow))
-					window?.collectionBehavior = [.canJoinAllSpaces, .transient]
+					window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(CGWindowLevelKey.desktopWindow)))
+					window?.collectionBehavior = [NSWindow.CollectionBehavior.canJoinAllSpaces, NSWindow.CollectionBehavior.transient]
 					
 				case .normal:
-					window?.level = Int(CGWindowLevelForKey(CGWindowLevelKey.normalWindow))
-					window?.collectionBehavior = [.canJoinAllSpaces, .managed]
+					window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(CGWindowLevelKey.normalWindow))) /* Probably same as .normal */
+					window?.collectionBehavior = [NSWindow.CollectionBehavior.canJoinAllSpaces, NSWindow.CollectionBehavior.managed]
 					
 				case .aboveAll:
-					window?.level = Int(CGWindowLevelForKey(CGWindowLevelKey.statusWindow))
-					window?.collectionBehavior = [.canJoinAllSpaces, .stationary]
+					window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(CGWindowLevelKey.statusWindow)))
+					window?.collectionBehavior = [NSWindow.CollectionBehavior.canJoinAllSpaces, NSWindow.CollectionBehavior.stationary]
 				}
 				
 			case kUDK_WindowIndicatorOpacity:

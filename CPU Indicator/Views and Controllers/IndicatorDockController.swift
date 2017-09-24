@@ -17,13 +17,13 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 			CPUUsageGetter.sharedCPUUsageGetter.removeObserverForKnownUsageModification(self)
 			AppDelegate.sharedAppDelegate.removeObserver(self, forKeyPath: "selectedSkinObjectID", context: nil)
 			for keyPath in observedUDCKeys {
-				NSUserDefaultsController.shared().removeObserver(self, forKeyPath: keyPath)
+				NSUserDefaultsController.shared.removeObserver(self, forKeyPath: keyPath)
 			}
 		}
 	}
 	
 	func applicationWillFinishLaunching() {
-		let udc = NSUserDefaultsController.shared()
+		let udc = NSUserDefaultsController.shared
 		for keyPath in observedUDCKeys {
 			udc.addObserver(self, forKeyPath: keyPath, options: .initial, context: nil)
 		}
@@ -42,10 +42,10 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 			return
 		}
 		
-		if observedUDCKeys.contains(kp) && object as? NSUserDefaultsController === NSUserDefaultsController.shared() {
+		if observedUDCKeys.contains(kp) && object as? NSUserDefaultsController === NSUserDefaultsController.shared {
 			let prefix = "values."
 			let ud = UserDefaults.standard
-			switch kp.substring(from: prefix.endIndex) {
+			switch String(kp[prefix.endIndex...]) {
 			case kUDK_DockIconIsCPUIndicator:
 				if ud.bool(forKey: kUDK_DockIconIsCPUIndicator) {showIndicatorIfNeeded()}
 				else                                          {hideIndicatorIfNeeded()}
@@ -247,7 +247,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 			private let startIndicatorProgress: Float
 			private weak var linkedView: DockTileIndicatorView?
 			
-			init(linkedView v: DockTileIndicatorView, startIndicatorProgress sip: Float, endIndicatorProgress eip: Float, duration: TimeInterval, animationCurve: NSAnimationCurve) {
+			init(linkedView v: DockTileIndicatorView, startIndicatorProgress sip: Float, endIndicatorProgress eip: Float, duration: TimeInterval, animationCurve: NSAnimation.Curve) {
 				linkedView = v
 				endIndicatorProgress = eip
 				startIndicatorProgress = sip
@@ -258,7 +258,7 @@ class IndicatorDockController : NSObject, CPUUsageObserver {
 				fatalError("Cannot init this class with a coder")
 			}
 			
-			override var currentProgress: NSAnimationProgress {
+			override var currentProgress: NSAnimation.Progress {
 				get {return super.currentProgress}
 				set {
 					super.currentProgress = newValue

@@ -85,15 +85,15 @@ class PreferencesViewController: NSTabViewController {
 					if let _ = swapOrErasePair((
 						(constraint.firstItem, constraint.firstAttribute),
 						(constraint.secondItem, constraint.secondAttribute)
-						), withCheck: { (firstItem: (AnyObject?, NSLayoutAttribute), secondItem: (AnyObject?, NSLayoutAttribute)) -> Bool in
-							return (
-								/* The constraint links the item's view and its subview
-								 * and they link the same attribute, which can either be
-								 * bottom or tailing. */
-								firstItem.0 === sv && secondItem.0 === v &&
-									(firstItem.1 == .bottom || firstItem.1 == .trailing) &&
-									secondItem.1 == firstItem.1
-							)
+					), withCheck: { (firstItem: (AnyObject?, NSLayoutConstraint.Attribute), secondItem: (AnyObject?, NSLayoutConstraint.Attribute)) -> Bool in
+						return (
+							/* The constraint links the item's view and its subview
+							 * and they link the same attribute, which can either be
+							 * bottom or tailing. */
+							firstItem.0 === sv && secondItem.0 === v &&
+							(firstItem.1 == .bottom || firstItem.1 == .trailing) &&
+							secondItem.1 == firstItem.1
+						)
 					}) {
 						constraints.append(constraint)
 					}

@@ -48,14 +48,14 @@ class SizedSkin : NSObject {
 			guard let curImageRep = NSBitmapImageRep(
 				bitmapDataPlanes: nil, pixelsWide: Int(self.size.width), pixelsHigh: Int(self.size.height),
 				bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
-				colorSpaceName: NSCalibratedRGBColorSpace, bytesPerRow: 4 * Int(self.size.width), bitsPerPixel: 32
+				colorSpaceName: .calibratedRGB, bytesPerRow: 4 * Int(self.size.width), bitsPerPixel: 32
 				) else {
 					print("Cannot create image rep to create resized image for frame")
 					continue
 			}
 			
 			NSGraphicsContext.saveGraphicsState()
-			NSGraphicsContext.setCurrent(NSGraphicsContext(bitmapImageRep: curImageRep))
+			NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: curImageRep)
 			
 			image.draw(
 				in: frameRect, from: NSMakeRect(0, 0, image.size.width, image.size.height),
@@ -97,7 +97,7 @@ class SizedSkin : NSObject {
 		imageConstruction = NSBitmapImageRep(
 			bitmapDataPlanes: nil, pixelsWide: Int(size.width), pixelsHigh: Int(size.height),
 			bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
-			colorSpaceName: NSCalibratedRGBColorSpace, bytesPerRow: 4 * Int(finalSize.width), bitsPerPixel: 32
+			colorSpaceName: .calibratedRGB, bytesPerRow: 4 * Int(finalSize.width), bitsPerPixel: 32
 		)!
 	}
 	
@@ -128,7 +128,7 @@ class SizedSkin : NSObject {
 		let drawRect = NSMakeRect(0, 0, CGFloat(w), CGFloat(h))
 		
 		NSGraphicsContext.saveGraphicsState()
-		NSGraphicsContext.setCurrent(NSGraphicsContext(bitmapImageRep: imageConstruction))
+		NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: imageConstruction)
 		
 		let f = p * Float(nImages - 1)
 		let imageIdx = Int(f + 1)
