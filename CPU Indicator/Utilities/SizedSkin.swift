@@ -117,7 +117,7 @@ class SizedSkin : NSObject {
 		let nImages = resizedSkinImages.count
 		
 		let meltedPixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>.allocate(capacity: 5)
-		defer {meltedPixels.deallocate(capacity: 5)}
+		defer {meltedPixels.deallocate()}
 		
 		imageConstruction.getBitmapDataPlanes(meltedPixels)
 		
@@ -144,8 +144,8 @@ class SizedSkin : NSObject {
 		NSGraphicsContext.restoreGraphicsState()
 		
 		if imageIdx < nImages && imageIdx != 0 {
-			let img1Pixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>.allocate(capacity: 5); defer {img1Pixels.deallocate(capacity: 5)}
-			let img2Pixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>.allocate(capacity: 5); defer {img2Pixels.deallocate(capacity: 5)}
+			let img1Pixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>.allocate(capacity: 5); defer {img1Pixels.deallocate()}
+			let img2Pixels = UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>.allocate(capacity: 5); defer {img2Pixels.deallocate()}
 			resizedSkinImages[imageIdx  ].getBitmapDataPlanes(img1Pixels)
 			resizedSkinImages[imageIdx-1].getBitmapDataPlanes(img2Pixels)
 			for y in 0..<h {
