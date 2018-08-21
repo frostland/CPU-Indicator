@@ -12,7 +12,7 @@ import Cocoa
 
 private extension NSWindow.FrameAutosaveName {
 	
-	static let prefsWindow = NSWindow.FrameAutosaveName(rawValue: "PrefsWindow")
+	static let prefsWindow = "PrefsWindow"
 	
 }
 
@@ -30,7 +30,7 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
 	
 	override var window: NSWindow? {
 		didSet {
-			assert(window?.delegate == nil)
+			assert(window?.delegate == nil || window?.delegate === self)
 			window?.delegate = self
 		}
 	}

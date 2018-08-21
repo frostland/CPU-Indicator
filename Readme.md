@@ -7,14 +7,14 @@ One day, for christmas, he decided to create a [special page][bellaminette_noel_
 (link is in French) on his blog that would feature a girl in underwear, getting totally
 undressed when a particular part of the girl would be clicked.
 
-[bellaminette_noel_97]: http://bellaminettes.com/bm/home/hb010.php
+[bellaminette_noel_97]: https://bellaminettes.com/bm/home/hb010.php
 
 One of his friend, David Odin, had a terrific idea when he saw the page: use the girl to make of her
 a CPU Indicator. When the CPU is used, its heat increases, thus forcing the girl to remove her clothes!
 When the girl is naked, the CPU is used at its maximum. This idea lead to an open sourced
 linux application: [Hot-Babe][hotbabe_official].
 
-[hotbabe_official]: http://hotbabe.sourceforge.net/
+[hotbabe_official]: https://sourceforge.net/projects/hotbabe/
 
 A [Windows version][hot_babe_for_windows] of this application exists, but there were no Mac OS X version of Hot-Babe, until now.
 
@@ -30,8 +30,8 @@ A [Windows version][hot_babe_for_windows] of this application exists, but there 
 * The Dock icon of the application can be hidden
 * Installation via the [Mac App Store][mac_app_store_link] (but not for free…)
 
-[cpu_indicator_skins]: http://www.frostland.fr/products/cpu_indicator/skins/
-[mac_app_store_link]: http://itunes.apple.com/us/app/cpu-indicator/id423333471?ls=1&mt=12
+[cpu_indicator_skins]: https://www.frostland.fr/products/cpu_indicator/skins/
+[mac_app_store_link]: https://itunes.apple.com/us/app/cpu-indicator/id423333471?ls=1&mt=12
 
 ## Questions ##
 
@@ -49,4 +49,4 @@ To [Bruno Bellamy][bellaminette] for allowing me to freely use his hot babe.
 
 To David Odin for allowing me to freely re-use his idea!
 
-[bellaminette]: http://bellaminettes.com/
+[bellaminette]: https://bellaminettes.com/

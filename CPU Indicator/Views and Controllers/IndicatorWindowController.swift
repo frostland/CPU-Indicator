@@ -12,7 +12,7 @@ import Cocoa
 
 private extension NSWindow.FrameAutosaveName {
 	
-	static let indicatorWindow = NSWindow.FrameAutosaveName(rawValue: "IndicatorWindow")
+	static let indicatorWindow = "IndicatorWindow"
 	
 }
 

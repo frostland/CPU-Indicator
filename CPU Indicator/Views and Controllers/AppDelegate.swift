@@ -12,16 +12,16 @@ import Cocoa
 
 private extension NSStoryboard.Name {
 	
-	static let main = NSStoryboard.Name(rawValue: "Main")
+	static let main = "Main"
 	
 }
 
 
 private extension NSStoryboard.SceneIdentifier {
 	
-	static let introWindowController = NSStoryboard.SceneIdentifier(rawValue: "IntroWindowController")
-	static let indicatorWindowController = NSStoryboard.SceneIdentifier(rawValue: "IndicatorWindowController")
-	static let preferencesWindowController = NSStoryboard.SceneIdentifier(rawValue: "PreferencesWindowController")
+	static let introWindowController = "IntroWindowController"
+	static let indicatorWindowController = "IndicatorWindowController"
+	static let preferencesWindowController = "PreferencesWindowController"
 	
 }
 
@@ -263,7 +263,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		let ud = UserDefaults.standard
 		let firstRun = ud.bool(forKey: kUDK_FirstRun)
 		
-		mainWindowController = NSStoryboard(name: .main, bundle: nil).instantiateController(withIdentifier: .indicatorWindowController) as! IndicatorWindowController
+		mainWindowController = (NSStoryboard(name: .main, bundle: nil).instantiateController(withIdentifier: .indicatorWindowController) as! IndicatorWindowController)
 		
 		if firstRun {
 			ud.set(false, forKey: kUDK_FirstRun)

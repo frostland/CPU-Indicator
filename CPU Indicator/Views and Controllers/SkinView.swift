@@ -56,7 +56,7 @@ class SkinView : NSView {
 	
 	private func commonInit() {
 		wantsLayer = true /* Don't know why this does not work in Storyboard directly... */
-		layer?.contentsGravity = kCAGravityResizeAspect
+		layer?.contentsGravity = .resizeAspect
 		layerContentsRedrawPolicy = .beforeViewResize
 	}
 	
