@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12113" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12113"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -445,10 +446,13 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController storyboardIdentifier="IntroWindowController" showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="CPU Indicator" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="IntroWindow" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="CPU Indicator" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="IntroWindow" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="207" y="582" width="480" height="245"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="9EG-nA-3Gd"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -463,10 +467,13 @@
         <scene sceneID="rNN-4s-sYN">
             <objects>
                 <windowController storyboardIdentifier="IndicatorWindowController" id="2oJ-Ra-5WE" customClass="IndicatorWindowController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Indicator" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ze4-0I-6gO">
+                    <window key="window" title="Indicator" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="ze4-0I-6gO">
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="243" width="480" height="267"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="2oJ-Ra-5WE" id="URP-K3-MCB"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="ZOT-Yk-M7U" kind="relationship" relationship="window.shadowedContentViewController" id="rkO-jc-1KA"/>
@@ -560,6 +567,7 @@ DQ
                             <constraint firstItem="KhB-qH-wjM" firstAttribute="baseline" secondItem="9rM-yL-Y62" secondAttribute="baseline" id="FLp-qT-foa"/>
                             <constraint firstItem="w1c-u9-Uvv" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="FXN-b8-wnC"/>
                             <constraint firstItem="w1c-u9-Uvv" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="G5H-Mt-Dav"/>
+                            <constraint firstItem="9rM-yL-Y62" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="G6E-6M-ds7"/>
                             <constraint firstItem="neu-JA-5jE" firstAttribute="top" secondItem="w1c-u9-Uvv" secondAttribute="bottom" constant="8" id="IHw-A2-vfF"/>
                             <constraint firstAttribute="bottom" secondItem="KhB-qH-wjM" secondAttribute="bottom" constant="20" id="KvM-k5-Gwv"/>
                             <constraint firstItem="KhB-qH-wjM" firstAttribute="leading" secondItem="9rM-yL-Y62" secondAttribute="trailing" constant="12" id="VLd-Z9-TXw"/>
@@ -576,12 +584,15 @@ DQ
         <scene sceneID="Pwf-id-1DP">
             <objects>
                 <windowController storyboardIdentifier="PreferencesWindowController" showSeguePresentationStyle="single" id="CHB-XQ-1lg" customClass="PreferencesWindowController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="CPU Indicator Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="gmb-a9-qhl" customClass="NSPanel">
+                    <window key="window" title="CPU Indicator Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="gmb-a9-qhl" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="CHB-XQ-1lg" id="QWD-VZ-jnD"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="D6F-oW-ezH" kind="relationship" relationship="window.shadowedContentViewController" id="hKe-sX-qWr"/>
@@ -590,7 +601,7 @@ DQ
                 <customObject id="7ZX-2S-rcP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rL2"/>
             </objects>
-            <point key="canvasLocation" x="-675" y="403"/>
+            <point key="canvasLocation" x="-676" y="382"/>
         </scene>
         <!--Preferences View Controller-->
         <scene sceneID="tCR-Xq-jfJ">
@@ -606,13 +617,13 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
-                        <tabViewItems/>
                         <connections>
                             <binding destination="a6K-Ly-rL1" name="selectedIdentifier" keyPath="values.FLLatestPrefPaneId" id="JPH-V9-IZe"/>
                             <outlet property="delegate" destination="D6F-oW-ezH" id="odV-eq-kTc"/>
                         </connections>
                     </tabView>
                     <connections>
+                        <outlet property="tabView" destination="kkG-BU-Ow3" id="673-pb-s1y"/>
                         <segue destination="Tjp-MF-5Ef" kind="relationship" relationship="tabItems" id="KjB-rR-FdM"/>
                         <segue destination="Xra-uF-qxL" kind="relationship" relationship="tabItems" id="Cc3-TS-d7g"/>
                         <segue destination="71v-QF-o1T" kind="relationship" relationship="tabItems" id="BmH-Sj-VVy"/>
@@ -629,14 +640,14 @@ DQ
             <objects>
                 <viewController title="Window" id="Tjp-MF-5Ef" customClass="WindowPrefsViewController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hpr-ZZ-HDh">
-                        <rect key="frame" x="0.0" y="0.0" width="416" height="376"/>
+                        <rect key="frame" x="0.0" y="0.0" width="416" height="377"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="XWj-5X-OzR">
-                                <rect key="frame" x="0.0" y="0.0" width="416" height="376"/>
+                                <rect key="frame" x="0.0" y="0.0" width="416" height="377"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="hjk-6T-Eut">
-                                        <rect key="frame" x="40" y="20" width="363" height="314"/>
+                                        <rect key="frame" x="40" y="20" width="363" height="315"/>
                                         <subviews>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BYO-33-p2Q">
                                                 <rect key="frame" x="85" y="262" width="273" height="19"/>
@@ -647,7 +658,7 @@ DQ
                                                 </connections>
                                             </slider>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6TZ-ym-Ph0">
-                                                <rect key="frame" x="-2" y="208" width="338" height="18"/>
+                                                <rect key="frame" x="-2" y="208" width="339" height="18"/>
                                                 <buttonCell key="cell" type="check" title="Disallow Indicator Window Shadow (Uses Less CPU)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="QdD-02-9rf">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -674,7 +685,7 @@ DQ
                                                 </textFieldCell>
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0SL-uC-6Qr">
-                                                <rect key="frame" x="91" y="290" width="195" height="26"/>
+                                                <rect key="frame" x="91" y="291" width="196" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="Normal Window" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="aEe-UA-JE7" id="fHf-M8-ypY">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
@@ -941,6 +952,7 @@ DQ
                                             <constraint firstItem="KSm-Pr-r3n" firstAttribute="top" secondItem="51V-K4-iYp" secondAttribute="bottom" constant="-1" id="sHU-Gi-pd2"/>
                                             <constraint firstItem="ZMs-hE-prx" firstAttribute="leading" secondItem="gKK-4b-cN5" secondAttribute="trailing" constant="5" id="slV-3t-RTs"/>
                                             <constraint firstItem="UMh-XE-4kX" firstAttribute="top" secondItem="6TZ-ym-Ph0" secondAttribute="bottom" constant="15" id="t1o-0r-l2d"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UMh-XE-4kX" secondAttribute="trailing" constant="20" id="teD-d1-FZp"/>
                                             <constraint firstItem="0SL-uC-6Qr" firstAttribute="baseline" secondItem="ElA-38-EaO" secondAttribute="baseline" id="vuV-iV-kBB"/>
                                             <constraint firstItem="yp0-u0-AoW" firstAttribute="top" secondItem="tth-dQ-Xpv" secondAttribute="bottom" constant="8" id="wJr-4K-lqm"/>
                                             <constraint firstItem="TNA-zw-2f7" firstAttribute="height" secondItem="s0Q-RQ-NXV" secondAttribute="height" id="wKW-gn-76e"/>
@@ -952,7 +964,7 @@ DQ
                                         </constraints>
                                     </customView>
                                     <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="kaY-CH-KHt">
-                                        <rect key="frame" x="18" y="340" width="195" height="18"/>
+                                        <rect key="frame" x="18" y="341" width="195" height="18"/>
                                         <buttonCell key="cell" type="check" title="Show CPU Indicator Window" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Wfl-za-UAm">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -967,6 +979,7 @@ DQ
                                     <constraint firstAttribute="trailing" secondItem="hjk-6T-Eut" secondAttribute="trailing" constant="13" id="FoB-f2-wZU"/>
                                     <constraint firstItem="hjk-6T-Eut" firstAttribute="top" secondItem="kaY-CH-KHt" secondAttribute="bottom" constant="8" id="S7T-yo-fQf"/>
                                     <constraint firstAttribute="bottom" secondItem="hjk-6T-Eut" secondAttribute="bottom" constant="20" id="Wuq-SD-7nU"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kaY-CH-KHt" secondAttribute="trailing" constant="20" id="Z2v-mz-kVb"/>
                                     <constraint firstItem="kaY-CH-KHt" firstAttribute="leading" secondItem="XWj-5X-OzR" secondAttribute="leading" constant="20" id="hP7-Wl-7hf"/>
                                     <constraint firstItem="kaY-CH-KHt" firstAttribute="top" secondItem="XWj-5X-OzR" secondAttribute="top" constant="20" id="kDs-p5-Rgh"/>
                                 </constraints>
@@ -990,14 +1003,14 @@ DQ
             <objects>
                 <viewController title="Dock" id="71v-QF-o1T" sceneMemberID="viewController">
                     <view key="view" id="pol-Hh-dLk">
-                        <rect key="frame" x="0.0" y="0.0" width="444" height="169"/>
+                        <rect key="frame" x="0.0" y="0.0" width="444" height="186"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="jsU-9a-cYo">
-                                <rect key="frame" x="0.0" y="0.0" width="444" height="169"/>
+                                <rect key="frame" x="0.0" y="0.0" width="444" height="186"/>
                                 <subviews>
                                     <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="1n9-WT-ObD">
-                                        <rect key="frame" x="18" y="133" width="300" height="18"/>
+                                        <rect key="frame" x="18" y="150" width="300" height="18"/>
                                         <buttonCell key="cell" type="check" title="Show Dock Icon (Requires Restart of the App)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="J8J-3e-aFZ">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1007,7 +1020,7 @@ DQ
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YHW-hk-Hhd">
-                                        <rect key="frame" x="18" y="20" width="408" height="68"/>
+                                        <rect key="frame" x="18" y="20" width="408" height="85"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3bF-kY-VbH">
                                             <font key="font" metaFont="system"/>
                                             <string key="title">To Access the preferences while the Dock icon is hidden, you can :
@@ -1019,7 +1032,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Cdf-ae-7WK">
-                                        <rect key="frame" x="38" y="106" width="173" height="18"/>
+                                        <rect key="frame" x="38" y="123" width="173" height="18"/>
                                         <buttonCell key="cell" type="check" title="Indicate CPU in the Dock" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="85g-wp-CMk">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1033,9 +1046,11 @@ DQ
                                 <constraints>
                                     <constraint firstItem="1n9-WT-ObD" firstAttribute="top" secondItem="jsU-9a-cYo" secondAttribute="top" constant="20" id="4Ab-gk-FMz"/>
                                     <constraint firstItem="1n9-WT-ObD" firstAttribute="leading" secondItem="jsU-9a-cYo" secondAttribute="leading" constant="20" id="4ix-RK-Cb4"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1n9-WT-ObD" secondAttribute="trailing" constant="20" id="6gS-49-W4Q"/>
                                     <constraint firstAttribute="bottom" secondItem="YHW-hk-Hhd" secondAttribute="bottom" constant="20" id="9tX-zu-WBU"/>
                                     <constraint firstAttribute="trailing" secondItem="YHW-hk-Hhd" secondAttribute="trailing" constant="20" id="Cak-54-y4v"/>
                                     <constraint firstItem="YHW-hk-Hhd" firstAttribute="leading" secondItem="jsU-9a-cYo" secondAttribute="leading" constant="20" id="UH0-I6-PTt"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Cdf-ae-7WK" secondAttribute="trailing" constant="20" id="VP9-zC-qnd"/>
                                     <constraint firstItem="Cdf-ae-7WK" firstAttribute="leading" secondItem="1n9-WT-ObD" secondAttribute="leading" constant="20" id="XYw-rv-nsK"/>
                                     <constraint firstItem="Cdf-ae-7WK" firstAttribute="top" secondItem="1n9-WT-ObD" secondAttribute="bottom" constant="13" id="hbz-aT-07j"/>
                                     <constraint firstItem="YHW-hk-Hhd" firstAttribute="top" secondItem="Cdf-ae-7WK" secondAttribute="bottom" constant="20" id="vVi-D1-WcC"/>
@@ -1067,13 +1082,13 @@ DQ
                                 <rect key="frame" x="0.0" y="0.0" width="510" height="273"/>
                                 <subviews>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="143" horizontalPageScroll="10" verticalLineScroll="143" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOB-ht-u4d">
-                                        <rect key="frame" x="-1" y="76" width="512" height="198"/>
+                                        <rect key="frame" x="-1" y="77" width="512" height="197"/>
                                         <clipView key="contentView" id="hbK-QL-OpZ">
-                                            <rect key="frame" x="1" y="1" width="510" height="196"/>
+                                            <rect key="frame" x="1" y="1" width="510" height="195"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" typeSelect="NO" autosaveName="Skins Table View" rowHeight="141" viewBased="YES" id="Dah-Of-Maa">
-                                                    <rect key="frame" x="0.0" y="0.0" width="510" height="196"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="510" height="195"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1117,7 +1132,7 @@ DQ
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn identifier="" editable="NO" width="325" minWidth="40" maxWidth="3.4028234663852886e+38" id="YRZ-Xe-rGX">
+                                                        <tableColumn editable="NO" width="325" minWidth="40" maxWidth="3.4028234663852886e+38" id="YRZ-Xe-rGX">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1210,11 +1225,11 @@ DQ
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="140" id="arJ-yc-QEC"/>
                                         </constraints>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="CKZ-8J-wcf">
+                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="CKZ-8J-wcf">
                                             <rect key="frame" x="1" y="150" width="510" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="yDY-9S-ugD">
+                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="yDY-9S-ugD">
                                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -1228,7 +1243,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="f8A-5P-twu">
-                                        <rect key="frame" x="-1" y="56" width="512" height="21"/>
+                                        <rect key="frame" x="-1" y="57" width="512" height="21"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c8y-ri-UC3">
                                                 <rect key="frame" x="159" y="-1" width="152" height="23"/>
@@ -1275,7 +1290,7 @@ DQ
                                         </constraints>
                                     </customView>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YPY-78-U70">
-                                        <rect key="frame" x="142" y="14" width="171" height="26"/>
+                                        <rect key="frame" x="142" y="15" width="172" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Use Skin Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-1" imageScaling="proportionallyDown" inset="2" selectedItem="1Ee-EG-bp2" id="ytN-Rp-WNo">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -1402,6 +1417,7 @@ DQ
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="vtu-C3-tZ6" secondAttribute="trailing" id="M91-uD-xPq"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eLq-nB-o3W" secondAttribute="trailing" constant="20" id="SGc-HL-3iL"/>
                                             <constraint firstItem="vtu-C3-tZ6" firstAttribute="top" secondItem="FJT-Fz-Bky" secondAttribute="top" constant="5" id="WRo-D2-dRR"/>
                                             <constraint firstAttribute="bottom" secondItem="eLq-nB-o3W" secondAttribute="bottom" id="YeP-er-53o"/>
                                             <constraint firstItem="eLq-nB-o3W" firstAttribute="leading" secondItem="FJT-Fz-Bky" secondAttribute="leading" id="e5X-kX-5eN"/>
@@ -1411,6 +1427,7 @@ DQ
                                     </customView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3PC-mK-S7p" secondAttribute="trailing" constant="20" id="0TN-4B-fJ1"/>
                                     <constraint firstItem="FJT-Fz-Bky" firstAttribute="top" secondItem="3PC-mK-S7p" secondAttribute="bottom" constant="8" id="2DX-5R-TG6"/>
                                     <constraint firstAttribute="bottom" secondItem="FJT-Fz-Bky" secondAttribute="bottom" constant="20" id="Fsh-9A-Naq"/>
                                     <constraint firstItem="3PC-mK-S7p" firstAttribute="leading" secondItem="JTj-Al-NDU" secondAttribute="leading" constant="20" id="dcx-U3-7is"/>
