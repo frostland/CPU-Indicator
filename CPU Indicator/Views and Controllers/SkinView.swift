@@ -76,6 +76,7 @@ class SkinView : NSView {
 		removePreviewProgressObserverIfNeeded()
 	}
 	
+	@objc
 	var sizedSkin: SizedSkin? {
 		didSet {
 			assert(sizedSkin?.skin.managedObjectContext?.concurrencyType == nil || sizedSkin?.skin.managedObjectContext?.concurrencyType == .mainQueueConcurrencyType)
