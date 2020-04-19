@@ -8,6 +8,8 @@
 
 import Cocoa
 
+import KVObserver
+
 
 
 private extension NSStoryboard.Name {
@@ -52,8 +54,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	private var dockIconShown = false
 	private var appDidBecomeActive = false
-	
-	private lazy var kvoContextUDWindowLockedPtr = Unmanaged.passUnretained("UD Window Locked" as NSString).toOpaque()
 	
 	override init() {
 		super.init()
@@ -211,8 +211,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 		
 		/* Adding observer of "Window Locked" user defaults to set clickless to
-		 * false if locked is false. */
-		NSUserDefaultsController.shared.addObserver(self, forKeyPath: "values.\(kUDK_WindowIndicatorLocked)", options: [.initial], context: kvoContextUDWindowLockedPtr)
+		 * false if locked is false. Ne need to keep a reference to the observing
+		 * Id as we unobserve all in terminate and don’t need more fine grained
+		 * control. */
+		_ = kvObserver.observe(object: NSUserDefaultsController.shared, keyPath: "values.\(kUDK_WindowIndicatorLocked)", kvoOptions: .initial, dispatchType: .directOrAsyncOnMainQueue, handler: { _ in
+			let ud = UserDefaults.standard
+			if !ud.bool(forKey: kUDK_WindowIndicatorLocked) {ud.set(false, forKey: kUDK_WindowIndicatorClickless)}
+		})
 		
 		menuBarController.applicationWillFinishLaunching()
 		dockIndicatorController.applicationWillFinishLaunching()
@@ -280,8 +285,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	func applicationWillTerminate(_ aNotification: Notification) {
-		NSUserDefaultsController.shared.removeObserver(self, forKeyPath: "values."+kUDK_WindowIndicatorLocked, context: kvoContextUDWindowLockedPtr)
+		kvObserver.stopObservingEverything()
 	}
+	
+	
+	/* ***************
+	   MARK: - Actions
+	   *************** */
 	
 	@IBAction func showPrefs(_ sender: AnyObject?) {
 		let controller: PreferencesWindowController
@@ -296,15 +306,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		introWindowController = nil /* No need to keep a reference to a class we'll never use again. */
 	}
 	
-	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		switch context {
-		case kvoContextUDWindowLockedPtr?:
-			let ud = UserDefaults.standard
-			if !ud.bool(forKey: kUDK_WindowIndicatorLocked) {ud.set(false, forKey: kUDK_WindowIndicatorClickless)}
-			
-		default: super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-		}
-	}
+	
+	/* ***************
+	   MARK: - Private
+	   *************** */
+	
+	private let kvObserver = KVObserver()
 	
 	private func imagesInfoFromImages(_ images: [NSImage], maxWidth: inout Int32, maxHeight: inout Int32) -> [(NSImage, Int32, Int32, Int32, Int32)] {
 		var imagesInfo = [(NSImage, Int32, Int32, Int32, Int32)]()
@@ -334,5 +341,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			mutableFrames.add(frame)
 		}
 	}
-
+	
 }

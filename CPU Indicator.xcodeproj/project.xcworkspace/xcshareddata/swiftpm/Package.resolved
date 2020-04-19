@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "KVObserver",
+        "repositoryURL": "git@github.com:happn-tech/KVObserver.git",
+        "state": {
+          "branch": null,
+          "revision": "3a8bd558a72c9ab393f94a6f947307e8d01c8c9e",
+          "version": "0.9.4"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

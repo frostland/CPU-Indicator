@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		7B68FE0F1BC9D692004B900C /* IndicatorMenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68FE0E1BC9D692004B900C /* IndicatorMenuBarController.swift */; };
 		7B68FE111BC9D739004B900C /* IndicatorDockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68FE101BC9D739004B900C /* IndicatorDockController.swift */; };
 		7B71E76A1B964D8B00F037A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71E7691B964D8B00F037A3 /* Constants.swift */; };
+		7B85D397244C7F6900060CF2 /* KVObserver in Frameworks */ = {isa = PBXBuildFile; productRef = 7B85D396244C7F6900060CF2 /* KVObserver */; };
 		7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */; };
 		7B87C53C1B2C9D2A00A6B64A /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C53B1B2C9D2A00A6B64A /* IntroViewController.swift */; };
 		7B87C53E1B2C9D2A00A6B64A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B87C53D1B2C9D2A00A6B64A /* Assets.xcassets */; };
@@ -90,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B85D397244C7F6900060CF2 /* KVObserver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +262,9 @@
 			dependencies = (
 			);
 			name = "CPU Indicator";
+			packageProductDependencies = (
+				7B85D396244C7F6900060CF2 /* KVObserver */,
+			);
 			productName = "CPU Indicator";
 			productReference = 7B87C5361B2C9D2A00A6B64A /* CPU Indicator.app */;
 			productType = "com.apple.product-type.application";
@@ -311,9 +316,7 @@
 				TargetAttributes = {
 					7B87C5351B2C9D2A00A6B64A = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = DVL8GW97S8;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HardenedRuntime = {
 								enabled = 1;
@@ -326,13 +329,11 @@
 					7B87C5461B2C9D2A00A6B64A = {
 						CreatedOnToolsVersion = 7.0;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
 						TestTargetID = 7B87C5351B2C9D2A00A6B64A;
 					};
 					7B87C5511B2C9D2B00A6B64A = {
 						CreatedOnToolsVersion = 7.0;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
 						TestTargetID = 7B87C5351B2C9D2A00A6B64A;
 					};
 				};
@@ -346,6 +347,9 @@
 				Base,
 			);
 			mainGroup = 7B87C52D1B2C9D2A00A6B64A;
+			packageReferences = (
+				7B85D395244C7F6900060CF2 /* XCRemoteSwiftPackageReference "KVObserver" */,
+			);
 			productRefGroup = 7B87C5371B2C9D2A00A6B64A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -561,7 +565,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -577,7 +582,10 @@
 				DEVELOPMENT_TEAM = DVL8GW97S8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "CPU Indicator/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.cpu-indicator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -597,7 +605,10 @@
 				DEVELOPMENT_TEAM = DVL8GW97S8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "CPU Indicator/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.cpu-indicator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -615,7 +626,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "CPU IndicatorTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -633,7 +648,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "CPU IndicatorTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -650,7 +669,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "CPU IndicatorUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -668,7 +691,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "CPU IndicatorUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.frostland.CPU-IndicatorUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -718,6 +745,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7B85D395244C7F6900060CF2 /* XCRemoteSwiftPackageReference "KVObserver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:happn-tech/KVObserver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7B85D396244C7F6900060CF2 /* KVObserver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B85D395244C7F6900060CF2 /* XCRemoteSwiftPackageReference "KVObserver" */;
+			productName = KVObserver;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		7B62756C1BCAFBEB007A0155 /* Model.xcdatamodeld */ = {
