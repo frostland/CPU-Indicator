@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12134.2" systemVersion="16E191a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="1">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="1">
     <entity name="Skin" representedClassName="Skin" syncable="YES" codeGenerationType="category">
-        <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="height" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="Float" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="rawMixedImageState" attributeType="Integer 16" minValueString="1" maxValueString="3" defaultValueString="2" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="sortPosition" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="source" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="storeIdentifier" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="uid" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="width" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="frames" toMany="YES" minCount="1" deletionRule="Cascade" ordered="YES" destinationEntity="SkinFrame" inverseName="skin" inverseEntity="SkinFrame" syncable="YES"/>
+        <attribute name="currency" optional="YES" attributeType="String"/>
+        <attribute name="height" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Float" usesScalarValueType="NO"/>
+        <attribute name="rawMixedImageState" attributeType="Integer 16" minValueString="1" maxValueString="3" defaultValueString="2" usesScalarValueType="YES"/>
+        <attribute name="sortPosition" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="source" optional="YES" attributeType="String"/>
+        <attribute name="storeIdentifier" optional="YES" attributeType="String"/>
+        <attribute name="uid" attributeType="String"/>
+        <attribute name="width" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <relationship name="frames" toMany="YES" minCount="1" deletionRule="Cascade" ordered="YES" destinationEntity="SkinFrame" inverseName="skin" inverseEntity="SkinFrame"/>
+        <fetchIndex name="byNameIndex">
+            <fetchIndexElement property="name" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="bySourceIndex">
+            <fetchIndexElement property="source" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="byStoreIdentifierIndex">
+            <fetchIndexElement property="storeIdentifier" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="byUidIndex">
+            <fetchIndexElement property="uid" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
     <entity name="SkinFrame" representedClassName="SkinFrame" syncable="YES" codeGenerationType="class">
-        <attribute name="height" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="imageData" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="width" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="xPos" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="yPos" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="skin" maxCount="1" deletionRule="Nullify" destinationEntity="Skin" inverseName="frames" inverseEntity="Skin" syncable="YES"/>
+        <attribute name="height" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="imageData" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="width" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="xPos" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="yPos" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <relationship name="skin" maxCount="1" deletionRule="Nullify" destinationEntity="Skin" inverseName="frames" inverseEntity="Skin"/>
     </entity>
     <elements>
         <element name="Skin" positionX="-261" positionY="-9" width="128" height="210"/>
-        <element name="SkinFrame" positionX="-47" positionY="63" width="128" height="133"/>
+        <element name="SkinFrame" positionX="-55.8046875" positionY="48.8984375" width="128" height="133"/>
     </elements>
 </model>
