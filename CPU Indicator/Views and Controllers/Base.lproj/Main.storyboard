@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -378,8 +378,8 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
-                                        <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Bring All to Front" keyEquivalent="`" id="LE2-aR-0XJ">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="arrangeInFront:" target="Ady-hI-5gd" id="DRN-fu-gQh"/>
                                             </connections>
@@ -519,11 +519,11 @@
                 <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM4"/>
                 <viewController id="XfG-lQ-9wD" customClass="IntroViewController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="115"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="113"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w1c-u9-Uvv">
-                                <rect key="frame" x="129" y="74" width="222" height="21"/>
+                                <rect key="frame" x="129" y="73" width="222" height="20"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Welcome to CPU Indicator" id="CPm-l6-Lnd">
                                     <font key="font" metaFont="systemBold" size="17"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -531,7 +531,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="neu-JA-5jE">
-                                <rect key="frame" x="18" y="49" width="444" height="17"/>
+                                <rect key="frame" x="18" y="49" width="444" height="16"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Great intro text." id="UfJ-uG-pJC">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -616,7 +616,7 @@ DQ
                     <tabView key="tabView" type="noTabsNoBorder" id="kkG-BU-Ow3">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="message"/>
+                        <font key="font" metaFont="system"/>
                         <connections>
                             <binding destination="a6K-Ly-rL1" name="selectedIdentifier" keyPath="values.FLLatestPrefPaneId" id="JPH-V9-IZe"/>
                             <outlet property="delegate" destination="D6F-oW-ezH" id="odV-eq-kTc"/>
@@ -640,17 +640,17 @@ DQ
             <objects>
                 <viewController title="Window" id="Tjp-MF-5Ef" customClass="WindowPrefsViewController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hpr-ZZ-HDh">
-                        <rect key="frame" x="0.0" y="0.0" width="416" height="377"/>
+                        <rect key="frame" x="0.0" y="0.0" width="416" height="373"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="XWj-5X-OzR">
-                                <rect key="frame" x="0.0" y="0.0" width="416" height="377"/>
+                                <rect key="frame" x="0.0" y="0.0" width="416" height="373"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="hjk-6T-Eut">
-                                        <rect key="frame" x="40" y="20" width="363" height="315"/>
+                                        <rect key="frame" x="40" y="20" width="363" height="311"/>
                                         <subviews>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BYO-33-p2Q">
-                                                <rect key="frame" x="85" y="262" width="273" height="19"/>
+                                                <rect key="frame" x="85" y="260" width="273" height="19"/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="K2m-hC-YT3"/>
                                                 <connections>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="lsj-Xt-jPF"/>
@@ -658,7 +658,7 @@ DQ
                                                 </connections>
                                             </slider>
                                             <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6TZ-ym-Ph0">
-                                                <rect key="frame" x="-2" y="208" width="339" height="18"/>
+                                                <rect key="frame" x="-2" y="207" width="339" height="18"/>
                                                 <buttonCell key="cell" type="check" title="Disallow Indicator Window Shadow (Uses Less CPU)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="QdD-02-9rf">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -677,7 +677,7 @@ DQ
                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="rm3-Cj-JsE"/>
                                             </imageView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uXk-Y9-A1c">
-                                                <rect key="frame" x="109" y="102" width="47" height="17"/>
+                                                <rect key="frame" x="109" y="103" width="47" height="16"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Screen" id="kF7-ER-nHR">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -685,10 +685,10 @@ DQ
                                                 </textFieldCell>
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0SL-uC-6Qr">
-                                                <rect key="frame" x="91" y="291" width="196" height="25"/>
+                                                <rect key="frame" x="91" y="287" width="196" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="Normal Window" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="aEe-UA-JE7" id="fHf-M8-ypY">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="menu"/>
+                                                    <font key="font" metaFont="system"/>
                                                     <menu key="menu" title="OtherViews" id="9pB-vl-yfe">
                                                         <items>
                                                             <menuItem title="Normal Window" state="on" tag="1" id="aEe-UA-JE7"/>
@@ -704,7 +704,7 @@ DQ
                                                 </connections>
                                             </popUpButton>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gKK-4b-cN5">
-                                                <rect key="frame" x="-2" y="239" width="107" height="17"/>
+                                                <rect key="frame" x="-2" y="238" width="107" height="16"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Opacity:" id="iVl-JA-25W">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -712,7 +712,7 @@ DQ
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UMh-XE-4kX">
-                                                <rect key="frame" x="-2" y="178" width="196" height="17"/>
+                                                <rect key="frame" x="-2" y="178" width="196" height="16"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="CPU Indicator Window Position:" id="Idb-3w-z3W">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -720,7 +720,7 @@ DQ
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZMs-hE-prx">
-                                                <rect key="frame" x="106" y="237" width="252" height="19"/>
+                                                <rect key="frame" x="106" y="236" width="252" height="19"/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.10000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="t4r-Fe-cOm"/>
                                                 <connections>
                                                     <binding destination="a6K-Ly-rM5" name="enabled" keyPath="values.FLShowWindow" id="vH3-MW-nZn"/>
@@ -787,7 +787,7 @@ DQ
                                                 </connections>
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2tm-Ea-6yJ">
-                                                <rect key="frame" x="-2" y="264" width="86" height="17"/>
+                                                <rect key="frame" x="-2" y="262" width="86" height="16"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Size:" id="WWw-8D-4z5">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -795,7 +795,7 @@ DQ
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ElA-38-EaO">
-                                                <rect key="frame" x="-2" y="296" width="92" height="17"/>
+                                                <rect key="frame" x="-2" y="293" width="92" height="16"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window Level:" id="GOI-AU-PB1">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -964,7 +964,7 @@ DQ
                                         </constraints>
                                     </customView>
                                     <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="kaY-CH-KHt">
-                                        <rect key="frame" x="18" y="341" width="195" height="18"/>
+                                        <rect key="frame" x="18" y="337" width="195" height="18"/>
                                         <buttonCell key="cell" type="check" title="Show CPU Indicator Window" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Wfl-za-UAm">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1003,14 +1003,14 @@ DQ
             <objects>
                 <viewController title="Dock" id="71v-QF-o1T" sceneMemberID="viewController">
                     <view key="view" id="pol-Hh-dLk">
-                        <rect key="frame" x="0.0" y="0.0" width="444" height="186"/>
+                        <rect key="frame" x="0.0" y="0.0" width="456" height="165"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="jsU-9a-cYo">
-                                <rect key="frame" x="0.0" y="0.0" width="444" height="186"/>
+                                <rect key="frame" x="0.0" y="0.0" width="456" height="165"/>
                                 <subviews>
                                     <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="1n9-WT-ObD">
-                                        <rect key="frame" x="18" y="150" width="300" height="18"/>
+                                        <rect key="frame" x="18" y="129" width="300" height="18"/>
                                         <buttonCell key="cell" type="check" title="Show Dock Icon (Requires Restart of the App)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="J8J-3e-aFZ">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1020,7 +1020,7 @@ DQ
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YHW-hk-Hhd">
-                                        <rect key="frame" x="18" y="20" width="408" height="85"/>
+                                        <rect key="frame" x="18" y="20" width="420" height="64"/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3bF-kY-VbH">
                                             <font key="font" metaFont="system"/>
                                             <string key="title">To Access the preferences while the Dock icon is hidden, you can :
@@ -1032,7 +1032,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Cdf-ae-7WK">
-                                        <rect key="frame" x="38" y="123" width="173" height="18"/>
+                                        <rect key="frame" x="38" y="102" width="173" height="18"/>
                                         <buttonCell key="cell" type="check" title="Indicate CPU in the Dock" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="85g-wp-CMk">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1068,28 +1068,28 @@ DQ
                 <customObject id="aPj-MM-cyD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="a6K-Ly-rM6"/>
             </objects>
-            <point key="canvasLocation" x="-566" y="1238.5"/>
+            <point key="canvasLocation" x="-567" y="1237"/>
         </scene>
         <!--Skins-->
         <scene sceneID="ghU-3h-w49">
             <objects>
                 <viewController title="Skins" id="Ks3-AB-QsZ" customClass="SkinsPrefsViewController" customModule="CPU_Indicator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="khG-tK-gwV">
-                        <rect key="frame" x="0.0" y="0.0" width="510" height="273"/>
+                        <rect key="frame" x="0.0" y="0.0" width="510" height="272"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="bd8-bi-gsC">
-                                <rect key="frame" x="0.0" y="0.0" width="510" height="273"/>
+                                <rect key="frame" x="0.0" y="0.0" width="510" height="272"/>
                                 <subviews>
                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="143" horizontalPageScroll="10" verticalLineScroll="143" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOB-ht-u4d">
-                                        <rect key="frame" x="-1" y="77" width="512" height="197"/>
+                                        <rect key="frame" x="-1" y="76" width="512" height="197"/>
                                         <clipView key="contentView" id="hbK-QL-OpZ">
                                             <rect key="frame" x="1" y="1" width="510" height="195"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" typeSelect="NO" autosaveName="Skins Table View" rowHeight="141" viewBased="YES" id="Dah-Of-Maa">
                                                     <rect key="frame" x="0.0" y="0.0" width="510" height="195"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
@@ -1097,7 +1097,6 @@ DQ
                                                     <tableColumns>
                                                         <tableColumn identifier="isSelected" editable="NO" width="35" minWidth="35" maxWidth="35" id="4pJ-A4-MId">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
@@ -1134,7 +1133,6 @@ DQ
                                                         </tableColumn>
                                                         <tableColumn editable="NO" width="325" minWidth="40" maxWidth="3.4028234663852886e+38" id="YRZ-Xe-rGX">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </tableHeaderCell>
@@ -1151,7 +1149,7 @@ DQ
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YVt-0H-V4E">
-                                                                            <rect key="frame" x="-2" y="51" width="329" height="39"/>
+                                                                            <rect key="frame" x="-2" y="52" width="329" height="38"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Skin Name" id="Fgf-EA-amK">
                                                                                 <font key="font" metaFont="systemBold" size="32"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1175,7 +1173,6 @@ DQ
                                                         </tableColumn>
                                                         <tableColumn identifier="skinPreview" editable="NO" width="141" minWidth="141" maxWidth="141" id="lY8-sp-uoX">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </tableHeaderCell>
@@ -1235,7 +1232,7 @@ DQ
                                         </scroller>
                                     </scrollView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qWZ-EW-ZXj">
-                                        <rect key="frame" x="18" y="20" width="120" height="17"/>
+                                        <rect key="frame" x="18" y="20" width="120" height="16"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mixed Image State:" id="JhE-oV-hVk">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1243,7 +1240,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="f8A-5P-twu">
-                                        <rect key="frame" x="-1" y="57" width="512" height="21"/>
+                                        <rect key="frame" x="-1" y="56" width="512" height="21"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c8y-ri-UC3">
                                                 <rect key="frame" x="159" y="-1" width="152" height="23"/>
@@ -1290,10 +1287,10 @@ DQ
                                         </constraints>
                                     </customView>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YPY-78-U70">
-                                        <rect key="frame" x="142" y="15" width="172" height="25"/>
+                                        <rect key="frame" x="142" y="14" width="172" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Use Skin Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-1" imageScaling="proportionallyDown" inset="2" selectedItem="1Ee-EG-bp2" id="ytN-Rp-WNo">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu"/>
+                                            <font key="font" metaFont="system"/>
                                             <menu key="menu" id="Gu5-sA-fgv">
                                                 <items>
                                                     <menuItem title="Use Skin Default" state="on" tag="-1" id="1Ee-EG-bp2"/>
