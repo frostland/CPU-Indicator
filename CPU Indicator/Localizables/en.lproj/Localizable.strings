@@ -10,5 +10,3 @@
 "global cpu usage" = "Global CPU Usage";
 /* The processor number; shown in the menu when the indicator is clicked in the menu bar (when one menu item per CPU for the CPU Usage). */
 "proc #" = "Proc. #n#";
-
-"%lu%%" = "%lu%%";

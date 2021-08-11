@@ -130,6 +130,12 @@ class IndicatorMenuBarController : NSObject, CALayerDelegate, CPUUsageObserver {
 	   MARK: - Private
 	   *************** */
 	
+	private static var percentageFormatter: NumberFormatter = {
+		let f = NumberFormatter()
+		f.numberStyle = .percent
+		return f
+	}()
+	
 	private var observingUDC = false
 	private let observedUDCKeys = [
 		"values.\(kUDK_ShowMenuIndicator)",
@@ -207,7 +213,7 @@ class IndicatorMenuBarController : NSObject, CALayerDelegate, CPUUsageObserver {
 		let load = (procIndex != nil ? CPUUsageGetter.sharedCPUUsageGetter.cpuUsages[procIndex!] : CPUUsageGetter.sharedCPUUsageGetter.globalCPUUsage)
 		
 		/* Updating text */
-		statusItem.item.button?.title = (mode == MenuIndicatorMode.text.rawValue || mode == MenuIndicatorMode.both.rawValue ? String(format: NSLocalizedString("%lu%%", comment: ""), Int(load*100 + 0.5)) : "")
+		statusItem.item.button?.title = (mode == MenuIndicatorMode.text.rawValue || mode == MenuIndicatorMode.both.rawValue ? Self.percentageFormatter.xl_string(from: NSNumber(value: load)) : "")
 		
 		/* Updating image */
 		if mode == MenuIndicatorMode.image.rawValue || mode == MenuIndicatorMode.both.rawValue, let sizedSkin = sizedSkin {
