@@ -1,12 +1,14 @@
-/*
-  Localizable.strings
-  CPU Indicator
+/* This file contains the non-storyboard strings of the application. */
 
-  Created by François Lamboley on 4/30/16.
-  Copyright © 2016 Frost Land. All rights reserved.
-*/
 
-"proc %lu" = "Proc. %lu";
+
+/* •••••••••••••••••••••••••••••• */
+/*       CPU Indicator Menu       */
+/* •••••••••••••••••••••••••••••• */
+
+/* Global CPU Usage. Shown in the menu when the indicator is clicked in the menu bar (when only one menu item for the CPU Usage). */
 "global cpu usage" = "Global CPU Usage";
+/* The processor number; shown in the menu when the indicator is clicked in the menu bar (when one menu item per CPU for the CPU Usage). */
+"proc #" = "Proc. #n#";
 
 "%lu%%" = "%lu%%";

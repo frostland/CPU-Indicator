@@ -8,6 +8,8 @@
 
 import Cocoa
 
+import XibLoc
+
 
 
 class IndicatorMenuBarController : NSObject, CALayerDelegate, CPUUsageObserver {
@@ -84,7 +86,10 @@ class IndicatorMenuBarController : NSObject, CALayerDelegate, CPUUsageObserver {
 		for i in 0..<n {
 			let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 			statusItem.menu = (menu.copy() as! NSMenu)
-			statusItem.menu?.item(withTag: 42)?.title = (oneMenuPerCPU ? String(format: NSLocalizedString("proc %lu", comment: ""), i+1) : NSLocalizedString("global cpu usage", comment: ""))
+			statusItem.menu?.item(withTag: 42)?.title = (oneMenuPerCPU ?
+				NSLocalizedString("proc #", comment: "The processor number; shown in the menu when the indicator is clicked in the menu bar (when one menu item per CPU for the CPU Usage).").applyingCommonTokens(number: .init(i+1)) :
+				NSLocalizedString("global cpu usage", comment: "Global CPU Usage. Shown in the menu when the indicator is clicked in the menu bar (when only one menu item for the CPU Usage).")
+			)
 			statusItem.button?.imagePosition = .imageLeft
 			
 			let layer = CALayer()
