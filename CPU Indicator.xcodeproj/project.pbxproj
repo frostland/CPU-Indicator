@@ -13,6 +13,7 @@
 		7B6275771BCAFFA6007A0155 /* Skin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6275731BCAFFA6007A0155 /* Skin.swift */; };
 		7B68FE0F1BC9D692004B900C /* IndicatorMenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68FE0E1BC9D692004B900C /* IndicatorMenuBarController.swift */; };
 		7B68FE111BC9D739004B900C /* IndicatorDockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B68FE101BC9D739004B900C /* IndicatorDockController.swift */; };
+		7B6DF0B026C348C000712E9F /* XibLoc in Frameworks */ = {isa = PBXBuildFile; productRef = 7B6DF0AF26C348C000712E9F /* XibLoc */; };
 		7B71E76A1B964D8B00F037A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71E7691B964D8B00F037A3 /* Constants.swift */; };
 		7B85D397244C7F6900060CF2 /* KVObserver in Frameworks */ = {isa = PBXBuildFile; productRef = 7B85D396244C7F6900060CF2 /* KVObserver */; };
 		7B87C53A1B2C9D2A00A6B64A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B87C5391B2C9D2A00A6B64A /* AppDelegate.swift */; };
@@ -76,6 +77,8 @@
 		7B92E3CE1C430B9D0091F561 /* CPUUsageGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPUUsageGetter.swift; sourceTree = "<group>"; };
 		7B99A3891BD2E4C40020D13E /* SkinsPrefsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinsPrefsViewController.swift; sourceTree = "<group>"; };
 		7B99A38B1BD2FE750020D13E /* VerticallyCenteredTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextFieldCell.swift; sourceTree = "<group>"; };
+		7BBF01DC252F356F000B7858 /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
+		7BBF01DD252F3607000B7858 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		7BC7167D22A2BBAB0083B66E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7BCB49571B5AAF2600F5D341 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		7BDE20FB1C41492E002B50C7 /* WindowPrefsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPrefsViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B85D397244C7F6900060CF2 /* KVObserver in Frameworks */,
+				7B6DF0B026C348C000712E9F /* XibLoc in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +148,7 @@
 				7B87C54A1B2C9D2A00A6B64A /* CPU IndicatorTests */,
 				7B87C5551B2C9D2B00A6B64A /* CPU IndicatorUITests */,
 				7B87C5371B2C9D2A00A6B64A /* Products */,
+				7BBF01DC252F356F000B7858 /* Scripts */,
 			);
 			sourceTree = "<group>";
 		};
@@ -264,6 +269,7 @@
 			name = "CPU Indicator";
 			packageProductDependencies = (
 				7B85D396244C7F6900060CF2 /* KVObserver */,
+				7B6DF0AF26C348C000712E9F /* XibLoc */,
 			);
 			productName = "CPU Indicator";
 			productReference = 7B87C5361B2C9D2A00A6B64A /* CPU Indicator.app */;
@@ -311,7 +317,7 @@
 		7B87C52E1B2C9D2A00A6B64A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Frost Land";
 				TargetAttributes = {
 					7B87C5351B2C9D2A00A6B64A = {
@@ -349,6 +355,7 @@
 			mainGroup = 7B87C52D1B2C9D2A00A6B64A;
 			packageReferences = (
 				7B85D395244C7F6900060CF2 /* XCRemoteSwiftPackageReference "KVObserver" */,
+				7B6DF0AE26C348C000712E9F /* XCRemoteSwiftPackageReference "XibLoc" */,
 			);
 			productRefGroup = 7B87C5371B2C9D2A00A6B64A /* Products */;
 			projectDirPath = "";
@@ -451,6 +458,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7B87C5401B2C9D2A00A6B64A /* Base */,
+				7BBF01DD252F3607000B7858 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -489,6 +497,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -544,6 +553,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -747,6 +757,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7B6DF0AE26C348C000712E9F /* XCRemoteSwiftPackageReference "XibLoc" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/happn-tech/XibLoc.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
 		7B85D395244C7F6900060CF2 /* XCRemoteSwiftPackageReference "KVObserver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:happn-tech/KVObserver.git";
@@ -758,6 +776,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7B6DF0AF26C348C000712E9F /* XibLoc */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B6DF0AE26C348C000712E9F /* XCRemoteSwiftPackageReference "XibLoc" */;
+			productName = XibLoc;
+		};
 		7B85D396244C7F6900060CF2 /* KVObserver */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7B85D395244C7F6900060CF2 /* XCRemoteSwiftPackageReference "KVObserver" */;

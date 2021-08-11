@@ -1,0 +1,431 @@
+/* ••••••••••••••••••••••••••••••••••••• DO NOT TOUCH THIS BLOCK ••••••••••••••••••••••••••••••••••••• */
+
+"NyW-WH-sf5.title" = ""; "Fgf-EA-amK.title" = ""; "JWT-LQ-C5B.title" = "";
+"Zug-Ae-QjI.title" = ""; "UeO-IO-sP8.title" = ""; "ens-Pf-odf.title" = "";
+"ze4-0I-6gO.title" = "";
+
+/* ••••••••••••••••••••••••••••••••••••• END OF THE BLOCK ••••••••••••••••••••••••••••••••••••• */
+
+
+
+/* ••••••••••••••••••••••••••••••• */
+/*            Main Menu            */
+/* ••••••••••••••••••••••••••••••• */
+
+/* “Main Menu” menu title */
+"AYu-sK-qS6.title" = "Main Menu";
+
+/* “App” menu item title */
+"1Xt-HY-uBw.title" = "CPU Indicator";
+
+/* “File” menu item title */
+"dMs-cI-mzQ.title" = "File";
+
+/* “Edit” menu item title */
+"5QF-Oa-p0T.title" = "Edit";
+
+/* “View” menu item title */
+"H8h-7b-M4v.title" = "View";
+
+/* “Window” menu item title */
+"aUF-d1-5bR.title" = "Window";
+
+/* “Help” menu item title */
+"wpr-3q-Mcd.title" = "Help";
+
+/* •••••••••• App Menu •••••••••• */
+
+/* App menu title */
+"uQy-DD-JDr.title" = "CPU Indicator";
+
+/* “About App” menu item title */
+"5kV-Vb-QxS.title" = "About CPU Indicator";
+
+/* “Preferences…” menu item title */
+"BOF-NM-1cW.title" = "Preferences…";
+
+/* “Services” menu item title */
+"NMo-om-nkz.title" = "Services";
+
+/* “Hide CPU Indicator” menu item title */
+"Olw-nP-bQN.title" = "Hide CPU Indicator";
+
+/* “Hide Others” menu item title */
+"Vdr-fp-XzO.title" = "Hide Others";
+
+/* “Show All” menu item title */
+"Kd2-mp-pUS.title" = "Show All";
+
+/* “Quit App” menu item title */
+"4sb-4s-VLi.title" = "Quit CPU Indicator";
+
+/* •••••••••• App -> Services Menu •••••••••• */
+
+/* “Services” menu title */
+"hz9-B4-Xy5.title" = "Services";
+
+/* •••••••••• File Menu •••••••••• */
+
+/* “File” menu title */
+"bib-Uj-vzu.title" = "File";
+
+/* “New” menu item title */
+"Was-JA-tGl.title" = "New";
+
+/* “Open…” menu item title */
+"IAo-SY-fd9.title" = "Open…";
+
+/* “Open Recent” menu item title */
+"tXI-mr-wws.title" = "Open Recent";
+
+/* “Close” menu item title */
+"DVo-aG-piG.title" = "Close";
+
+/* “Save…” menu item title */
+"pxx-59-PXV.title" = "Save…";
+
+/* “Save As…” menu item title */
+"Bw7-FT-i3A.title" = "Save As…";
+
+/* “Revert to Saved” menu item title */
+"KaW-ft-85H.title" = "Revert to Saved";
+
+/* “Page Setup…” menu item title */
+"qIS-W8-SiK.title" = "Page Setup…";
+
+/* “Print…” menu item title */
+"aTl-1u-JFS.title" = "Print…";
+
+/* •••••••••• File -> Open Recent Menu •••••••••• */
+
+/* “Open Recent” menu title */
+"oas-Oc-fiZ.title" = "Open Recent";
+
+/* “Clear Menu” menu item title */
+"vNY-rz-j42.title" = "Clear Menu";
+
+/* •••••••••• Edit Menu •••••••••• */
+
+/* “Edit” menu title */
+"W48-6f-4Dl.title" = "Edit";
+
+/* “Undo” menu item title */
+"dRJ-4n-Yzg.title" = "Undo";
+
+/* “Redo” menu item title */
+"6dh-zS-Vam.title" = "Redo";
+
+/* “Cut” menu item title */
+"uRl-iY-unG.title" = "Cut";
+
+/* “Copy” menu item title */
+"x3v-GG-iWU.title" = "Copy";
+
+/* “Paste” menu item title */
+"gVA-U4-sdL.title" = "Paste";
+
+/* “Paste and Match Style” menu item title */
+"WeT-3V-zwk.title" = "Paste and Match Style";
+
+/* “Delete” menu item title */
+"pa3-QI-u2k.title" = "Delete";
+
+/* “Select All” menu item title */
+"Ruw-6m-B2m.title" = "Select All";
+
+/* “Find” menu item title */
+"4EN-yA-p0u.title" = "Find";
+
+/* “Spelling and Grammar” menu item title */
+"Dv1-io-Yv7.title" = "Spelling and Grammar";
+
+/* “Substitutions” menu item title */
+"9ic-FL-obx.title" = "Substitutions";
+
+/* “Transformations” menu item title */
+"2oI-Rn-ZJC.title" = "Transformations";
+
+/* “Speech” menu item title */
+"xrE-MZ-jX0.title" = "Speech";
+
+/* •••••••••• Edit -> Find Menu •••••••••• */
+
+/* “Find” menu title */
+"1b7-l0-nxx.title" = "Find";
+
+/* “Find…” menu item title */
+"Xz5-n4-O0W.title" = "Find…";
+
+/* “Find and Replace…” menu item title */
+"YEy-JH-Tfz.title" = "Find and Replace…";
+
+/* “Find Next” menu item title */
+"q09-fT-Sye.title" = "Find Next";
+
+/* “Find Previous” menu item title */
+"OwM-mh-QMV.title" = "Find Previous";
+
+/* “Use Selection for Find” menu item title */
+"buJ-ug-pKt.title" = "Use Selection for Find";
+
+/* “Jump to Selection” menu item title */
+"S0p-oC-mLd.title" = "Jump to Selection";
+
+/* •••••••••• Edit -> Spelling and Grammar Menu •••••••••• */
+
+/* “Spelling” menu title */
+"3IN-sU-3Bg.title" = "Spelling";
+
+/* “Show Spelling and Grammar” menu item title */
+"HFo-cy-zxI.title" = "Show Spelling and Grammar";
+
+/* “Check Document Now” menu item title */
+"hz2-CU-CR7.title" = "Check Document Now";
+
+/* “Check Spelling While Typing” menu item title */
+"rbD-Rh-wIN.title" = "Check Spelling While Typing";
+
+/* “Check Grammar With Spelling” menu item title */
+"mK6-2p-4JG.title" = "Check Grammar With Spelling";
+
+/* “Correct Spelling Automatically” menu item title */
+"78Y-hA-62v.title" = "Correct Spelling Automatically";
+
+/* •••••••••• Edit -> Substitutions Menu •••••••••• */
+
+/* “Substitutions” menu title */
+"FeM-D8-WVr.title" = "Substitutions";
+
+/* “Show Substitutions” menu item title */
+"z6F-FW-3nz.title" = "Show Substitutions";
+
+/* “Smart Copy/Paste” menu item title */
+"9yt-4B-nSM.title" = "Smart Copy/Paste";
+
+/* “Smart Quotes” menu item title */
+"hQb-2v-fYv.title" = "Smart Quotes";
+
+/* “Smart Dashes” menu item title */
+"rgM-f4-ycn.title" = "Smart Dashes";
+
+/* “Smart Links” menu item title */
+"cwL-P1-jid.title" = "Smart Links";
+
+/* “Data Detectors” menu item title */
+"tRr-pd-1PS.title" = "Data Detectors";
+
+/* “Text Replacement” menu item title */
+"HFQ-gK-NFA.title" = "Text Replacement";
+
+/* •••••••••• Edit -> Transformations Menu •••••••••• */
+
+/* “Transformations” menu title */
+"c8a-y6-VQd.title" = "Transformations";
+
+/* “Make Upper Case” menu item title */
+"vmV-6d-7jI.title" = "Make Upper Case";
+
+/* “Make Lower Case” menu item title */
+"d9M-CD-aMd.title" = "Make Lower Case";
+
+/* “Capitalize” menu item title */
+"UEZ-Bs-lqG.title" = "Capitalize";
+
+/* •••••••••• Edit -> Speech Menu •••••••••• */
+
+/* “Speech” menu title */
+"3rS-ZA-NoH.title" = "Speech";
+
+/* “Start Speaking” menu item title */
+"Ynk-f8-cLZ.title" = "Start Speaking";
+
+/* “Stop Speaking” menu item title */
+"Oyz-dy-DGm.title" = "Stop Speaking";
+
+/* •••••••••• View Menu •••••••••• */
+
+/* “View” menu title */
+"HyV-fh-RgO.title" = "View";
+
+/* “Show Toolbar” menu item title */
+"snW-S8-Cw5.title" = "Show Toolbar";
+
+/* “Customize Toolbar…” menu item title */
+"1UK-8n-QPP.title" = "Customize Toolbar…";
+
+/* •••••••••• Window Menu •••••••••• */
+
+/* “Window” menu title */
+"Td7-aD-5lo.title" = "Window";
+
+/* “Minimize” menu item title */
+"OY7-WF-poV.title" = "Minimize";
+
+/* “Zoom” menu item title */
+"R4o-n2-Eq4.title" = "Zoom";
+
+/* “Bring All to Front” menu item title */
+"LE2-aR-0XJ.title" = "Bring All to Front";
+
+/* •••••••••• Help Menu •••••••••• */
+
+/* “Help” menu title */
+"F2S-fz-NVQ.title" = "Help";
+
+/* “App Help” menu item title */
+"FKE-Sm-Kum.title" = "CPU Indicator Help";
+
+
+/* •••••••••••••••••••••••••••••••••• */
+/*            Intro Window            */
+/* •••••••••••••••••••••••••••••••••• */
+
+/* Intro window title (should be the App’s name) */
+"IQv-IB-iLA.title" = "CPU Indicator";
+
+/* “Welcome to CPU Indicator” text in intro window (title) */
+"CPm-l6-Lnd.title" = "Welcome to CPU Indicator";
+
+/* Main text in intro window */
+"UfJ-uG-pJC.title" = "Great intro text.";
+
+/* Preferences… button title in intro window */
+"U9C-Yp-HPE.title" = "Preferences…";
+
+/* OK button title in intro window */
+"1ey-IK-qa9.title" = "OK";
+
+
+/* •••••••••••••••••••••••••••••••••••••••• */
+/*            CPU Indicator Menu            */
+/* •••••••••••••••••••••••••••••••••••••••• */
+/* This menu is shown when the user clicks on any CPU Indicator menu in the menu
+ * bar when the menu CPU indication is on. */
+
+/* “Preferences…” menu item title */
+"YY9-3i-4vJ.title" = "Preferences…";
+
+/* “Quit CPU Indicator” menu item title */
+"Yiy-ar-8ZP.title" = "Quit CPU Indicator";
+
+
+/* •••••••••••••••••••••••••••••••••••••• */
+/*            Preferences Pane            */
+/* •••••••••••••••••••••••••••••••••••••• */
+
+/* Title of the CPU Indicator Preferences panel */
+"gmb-a9-qhl.title" = "CPU Indicator Preferences";
+
+/* •••••••••• Window Prefs •••••••••• */
+
+/* Window prefs view controller title */
+"Tjp-MF-5Ef.title" = "Window";
+
+/* Title of checkbox to show the CPU indicator window or not */
+"Wfl-za-UAm.title" = "Show CPU Indicator Window";
+
+/* “Window Level” pref title (label next to menu to change the value) */
+"GOI-AU-PB1.title" = "Window Level:";
+
+/* “Window Level” menu title */
+"9pB-vl-yfe.title" = "OtherViews";
+
+/* “Normal Window” menu item title (in window level menu) */
+"aEe-UA-JE7.title" = "Normal Window";
+
+/* “Above All Other Windows” menu item title (in window level menu) */
+"HK9-Bu-MpT.title" = "Above All Other Windows";
+
+/* “Behind All Other Windows” menu item title (in window level menu) */
+"Uhl-gO-fLK.title" = "Behind All Other Windows";
+
+/* Title of the window size pref */
+"WWw-8D-4z5.title" = "Window Size:";
+
+/* Title of the window opacity pref */
+"iVl-JA-25W.title" = "Window Opacity:";
+
+/* Title of checkbox to allow CPU indicator window shadow or not */
+"QdD-02-9rf.title" = "Disallow Indicator Window Shadow (Uses Less CPU)";
+
+/* Text above the CPU Indicator window position view */
+"Idb-3w-z3W.title" = "CPU Indicator Window Position:";
+
+/* Screen text (shown in a view representing the user’s screen) */
+"kF7-ER-nHR.title" = "Screen";
+
+/* Title of checkbox to make the CPU Indicator window immovable */
+"lpB-2F-Xbw.title" = "Lock the Window";
+
+/* Title of checkbox to make the CPU Indicator window click-through */
+"k0N-Qd-Zvr.title" = "Render the Window Insensitive to Clicks";
+
+/* Title of checkbox to decrease CPU indicator window opacity on mouse-over (hidden pref) */
+"Vfe-eP-MwC.title" = "Decrease Window Opacity on Mouse-Over";
+
+/* •••••••••• Menu Bar Prefs •••••••••• */
+
+/* Menu Bar prefs view controller title */
+"Xra-uF-qxL.title" = "Menu Bar";
+
+/* Title of checkbox to show CPU indicator in the menu or not */
+"Fbg-0S-gso.title" = "Show CPU Indicator Menu";
+
+/* “Show Indicator As an Image” radio button entry */
+"zj2-mt-ueO.title" = "Show Indicator As an Image";
+
+/* “Show Indicator As Text” radio button entry */
+"hIa-lD-4DJ.title" = "Show Indicator As Text (Percentage of Usage)";
+
+/* “Show Both” radio button entry (show indicator both as text and image in menu) */
+"Rfb-Af-Knw.title" = "Show Both";
+
+/* Title of checkbox to show one menu item per CPU (otherwise it’s one for all) */
+"k7t-91-3hb.title" = "Show One Menu Per CPU";
+
+/* •••••••••• Dock Prefs •••••••••• */
+
+/* Dock prefs view controller title */
+"71v-QF-o1T.title" = "Dock";
+
+/* Title of the checkbox to show the Dock icon or not. */
+"J8J-3e-aFZ.title" = "Show Dock Icon (Requires Restart of the App)";
+
+/* Title of the checkbox to indicate CPU in the Dock or not. */
+"85g-wp-CMk.title" = "Indicate CPU in the Dock";
+
+/* Text explaining how to access the preferences of the app when the Dock icon
+ * is hidden. */
+"3bF-kY-VbH.title" = "To Access the preferences while the Dock icon is hidden, you can:\n	• Click on the CPU Indicator Window (if it is click-enabled)\n	• Choose “Preferences…” in the CPU Indicator Menu (if enabled)\n	• Launch CPU Indicator from the Launchpad or the Finder";
+
+/* •••••••••• Skins Prefs •••••••••• */
+
+/* Skins view controller title */
+"Ks3-AB-QsZ.title" = "Skins";
+
+/* “Show Purchased Only” button title. Must end with 6 nbsp in LtR languages,
+ * untested in RtL languages. */
+"anX-5T-98U.title" = "Show Purchased Only      ";
+
+/* “Restore Purchases…” button title. Must end with 6 nbsp in LtR languages,
+ * untested in RtL languages. */
+"pM6-gu-piR.title" = "Restore Purchases…      ";
+
+/* “Use Selected Skin” button title. Must end with 6 nbsp in LtR languages,
+ * untested in RtL languages. */
+"A9w-kT-TlF.title" = "Use Selected Skin      ";
+
+/* “Mixed Image State” pref title (label next to menu to change the value) */
+"JhE-oV-hVk.title" = "Mixed Image State:";
+
+/* “Use Skin Default” menu item title (in mixed image state menu) */
+"1Ee-EG-bp2.title" = "Use Skin Default";
+
+/* “Allow” menu item title (in mixed image state menu) */
+"gj9-JQ-a86.title" = "Allow";
+
+/* “Allow Transitions Only” menu item title (in mixed image state menu) */
+"8dM-z2-0fP.title" = "Allow Transitions Only";
+
+/* “Disallow” menu item title (in mixed image state menu) */
+"cLQ-jO-zuk.title" = "Disallow";
